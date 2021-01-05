@@ -5,6 +5,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +23,7 @@ import { TableComponent } from './components/table/table.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
+    NgxDatatableModule,
 
     /* Bootstrap specific components/modules - we do not import whole bootstrap module - keep adding what is needed. */
     CollapseModule.forRoot(),
@@ -36,6 +38,8 @@ import { TableComponent } from './components/table/table.component';
 
     /* modules */
     FontAwesomeModule,
+    NgxDatatableModule,
+
     CollapseModule,
     BsDropdownModule,
     TooltipModule,

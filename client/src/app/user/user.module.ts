@@ -8,6 +8,7 @@ import { UserComponent } from './user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
+    ProductsComponent,
   ],
   imports: [
     CommonModule,

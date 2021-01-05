@@ -7,6 +7,12 @@
 @import '~bootstrap/scss/functions';
 @import 'theme.scss';
 
+/* data table stylesheet */
+@import '~@swimlane/ngx-datatable/index.css';
+//@import '~@swimlane/ngx-datatable/themes/bootstrap';
+@import '~@swimlane/ngx-datatable/themes/material';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
 // FIXME - should use bootstrap variables approach. see src/_variables.scss file.
 body {
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

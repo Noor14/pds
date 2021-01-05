@@ -3,13 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductsComponent } from './components/products/products.component';
 
 // import { HeaderComponent } from 'components/header/header.component';
 // import { FooterComponent } from 'components/footer/footer.component';
 
 const children: Routes = [
-  { path: '', redirectTo: '/user/dashboard' },
+  // { path: '', redirectTo: '/user/dashboard' }, // auto takes to dashboard pages
+  { path: '', redirectTo: '/user/products' }, // auto takes to products page
   { path: 'dashboard', component: DashboardComponent, },
+  { path: 'products', component: ProductsComponent, },
 ];
 
 const routes: Routes = [

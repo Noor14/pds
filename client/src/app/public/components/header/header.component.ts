@@ -19,6 +19,6 @@ export class HeaderComponent implements OnInit {
   login() {
     console.log('login: called');
     window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
-    this.router.navigate(['/user/dashboard']);
+    this.router.navigate(['/user']);
   }
 }
