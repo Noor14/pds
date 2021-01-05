@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* TODO enhance later to pre-download the files and then let it proceed to download respective font */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+@import url(https://fonts.googleapis.com/css?family=Lora:400italic);
+
+// FIXME - should use bootstrap variables approach. see src/_variables.scss file.
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
