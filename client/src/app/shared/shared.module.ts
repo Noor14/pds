@@ -6,6 +6,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { TableComponent } from './components/table/table.component';
 
@@ -16,6 +21,7 @@ import { TableComponent } from './components/table/table.component';
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
 
     /* Bootstrap specific components/modules - we do not import whole bootstrap module - keep adding what is needed. */
     CollapseModule.forRoot(),
@@ -29,10 +35,15 @@ import { TableComponent } from './components/table/table.component';
     TableComponent,
 
     /* modules */
+    FontAwesomeModule,
     CollapseModule,
     BsDropdownModule,
     TooltipModule,
-    ModalModule
+    ModalModule,
   ],
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(faIconLibrary: FaIconLibrary) {
+    faIconLibrary.addIconPacks(fas, far, fab);
+  }
+}

@@ -22,10 +22,18 @@
         </ul>
         <ul class="navbar-nav pull-right">
           <li class="nav-item"><a class="nav-link">Welcome Back, Dr. Abu Bakar</a></li>
-          <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/account">My Account</a></li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/account">
+              <fa-icon [icon]="['fas', 'user']"></fa-icon>
+              My Account
+            </a>
+          </li>
         </ul>
 
-        <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+        <button class="btn btn-outline-danger" (click)="logout()">
+          <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon>
+          Logout
+        </button>
       </div>
     </nav>
   </div>
