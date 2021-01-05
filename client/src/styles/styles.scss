@@ -4,6 +4,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
 @import url(https://fonts.googleapis.com/css?family=Lora:400italic);
 
+@import '~bootstrap/scss/functions';
+@import 'theme.scss';
+
 // FIXME - should use bootstrap variables approach. see src/_variables.scss file.
 body {
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
