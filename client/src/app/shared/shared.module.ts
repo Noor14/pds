@@ -12,12 +12,10 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-import { ItemsListComponent } from './components/items-list/items-list.component';
 import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
-    ItemsListComponent,
     TableComponent
   ],
   imports: [
@@ -33,7 +31,6 @@ import { TableComponent } from './components/table/table.component';
   ],
   exports: [
     /* components */
-    ItemsListComponent,
     TableComponent,
 
     /* modules */
