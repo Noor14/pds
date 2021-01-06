@@ -7,8 +7,8 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 
-// import { HeaderComponent } from 'components/header/header.component';
-// import { FooterComponent } from 'components/footer/footer.component';
+// import { PublicHeaderComponent } from 'components/public-header/public-header.component';
+// import { PublicFooterComponent } from 'components/public-footer/public-footer.component';
 
 const children: Routes = [
   { path: '', component: LandingPageComponent, },
@@ -18,8 +18,8 @@ const children: Routes = [
 ];
 
 const routes: Routes = [
-  // { path: '', component: HeaderComponent, outlet: 'header' },
-  // { path: '', component: FooterComponent, outlet: 'footer' },
+  // { path: '', component: PublicHeaderComponent, outlet: 'header' },
+  // { path: '', component: PublicFooterComponent, outlet: 'footer' },
 
   { path: '', component: PublicComponent, children: children }
 ];

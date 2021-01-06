@@ -5,8 +5,8 @@ import { UserComponent } from './user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 
-// import { HeaderComponent } from 'components/header/header.component';
-// import { FooterComponent } from 'components/footer/footer.component';
+// import { UserHeaderComponent } from 'components/user-header/user-header.component';
+// import { UserFooterComponent } from 'components/user-footer/user-footer.component';
 
 const children: Routes = [
   // { path: '', redirectTo: '/user/dashboard' }, // auto takes to dashboard pages
@@ -16,8 +16,8 @@ const children: Routes = [
 ];
 
 const routes: Routes = [
-  // { path: '', component: HeaderComponent, outlet: 'header' },
-  // { path: '', component: FooterComponent, outlet: 'footer' },
+  // { path: '', component: UserHeaderComponent, outlet: 'header' },
+  // { path: '', component: UserFooterComponent, outlet: 'footer' },
 
   { path: '', component: UserComponent, children: children }
 ];

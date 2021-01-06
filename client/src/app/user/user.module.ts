@@ -5,8 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 
 import { UserComponent } from './user.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { UserHeaderComponent } from './components/user-header/user-header.component';
+import { UserFooterComponent } from './components/user-footer/user-footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 
@@ -14,8 +14,8 @@ import { ProductsComponent } from './components/products/products.component';
 @NgModule({
   declarations: [
     UserComponent,
-    HeaderComponent,
-    FooterComponent,
+    UserHeaderComponent,
+    UserFooterComponent,
     DashboardComponent,
     ProductsComponent,
   ],

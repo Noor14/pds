@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  templateUrl: './user-header.component.html',
+  styleUrls: ['./user-header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class UserHeaderComponent implements OnInit {
   isMainNavCollapsed = true;
 
   constructor(
