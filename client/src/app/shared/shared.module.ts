@@ -6,6 +6,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +16,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { TableComponent } from './components/table/table.component';
 
 @NgModule({
+  providers: [
+    PaginationConfig
+  ],
   declarations: [
     TableComponent
   ],
@@ -28,6 +32,7 @@ import { TableComponent } from './components/table/table.component';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    PaginationModule,
   ],
   exports: [
     /* components */

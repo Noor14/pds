@@ -1,9 +1,68 @@
 <div>
 
+  <!-- filter bar and controls -->
+
   <!-- main table ngx-data-table-->
-  <ngx-datatable class="material"
+  <ngx-datatable
+    class="material"
     [rows]="rows"
     [columns]="columns"
+    [limit]="limit"
+    rowHeight="auto"
+  >
 
-  > </ngx-datatable>
+    <!-- Action column -->
+    <ngx-datatable-column
+      name="-"
+      [width]="50"
+      [sortable]="false"
+      *ngIf="actions && actions.length"
+    >
+
+      <!-- column name -->
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>{{ column.name }}</span>
+      </ng-template>
+
+      <!-- column value -->
+      <ng-template let-row="row" let-value="value" let-rowIdx="index" ngx-datatable-cell-template>
+
+        <div class="btn-group" dropdown>
+<!--          <button dropdownToggle type="button" class="dropdown-toggle"-->
+<!--                  aria-controls="dropdown-basic">-->
+<!--          </button>-->
+          <fa-icon [icon]="['fas', 'cog']" dropdownToggle class="dropdown-toggle"></fa-icon>
+
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-basic">
+
+            <li role="menuitem" *ngFor="let action of actions">
+              <a class="dropdown-item" (click)="action.handler(row, rowIdx)">{{action.name}}</a>
+            </li>
+<!--            <li class="divider dropdown-divider"></li>-->
+<!--            <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>-->
+          </ul>
+        </div>
+      </ng-template>
+
+    </ngx-datatable-column>
+
+    <!-- rest of the columns -->
+    <ngx-datatable-column
+      [name]="col.name"
+      *ngFor="let col of columns"
+    >
+      <!-- column name -->
+<!--      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>-->
+<!--        <span>{{ column.name }}</span>-->
+<!--      </ng-template>-->
+
+      <!-- column value -->
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <span>{{ value }}</span>
+      </ng-template>
+
+    </ngx-datatable-column>
+
+  </ngx-datatable>
 </div>
