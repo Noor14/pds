@@ -11,8 +11,13 @@ $table--border-color: $datatable-header-border-bottom-color;
   }
   .datatable-footer {
     border: 1px solid $table--border-color;
+    color: $datatable-body-cell-color !important;
     height: auto !important;
     font-size: 14px !important;
+
+    .datatable-pager a {
+      color: $datatable-body-cell-color !important;
+    }
 
     // Note: check if it collides the virtual horizontal scrollbar
     //margin-top: -6px;
