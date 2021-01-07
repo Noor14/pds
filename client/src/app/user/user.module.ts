@@ -9,6 +9,8 @@ import { UserHeaderComponent } from './components/user-header/user-header.compon
 import { UserFooterComponent } from './components/user-footer/user-footer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { StoresComponent } from './components/stores/stores.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { ProductsComponent } from './components/products/products.component';
     UserFooterComponent,
     DashboardComponent,
     ProductsComponent,
+    OrdersComponent,
+    StoresComponent,
   ],
   imports: [
     CommonModule,

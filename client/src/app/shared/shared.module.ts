@@ -32,7 +32,7 @@ import { TableComponent } from './components/table/table.component';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    PaginationModule,
+    PaginationModule.forRoot(),
   ],
   exports: [
     /* components */
@@ -46,6 +46,7 @@ import { TableComponent } from './components/table/table.component';
     BsDropdownModule,
     TooltipModule,
     ModalModule,
+    PaginationModule,
   ],
 })
 export class SharedModule {

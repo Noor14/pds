@@ -6,6 +6,18 @@
   <!-- filter bar and controls -->
 
   <!-- main table ngx-data-table-->
+  <div class="form-row mb-4">
+    <div class="col-2">
+      <select class="custom-select">
+        <option *ngFor='let a of [1,2,3]'>{{a}}</option>
+      </select>
+    </div>
+    <div class="col-2">
+      <input type="text" class="form-control" name="query"  placeholder="Search">
+    </div>
+    <button class="btn btn-primary" >Search</button>
+  </div>
+
   <ngx-datatable
     #mainTable
     class="material"
