@@ -7,18 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
   rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' }
+    { id: '0000101', name: 'Amaxol', type: 'Capsule', company: 'Lorem', tp: 16, retail: 96, minQuantity: 50, wholesaler: 'Ahmed Brothers'},
+    { id: '0000102', name: 'Panadol', type: 'Tablet', company: 'Lorem', tp: 16, retail: 4, minQuantity: 100, wholesaler: 'Bilal Brothers'},
+    { id: '0000103', name: 'Brufen', type: 'Syrup', company: 'Lorem', tp: 16, retail: 96, minQuantity: 40, wholesaler: 'Bilal Brothers'},
+    { id: '0000104', name: 'Augmentin', type: 'Capsule', company: 'Lorem', tp: 50, retail: 65, minQuantity: 30, wholesaler: 'Hussain Brothers'},
   ];
   columns = [
-    { name: 'ID', value: 'id',},
-    { name: 'Name', value: 'name',},
-    { name: 'Company', value: 'company',},
-    { name: 'T.P', value: 'tp',},
-    { name: 'Retail', value: 'retail',},
-    { name: 'Min Quantity', value: 'minQuantity',},
-    { name: 'Wholesaler', value: 'wholesaler',},
+    { name: 'ID', prop: 'id',},
+    { name: 'Name', prop: 'name',},
+    { name: 'Type', prop: 'type',},
+    { name: 'Company', prop: 'company',},
+    { name: 'T.P', prop: 'tp',},
+    { name: 'Retail', prop: 'retail',},
+    { name: 'Min Quantity', prop: 'minQuantity',},
+    { name: 'Wholesaler', prop: 'wholesaler',},
     ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},

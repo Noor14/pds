@@ -1,22 +1,31 @@
 <div>
 
+  <!-- for testing/dev -  flags values changes -->
+<!--  <p>{{columnMode}}, {{isLargeScreenScreenView}}</p>-->
+
   <!-- filter bar and controls -->
 
   <!-- main table ngx-data-table-->
   <ngx-datatable
+    #mainTable
     class="material"
+    [columnMode]="columnMode"
     [rows]="rows"
-    [columns]="columns"
     [limit]="limit"
+    [scrollbarH]="scrollbarH"
+    [scrollbarV]="scrollbarV"
     rowHeight="auto"
-    [headerHeight]="50"
-    [footerHeight]="50"
+    [headerHeight]="60"
+    [footerHeight]="60"
   >
 
     <!-- Action column -->
     <ngx-datatable-column
-      name="-"
-      [width]="50"
+      [cellClass]="'table-column--action'"
+      name="&nbsp;"
+      [width]="isLargeScreenScreenView ? 0 : 70"
+      [minWidth]="70"
+      [flexGrow]="isLargeScreenScreenView ? 0.3 : 0"
       [sortable]="false"
       *ngIf="actions && actions.length"
     >
@@ -29,7 +38,7 @@
       <!-- column value -->
       <ng-template let-row="row" let-value="value" let-rowIdx="index" ngx-datatable-cell-template>
 
-        <div class="btn-group" dropdown>
+        <div class="btn-group" dropdown container="body">
 <!--          <button dropdownToggle type="button" class="dropdown-toggle"-->
 <!--                  aria-controls="dropdown-basic">-->
 <!--          </button>-->
@@ -52,7 +61,8 @@
     <!-- rest of the columns -->
     <ngx-datatable-column
       [name]="col.name"
-      *ngFor="let col of columns"
+      [flexGrow]="isLargeScreenScreenView ? 1 : 0"
+      *ngFor="let col of columns; let colIdx = index"
     >
       <!-- column name -->
 <!--      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>-->
@@ -60,8 +70,8 @@
 <!--      </ng-template>-->
 
       <!-- column value -->
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span>{{ value }}</span>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span>{{ row[col.prop] }}</span>
       </ng-template>
 
     </ngx-datatable-column>

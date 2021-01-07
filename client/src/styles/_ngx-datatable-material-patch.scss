@@ -1,0 +1,36 @@
+@import '~@swimlane/ngx-datatable/themes/material';
+
+$table--border-color: $datatable-header-border-bottom-color;
+
+/* === custom overwrites - starts ================= */
+.ngx-datatable {
+  box-shadow: none !important;
+  .datatable-header {
+    border: 1px solid $table--border-color;
+    height: auto !important;
+  }
+  .datatable-footer {
+    border: 1px solid $table--border-color;
+    height: auto !important;
+    font-size: 14px !important;
+
+    // Note: check if it collides the virtual horizontal scrollbar
+    //margin-top: -6px;
+  }
+  .datatable-header-cell {
+    border-right: 1px solid $table--border-color;
+    color: $datatable-body-cell-color !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+  .datatable-row-even {
+    background: #f2f5f8 !important;
+  }
+  .datatable-body-cell {
+    border: 1px solid #dee2e6;
+  }
+  .datatable-pager {
+    text-align: left !important;
+  }
+}
+/* === custom overwrites - ends ================== */
