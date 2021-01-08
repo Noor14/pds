@@ -4,8 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
-import {OrdersComponent} from './components/orders/orders.component';
-import {StoresComponent} from './components/stores/stores.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { StoresComponent } from './components/stores/stores.component';
+import { DoctorsComponent } from './components/doctors/doctors.component';
 
 // import { UserHeaderComponent } from 'components/user-header/user-header.component';
 // import { UserFooterComponent } from 'components/user-footer/user-footer.component';
@@ -13,10 +14,11 @@ import {StoresComponent} from './components/stores/stores.component';
 const children: Routes = [
   // { path: '', redirectTo: '/user/dashboard' }, // auto takes to dashboard pages
   // { path: '', redirectTo: '/user/products' }, // auto takes to products page
-  { path: 'dashboard', component: DashboardComponent, },
-  { path: 'products', component: ProductsComponent, },
-  { path: 'orders', component: OrdersComponent, },
-  { path: 'stores', component: StoresComponent, },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'doctors', component: DoctorsComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'stores', component: StoresComponent },
 ];
 
 const routes: Routes = [
