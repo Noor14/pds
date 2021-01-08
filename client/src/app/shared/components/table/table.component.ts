@@ -30,6 +30,10 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   public limit = 10;
 
   public isLargeScreenScreenView = false;
+  public filterByObj = {
+    column: '$',
+    text: undefined,
+  };
   constructor(
     private cdRef: ChangeDetectorRef,
   ) { }

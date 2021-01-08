@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -24,6 +25,7 @@ import { TableComponent } from './components/table/table.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     FontAwesomeModule,
     NgxDatatableModule,
 
@@ -39,6 +41,7 @@ import { TableComponent } from './components/table/table.component';
     TableComponent,
 
     /* modules */
+    FormsModule,
     FontAwesomeModule,
     NgxDatatableModule,
 
