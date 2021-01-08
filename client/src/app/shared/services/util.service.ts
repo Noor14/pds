@@ -29,10 +29,10 @@ export class UtilService {
   }
 
   alert(config: IAlertConfig) {
-    return this.modal(AlertComponent, config, {});
+    return this.modal(AlertComponent, config, {class: 'modal--lite'});
   }
 
   confirm(config: IConfirmConfig) {
-    return this.modal(ConfirmComponent, config, {});
+    return this.modal(ConfirmComponent, config, {class: 'modal--lite'});
   }
 }

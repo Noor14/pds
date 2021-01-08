@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {IConfirmConfig} from "@shared/components/confirm/confirm.model";
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { BsModalRef} from 'ngx-bootstrap/modal';
+import { IAlertConfig } from './alert.model';
 
 @Component({
   selector: 'app-alert',
@@ -10,10 +10,11 @@ import {IConfirmConfig} from "@shared/components/confirm/confirm.model";
 export class AlertComponent implements OnInit {
   result = new EventEmitter();
 
-  config: IConfirmConfig = {
+  config: IAlertConfig = {
+    isError: false,
+    headingText: '',
     message: '',
     approveButtonText: '',
-    declineButtonText: ''
   };
 
   constructor(

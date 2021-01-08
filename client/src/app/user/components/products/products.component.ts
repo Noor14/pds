@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UtilService, IConfirmConfig } from '@shared/services/util.service';
+import { UtilService, IConfirmConfig, IAlertConfig } from '@shared/services/util.service';
 import { ProductService } from '@user/services/product.service';
 
 @Component({
@@ -43,7 +43,15 @@ export class ProductsComponent implements OnInit {
     }
 
     // DEV - auto opener - deleteProduct
-    this.deleteProduct({}, 0);
+    // this.deleteProduct({}, 0);
+
+    // DEV - auto opener - alert
+    this.utilService.alert({
+      isError: false,
+      headingText: '',
+      message: 'This is a sample alert message for the action you just called.',
+      approveButtonText: 'OK'
+    });
   }
 
   editProduct(product: any, productIdx: number) : void {
@@ -64,7 +72,6 @@ export class ProductsComponent implements OnInit {
         console.log('confirm: approve', res);
 
       }, (reason: string) => {
-
         console.log('confirm: decline');
       });
   }

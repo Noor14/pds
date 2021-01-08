@@ -1,8 +1,10 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Confirm</h4>
+  <h4 class="modal-title pull-left"
+      [class.text-danger]="config.isError"
+      [innerHTML]="config.headingText || (config.isError ? 'Oops !' : 'Message')"></h4>
 </div>
 <div class="modal-body">
-  <p [innerHTML]="config.message"></p>
+  <p [innerHTML]="config.message || 'Something went wrong.'"></p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-success" (click)="approve()" [innerHTML]="config.approveButtonText || 'OK'"></button>

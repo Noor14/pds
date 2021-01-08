@@ -8,3 +8,17 @@ body {
   font-size: 14px !important;
   cursor: pointer !important;
 }
+
+/* ========== modals ===================== */
+.modal--lite {
+  .modal-header {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .modal-footer {
+    padding-top: 0;
+    border-top: none;
+  }
+
+}

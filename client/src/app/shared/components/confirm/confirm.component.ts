@@ -31,8 +31,7 @@ export class ConfirmComponent implements OnInit {
   }
 
   decline() {
-    const error = new Error('Declined');
-    this.result.error(error);
+    this.result.error('');
     this.bsModalRef.hide();
   }
 }
