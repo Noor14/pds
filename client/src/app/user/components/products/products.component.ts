@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UtilService, IConfirmConfig } from '@shared/services/util.service';
+import { ProductService } from '@user/services/product.service';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -27,7 +30,10 @@ export class ProductsComponent implements OnInit {
     { name: 'Delete', handler: this.deleteProduct.bind(this)},
   ];
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+    private utilService: UtilService,
+  ) { }
 
   ngOnInit(): void {
 
@@ -35,6 +41,9 @@ export class ProductsComponent implements OnInit {
     for (let i = 0; i < 5; i++) {
       this.rows = this.rows.concat(this.rows);
     }
+
+    // DEV - auto opener - deleteProduct
+    this.deleteProduct({}, 0);
   }
 
   editProduct(product: any, productIdx: number) : void {
@@ -43,5 +52,20 @@ export class ProductsComponent implements OnInit {
 
   deleteProduct(product: any, productIdx: number) : void {
     console.log('deleteProduct:', productIdx, product);
+
+    const config: IConfirmConfig = {
+      message: 'Are you sure you want to delete this product from system ?',
+      approveButtonText: 'Delete',
+      declineButtonText: 'Decline',
+    };
+
+    this.utilService.confirm(config)
+      .subscribe((res: any) => {
+        console.log('confirm: approve', res);
+
+      }, (reason: string) => {
+
+        console.log('confirm: decline');
+      });
   }
 }

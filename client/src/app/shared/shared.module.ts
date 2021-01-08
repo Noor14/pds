@@ -15,13 +15,17 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import { TableComponent } from './components/table/table.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   providers: [
     PaginationConfig
   ],
   declarations: [
-    TableComponent
+    TableComponent,
+    AlertComponent,
+    ConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +43,9 @@ import { TableComponent } from './components/table/table.component';
   exports: [
     /* components */
     TableComponent,
+
+    AlertComponent,
+    ConfirmComponent,
 
     /* modules */
     FormsModule,
