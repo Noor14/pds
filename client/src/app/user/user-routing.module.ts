@@ -13,7 +13,8 @@ import { DoctorsComponent } from './components/doctors/doctors.component';
 
 const children: Routes = [
   // { path: '', redirectTo: '/user/dashboard' }, // auto takes to dashboard pages
-  // { path: '', redirectTo: '/user/products' }, // auto takes to products page
+  { path: '', redirectTo: '/user/products' }, // auto takes to products page
+
   { path: 'dashboard', component: DashboardComponent },
   { path: 'doctors', component: DoctorsComponent },
   { path: 'products', component: ProductsComponent },

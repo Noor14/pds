@@ -46,12 +46,12 @@ export class ProductsComponent implements OnInit {
     // this.deleteProduct({}, 0);
 
     // DEV - auto opener - alert
-    this.utilService.alert({
-      isError: false,
-      headingText: '',
-      message: 'This is a sample alert message for the action you just called.',
-      approveButtonText: 'OK'
-    });
+    // this.utilService.alert({
+    //   isError: false,
+    //   headingText: '',
+    //   message: 'This is a sample alert message for the action you just called.',
+    //   approveButtonText: 'OK'
+    // });
   }
 
   editProduct(product: any, productIdx: number) : void {
