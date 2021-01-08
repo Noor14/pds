@@ -8,24 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class StoresComponent implements OnInit {
 
   rows = [
-    { id: '0000101', name: 'ABC Store', type: 'supplier', product: 10, amount: 1500, city: 'Karachi', },
-    { id: '0000102', name: 'DEF Store', type: 'pharmacy', product: 26, amount: 2500, city: 'Lahore', },
-    { id: '0000103', name: 'GHI Store', type: 'supplier', product: 306, amount: 10500, city: 'Karachi', },
-    { id: '0000104', name: 'JKL Store', type: 'pharmacy', product: 1, amount: 150, city: 'Hyderabad', },
-    { id: '0000105', name: 'LMN Store', type: 'supplier', product: 10, amount: 1500, city: 'Karachi', },
+    { id: '0000101', name: 'Bismillah Medical Store', city: 'Manjoshoori', memberSince: '06/Nov/2020', contact: '+923001234567', totalOrders: 35, totalAmount: '2,40,000'},
+    { id: '0000102', name: 'Ahmed Pharmacy', city: '40 Dip', memberSince: '05/Nov/2020', contact: '+92333199999', totalOrders: 35, totalAmount: '3,50,000'},
+    { id: '0000103', name: 'Yaqoob Medical', city: 'Balam Dip', memberSince: '04/Nov/2020', contact: '+92300177777', totalOrders: 35, totalAmount: '1,20,000'},
+    { id: '0000104', name: 'Pakistan Medical Store', city: 'Jal Magsi', memberSince: '06/Oct/2020', contact: '+923021234500', totalOrders: 35, totalAmount: '50,000'},
+    { id: '0000105', name: 'Rutba Medical Complex', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+923441239980', totalOrders: 35, totalAmount: '10,000'},
+    { id: '0000106', name: 'Boraak Pharmacy', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+92344123998035', totalOrders: 35, totalAmount: '3,000'},
   ];
   columns = [
-    { name: 'ID', prop: 'id'},
-    { name: 'Name', prop: 'name'},
-    { name: 'type', prop: 'type'},
-    { name: 'product', prop: 'product'},
-    { name: 'amount', prop: 'amount'},
-    { name: 'city', prop: 'city'}  ];
+    { name: 'Store ID', prop: 'id'},
+    { name: 'Store Name', prop: 'name'},
+    { name: 'Area / City', prop: 'city'},
+    { name: 'Member Since', prop: 'memberSince'},
+    { name: 'Contact', prop: 'contact'},
+    { name: 'Total Orders', prop: 'totalOrders'},
+    { name: 'Total Amount', prop: 'totalAmount'},
+  ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},
     { name: 'Delete', handler: this.deleteProduct.bind(this)},
   ];
-
 
   constructor() { }
 
