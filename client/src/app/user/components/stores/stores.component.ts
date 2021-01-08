@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class StoresComponent implements OnInit {
 
   rows = [
-    { id: '0000101', name: 'Bismillah Medical Store', city: 'Manjoshoori', memberSince: '06/Nov/2020', contact: '+923001234567', totalOrders: 35, totalAmount: '2,40,000'},
-    { id: '0000102', name: 'Ahmed Pharmacy', city: '40 Dip', memberSince: '05/Nov/2020', contact: '+92333199999', totalOrders: 35, totalAmount: '3,50,000'},
-    { id: '0000103', name: 'Yaqoob Medical', city: 'Balam Dip', memberSince: '04/Nov/2020', contact: '+92300177777', totalOrders: 35, totalAmount: '1,20,000'},
-    { id: '0000104', name: 'Pakistan Medical Store', city: 'Jal Magsi', memberSince: '06/Oct/2020', contact: '+923021234500', totalOrders: 35, totalAmount: '50,000'},
-    { id: '0000105', name: 'Rutba Medical Complex', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+923441239980', totalOrders: 35, totalAmount: '10,000'},
-    { id: '0000106', name: 'Boraak Pharmacy', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+92344123998035', totalOrders: 35, totalAmount: '3,000'},
+    { id: '0000101', name: 'Bismillah Medical Store', city: 'Manjoshoori', memberSince: '06/Nov/2020', contact: '+923001234567', totalOrders: 35, totalAmount: 'Rs. 2,40,000'},
+    { id: '0000102', name: 'Ahmed Pharmacy', city: '40 Dip', memberSince: '05/Nov/2020', contact: '+92333199999', totalOrders: 12, totalAmount: 'Rs. 3,50,000'},
+    { id: '0000103', name: 'Yaqoob Medical', city: 'Balam Dip', memberSince: '04/Nov/2020', contact: '+92300177777', totalOrders: 200, totalAmount: 'Rs. 1,20,000'},
+    { id: '0000104', name: 'Pakistan Medical Store', city: 'Jal Magsi', memberSince: '06/Oct/2020', contact: '+923021234500', totalOrders: 100, totalAmount: 'Rs. 50,000'},
+    { id: '0000105', name: 'Rutba Medical Complex', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+923441239980', totalOrders: 40, totalAmount: 'Rs. 10,000'},
+    { id: '0000106', name: 'Boraak Pharmacy', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+92344123998035', totalOrders: 300, totalAmount: 'Rs. 3,000'},
   ];
   columns = [
     { name: 'Store ID', prop: 'id'},
