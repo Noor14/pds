@@ -11,11 +11,12 @@ const children: Routes = [
   { path: '', redirectTo: 'products' }, // auto takes to products page
 
   { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
-  { path: 'doctors', loadChildren: () => import('../doctor/doctor.module').then(m => m.DoctorModule) },
+  { path: 'orders', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
   { path: 'products', loadChildren: () => import('../product/product.module').then(m => m.ProductModule) },
   { path: 'stores', loadChildren: () => import('../store/store.module').then(m => m.StoreModule) },
+  { path: 'doctors', loadChildren: () => import('../doctor/doctor.module').then(m => m.DoctorModule) },
   { path: 'other-parties', loadChildren: () => import('../other-parties/other-parties.module').then(m => m.OtherPartiesModule) },
-  { path: 'orders', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
+  { path: 'my-account', loadChildren: () => import('../my-account/my-account.module').then(m => m.MyAccountModule) },
 ];
 
 const routes: Routes = [

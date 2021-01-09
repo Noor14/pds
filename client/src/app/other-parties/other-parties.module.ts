@@ -7,13 +7,17 @@ import { OtherPartiesRoutingModule } from './other-parties-routing.module';
 import { OtherPartiesComponent } from './other-parties.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { WholesalersComponent } from './components/wholesalers/wholesalers.component';
+import { AddUpdateSearchCompanyComponent } from './components/add-update-search-company/add-update-search-company.component';
+import { AddUpdateSearchWholesalerComponent } from './components/add-update-search-wholesaler/add-update-search-wholesaler.component';
 
 
 @NgModule({
   declarations: [
     OtherPartiesComponent,
     CompaniesComponent,
-    WholesalersComponent
+    WholesalersComponent,
+    AddUpdateSearchCompanyComponent,
+    AddUpdateSearchWholesalerComponent
   ],
   imports: [
     CommonModule,
