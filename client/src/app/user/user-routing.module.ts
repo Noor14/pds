@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductsComponent } from './components/products/products.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { StoresComponent } from './components/stores/stores.component';
 import { DoctorsComponent } from './components/doctors/doctors.component';
@@ -17,7 +16,7 @@ const children: Routes = [
 
   { path: 'dashboard', component: DashboardComponent },
   { path: 'doctors', component: DoctorsComponent },
-  { path: 'products', component: ProductsComponent },
+  { path: 'products', loadChildren: () => import('../product/product.module').then(m => m.ProductModule) },
   { path: 'orders', component: OrdersComponent },
   { path: 'stores', component: StoresComponent },
 ];

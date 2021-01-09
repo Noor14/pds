@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UtilService, IConfirmConfig, IAlertConfig } from '@shared/services/util.service';
-import { ProductService } from '@user/services/product.service';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductComponent implements OnInit {
   rows = [
     { id: '0000101', name: 'Amaxol', type: 'Capsule', company: 'Abbot', tp: 16, retail: 96, minQuantity: 50, wholesaler: 'Ahmed Brothers'},
     { id: '0000102', name: 'Panadol', type: 'Tablet', company: 'Ipsum', tp: 16, retail: 4, minQuantity: 100, wholesaler: 'Bilal Brothers'},
