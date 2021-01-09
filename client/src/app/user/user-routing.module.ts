@@ -7,8 +7,8 @@ import { UserComponent } from './user.component';
 // import { UserFooterComponent } from 'components/user-footer/user-footer.component';
 
 const children: Routes = [
-  // { path: '', redirectTo: '/user/dashboard' }, // auto takes to dashboard pages
-  // { path: '', redirectTo: '/user/products' }, // auto takes to products page
+  // { path: '', redirectTo: 'dashboard' }, // auto takes to dashboard pages
+  { path: '', redirectTo: 'products' }, // auto takes to products page
 
   { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'doctors', loadChildren: () => import('../doctor/doctor.module').then(m => m.DoctorModule) },
