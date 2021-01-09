@@ -13,6 +13,7 @@ interface IAction {
 })
 export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  @Input() contextPrefix: string = 'table'; // to be used for form fields name prefixes.
   @Input() rows: any[] = [];
   @Input() columns: any[] = [];
   @Input() actions: IAction[] = [];
@@ -51,7 +52,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   checkForSwitchColumnMode() {
-    console.log('checkForSwitchColumnMode');
+    // console.log('checkForSwitchColumnMode');
     this.isLargeScreenScreenView = window.innerWidth > 800;
 
     if (this.isLargeScreenScreenView) {
@@ -74,7 +75,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onWindowResize = () =>  {
-    console.log('onWindowResize:');
+    // console.log('onWindowResize:');
     this.checkForSwitchColumnMode();
     this.cdRef.detectChanges();
   }

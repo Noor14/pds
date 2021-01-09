@@ -9,16 +9,24 @@
   <div class="form-row mb-4">
     <form name="filterForm" class="row">
       <div class="col-12">
-        <label for="filterByText">Filter By:</label>
+        <label [for]="contextPrefix + '__filterByText'" >Filter By:</label>
       </div>
       <div class="col-6">
-        <select id="filterByColumn" class="custom-select" name="filterByColumn" [(ngModel)]="filterByObj.column">
+        <select class="custom-select"
+                name="-"
+                [id]="contextPrefix + '__filterByColumn'"
+                [name]="contextPrefix + '__filterByColumn'"
+                [(ngModel)]="filterByObj.column">
           <option value="$">All Columns</option>
           <option *ngFor='let col of columns'>{{col.name}}</option>
         </select>
       </div>
       <div class="col-6">
-        <input type="text" class="form-control" name="filterText" id="filterByText" [(ngModel)]="filterByObj.text" placeholder="Search">
+        <input type="text" class="form-control"
+               name="-"
+               [id]="contextPrefix + '__filterByText'"
+               [name]="contextPrefix + '__filterByText'"
+               [(ngModel)]="filterByObj.text" placeholder="Search">
       </div>
     </form>
   </div>
