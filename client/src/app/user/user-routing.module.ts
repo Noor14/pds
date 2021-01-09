@@ -2,23 +2,20 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { StoresComponent } from './components/stores/stores.component';
-import { DoctorsComponent } from './components/doctors/doctors.component';
 
 // import { UserHeaderComponent } from 'components/user-header/user-header.component';
 // import { UserFooterComponent } from 'components/user-footer/user-footer.component';
 
 const children: Routes = [
   // { path: '', redirectTo: '/user/dashboard' }, // auto takes to dashboard pages
-  { path: '', redirectTo: '/user/products' }, // auto takes to products page
+  // { path: '', redirectTo: '/user/products' }, // auto takes to products page
 
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'doctors', component: DoctorsComponent },
+  { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'doctors', loadChildren: () => import('../doctor/doctor.module').then(m => m.DoctorModule) },
   { path: 'products', loadChildren: () => import('../product/product.module').then(m => m.ProductModule) },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'stores', component: StoresComponent },
+  { path: 'stores', loadChildren: () => import('../store/store.module').then(m => m.StoreModule) },
+  { path: 'other-parties', loadChildren: () => import('../other-parties/other-parties.module').then(m => m.OtherPartiesModule) },
+  { path: 'orders', loadChildren: () => import('../order/order.module').then(m => m.OrderModule) },
 ];
 
 const routes: Routes = [
