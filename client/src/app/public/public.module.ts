@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
 import { PublicRoutingModule } from './public-routing.module';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { PublicComponent } from './public.component';
 import { PublicHeaderComponent } from './components/public-header/public-header.component';
@@ -26,7 +27,7 @@ import { PartnersComponent } from './components/partners/partners.component';
   imports: [
     CommonModule,
     SharedModule,
-
+    CarouselModule,
     PublicRoutingModule,
   ],
   exports: [],

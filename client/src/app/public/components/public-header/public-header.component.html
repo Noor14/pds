@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse"
            [collapse]="isMainNavCollapsed" [isAnimated]="true"
            id="mainNavigation">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto mr-4 float-right">
           <li class="nav-item active">
             <a class="nav-link" routerLinkActive="active" routerLink="/">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -20,7 +20,7 @@
           <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/contact">Contact</a></li>
         </ul>
 
-        <button class="btn btn-outline-success" (click)="login()">
+        <button class="btn btn-sm btn-outline-success" (click)="login()">
           <fa-icon [icon]="['fas', 'user']"></fa-icon>
           Login
         </button>
