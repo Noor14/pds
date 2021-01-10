@@ -2,9 +2,9 @@
   <h4 class="modal-title pull-left">Confirm</h4>
 </div>
 <div class="modal-body">
-  <p [innerHTML]="config.message"></p>
+  <p [innerHTML]="config?.message || 'Are you sure to proceed ?'"></p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-danger" (click)="decline()" [innerHTML]="config.declineButtonText || 'No'"></button>
-  <button type="button" class="btn btn-success" (click)="approve()" [innerHTML]="config.approveButtonText || 'Yes'"></button>
+  <button type="button" class="btn btn-danger" (click)="decline()" [innerHTML]="config?.declineButtonText || 'No'"></button>
+  <button type="button" class="btn btn-success" (click)="approve()" [innerHTML]="config?.approveButtonText || 'Yes'"></button>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { IConfirmConfig } from './confirm.model';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-confirm',
@@ -9,14 +9,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
-
   public result = new EventEmitter();
-
-  public config: IConfirmConfig = {
-    message: '',
-    approveButtonText: '',
-    declineButtonText: ''
-  };
+  public config: IConfirmConfig | undefined = undefined;
 
   constructor(
     public bsModalRef: BsModalRef
