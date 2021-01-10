@@ -1,5 +1,10 @@
 
-/* ========== modals ===================== */
+.modal-dialog {
+  .close {
+    font-size: 2rem;
+  }
+}
+
 .modal--lite {
   .modal-header {
     padding-bottom: 0;
@@ -10,5 +15,4 @@
     padding-top: 0;
     border-top: none;
   }
-
 }
