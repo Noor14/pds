@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-stores',
-  templateUrl: './store.component.html',
-  styleUrls: ['./store.component.scss']
+  templateUrl: './stores.component.html',
+  styleUrls: ['./stores.component.scss']
 })
-export class StoreComponent implements OnInit {
+export class StoresComponent implements OnInit {
 
   rows = [
     { id: '0000101', name: 'Bismillah Medical Store', city: 'Manjoshoori', memberSince: '06/Nov/2020', contact: '+923001234567', totalOrders: 35, totalAmount: 'Rs. 2,40,000'},

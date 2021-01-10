@@ -5,10 +5,10 @@ import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-products',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   rows = [
     { id: '0000101', batchNumber: 'S-00001', packInfo: '10s', name: 'Amaxol', generice: 'Lotheocylceipsum', type: 'Capsule', company: 'Abbot', tp: 16, mrp: 96, discount: 55, net: 13, boxQuantity: 50, },
     { id: '0000102', batchNumber: 'BS-00002', packInfo: '5s', name: 'Panadol', generice: 'Floeryotiny', type: 'Tablet', company: 'Ipsum', tp: 16, mrp: 4, discount: 71, net: 45, boxQuantity: 100, },

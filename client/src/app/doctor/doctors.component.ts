@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-doctors',
-  templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.scss']
+  templateUrl: './doctors.component.html',
+  styleUrls: ['./doctors.component.scss']
 })
-export class DoctorComponent implements OnInit {
+export class DoctorsComponent implements OnInit {
 
   rows = [
     {id: '00001', name: 'Dr Shahzad Nawaz', speciality: 'Gynelogist', contact: '03453145456' , experience: '7Years', totalContract: 8, memberSince: '10/May/2019'},
