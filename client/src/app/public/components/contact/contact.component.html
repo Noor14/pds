@@ -2,20 +2,57 @@
   <h2 class="text-uppercase font-27">Let's Contact</h2>
   <p>We love to help you to grow your business</p>
 </div>
-<div class="container pt-5">
-  <form action="#">
-    <input type="text" placeholder="email">
-  </form>
-
+<div class="container py-5">
+  <div class="row">
     <div class="col">
-      Email
-      qaswa@gmail.com
-      <br/>
-      Phone
-      (0585) 111-7777
-      <br/>
-      Mailing Address:
-      Qaswa Head office
-      Albany, NY 12203
+      <div class="card">
+        <div class="card-header bg-light text-dark"><i class="fa fa-envelope"></i> Contact us.
+        </div>
+        <div class="card-body">
+          <form #contactForm = "ngForm" (ngSubmit) = "submitContact(contactForm.value)" >
+          <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control"
+                     id="name"
+                     name="name"
+                     aria-describedby="username"
+                     placeholder="Enter name"
+                     ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control"
+                     id="email"
+                     name="email"
+                     aria-describedby="email"
+                     placeholder="Enter email" ngModel required>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control"
+                        name="message"
+                        id="message" rows="6" ngModel required></textarea>
+            </div>
+            <div class="mx-auto">
+              <button type="submit" class="btn btn-primary pl-5 pr-5">Submit</button></div>
+          </form>
+        </div>
+      </div>
     </div>
+    <div class="col-12 col-sm-4">
+      <div class="card mb-3">
+        <div class="card-header bg-light text-dark text-uppercase"><i class="fa fa-home"></i> Address</div>
+        <div class="card-body">
+          <p>Office 256, St 5 ,Block 5A</p>
+          <p>Modal Town Lahore</p>
+          <p>Pakistan</p>
+          <p>Email : qaswa@gmail.com</p>
+          <p>Tel. +058 123 456 78</p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
