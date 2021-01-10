@@ -17,6 +17,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { TableComponent } from './components/table/table.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   providers: [
@@ -25,7 +26,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
   declarations: [
     TableComponent,
     AlertComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 import { take } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -20,7 +20,7 @@ export class UtilService {
     private modalService: BsModalService,
   ) { }
 
-  private modal(component: any, config: any, options: any) {
+  private modal(component: any, config: any, options: any): EventEmitter<any> {
     const modalRef: BsModalRef = this.modalService.show(component, options);
     modalRef.content.config = config;
     return modalRef.content
@@ -28,11 +28,11 @@ export class UtilService {
       .pipe(take(1));
   }
 
-  alert(config: IAlertConfig) {
+  public alert(config: IAlertConfig): EventEmitter<any> {
     return this.modal(AlertComponent, config, {class: 'modal--lite'});
   }
 
-  confirm(config: IConfirmConfig) {
+  public confirm(config: IConfirmConfig): EventEmitter<any> {
     return this.modal(ConfirmComponent, config, {class: 'modal--lite'});
   }
 }

@@ -10,9 +10,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ConfirmComponent implements OnInit {
 
-  result = new EventEmitter();
+  public result = new EventEmitter();
 
-  config: IConfirmConfig = {
+  public config: IConfirmConfig = {
     message: '',
     approveButtonText: '',
     declineButtonText: ''
@@ -25,12 +25,12 @@ export class ConfirmComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  approve() {
+  public approve(): void {
     this.result.emit();
     this.bsModalRef.hide();
   }
 
-  decline() {
+  public decline(): void {
     this.result.error('');
     this.bsModalRef.hide();
   }

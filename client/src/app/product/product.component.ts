@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
     console.log('editProduct:', productIdx, product);
   }
 
-  deleteProduct(product: any, productIdx: number) : void {
+  deleteProduct(product: any, productIdx: number): void {
     console.log('deleteProduct:', productIdx, product);
 
     const config: IConfirmConfig = {
