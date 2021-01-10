@@ -10,20 +10,25 @@ import { ProductService } from './services/product.service';
 })
 export class ProductComponent implements OnInit {
   rows = [
-    { id: '0000101', name: 'Amaxol', type: 'Capsule', company: 'Abbot', tp: 16, retail: 96, minQuantity: 50, wholesaler: 'Ahmed Brothers'},
-    { id: '0000102', name: 'Panadol', type: 'Tablet', company: 'Ipsum', tp: 16, retail: 4, minQuantity: 100, wholesaler: 'Bilal Brothers'},
-    { id: '0000103', name: 'Brufen', type: 'Syrup', company: 'Lorem', tp: 16, retail: 96, minQuantity: 40, wholesaler: 'Bilal Brothers'},
-    { id: '0000104', name: 'Augmentin', type: 'Capsule', company: 'Medicyne', tp: 50, retail: 65, minQuantity: 30, wholesaler: 'Hussain Brothers'},
+    { id: '0000101', batchNumber: 'S-00001', packInfo: '10s', name: 'Amaxol', generice: 'Lotheocylceipsum', type: 'Capsule', company: 'Abbot', tp: 16, mrp: 96, discount: 55, net: 13, boxQuantity: 50, },
+    { id: '0000102', batchNumber: 'BS-00002', packInfo: '5s', name: 'Panadol', generice: 'Floeryotiny', type: 'Tablet', company: 'Ipsum', tp: 16, mrp: 4, discount: 71, net: 45, boxQuantity: 100, },
+    { id: '0000103', batchNumber: 'TS-00083', packInfo: '30ml', name: 'Brufen', generice: 'Dolarcythn', type: 'Syrup', company: 'Lorem', tp: 16, mrp: 96, discount: 64, net: 13, boxQuantity: 40, },
+    { id: '0000104', batchNumber: 'AS-00099', packInfo: '2x7', name: 'Augmentin', generice: 'Teczhocxin', type: 'Capsule', company: 'Medicyne', tp: 50, mrp: 65, discount: 42, net: 65, boxQuantity: 30, },
+    { id: '0000104', batchNumber: 'AS-00063', packInfo: '6amp', name: 'Mecobromin', generice: 'Mecobarmin', type: 'Inj', company: 'Medicyne', tp: 50, mrp: 65, discount: 65, net: 40, boxQuantity: 30, },
   ];
   columns = [
-    { name: 'Product ID', prop: 'id',},
+    // { name: 'Product ID', prop: 'id',},
+    { name: 'Batch #', prop: 'batchNumber',},
     { name: 'Name', prop: 'name',},
-    { name: 'Type', prop: 'type',},
-    { name: 'Company', prop: 'company',},
+    { name: 'Generice', prop: 'generice',},
+    // { name: 'Type', prop: 'type',},
+    { name: 'Pack', prop: 'packInfo',},
     { name: 'T.P', prop: 'tp',},
-    { name: 'Retail Price', prop: 'retail',},
-    { name: 'Packet Quantity', prop: 'minQuantity',},
-    { name: 'Wholesaler', prop: 'wholesaler',},
+    { name: 'M.R.P', prop: 'mrp',},
+    { name: 'Discount', prop: 'discount',},
+    { name: 'Net', prop: 'net',},
+    { name: 'Box Quantity', prop: 'boxQuantity',},
+    { name: 'Company', prop: 'company',},
     ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},

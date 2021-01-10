@@ -73,22 +73,23 @@
 .hp-sec{
   overflow: hidden;
 }
-.user-hdr{
+.header-bar {
   background: rgba(31, 53, 91, 1);
   color: #fff;
-  box-shadow: 0 0 15px #1f355b;
+  //box-shadow: 0 0 15px #1f355b;
   z-index: 999;
   position: relative;
 }
 
-.user-hdr *{color: #fff}
+.header-bar *{color: #fff}
 
 
 $bgcolor: #013692;
 $bgcolor2: #1f355b;
 
 
-.page-bnr{background: -moz-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
+.page-banner {
+  background: -moz-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
   background: -webkit-gradient(linear,left top,left bottom,color-stop(0,$bgcolor),color-stop(74%,$bgcolor),color-stop(75%,$bgcolor2),color-stop(100%,$bgcolor2));
   background: -webkit-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
   background: -o-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
