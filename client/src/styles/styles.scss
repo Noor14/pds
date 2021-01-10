@@ -14,4 +14,7 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 @import 'ngx-datatable-material-patch';
 
+/* our global files - pls keep them in alphabetical oder */
+@import "button";
 @import "common";
+@import "modals";
