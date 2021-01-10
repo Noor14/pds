@@ -9,6 +9,91 @@ body {
   cursor: pointer !important;
 }
 
+// TODO FIXME - why forcefully changing primary button colors ? pls change the variables instead, n theme.scss
+.btn-primary{
+  color: #fff!important;
+  background-color: #00c997!important;
+  border-color: #00c997!important;
+}
+
+.hp-bnr{
+  padding: 80px 0 60px 0;
+  height: 450px;
+  background: url("../assets/images/main-banner.jpg") no-repeat  center center #6c757d;
+}
+
+// TODO FIXME - fix this height value pls.
+.hp-sec1{height: 75px 0 45px 0}
+
+.h500{
+  padding-top: 80px;
+  padding-bottom: 60px;
+  height: 500px;
+}
+
+.c-bg-dark{
+  background: #1F355B;
+}
+.c-color-light{
+  color: #fff
+}
+
+.c-bg-light{
+  color: #fff;
+}
+.c-color-dark{
+  color: #1F355B
+}
+
+.pt-80{
+  padding-top: 80px;
+}
+
+.bg-gray{
+  background: rgba(31, 53, 91, 0.06);
+}
+
+.font-27{
+  font-size: 27px;
+}
+
+.font-20{
+  font-size: 27px;
+}
+
+.font-16{
+  font-size: 16px;
+}
+
+.hp-sec{
+  overflow: hidden;
+}
+.header-bar {
+  background: rgba(31, 53, 91, 1);
+  color: #fff;
+  //box-shadow: 0 0 15px #1f355b;
+  z-index: 999;
+  position: relative;
+}
+
+.header-bar *{color: #fff}
+
+
+$bgcolor: #013692;
+$bgcolor2: #1f355b;
+
+
+.page-banner {
+  background: -moz-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0,$bgcolor),color-stop(74%,$bgcolor),color-stop(75%,$bgcolor2),color-stop(100%,$bgcolor2));
+  background: -webkit-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
+  background: -o-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
+  background: -ms-linear-gradient(284deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
+  background: linear-gradient(166deg,$bgcolor 0,$bgcolor 74%,$bgcolor2 74%,$bgcolor2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e39bf', endColorstr='#252eb0', GradientType=0);
+}
+
+
 /* ========== modals ===================== */
 .modal--lite {
   .modal-header {
