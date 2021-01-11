@@ -30,6 +30,7 @@
 
         <ul class="nav nav-tabs mr-auto" role="tablist">
           <li class="nav-item" role="presentation"><a class="nav-link" routerLinkActive="active" routerLink="dashboard">Dashboard</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" routerLinkActive="active" routerLink="contracts">Contracts</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link" routerLinkActive="active" routerLink="orders">Orders</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link" routerLinkActive="active" routerLink="products">Products</a></li>
           <li class="nav-item" role="presentation"><a class="nav-link" routerLinkActive="active" routerLink="stores">Stores</a></li>
@@ -38,12 +39,23 @@
         </ul>
 
         <ul class="nav nav-tabs" role="tablist">
+
+          <!-- for doctors only -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="my-contracts">
+              <fa-icon [icon]="['fas', 'file-invoice-dollar']"></fa-icon>
+              My Contracts
+            </a>
+          </li>
+
+          <!-- for stores only -->
           <li class="nav-item" role="presentation">
             <a class="nav-link" routerLinkActive="active" routerLink="my-orders">
               <fa-icon [icon]="['fas', 'receipt']"></fa-icon>
-              My Account
+              My Orders
             </a>
           </li>
+
           <li class="nav-item" role="presentation">
             <a class="nav-link" routerLinkActive="active" routerLink="my-account">
               <fa-icon [icon]="['fas', 'user']"></fa-icon>
