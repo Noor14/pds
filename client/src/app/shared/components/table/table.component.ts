@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { ITableConfig } from '@shared/components/table/table.model';
 
 interface IAction {
   name: string;
@@ -14,6 +15,8 @@ interface IAction {
 export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() contextPrefix: string = 'table'; // to be used for form fields name prefixes.
+  @Input() config: ITableConfig | undefined = undefined;
+  
   @Input() rows: any[] = [];
   @Input() columns: any[] = [];
   @Input() actions: IAction[] = [];

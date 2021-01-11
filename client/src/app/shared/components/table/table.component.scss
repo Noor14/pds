@@ -1,4 +1,12 @@
-@import "~src/styles/bootstrap";
+@import '~src/styles/bootstrap';
+
+.top-controls {
+  //margin-left: 0;
+}
+
+.side-controls {
+  margin-top: 32px;
+}
 
 /* === custom overwrites - starts ================= */
 ::ng-deep .ngx-datatable {
