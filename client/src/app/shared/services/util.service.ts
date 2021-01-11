@@ -17,7 +17,12 @@ export { IAlertConfig, IConfirmConfig }
 export class UtilService {
   modalDefaultOptions: ModalOptions = {
     backdrop: 'static',
-    class: 'modal--lite',
+    // keyboard: true,
+    // focus: true,
+    // show: false,
+    // ignoreBackdropClick: false,
+    class: '', // 'modal--lite'
+    animated: false,
   };
 
   constructor(
@@ -35,10 +40,10 @@ export class UtilService {
   }
 
   public alert(config: IAlertConfig): EventEmitter<any> {
-    return this.modal(AlertComponent, config, {});
+    return this.modal(AlertComponent, config, { class: 'modal--lite' });
   }
 
   public confirm(config: IConfirmConfig): EventEmitter<any> {
-    return this.modal(ConfirmComponent, config, {});
+    return this.modal(ConfirmComponent, config, { class: 'modal--lite' });
   }
 }

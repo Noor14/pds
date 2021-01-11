@@ -1,1 +1,88 @@
-<p>add-update-search-product works!</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left" [innerText]="modalTitle"></h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!--<form>-->
+  <!--  <div class="form-group">-->
+  <!--    <label for="exampleInputEmail1">Email address</label>-->
+  <!--    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+  <!--    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  <!--  </div>-->
+  <!--  <div class="form-group">-->
+  <!--    <label for="exampleInputPassword1">Password</label>-->
+  <!--    <input type="password" class="form-control" id="exampleInputPassword1">-->
+  <!--  </div>-->
+  <!--  <div class="form-group form-check">-->
+  <!--    <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+  <!--    <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+  <!--  </div>-->
+  <!--  <button type="submit" class="btn btn-primary">Submit</button>-->
+  <!--</form>-->
+  <!--<hr>-->
+  <form class="" name="productForm" (ngSubmit)="submitForm()">
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="product__name">Name:</label>
+          <input type="text" class="form-control" name="product__name" id="product__name"
+                 [(ngModel)]="data.name">
+          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="product__generic">Generic:</label>
+          <input type="text" class="form-control" name="product__generic" id="product__generic"
+                 [(ngModel)]="data.generic">
+          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="product__type">Product Type:</label>
+          <select class="custom-select" name="product__type" id="product__type"
+                  [(ngModel)]="data.type">
+            <option [value]="undefined">Select</option>
+            <option [value]="typeId" *ngFor="let type of productTypes; let typeId = index;" [innerText]="type"></option>
+          </select>
+          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="product__batchNumber">Batch #:</label>
+          <input type="text" class="form-control" name="product__batchNumber" id="product__batchNumber"
+                 [(ngModel)]="data.batchNumber">
+          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="product__type">Company:</label>
+          <select class="custom-select" name="product__type" id="product__company-id"
+                  [(ngModel)]="data.companyId">
+            <option [value]="undefined">Select</option>
+            <option [value]="company.id" *ngFor="let company of companies;" [innerText]="company.name"></option>
+          </select>
+          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- controls -->
+    <div class="row">
+      <div class="col modal-controls">
+        <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

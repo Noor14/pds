@@ -3,6 +3,13 @@
   .close {
     font-size: 2rem;
   }
+
+  .modal-controls {
+    text-align: right;
+    button {
+      margin-left: 10px;
+    }
+  }
 }
 
 .modal--lite {

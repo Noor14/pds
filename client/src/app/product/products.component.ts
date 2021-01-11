@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UtilService, IConfirmConfig, IAlertConfig } from '@shared/services/util.service';
+import { IConfirmConfig, UtilService } from '@shared/services/util.service';
+import { ITableConfig } from '@shared/components/table/table.model';
+
 import { ProductService } from './services/product.service';
+import { IProduct, IProductResponseSuccess } from './product.model';
 
 @Component({
   selector: 'app-products',
@@ -9,31 +12,36 @@ import { ProductService } from './services/product.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  rows = [
-    { id: '0000101', batchNumber: 'S-00001', packInfo: '10s', name: 'Amaxol', generice: 'Lotheocylceipsum', type: 'Capsule', company: 'Abbot', tp: 16, mrp: 96, discount: 55, net: 13, boxQuantity: 50, },
-    { id: '0000102', batchNumber: 'BS-00002', packInfo: '5s', name: 'Panadol', generice: 'Floeryotiny', type: 'Tablet', company: 'Ipsum', tp: 16, mrp: 4, discount: 71, net: 45, boxQuantity: 100, },
-    { id: '0000103', batchNumber: 'TS-00083', packInfo: '30ml', name: 'Brufen', generice: 'Dolarcythn', type: 'Syrup', company: 'Lorem', tp: 16, mrp: 96, discount: 64, net: 13, boxQuantity: 40, },
-    { id: '0000104', batchNumber: 'AS-00099', packInfo: '2x7', name: 'Augmentin', generice: 'Teczhocxin', type: 'Capsule', company: 'Medicyne', tp: 50, mrp: 65, discount: 42, net: 65, boxQuantity: 30, },
-    { id: '0000104', batchNumber: 'AS-00063', packInfo: '6amp', name: 'Mecobromin', generice: 'Mecobarmin', type: 'Inj', company: 'Medicyne', tp: 50, mrp: 65, discount: 65, net: 40, boxQuantity: 30, },
-  ];
+  rows: IProduct[] = [];
   columns = [
     // { name: 'Product ID', prop: 'id',},
     { name: 'Batch #', prop: 'batchNumber',},
     { name: 'Name', prop: 'name',},
-    { name: 'Generice', prop: 'generice',},
+    { name: 'Generic', prop: 'generic',},
     // { name: 'Type', prop: 'type',},
     { name: 'Pack', prop: 'packInfo',},
     { name: 'T.P', prop: 'tp',},
     { name: 'M.R.P', prop: 'mrp',},
-    { name: 'Discount', prop: 'discount',},
+    { name: 'Discount (%)', prop: 'discountPercent',},
     { name: 'Net', prop: 'net',},
     { name: 'Box Quantity', prop: 'boxQuantity',},
-    { name: 'Company', prop: 'company',},
+    { name: 'Company', prop: 'companyName',},
     ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},
     { name: 'Delete', handler: this.deleteProduct.bind(this)},
   ];
+
+  config: ITableConfig = {
+    advanceSearchItem: {
+      buttonText: 'Advance Search',
+      handler: this.searchProduct.bind(this),
+    },
+    addItem: {
+      buttonText: 'Add Product',
+      handler: this.addProduct.bind(this),
+    }
+  };
 
   constructor(
     private productService: ProductService,
@@ -42,13 +50,13 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // for sample mock data. -  to see pagination in action.
-    for (let i = 0; i < 5; i++) {
-      this.rows = this.rows.concat(this.rows);
-    }
+    this.fetchProducts();
 
     // DEV - auto opener - deleteProduct
     // this.deleteProduct({}, 0);
+
+    // DEV - auto opener - addProduct
+    this.addProduct();
 
     // DEV - auto opener - alert
     // this.utilService.alert({
@@ -59,8 +67,44 @@ export class ProductsComponent implements OnInit {
     // });
   }
 
-  editProduct(product: any, productIdx: number) : void {
+  fetchProducts(): void {
+    console.log('fetchProducts:');
+    this.productService.apiFetchProducts()
+      .subscribe((res: { products: IProduct[], totalCount: number }) => {
+        console.log('fetchProducts: success', res.products);
+
+        this.rows = res.products;
+      }, (reason: string) => {
+        console.log('fetchProducts: error');
+      });
+  }
+
+  searchProduct(): void {
+    console.log('searchProduct:');
+    this.productService.openSearchProduct()
+      .subscribe((res: any) => {
+        console.log('searchProduct: success', res);
+
+        // here to render the search results and trigger table change.
+        //...
+      });
+  }
+
+  addProduct(): void {
+    console.log('addProduct:');
+    this.productService.openAddProduct();
+  }
+
+  editProduct(product: any, productIdx: number): void {
     console.log('editProduct:', productIdx, product);
+
+    this.productService.openEditProduct(product)
+      .subscribe((res: any) => {
+        console.log('editProduct: success', res);
+
+        // here to refresh the table, or update the target product object and trigger table change.
+        //...
+      });
   }
 
   deleteProduct(product: any, productIdx: number): void {
