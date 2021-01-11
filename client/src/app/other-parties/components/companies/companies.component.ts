@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { companiesMock } from './companies.mock';
+import { ICompany } from './companies.model';
+
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
@@ -7,11 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesComponent implements OnInit {
 
-  rows = [
-    { id: '0000101', name: 'Fischr Pharma Pvt. Ltd', type: 'Local', totalProducts: 50, totalOrders: 35, totalAmount: 'Rs. 2,40,000', startedSince: '06/Nov/2020', contact: '+923001234567', },
-    { id: '0000102', name: 'Abbott Pharma Pvt. Ltd', type: 'Multi', totalProducts: 200, totalOrders: 60, totalAmount: 'Rs. 4,40,000', startedSince: '05/Nov/2020', contact: '+923001234800', },
-    { id: '0000103', name: 'Adcok Pharma Pvt. Ltd', type: 'National', totalProducts: 135, totalOrders: 40, totalAmount: 'Rs. 60,000', startedSince: '04/Nov/2020', contact: '+923001234909', },
-  ];
+  rows: ICompany[] = [];
   columns = [
     { name: 'Company ID', prop: 'id'},
     { name: 'Name', prop: 'name'},
@@ -30,6 +29,9 @@ export class CompaniesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    // TODO implement fetch companies api
+    this.rows = companiesMock;
   }
 
   editCompany(company: any, companyIdx: number): void {
