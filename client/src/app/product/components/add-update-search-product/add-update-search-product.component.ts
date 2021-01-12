@@ -20,7 +20,7 @@ export class AddUpdateSearchProductComponent implements OnInit {
     [EProductModalModes.Edit]: 'Edit Product',
     [EProductModalModes.Search]: 'Search Product',
     [EProductModalModes.ReadOnly]: 'View Product',
-  }
+  };
 
   get modalTitle(): string {
     const mode = this.config ? this.config.mode : EProductModalModes.Add;

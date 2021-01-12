@@ -24,7 +24,7 @@ export class ProductService {
     private utilService: UtilService,
   ) { }
 
-  apiFetchProducts() : Observable<any> {
+  apiFetchProducts(): Observable<any> {
 
     // TODO implement http service call here.
     // const subscription = this.httpService.get();
@@ -74,11 +74,11 @@ export class ProductService {
     return products;
   }
 
-  private addUpdateSearchProduct(config: IAddUpdateSearchProductConfig) : EventEmitter<any> {
+  private addUpdateSearchProduct(config: IAddUpdateSearchProductConfig): EventEmitter<any> {
     return this.utilService.modal(AddUpdateSearchProductComponent, config, { class: 'modal-lg' });
   }
 
-  openSearchProduct() : EventEmitter<any> {
+  openSearchProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
       mode: EProductModalModes.Search,
       product: null
@@ -87,7 +87,7 @@ export class ProductService {
     return this.addUpdateSearchProduct(config);
   }
 
-  openAddProduct() : EventEmitter<any> {
+  openAddProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
       mode: EProductModalModes.Add,
       product: null
@@ -96,7 +96,7 @@ export class ProductService {
     return this.addUpdateSearchProduct(config);
   }
 
-  openEditProduct(product: IProduct) : EventEmitter<any> {
+  openEditProduct(product: IProduct): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
       mode: EProductModalModes.Edit,
       product: product

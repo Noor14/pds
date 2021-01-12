@@ -30,6 +30,7 @@ export class UtilService {
   ) { }
 
   public modal(component: any, config: any, options: any): EventEmitter<any> {
+    console.log(config, options);
     options = Object.assign({}, this.modalDefaultOptions, options);
     const modalRef: BsModalRef = this.modalService.show(component, options);
     modalRef.content.config = config;

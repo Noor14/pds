@@ -15,17 +15,17 @@ export class ProductsComponent implements OnInit {
   rows: IProduct[] = [];
   columns = [
     // { name: 'Product ID', prop: 'id',},
-    { name: 'Batch #', prop: 'batchNumber',},
-    { name: 'Name', prop: 'name',},
-    { name: 'Generic', prop: 'generic',},
+    { name: 'Batch #', prop: 'batchNumber'},
+    { name: 'Name', prop: 'name'},
+    { name: 'Generic', prop: 'generic'},
     // { name: 'Type', prop: 'type',},
-    { name: 'Pack', prop: 'packInfo',},
-    { name: 'T.P', prop: 'tp',},
-    { name: 'M.R.P', prop: 'mrp',},
-    { name: 'Discount (%)', prop: 'discountPercent',},
-    { name: 'Net', prop: 'net',},
-    { name: 'Box Quantity', prop: 'boxQuantity',},
-    { name: 'Company', prop: 'companyName',},
+    { name: 'Pack', prop: 'packInfo'},
+    { name: 'T.P', prop: 'tp'},
+    { name: 'M.R.P', prop: 'mrp'},
+    { name: 'Discount (%)', prop: 'discountPercent'},
+    { name: 'Net', prop: 'net'},
+    { name: 'Box Quantity', prop: 'boxQuantity'},
+    { name: 'Company', prop: 'companyName'},
     ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},

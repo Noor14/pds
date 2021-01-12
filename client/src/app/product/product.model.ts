@@ -18,7 +18,7 @@ export interface IProductRaw {
 export interface IProduct extends IProductRaw {
   companyName: string;
   discountPercent: number;
-  [prop: string] : any;
+  [prop: string]: any;
 }
 
 export enum EProductModalModes {
@@ -29,9 +29,8 @@ export enum EProductModalModes {
 }
 
 export interface IAddUpdateSearchProductConfig {
-  mode: EProductModalModes,
-  product: IProduct | null,
-
+  mode: EProductModalModes;
+  product: IProduct | null;
 }
 
 export interface IProductResponseSuccess {

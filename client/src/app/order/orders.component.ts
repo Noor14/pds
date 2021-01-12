@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { OrderService } from './services/order.service';
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -27,16 +29,30 @@ export class OrdersComponent implements OnInit {
     { name: 'Delete', handler: this.deleteOrder.bind(this)},
   ];
 
-  constructor() { }
+  constructor(
+    private orderService: OrderService
+  ) { }
 
   ngOnInit(): void {
+
+    // load for testing
+    this.addOrder();
   }
 
   editOrder(order: any, orderId: number): void {
+    this.orderService.openEditOrder();
+
     console.log('editOrder:', orderId, order);
   }
 
-  deleteOrder(order: any, productIdx: number): void {
-    console.log('deleteOrder:', productIdx, order);
+  deleteOrder(order: any, orderId: number): void {
+    console.log('deleteOrder:', orderId, order);
   }
+
+  addOrder(): void {
+    console.log('addOrder:');
+    this.orderService.openAddOrder();
+  }
+
+
 }
