@@ -1,3 +1,5 @@
+import { ECRUDModalModes } from '@shared/models/modals.model';
+export { ECRUDModalModes }
 
 export interface IOrderRaw {
   id: number;
@@ -15,15 +17,8 @@ export interface IOrder extends IOrderRaw {
   [prop: string]: any;
 }
 
-export enum EOrderModalModes {
-  Add,
-  Edit,
-  Search,
-  ReadOnly
-}
-
 export interface IAddUpdateSearchOrderConfig {
-  mode: EOrderModalModes;
+  mode: ECRUDModalModes;
   order: IOrder | null;
 }
 

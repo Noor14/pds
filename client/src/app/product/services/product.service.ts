@@ -7,7 +7,7 @@ import { UtilService } from '@shared/services/util.service';
 
 import { AddUpdateSearchProductComponent } from '../components/add-update-search-product/add-update-search-product.component';
 import {
-  EProductModalModes,
+  ECRUDModalModes,
   IAddUpdateSearchProductConfig,
   IProduct,
   IProductRaw,
@@ -80,7 +80,7 @@ export class ProductService {
 
   openSearchProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
-      mode: EProductModalModes.Search,
+      mode: ECRUDModalModes.Search,
       product: null
     };
 
@@ -89,7 +89,7 @@ export class ProductService {
 
   openAddProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
-      mode: EProductModalModes.Add,
+      mode: ECRUDModalModes.Add,
       product: null
     };
 
@@ -98,7 +98,7 @@ export class ProductService {
 
   openEditProduct(product: IProduct): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
-      mode: EProductModalModes.Edit,
+      mode: ECRUDModalModes.Edit,
       product: product
     };
 
