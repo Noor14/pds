@@ -9,7 +9,7 @@ export const productTypes = [
   'Syrup',
   'Tablet',
   'Capsule',
-  'Inj',
+  'Injection',
   'Sachet',
   'Other',
 ];
