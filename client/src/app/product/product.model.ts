@@ -10,7 +10,6 @@ export interface IProductRaw {
   type: number;
   companyId: number;
 
-  tp: number;
   mrp: number;
   net: number;
   boxQuantity: number;
@@ -18,8 +17,9 @@ export interface IProductRaw {
 }
 
 export interface IProduct extends IProductRaw {
-  companyName: string;
+  tp: number;
   discountPercent: number;
+  companyName: string;
   [prop: string]: any;
 }
 
