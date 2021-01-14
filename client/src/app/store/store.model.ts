@@ -21,12 +21,12 @@ export interface IStore extends IStoreRaw {
 
 export interface IAddUpdateSearchStoreConfig {
   mode: ECRUDModalModes;
-  product: IStore | null;
+  store: IStore | null;
 }
 
 export interface IStoreResponseSuccess {
   data: {
-    products: IStoreRaw[],
+    store: IStoreRaw[],
     totalCount: number,
   };
 }

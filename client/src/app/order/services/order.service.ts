@@ -1,7 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-
 import { UtilService } from '@shared/services/util.service';
-
 import { AddUpdateSearchOrderComponent } from '../components/add-update-search-order/add-update-search-order.component';
 import { ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../orders.model';
 
@@ -36,5 +34,5 @@ export class OrderService {
 
     return this.addUpdateSearchOrder(config);
   }
-
 }
+
