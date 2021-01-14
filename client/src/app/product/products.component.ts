@@ -33,10 +33,10 @@ export class ProductsComponent implements OnInit {
   ];
 
   config: ITableConfig = {
-    advanceSearchItem: {
-      buttonText: 'Advance Search',
-      handler: this.searchProduct.bind(this),
-    },
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
     addItem: {
       buttonText: 'Add Product',
       handler: this.addProduct.bind(this),

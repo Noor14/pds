@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { OrderService } from './services/order.service';
+import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
+import { UtilService } from '@shared/services/util.service';
 
 @Component({
   selector: 'app-orders',
@@ -30,7 +32,8 @@ export class OrdersComponent implements OnInit {
   ];
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private utilService: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -46,13 +49,22 @@ export class OrdersComponent implements OnInit {
   }
 
   deleteOrder(order: any, orderId: number): void {
-    console.log('deleteOrder:', orderId, order);
-  }
+    const config: IConfirmConfig = {
+      message: 'Are you sure you want to delete this order from system ?',
+      approveButtonText: 'Delete',
+      declineButtonText: 'Decline',
+    };
 
+    this.utilService.confirm(config)
+      .subscribe((res: any) => {
+        console.log('confirm: approve', res);
+
+      }, (reason: string) => {
+        console.log('confirm: decline');
+      });
+  }
   addOrder(): void {
-    console.log('addOrder:');
     this.orderService.openAddOrder();
   }
-
 
 }

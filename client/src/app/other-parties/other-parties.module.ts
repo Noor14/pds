@@ -9,6 +9,8 @@ import { CompaniesComponent } from './components/companies/companies.component';
 import { WholesalersComponent } from './components/wholesalers/wholesalers.component';
 import { AddUpdateSearchCompanyComponent } from './components/add-update-search-company/add-update-search-company.component';
 import { AddUpdateSearchWholesalerComponent } from './components/add-update-search-wholesaler/add-update-search-wholesaler.component';
+import { AreasComponent } from './components/areas/areas.component';
+import { AddUpdateSearchAreaComponent } from './components/add-update-search-area/add-update-search-area.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AddUpdateSearchWholesalerComponent } from './components/add-update-sear
     CompaniesComponent,
     WholesalersComponent,
     AddUpdateSearchCompanyComponent,
-    AddUpdateSearchWholesalerComponent
+    AddUpdateSearchWholesalerComponent,
+    AreasComponent,
+    AddUpdateSearchAreaComponent
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { productTypes } from '@shared/constants/types.constant';
-import { EProductModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../product.model';
+import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../product.model';
 import { companiesMock } from '../../../other-parties/components/companies/companies.mock';
 
 @Component({
@@ -16,14 +16,14 @@ export class AddUpdateSearchProductComponent implements OnInit {
   public config: IAddUpdateSearchProductConfig | undefined;
 
   private titles = {
-    [EProductModalModes.Add]: 'Add Product',
-    [EProductModalModes.Edit]: 'Edit Product',
-    [EProductModalModes.Search]: 'Search Product',
-    [EProductModalModes.ReadOnly]: 'View Product',
+    [ECRUDModalModes.Add]: 'Add Product',
+    [ECRUDModalModes.Edit]: 'Edit Product',
+    [ECRUDModalModes.Search]: 'Search Product',
+    [ECRUDModalModes.ReadOnly]: 'View Product',
   };
 
   get modalTitle(): string {
-    const mode = this.config ? this.config.mode : EProductModalModes.Add;
+    const mode = this.config ? this.config.mode : ECRUDModalModes.Add;
     return this.titles[mode];
   }
 
@@ -40,7 +40,6 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
     type: undefined,
     companyId: undefined,
-    tp: undefined,
     mrp: undefined,
     net: undefined,
     boxQuantity: undefined,

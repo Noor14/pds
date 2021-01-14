@@ -7,13 +7,14 @@ import { UtilService } from '@shared/services/util.service';
 
 import { AddUpdateSearchProductComponent } from '../components/add-update-search-product/add-update-search-product.component';
 import {
-  EProductModalModes,
+  ECRUDModalModes,
   IAddUpdateSearchProductConfig,
   IProduct,
   IProductRaw,
   IProductResponseSuccess
 } from '../product.model';
 import { productsRawMock } from '../products.mock';
+import { productsSettings } from '../products.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -60,14 +61,16 @@ export class ProductService {
     let product: IProduct;
     productsRaw.forEach((productRaw: IProductRaw) => {
       product = Object.assign({
-        companyName: '',
+        tp: 0,
         discountPercent: 0,
+        companyName: '',
       }, productRaw);
 
       // TODO implement to find company name using companyId from company list.
       product.companyName = 'Abbott (Pvt) Ltd.';
 
-      product.discountPercent = +(productRaw.net / (productRaw.mrp - productRaw.tp) * 100).toFixed(2);
+      product.tp = +(product.mrp - (product.mrp * productsSettings.tpPercent/100)).toFixed(2);
+      product.discountPercent = +(product.net / (product.mrp - product.tp) * 100).toFixed(2);
       products.push(product);
     });
 
@@ -80,7 +83,7 @@ export class ProductService {
 
   openSearchProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
-      mode: EProductModalModes.Search,
+      mode: ECRUDModalModes.Search,
       product: null
     };
 
@@ -89,7 +92,7 @@ export class ProductService {
 
   openAddProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
-      mode: EProductModalModes.Add,
+      mode: ECRUDModalModes.Add,
       product: null
     };
 
@@ -98,7 +101,7 @@ export class ProductService {
 
   openEditProduct(product: IProduct): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
-      mode: EProductModalModes.Edit,
+      mode: ECRUDModalModes.Edit,
       product: product
     };
 

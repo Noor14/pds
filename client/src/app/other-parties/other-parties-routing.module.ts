@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompaniesComponent } from './components/companies/companies.component';
 // import { WholesalersComponent } from './components/wholesalers/wholesalers.component';
 import { OtherPartiesComponent } from './other-parties.component';
+import { AreasComponent } from './components/areas/areas.component';
 
 const children: Routes = [
   { path: '', redirectTo: 'companies' },
   { path: 'companies', component: CompaniesComponent },
   // { path: 'wholesalers', component: WholesalersComponent },
+  { path: 'areas', component: AreasComponent },
 ];
 
 const routes: Routes = [

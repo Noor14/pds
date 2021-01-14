@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 
-import { EOrderModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
+import { ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 
 @Component({
@@ -13,10 +13,10 @@ export class AddUpdateSearchOrderComponent implements OnInit {
   public result = new EventEmitter ();
   public config: IAddUpdateSearchOrderConfig | undefined;
   private titles = {
-    [EOrderModalModes.Add]: 'Add Order',
-    [EOrderModalModes.Edit]: 'Edit Order',
-    [EOrderModalModes.Search]: 'Search Order',
-    [EOrderModalModes.ReadOnly]: 'View Order',
+    [ECRUDModalModes.Add]: 'Add Order',
+    [ECRUDModalModes.Edit]: 'Edit Order',
+    [ECRUDModalModes.Search]: 'Search Order',
+    [ECRUDModalModes.ReadOnly]: 'View Order',
   };
 
   data = {
@@ -29,7 +29,7 @@ export class AddUpdateSearchOrderComponent implements OnInit {
   };
 
   get modalTitle(): string {
-    const mode = this.config ? this.config.mode : EOrderModalModes.Add;
+    const mode = this.config ? this.config.mode : ECRUDModalModes.Add;
     return this.titles[mode];
   }
 
@@ -41,7 +41,8 @@ export class AddUpdateSearchOrderComponent implements OnInit {
   }
 
   submitForm(): any {
-    console.log('submitForm:');
+    console.log('submitForm:', this.data);
+    this.bsModalRef.hide();
   }
 
   closeModal(): any {

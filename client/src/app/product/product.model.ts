@@ -1,3 +1,5 @@
+import { ECRUDModalModes } from '@shared/models/modals.model';
+export { ECRUDModalModes };
 
 export interface IProductRaw {
   id: string;
@@ -8,7 +10,6 @@ export interface IProductRaw {
   type: number;
   companyId: number;
 
-  tp: number;
   mrp: number;
   net: number;
   boxQuantity: number;
@@ -16,20 +17,15 @@ export interface IProductRaw {
 }
 
 export interface IProduct extends IProductRaw {
-  companyName: string;
+  tp: number;
   discountPercent: number;
+  companyName: string;
   [prop: string]: any;
 }
 
-export enum EProductModalModes {
-  Add,
-  Edit,
-  Search,
-  ReadOnly
-}
 
 export interface IAddUpdateSearchProductConfig {
-  mode: EProductModalModes;
+  mode: ECRUDModalModes;
   product: IProduct | null;
 }
 
