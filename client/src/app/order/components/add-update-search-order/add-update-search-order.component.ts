@@ -41,7 +41,8 @@ export class AddUpdateSearchOrderComponent implements OnInit {
   }
 
   submitForm(): any {
-    console.log('submitForm:');
+    console.log('submitForm:', this.data);
+    this.bsModalRef.hide();
   }
 
   closeModal(): any {

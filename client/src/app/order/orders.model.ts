@@ -22,9 +22,3 @@ export interface IAddUpdateSearchOrderConfig {
   order: IOrder | null;
 }
 
-export interface IOrderResponseSuccess {
-  data: {
-    orders: IOrder[],
-    totalCount: number,
-  };
-}

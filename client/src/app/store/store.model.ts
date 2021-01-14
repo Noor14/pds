@@ -1,36 +1,32 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
-export { ECRUDModalModes }
+export { ECRUDModalModes };
 
-export interface IProductRaw {
+export interface IStoreRaw {
   id: string;
-  batchNumber: string;
-  packInfo: string;
   name: string;
+  city: string;
+  memberSince: string;
   generic: string;
-  type: number;
-  companyId: number;
-
-  tp: number;
-  mrp: number;
-  net: number;
-  boxQuantity: number;
-  // [prop: string] : any;
+  contact: string;
+  totalOrder: number;
+  totalAmount: number;
 }
 
-export interface IProduct extends IProductRaw {
+export interface IStore extends IStoreRaw {
   companyName: string;
   discountPercent: number;
   [prop: string]: any;
 }
 
-export interface IAddUpdateSearchProductConfig {
+
+export interface IAddUpdateSearchStoreConfig {
   mode: ECRUDModalModes;
-  product: IProduct | null;
+  product: IStore | null;
 }
 
-export interface IProductResponseSuccess {
+export interface IStoreResponseSuccess {
   data: {
-    products: IProductRaw[],
+    products: IStoreRaw[],
     totalCount: number,
   };
 }

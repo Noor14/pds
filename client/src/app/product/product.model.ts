@@ -1,5 +1,5 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
-export { ECRUDModalModes }
+export { ECRUDModalModes };
 
 export interface IProductRaw {
   id: string;

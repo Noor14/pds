@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StoreService } from './services/store.service';
+import {IConfirmConfig} from '@shared/components/confirm/confirm.model';
+import {UtilService} from '@shared/services/util.service';
+
+
 @Component({
   selector: 'app-stores',
   templateUrl: './stores.component.html',
@@ -29,16 +34,34 @@ export class StoresComponent implements OnInit {
     { name: 'Delete', handler: this.deleteProduct.bind(this)},
   ];
 
-  constructor() { }
+  constructor(
+    private storeService: StoreService,
+    private utilService: UtilService) { }
 
   ngOnInit(): void {
   }
 
+  addStore(): any {
+    this.storeService.openAddStore();
+  }
+
   editProduct(product: any, productIdx: number): void {
-    console.log('editProduct:', productIdx, product);
+    this.storeService.openEditStore();
   }
 
   deleteProduct(product: any, productIdx: number): void {
-    console.log('deleteProduct:', productIdx, product);
+    const config: IConfirmConfig = {
+      message: 'Are you sure you want to delete this store from system ?',
+      approveButtonText: 'Delete',
+      declineButtonText: 'Decline',
+    };
+
+    this.utilService.confirm(config)
+      .subscribe((res: any) => {
+        console.log('confirm: approve', res);
+
+      }, (reason: string) => {
+        console.log('confirm: decline');
+      });
   }
 }
