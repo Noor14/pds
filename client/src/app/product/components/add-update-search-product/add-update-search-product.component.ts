@@ -40,7 +40,6 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
     type: undefined,
     companyId: undefined,
-    tp: undefined,
     mrp: undefined,
     net: undefined,
     boxQuantity: undefined,
