@@ -10,15 +10,15 @@ export interface IProductRaw {
   type: number;
   companyId: number;
 
-  mrp: number;
-  net: number;
+  mrp: number; // for customers
+  net: number; // for distributions
   boxQuantity: number;
   // [prop: string] : any;
 }
 
 export interface IProduct extends IProductRaw {
-  tp: number;
-  discountPercent: number;
+  tp: number; // for stores 15%
+  discountPercent: number; // converted from net amount to % for distribution
   companyName: string;
   [prop: string]: any;
 }
