@@ -4,7 +4,7 @@
 // deps
 
 // app modules
-const respond = require('../shared/respond');
+const respond = require('../shared/services/respond');
 
 /* exports */
 exports.getAll = getAll;

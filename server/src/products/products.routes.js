@@ -5,7 +5,7 @@
 const express = require('express');
 
 // app modules
-const controller = require('../controllers/companies.controller');
+const controller = require('./products.controller');
 
 // initialization
 const router = express.Router();

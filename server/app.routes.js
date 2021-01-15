@@ -11,7 +11,7 @@ const express = require('express');
 const router = express.Router();
 
 // all APIs routes here
-router.use('/companies', require('./../routes/companies.routes').default);
+router.use('/companies', require('./src/companies/companies.routes').default);
 // app.use('/products', require('./../routes/products.routes').default);
 // app.use('/areas', require('./../routes/areas.routes').default);
 // app.use('/stores', require('./../routes/stores.routes').default);

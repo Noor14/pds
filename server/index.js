@@ -13,8 +13,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 // app modules
-const appRoutes = require('./src/routes/app.routes.js');
-const mongodbConnect = require('./src/mongodbConnect');
+const appRoutes = require('./app.routes.js');
+const mongodbConnect = require('./src/shared/services/mongodbConnect');
 
 /* locals */
 const config = {
@@ -58,7 +58,7 @@ app.use('/api', appRoutes.default);
 // 404 routes responder
 app.use(function(req, res) {
 	console.log('404 init.');
-	res.status(404).sendFile(__dirname + '/src/views/404.html');
+	res.status(404).sendFile(__dirname + '/src/shared/views/404.html');
 });
 
 // initialize server
