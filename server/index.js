@@ -29,7 +29,8 @@ const config = {
 const app = express();
 
 /* middlewares */
-app.use(morganLogger('combined'));
+// app.use(morganLogger('combined'));
+app.use(morganLogger('tiny'));
 
 app.use(bodyParser.urlencoded({ extended: false })) // // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
