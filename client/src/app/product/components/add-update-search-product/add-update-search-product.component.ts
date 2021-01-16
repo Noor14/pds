@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-
 import { productTypes } from '@shared/constants/types.constant';
 import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../product.model';
 import { companiesMock } from '../../../other-parties/components/companies/companies.mock';

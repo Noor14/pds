@@ -83,12 +83,12 @@
     <div class="row">
       <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="product_pack">Pack :</label>
-          <input type="text" class="form-control" name="product_pack" id="product_pack"
-                 [(ngModel)]="data.packInfo" #product_pack='ngModel' required>
-          <div *ngIf="product_pack.invalid && (product_pack.dirty || product_pack.touched)"
+          <label for="product_packInfo">Pack :</label>
+          <input type="text" class="form-control" name="product_packInfo" id="product_packInfo"
+                 [(ngModel)]="data.packInfo" #product_packInfo='ngModel' required>
+          <div *ngIf="product_packInfo.invalid && (product_packInfo.dirty || product_packInfo.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_pack.errors?.required">
+            <div *ngIf="product_packInfo.errors?.required">
               Pack is required field.
             </div>
           </div>
@@ -97,7 +97,7 @@
 
       <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="product_pack">Trade Price :</label>
+          <label for="product_tp">Trade Price :</label>
           <input type="number" class="form-control" name="product_tp" id="product_tp"
                  [(ngModel)]="data.tp" #product_tp='ngModel' required>
           <div *ngIf="product_tp.invalid && (product_tp.dirty || product_tp.touched)"
@@ -141,12 +141,12 @@
     <div class="row">
       <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="product_quantity">Quantity :</label>
-          <input type="text" class="form-control" name="product_quantity" id="product_quantity"
-                 [(ngModel)]="data.boxQuantity" #product_quantity='ngModel' required>
-          <div *ngIf="product_quantity.invalid && (product_quantity.dirty || product_quantity.touched)"
+          <label for="product_boxQuantity">Quantity :</label>
+          <input type="text" class="form-control" name="product_boxQuantity" id="product_boxQuantity"
+                 [(ngModel)]="data.boxQuantity" #product_boxQuantity='ngModel' required>
+          <div *ngIf="product_boxQuantity.invalid && (product_boxQuantity.dirty || product_boxQuantity.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_quantity.errors?.required">
+            <div *ngIf="product_boxQuantity.errors?.required">
               Net Price is required field.
             </div>
           </div>
@@ -155,15 +155,15 @@
 
       <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="product_company_id">Company:</label>
-          <select class="custom-select" name="product_company_id" id="product_company_id"
-                  [(ngModel)]="data.companyId" #product_company_id='ngModel' required>
+          <label for="product_companyId">Company:</label>
+          <select class="custom-select" name="product_companyId" id="product_companyId"
+                  [(ngModel)]="data.companyId" #product_companyId='ngModel' required>
             <option [value]="undefined">Select</option>
             <option [value]="company.id" *ngFor="let company of companies;" [innerText]="company.name"></option>
           </select>
-          <div *ngIf="product_company_id.invalid && (product_company_id.dirty || product_company_id.touched)"
+          <div *ngIf="product_companyId.invalid && (product_companyId.dirty || product_companyId.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_company_id.errors?.required">
+            <div *ngIf="product_companyId.errors?.required">
               Company is required field.
             </div>
           </div>
