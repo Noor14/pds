@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from './services/store.service';
 import {IConfirmConfig} from '@shared/components/confirm/confirm.model';
 import {UtilService} from '@shared/services/util.service';
+import { StoreModalsService } from './services/store-modals.service';
 
 
 @Component({
@@ -36,17 +37,19 @@ export class StoresComponent implements OnInit {
 
   constructor(
     private storeService: StoreService,
-    private utilService: UtilService) { }
+    private storeModalsService: StoreModalsService,
+    private utilService: UtilService
+  ) { }
 
   ngOnInit(): void {
   }
 
   addStore(): any {
-    this.storeService.openAddStore();
+    this.storeModalsService.openAddStore();
   }
 
   editProduct(product: any, productIdx: number): void {
-    this.storeService.openEditStore();
+    this.storeModalsService.openEditStore();
   }
 
   deleteProduct(product: any, productIdx: number): void {

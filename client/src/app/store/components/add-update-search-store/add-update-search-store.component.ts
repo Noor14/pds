@@ -50,7 +50,7 @@ export class AddUpdateSearchStoreComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  closeModal() {
+  closeModal(): void {
     this.bsModalRef.hide();
   }
 

@@ -16,10 +16,10 @@
                  maxlength="10" minlength="3" required>
           <div *ngIf="product_name.invalid  && (product_generic.dirty || product_generic.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_name.errors.required">
+            <div *ngIf="product_name.errors?.required">
               Name is required field.
             </div>
-            <div *ngIf="product_name.errors.minlength">
+            <div *ngIf="product_name.errors?.minlength">
               Name must be at least 3 characters long.
             </div>
           </div>
@@ -35,10 +35,10 @@
                  maxlength="10" minlength="2" required>
           <div *ngIf="product_generic.invalid && (product_generic.dirty || product_generic.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_generic.errors.required">
+            <div *ngIf="product_generic.errors?.required">
               Generic is required field.
             </div>
-            <div *ngIf="product_generic.errors.minlength">
+            <div *ngIf="product_generic.errors?.minlength">
               Generic must be at least 2 characters long.
             </div>
           </div>
@@ -56,7 +56,7 @@
           </select>
           <div *ngIf="product_type.invalid && (product_type.dirty || product_type.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_type.errors.required">
+            <div *ngIf="product_type.errors?.required">
               Product Type is required field.
             </div>
           </div>
@@ -70,10 +70,10 @@
                  maxlength="10" minlength="2" required>
           <div *ngIf="product_batchNumber.invalid && (product_batchNumber.dirty || product_batchNumber.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_batchNumber.errors.required">
+            <div *ngIf="product_batchNumber.errors?.required">
               Batch # is required field.
             </div>
-            <div *ngIf="product_batchNumber.errors.minlength">
+            <div *ngIf="product_batchNumber.errors?.minlength">
               Batch # must be at least 2 characters long.
             </div>
           </div>
@@ -88,7 +88,7 @@
                  [(ngModel)]="data.packInfo" #product_pack='ngModel' required>
           <div *ngIf="product_pack.invalid && (product_pack.dirty || product_pack.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_pack.errors.required">
+            <div *ngIf="product_pack.errors?.required">
               Pack is required field.
             </div>
           </div>
@@ -102,7 +102,7 @@
                  [(ngModel)]="data.tp" #product_tp='ngModel' required>
           <div *ngIf="product_tp.invalid && (product_tp.dirty || product_tp.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_tp.errors.required">
+            <div *ngIf="product_tp.errors?.required">
               Trade Price is required field.
             </div>
           </div>
@@ -117,7 +117,7 @@
                  [(ngModel)]="data.mrp" #product_mrp='ngModel' required>
           <div *ngIf="product_mrp.invalid && (product_mrp.dirty || product_mrp.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_mrp.errors.required">
+            <div *ngIf="product_mrp.errors?.required">
               MRP is required field.
             </div>
           </div>
@@ -131,7 +131,7 @@
                  [(ngModel)]="data.net" #product_net='ngModel' required="">
           <div *ngIf="product_net.invalid && (product_net.dirty || product_net.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_net.errors.required">
+            <div *ngIf="product_net.errors?.required">
               Net Price is required field.
             </div>
           </div>
@@ -146,7 +146,7 @@
                  [(ngModel)]="data.boxQuantity" #product_quantity='ngModel' required>
           <div *ngIf="product_quantity.invalid && (product_quantity.dirty || product_quantity.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_quantity.errors.required">
+            <div *ngIf="product_quantity.errors?.required">
               Net Price is required field.
             </div>
           </div>
@@ -163,7 +163,7 @@
           </select>
           <div *ngIf="product_company_id.invalid && (product_company_id.dirty || product_company_id.touched)"
                class="alert alert-danger">
-            <div *ngIf="product_company_id.errors.required">
+            <div *ngIf="product_company_id.errors?.required">
               Company is required field.
             </div>
           </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from './services/order.service';
 import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 import { UtilService } from '@shared/services/util.service';
+import { OrderModalService } from '@root/app/order/services/order-modal.service';
 
 @Component({
   selector: 'app-orders',
@@ -33,6 +34,7 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
+    private orderModalService: OrderModalService,
     private utilService: UtilService
   ) { }
 
@@ -43,7 +45,7 @@ export class OrdersComponent implements OnInit {
   }
 
   editOrder(order: any, orderId: number): void {
-    this.orderService.openEditOrder();
+    this.orderModalService.openEditOrder();
 
     console.log('editOrder:', orderId, order);
   }
@@ -64,7 +66,7 @@ export class OrdersComponent implements OnInit {
       });
   }
   addOrder(): void {
-    this.orderService.openAddOrder();
+    this.orderModalService.openAddOrder();
   }
 
 }

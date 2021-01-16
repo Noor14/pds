@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { ECRUDModalModes, IAddUpdateSearchOrderConfig } from '@root/app/order/orders.model';
 import { AddUpdateSearchOrderComponent } from '@root/app/order/components/add-update-search-order/add-update-search-order.component';
-import { UtilService } from '@shared/services/util.service';
+import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 
 @Injectable({
   providedIn: 'root'
