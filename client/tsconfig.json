@@ -21,6 +21,7 @@
       "dom"
     ],
     "paths": {
+      "@root/*": ["src/*"],
       "@core/*": ["src/app/public/*"],
       "@shared/*": ["src/app/shared/*"],
       "@user/*": ["src/app/user/*"]
