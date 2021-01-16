@@ -21,7 +21,14 @@ const config = {
 	PORT: 3402,
 	SERVE_DIR: '../clients/dist',
 	//HOME_PAGE_REDIRECT: '/index.html',
-	APP_NAME: 'QASWA DS'
+	APP_NAME: 'QASWA DS',
+	CORS__WHITE_LISTED_ORIGINS: [
+		'http://localhost:3400',
+		'http://localhost:3401',
+
+		'http://www.qaswads.herokuapp.com',
+		'https://www.qaswads.herokuapp.com',
+	],
 };
 
 
@@ -37,8 +44,15 @@ app.use(bodyParser.json()); // parse application/json
 
 // Enable CORS
 app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, DELETE');
+	res.header('Access-Control-Allow-Credentials', 'true');
+
+	// res.header('Access-Control-Allow-Origin', '*');
+	if (config.CORS__WHITE_LISTED_ORIGINS.indexOf(req.headers.origin) >= 0) {
+		res.header('Access-Control-Allow-Origin', req.headers.origin);
+	}
+
 	next();
 });
 
