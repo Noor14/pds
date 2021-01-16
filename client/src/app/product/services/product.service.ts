@@ -77,37 +77,6 @@ export class ProductService {
     return products;
   }
 
-  private addUpdateSearchProduct(config: IAddUpdateSearchProductConfig): EventEmitter<any> {
-    return this.utilService.modal(AddUpdateSearchProductComponent, config, { class: 'modal-lg' });
-  }
-
-  openSearchProduct(): EventEmitter<any> {
-    const config: IAddUpdateSearchProductConfig = {
-      mode: ECRUDModalModes.Search,
-      product: null
-    };
-
-    return this.addUpdateSearchProduct(config);
-  }
-
-  openAddProduct(): EventEmitter<any> {
-    const config: IAddUpdateSearchProductConfig = {
-      mode: ECRUDModalModes.Add,
-      product: null
-    };
-
-    return this.addUpdateSearchProduct(config);
-  }
-
-  openEditProduct(product: IProduct): EventEmitter<any> {
-    const config: IAddUpdateSearchProductConfig = {
-      mode: ECRUDModalModes.Edit,
-      product: null
-    };
-
-    return this.addUpdateSearchProduct(config);
-  }
-
   addProduct(productData: IProductRaw): Observable<any> {
     console.log('Product form submit data', productData);
     // use mock data for now

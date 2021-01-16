@@ -70,7 +70,6 @@ export class AddUpdateSearchProductComponent implements OnInit {
         (res: any) => {
         console.log('submit form : Failure', res);
       });
-
   }
 
   closeModal() {
