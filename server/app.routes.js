@@ -12,7 +12,7 @@ const router = express.Router();
 
 // all APIs routes here
 router.use('/companies', require('./src/companies/companies.routes').default);
-// app.use('/products', require('./../routes/products.routes').default);
+router.use('/products', require('./src/products/products.routes').default);
 // app.use('/areas', require('./../routes/areas.routes').default);
 // app.use('/stores', require('./../routes/stores.routes').default);
 // app.use('/orders', require('./../routes/orders.routes').default);
