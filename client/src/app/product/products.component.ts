@@ -5,6 +5,7 @@ import { ITableConfig } from '@shared/components/table/table.model';
 
 import { ProductService } from './services/product.service';
 import { IProduct, IProductResponseSuccess } from './product.model';
+import { ProductModalsService } from '@root/app/product/services/product-modals.service';
 
 @Component({
   selector: 'app-products',
@@ -45,6 +46,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private productModalsService: ProductModalsService,
     private utilService: UtilService,
   ) { }
 
@@ -56,7 +58,7 @@ export class ProductsComponent implements OnInit {
     // this.deleteProduct({}, 0);
 
     // DEV - auto opener - addProduct
-    this.addProduct();
+    // this.addProduct();
 
     // DEV - auto opener - alert
     // this.utilService.alert({
@@ -81,7 +83,7 @@ export class ProductsComponent implements OnInit {
 
   searchProduct(): void {
     console.log('searchProduct:');
-    this.productService.openSearchProduct()
+    this.productModalsService.openSearchProduct()
       .subscribe((res: any) => {
         console.log('searchProduct: success', res);
 
@@ -92,13 +94,13 @@ export class ProductsComponent implements OnInit {
 
   addProduct(): void {
     console.log('addProduct:');
-    this.productService.openAddProduct();
+    this.productModalsService.openAddProduct();
   }
 
   editProduct(product: any, productIdx: number): void {
     console.log('editProduct:', productIdx, product);
 
-    this.productService.openEditProduct(product)
+    this.productModalsService.openEditProduct(product)
       .subscribe((res: any) => {
         console.log('editProduct: success', res);
 
