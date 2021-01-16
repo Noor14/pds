@@ -10,6 +10,10 @@ export const companiesMock: ICompanyRaw[] = [
     totalAmount: 240000,
     startedSince: '06/Nov/2020',
     contact: '+923001234567',
+    createdOn: '2021-01-15T21:39:51.835Z',
+    createdBy: 'userId1',
+    updatedOn: '2021-01-15T21:39:51.835Z',
+    updatedBy: 'userId1',
   },
   {
     id: '0000102',
@@ -20,6 +24,10 @@ export const companiesMock: ICompanyRaw[] = [
     totalAmount: 470000,
     startedSince: '05/Nov/2020',
     contact: '+923001234800',
+    createdOn: '2021-01-15T21:39:51.835Z',
+    createdBy: 'userId1',
+    updatedOn: '2021-01-15T21:39:51.835Z',
+    updatedBy: 'userId1',
   },
   {
     id: '0000103',
@@ -30,5 +38,9 @@ export const companiesMock: ICompanyRaw[] = [
     totalAmount: 150000,
     startedSince: '04/Nov/2020',
     contact: '+923001234909',
+    createdOn: '2021-01-15T21:39:51.835Z',
+    createdBy: 'userId1',
+    updatedOn: '2021-01-15T21:39:51.835Z',
+    updatedBy: 'userId1',
   },
 ];
