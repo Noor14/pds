@@ -1,10 +1,13 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-
+import { FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { productTypes } from '@shared/constants/types.constant';
 import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../product.model';
 import { companiesMock } from '../../../other-parties/components/companies/companies.mock';
+
+import { ProductService } from '../../services/product.service';
+
 
 @Component({
   selector: 'app-add-update-search-product',
@@ -16,6 +19,7 @@ export class AddUpdateSearchProductComponent implements OnInit {
   public config: IAddUpdateSearchProductConfig | undefined;
 
   private titles = {
+
     [ECRUDModalModes.Add]: 'Add Product',
     [ECRUDModalModes.Edit]: 'Edit Product',
     [ECRUDModalModes.Search]: 'Search Product',
@@ -40,13 +44,15 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
     type: undefined,
     companyId: undefined,
+    tp: undefined,
     mrp: undefined,
     net: undefined,
     boxQuantity: undefined,
   };
 
   constructor(
-    public bsModalRef: BsModalRef
+    public bsModalRef: BsModalRef,
+    public productService: ProductService
   ) { }
 
   ngOnInit(): void {
@@ -56,8 +62,15 @@ export class AddUpdateSearchProductComponent implements OnInit {
     console.log('resetForm:');
   }
 
-  submitForm() {
-    console.log('submitForm:');
+  submitForm(productData: IProductRaw) {
+    this.productService.addProduct(productData)
+      .subscribe((res: any) => {
+        console.log('submit form : success', res);
+      },
+        (res: any) => {
+        console.log('submit form : Failure', res);
+      });
+
   }
 
   closeModal() {

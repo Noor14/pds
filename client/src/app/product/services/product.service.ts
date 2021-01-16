@@ -69,7 +69,7 @@ export class ProductService {
       // TODO implement to find company name using companyId from company list.
       product.companyName = 'Abbott (Pvt) Ltd.';
 
-      product.tp = +(product.mrp - (product.mrp * productsSettings.tpPercent/100)).toFixed(2);
+      product.tp = +(product.mrp - (product.mrp * productsSettings.tpPercent / 100)).toFixed(2);
       product.discountPercent = +(product.net / (product.mrp - product.tp) * 100).toFixed(2);
       products.push(product);
     });
@@ -102,9 +102,37 @@ export class ProductService {
   openEditProduct(product: IProduct): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
       mode: ECRUDModalModes.Edit,
-      product: product
+      product: null
     };
 
     return this.addUpdateSearchProduct(config);
+  }
+
+  addProduct(productData: IProductRaw): Observable<any> {
+    console.log('Product form submit data', productData);
+    // use mock data for now
+    const subscription = of({
+      data: {
+        products: productsRawMock,
+        totalCount: 2000,
+      }
+    });
+
+    return subscription
+      .pipe(
+        map((res: IProductResponseSuccess) => {
+          let productsRaw = res.data.products;
+
+          // for sample mock data. -  to see pagination in action.
+          for (let i = 0; i < 5; i++) {
+            productsRaw = productsRaw.concat(productsRaw);
+          }
+
+          return {
+            products: this.parseProducts(productsRaw),
+            totalCount: res.data.totalCount,
+          };
+        })
+      );
   }
 }
