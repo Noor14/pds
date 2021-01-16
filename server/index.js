@@ -18,7 +18,7 @@ const mongodbConnect = require('./src/shared/services/mongodbConnect');
 
 /* locals */
 const config = {
-	PORT: 3302,
+	PORT: 3402,
 	SERVE_DIR: '../clients/dist',
 	//HOME_PAGE_REDIRECT: '/index.html',
 	APP_NAME: 'QASWA DS'
