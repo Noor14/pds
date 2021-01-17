@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Login</h4>
+  <button type="button" title="Close" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="" name="loginForm" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="login_username">Username:</label>
+          <input type="text" class="form-control" name="login_username" id="login_username"
+                 #login_username="ngModel"
+                 [(ngModel)]="data.username"
+                 required
+          >
+
+          <small *ngIf="login_username.invalid && (login_username.dirty || login_username.touched || loginForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="login_username.errors?.required">Please provide username.</span>
+          </small>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="login_password">Password:</label>
+          <input type="text" class="form-control" name="login_password" id="login_password"
+                 #login_password="ngModel"
+                 [(ngModel)]="data.password"
+                 required
+          >
+
+          <small *ngIf="login_password.invalid && (login_password.dirty || login_password.touched || loginForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="login_password.errors?.required">Please provide password.</span>
+          </small>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- controls -->
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" class="btn btn-success btn-block">
+          <fa-icon [icon]="['fas', 'lock']"></fa-icon>
+          Login
+        </button>
+      </div>
+      <hr class="col-12">
+      <p class="col-12">
+        Don't have an account ? Please contact your distribution to set it up for you.
+      </p>
+    </div>
+  </form>
+</div>
