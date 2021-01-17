@@ -7,8 +7,23 @@
 // deps
 const express = require('express');
 
+// app modules
+const demoVertical = require('./verticals/demo');
+
 // initialization
 const router = express.Router();
+
+// attach vertical info to each request based of the request origin / site.
+router.use((req, res, next) => {
+	console.log('attach vertical: ', req.headers.origin);
+	// TODO implement dynamically from DB. when we scale to verticals/clients.
+	// ...
+
+	// for now use "demo" vertical as default.
+	req.vertical = demoVertical;
+
+	next();
+});
 
 // all APIs routes here
 router.use('/companies', require('./src/companies/companies.routes').default);
