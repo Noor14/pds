@@ -61,7 +61,7 @@ export class AddUpdateSearchProductComponent implements OnInit {
   }
 
   submitForm(productData: IProductRaw) {
-    this.productService.addProduct(productData)
+    this.productService.apiAddProduct(productData)
       .subscribe((res: any) => {
         console.log('submit form : success', res);
       },

@@ -23,15 +23,16 @@ export interface IProduct extends IProductRaw {
   [prop: string]: any;
 }
 
-
 export interface IAddUpdateSearchProductConfig {
   mode: ECRUDModalModes;
   product: IProduct | null;
 }
 
-export interface IProductResponseSuccess {
-  data: {
-    products: IProductRaw[],
-    totalCount: number,
-  };
+export interface IGetAllProductsSuccessData {
+  products: IProductRaw[],
+  totalCount: number,
+}
+
+export interface IAddProductSuccessData {
+  product: IProductRaw,
 }

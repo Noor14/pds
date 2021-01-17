@@ -4,7 +4,7 @@ import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 import { ITableConfig } from '@shared/components/table/table.model';
 
 import { ProductService } from './services/product.service';
-import { IProduct, IProductResponseSuccess } from './product.model';
+import { IProduct, IGetAllProductsSuccessData } from './product.model';
 import { ProductModalsService } from '@root/app/product/services/product-modals.service';
 
 @Component({
@@ -71,26 +71,26 @@ export class ProductsComponent implements OnInit {
 
   fetchProducts(): void {
     console.log('fetchProducts:');
-    this.productService.apiFetchProducts()
+    this.productService.apiFetchProductsList()
       .subscribe((res: { products: IProduct[], totalCount: number }) => {
         console.log('fetchProducts: success', res.products);
 
         this.rows = res.products;
       }, (reason: string) => {
-        console.log('fetchProducts: error');
+        console.log('fetchProducts: error', reason);
       });
   }
 
-  searchProduct(): void {
-    console.log('searchProduct:');
-    this.productModalsService.openSearchProduct()
-      .subscribe((res: any) => {
-        console.log('searchProduct: success', res);
-
-        // here to render the search results and trigger table change.
-        //...
-      });
-  }
+  // searchProduct(): void {
+  //   console.log('searchProduct:');
+  //   this.productModalsService.openSearchProduct()
+  //     .subscribe((res: any) => {
+  //       console.log('searchProduct: success', res);
+  //
+  //       // here to render the search results and trigger table change.
+  //       //...
+  //     });
+  // }
 
   addProduct(): void {
     console.log('addProduct:');

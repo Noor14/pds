@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { SharedModalsService } from '@shared/services/shared-modals.service';
 
 @Component({
   selector: 'public-header',
@@ -10,7 +10,7 @@ export class PublicHeaderComponent implements OnInit {
   isMainNavCollapsed = true;
 
   constructor(
-    private router: Router,
+    private sharedModalsService: SharedModalsService,
   ) { }
 
   ngOnInit(): void {
@@ -18,7 +18,10 @@ export class PublicHeaderComponent implements OnInit {
 
   login() {
     console.log('login: called');
-    window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
-    this.router.navigate(['/user']);
+    this.sharedModalsService.openLoginModal({
+      sessionExpired: false,
+      autoLogin: false,
+      credentials: null
+    });
   }
 }

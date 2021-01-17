@@ -16,14 +16,14 @@ export class ProductModalsService {
     return this.utilService.modal(AddUpdateSearchProductComponent, config, { class: 'modal-lg' });
   }
 
-  openSearchProduct(): EventEmitter<any> {
-    const config: IAddUpdateSearchProductConfig = {
-      mode: ECRUDModalModes.Search,
-      product: null
-    };
-
-    return this.addUpdateSearchProduct(config);
-  }
+  // openSearchProduct(): EventEmitter<any> {
+  //   const config: IAddUpdateSearchProductConfig = {
+  //     mode: ECRUDModalModes.Search,
+  //     product: null
+  //   };
+  //
+  //   return this.addUpdateSearchProduct(config);
+  // }
 
   openAddProduct(): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
