@@ -70,7 +70,7 @@ app.use('/api', appRoutes.default);
 // appRoutes.default(app);
 
 // 404 routes responder
-app.use(function(req, res) {
+app.use((req, res) => {
 	console.log('404 init.');
 	res.status(404).sendFile(__dirname + '/src/shared/views/404.html');
 });
@@ -85,6 +85,6 @@ app.listen(config.PORT, (err) => {
 });
 
 // register a common exception handler to avoid server crash/shutdown.
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', (err) => {
 	console.log('root index.js: uncaughtException', err.toString());
 });
