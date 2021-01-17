@@ -1,1 +1,73 @@
-<p>my-account works!</p>
+
+<div class="row">
+
+  <!-- profile section -->
+  <div class="col-12 col-sm-6">
+    <h4>Profile Information</h4>
+    <form class="" name="profileForm" #profileForm="ngForm" (ngSubmit)="profileSubmitForm(profileForm)">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_username">Username:</label>
+            <input type="text" class="form-control" name="profile_username" id="profile_username"
+                   #profile_username="ngModel"
+                   [(ngModel)]="data.username"
+                   required
+            >
+
+            <small *ngIf="profile_username.invalid && (profile_username.dirty || profile_username.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_username.errors?.required">Please provide username.</span>
+            </small>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6"></div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_firstName">First Name:</label>
+            <input type="text" class="form-control" name="profile_firstName" id="profile_firstName"
+                   #profile_firstName="ngModel"
+                   [(ngModel)]="data.firstName"
+                   required
+            >
+
+            <small *ngIf="profile_firstName.invalid && (profile_firstName.dirty || profile_firstName.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_firstName.errors?.required">Please provide first Name.</span>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_lastName">Last Name:</label>
+            <input type="text" class="form-control" name="profile_lastName" id="profile_lastName"
+                   #profile_lastName="ngModel"
+                   [(ngModel)]="data.lastName"
+                   required
+            >
+
+            <small *ngIf="profile_lastName.invalid && (profile_lastName.dirty || profile_lastName.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_lastName.errors?.required">Please provide last Name.</span>
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">
+            <!--<fa-icon [icon]="['fas', 'lock']"></fa-icon>-->
+            Update Profile
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- password section -->
+  <div class="col-4"></div>
+</div>

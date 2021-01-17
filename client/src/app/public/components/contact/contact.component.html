@@ -6,10 +6,12 @@
   <div class="row">
     <div class="col">
       <div class="card">
-        <div class="card-header bg-light text-dark"><i class="fa fa-envelope"></i> Contact us.
-        </div>
+        <!--<div class="card-header bg-light text-dark">-->
+        <!--  <i class="fa fa-envelope"></i> -->
+        <!--  Contact us.-->
+        <!--</div>-->
         <div class="card-body">
-          <form #contactForm = "ngForm" (ngSubmit) = "submitContact(contactForm.value)" >
+          <form #contactForm = "ngForm" (ngSubmit)="submitContact(contactForm.value)">
           <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control"

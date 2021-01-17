@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitForm(loginForm: any) {
+  submitForm(loginForm: any): void {
     console.log('submitForm:');
 
     // halt if farm data values are not valid.
