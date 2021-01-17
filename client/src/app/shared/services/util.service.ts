@@ -8,6 +8,7 @@ import { AlertComponent } from '@shared/components/alert/alert.component';
 
 import { IAlertConfig } from '../components/alert/alert.model';
 import { IConfirmConfig } from '../components/confirm/confirm.model';
+import { environment } from '@root/environments/environment';
 
 export { IAlertConfig, IConfirmConfig }
 
@@ -29,8 +30,13 @@ export class UtilService {
     private modalService: BsModalService,
   ) { }
 
-  public modal(component: any, config: any, options: any): EventEmitter<any> {
-    console.log(config, options);
+  // mostly used for interceptors for request and response as well.
+  isInternalAppAPICall(requestURL: string) : boolean {
+    return requestURL.indexOf(environment.apiBaseURL) === 0;
+  }
+
+  modal(component: any, config: any, options: ModalOptions): EventEmitter<any> {
+    console.log('UtilService: modal:', config, options);
     options = Object.assign({}, this.modalDefaultOptions, options);
     const modalRef: BsModalRef = this.modalService.show(component, options);
     modalRef.content.config = config;
@@ -40,11 +46,11 @@ export class UtilService {
       .pipe(take(1));
   }
 
-  public alert(config: IAlertConfig): EventEmitter<any> {
+  alert(config: IAlertConfig): EventEmitter<any> {
     return this.modal(AlertComponent, config, { class: 'modal--lite' });
   }
 
-  public confirm(config: IConfirmConfig): EventEmitter<any> {
+  confirm(config: IConfirmConfig): EventEmitter<any> {
     return this.modal(ConfirmComponent, config, { class: 'modal--lite' });
   }
 }
