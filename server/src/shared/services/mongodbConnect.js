@@ -15,7 +15,6 @@ async function connectDB() {
     });
 
     if (client.isConnected()) {
-        console.log('connected')
       return resolve(client);
     } else {
       client
