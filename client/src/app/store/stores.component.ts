@@ -4,6 +4,7 @@ import { StoreService } from './services/store.service';
 import {IConfirmConfig} from '@shared/components/confirm/confirm.model';
 import {UtilService} from '@shared/services/util.service';
 import { StoreModalsService } from './services/store-modals.service';
+import { ITableConfig } from '@shared/components/table/table.model';
 
 
 @Component({
@@ -35,6 +36,17 @@ export class StoresComponent implements OnInit {
     { name: 'Delete', handler: this.deleteProduct.bind(this)},
   ];
 
+  config: ITableConfig = {
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
+    addItem: {
+      buttonText: 'Add Store',
+      handler: this.addStore.bind(this),
+    }
+  };
+
   constructor(
     private storeService: StoreService,
     private storeModalsService: StoreModalsService,
@@ -45,14 +57,18 @@ export class StoresComponent implements OnInit {
   }
 
   addStore(): any {
+    console.log('addStore:');
     this.storeModalsService.openAddStore();
   }
 
   editProduct(product: any, productIdx: number): void {
+    console.log('editProduct:', product, productIdx);
     this.storeModalsService.openEditStore();
   }
 
   deleteProduct(product: any, productIdx: number): void {
+    console.log('deleteProduct:', product, productIdx);
+
     const config: IConfirmConfig = {
       message: 'Are you sure you want to delete this store from system ?',
       approveButtonText: 'Delete',

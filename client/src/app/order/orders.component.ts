@@ -4,6 +4,7 @@ import { OrderService } from './services/order.service';
 import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 import { UtilService } from '@shared/services/util.service';
 import { OrderModalService } from '@root/app/order/services/order-modal.service';
+import { ITableConfig } from '@shared/components/table/table.model';
 
 @Component({
   selector: 'app-orders',
@@ -32,6 +33,17 @@ export class OrdersComponent implements OnInit {
     { name: 'Delete', handler: this.deleteOrder.bind(this)},
   ];
 
+  config: ITableConfig = {
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
+    addItem: {
+      buttonText: 'New Order',
+      handler: this.addOrder.bind(this),
+    }
+  };
+
   constructor(
     private orderService: OrderService,
     private orderModalService: OrderModalService,
@@ -44,13 +56,19 @@ export class OrdersComponent implements OnInit {
     this.addOrder();
   }
 
-  editOrder(order: any, orderId: number): void {
-    this.orderModalService.openEditOrder();
+  addOrder(): void {
+    console.log('addOrder:');
+    this.orderModalService.openAddOrder();
+  }
 
+  editOrder(order: any, orderId: number): void {
     console.log('editOrder:', orderId, order);
+    this.orderModalService.openEditOrder();
   }
 
   deleteOrder(order: any, orderId: number): void {
+    console.log('deleteOrder:', orderId, order);
+
     const config: IConfirmConfig = {
       message: 'Are you sure you want to delete this order from system ?',
       approveButtonText: 'Delete',
@@ -64,9 +82,6 @@ export class OrdersComponent implements OnInit {
       }, (reason: string) => {
         console.log('confirm: decline');
       });
-  }
-  addOrder(): void {
-    this.orderModalService.openAddOrder();
   }
 
 }
