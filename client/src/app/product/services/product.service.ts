@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { UtilService } from '@shared/services/util.service';
 import { HttpService } from '@shared/services/http.service';
 
+import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
+
 import { productsSettings } from '../products.constant';
 import {
   IProduct,
@@ -17,6 +19,7 @@ import {
   providedIn: 'root'
 })
 export class ProductService {
+  private endpoint = `products`;
 
   constructor(
     private utilService: UtilService,
@@ -26,7 +29,7 @@ export class ProductService {
   apiAddOne(productRaw: IProductRaw): Observable<any> {
     // console.log('apiAddOne:', productRaw);
 
-    return this.httpService.post(`products`, productRaw)
+    return this.httpService.post(`${this.endpoint}`, productRaw)
       .pipe(
         map((data: IAddProductSuccessData) => {
           data.product = this.parseOne(data.product);
@@ -38,7 +41,7 @@ export class ProductService {
   apiUpdateOne(productRaw: IProductRaw): Observable<any> {
     // console.log('apiUpdateProduct:', productRaw);
 
-    return this.httpService.post(`products/${productRaw.id}`, productRaw)
+    return this.httpService.post(`${this.endpoint}/${productRaw.id}`, productRaw)
       .pipe(
         map((data: IAddProductSuccessData) => {
           data.product = this.parseOne(data.product);
@@ -50,7 +53,7 @@ export class ProductService {
   apiDeleteOne(productRaw: IProductRaw): Observable<any> {
     // console.log('apiDeleteOne:', productRaw);
 
-    return this.httpService.delete(`products/${productRaw.id}`)
+    return this.httpService.delete(`${this.endpoint}/${productRaw.id}`)
       .pipe(
         map((data: any) => {
           // data.product = this.parseOneProduct(data.product);
@@ -62,7 +65,7 @@ export class ProductService {
   apiGetOne(productId: string): Observable<any> {
     // console.log('apiGetOne:', productId);
 
-    return this.httpService.delete(`products/${productId}`)
+    return this.httpService.delete(`${this.endpoint}/${productId}`)
       .pipe(
         map((data: any) => {
           data.product = this.parseOne(data.product);
@@ -71,9 +74,9 @@ export class ProductService {
       );
   }
 
-  apiGetList(): Observable<any> {
+  apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
-    return this.httpService.get(`products`)
+    return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
 
         // Use Mock data until BE implements real data.

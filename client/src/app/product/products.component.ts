@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit {
 
   fetchProducts(): void {
     console.log('fetchProducts:');
-    this.productService.apiGetList()
+    this.productService.apiGetList({})
       .subscribe((res: { products: IProduct[], totalCount: number }) => {
         console.log('fetchProducts: success', res.products);
 
