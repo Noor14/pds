@@ -16,10 +16,14 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() contextPrefix: string = 'table'; // to be used for form fields name prefixes.
   @Input() config: ITableConfig | undefined = undefined;
-  
+
   @Input() rows: any[] = [];
   @Input() columns: any[] = [];
   @Input() actions: IAction[] = [];
+  @Input() messages: { [prop: string]: string } = {
+    emptyMessage: 'No records found.',
+  };
+
   @Input() scrollbarH = true;
   @Input() scrollbarV = false; // gives error for rowHeight Auto
 
