@@ -1,13 +1,13 @@
 app-my-account{
-  .container{
+  .app-container {
+    width: 80%;
     margin: 0 auto;
-    max-width: 80%;
   }
+}
 
-  @media screen {
-    .d-xs-block{
-      display: block !important;
-    }
+@media screen and (max-width: 569px) {
+  .app-container {
+    width: 100%;
   }
 }
 

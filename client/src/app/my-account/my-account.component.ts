@@ -9,16 +9,16 @@ export class MyAccountComponent implements OnInit {
 
   data = {
     type: 1,
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    address: '',
-    area: '',
-    contact: '',
-    storeName: '',
-    specialties: '',
-    experienceSinceYear: '',
+    username: 'qaswa_admin',
+    firstName: 'Admin',
+    lastName: 'Qaswa',
+    email: 'admin@qaswa.com',
+    address: 'every where in every city',
+    area: 'Lahore',
+    contact: '03010123456',
+    storeName: 'Qaswa Medical Store',
+    specialties: 'Gynologist',
+    experienceSinceYear: '1990',
   };
    passwordObj = {
      password: '',

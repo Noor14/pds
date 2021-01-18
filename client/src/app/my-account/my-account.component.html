@@ -21,7 +21,22 @@
             </small>
           </div>
         </div>
-        <div class="col-12 col-sm-6"></div>
+        <!--<div class="col-12 col-sm-6"></div>-->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_type">User Type:</label>
+            <input type="text" class="form-control" name="profile_type" placeholder="User Type" id="profile_type"
+                   #profile_type="ngModel"
+                   [(ngModel)]="data.type"
+                   required
+            >
+
+            <small *ngIf="profile_type.invalid && (profile_type.dirty || profile_type.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_type.errors?.required">Please provide type.</span>
+            </small>
+          </div>
+        </div>
 
         <div class="col-12 col-sm-6">
           <div class="form-group">
@@ -74,7 +89,7 @@
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_email">Email:</label>
-            <input type="number" class="form-control" name="profile_email" placeholder="Email@" id="profile_email"
+            <input type="text" class="form-control" name="profile_email" placeholder="Email@" id="profile_email"
                    #profile_email="ngModel"
                    [(ngModel)]="data.email"
                    required
@@ -89,7 +104,7 @@
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_storeName">Store Name:</label>
-            <input type="number" class="form-control" name="profile_storeName" placeholder="Store Name" id="profile_storeName"
+            <input type="text" class="form-control" name="profile_storeName" placeholder="Store Name" id="profile_storeName"
                    #profile_storeName="ngModel"
                    [(ngModel)]="data.storeName"
                    required
@@ -105,7 +120,7 @@
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_specialties">Dr Specialties:</label>
-            <input type="number" class="form-control" name="profile_specialties" placeholder="Dr Specialties" id="profile_specialties"
+            <input type="text" class="form-control" name="profile_specialties" placeholder="Dr Specialties" id="profile_specialties"
                    #profile_specialties="ngModel"
                    [(ngModel)]="data.specialties"
                    required
@@ -121,7 +136,7 @@
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_experienceSinceYear">Dr Experience Since Year:</label>
-            <input type="number" class="form-control" name="profile_experienceSinceYear" placeholder="Dr Experience Since Year" id="profile_experienceSinceYear"
+            <input type="text" class="form-control" name="profile_experienceSinceYear" placeholder="Dr Experience Since Year" id="profile_experienceSinceYear"
                    #profile_experienceSinceYear="ngModel"
                    [(ngModel)]="data.experienceSinceYear"
                    required
@@ -184,7 +199,7 @@
   </div>
 
   <!-- password section -->
-  <div class="col-12 col-sm-4">
+  <div class="col-12 col-sm-6">
     <hr class="d-lg-none d-md-none d-sm-none d-xl-none">
     <h4 class="mb-5">Change Password</h4>
     <div class="row">
