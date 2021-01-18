@@ -62,20 +62,22 @@ export class ResponseInterceptor implements HttpInterceptor {
         // }),
 
         // check if its as successful response or a failure one.
-        // map((res: any) => {
-        //   console.log('ResponseInterceptor: response:', res);
-        //
-        //   // case: error response. inform subscription by throwing an error.
-        //   // if (res.body.success) {
-        //   if (!res.body.success) {
-        //     // return throwError(res.body.data);
-        //     return throwError(res.body.data);
-        //   }
-        //
-        //   // case: successful response. transform to omit extra information.
-        //   // return of(res.body.data);
-        //   return res.body.data;
-        // }),
+        map((event: any) => {
+          // console.log('ResponseInterceptor: response:', event);
+
+          // case: error response. inform subscription by throwing an error.
+          // if (event.body.success) {
+          if (!event.body.success) {
+            // return throwError(event.body.data);
+            // TODO fix find a way to pass json object to error handler of subscribe() from this .map/switchMap, etc.
+            throw new Error((JSON.stringify(event.body.data)));
+          }
+
+          // case: successful response. transform to omit extra information.
+          // return event.body.data;
+          // return of(event.body.data);
+          return event.clone({ body: event.body.data });
+        }),
       )
       // .pipe(
         // tap(

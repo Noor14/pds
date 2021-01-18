@@ -14,7 +14,7 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('RequestInterceptor: intercept', request);
+    // console.log('RequestInterceptor: intercept', request);
 
     const modifiedRequest = request.clone({
       // responseType: 'json',
