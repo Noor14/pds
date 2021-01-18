@@ -10,8 +10,9 @@
 export interface IUserRaw {
   id: string;
 
-  // (Distribution team users starts from: 1 sales rep, 2 admin)
-  // (entity/feature-type users starts from: 101 doctor, 102 store, etc)
+  // Here are "type" field possible values.
+  // (Distribution team users starts from: 1 sales rep, 10 admin)
+  // (entity/feature-type users starts from: 101 store, 102 doctor etc)
   // (system/qaswa roles starts from: 201 for system level admin et.c) // very rare
   type: number,
 
