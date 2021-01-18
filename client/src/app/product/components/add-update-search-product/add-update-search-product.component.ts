@@ -33,7 +33,8 @@ export class AddUpdateSearchProductComponent implements OnInit {
   companies = companiesMock;
 
   // data: IProductRaw = {;
-  data = {
+  data = {};
+  defaultData = {
     id: '',
     batchNumber: '',
     packInfo: '',
@@ -54,6 +55,8 @@ export class AddUpdateSearchProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('ngOnInit:');
+    this.data = this.config && this.config.product || this.defaultData;
   }
 
   resetForm(): void {
