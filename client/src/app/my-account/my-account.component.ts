@@ -12,7 +12,18 @@ export class MyAccountComponent implements OnInit {
     username: '',
     firstName: '',
     lastName: '',
+    email: '',
+    address: '',
+    area: '',
+    contact: '',
+    storeName: '',
+    specialties: '',
+    experienceSinceYear: '',
   };
+   passwordObj = {
+     password: '',
+     retypePassword: ''
+   };
 
   constructor() { }
 

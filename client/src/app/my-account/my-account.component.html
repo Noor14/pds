@@ -3,13 +3,13 @@
 
   <!-- profile section -->
   <div class="col-12 col-sm-6">
-    <h4>Profile Information</h4>
+    <h4 class="mb-5">Profile Information</h4>
     <form class="" name="profileForm" #profileForm="ngForm" (ngSubmit)="profileSubmitForm(profileForm)">
       <div class="row">
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_username">Username:</label>
-            <input type="text" class="form-control" name="profile_username" id="profile_username"
+            <input type="text" class="form-control" name="profile_username" placeholder="Username" id="profile_username"
                    #profile_username="ngModel"
                    [(ngModel)]="data.username"
                    required
@@ -26,7 +26,7 @@
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_firstName">First Name:</label>
-            <input type="text" class="form-control" name="profile_firstName" id="profile_firstName"
+            <input type="text" class="form-control" name="profile_firstName" placeholder="First name" id="profile_firstName"
                    #profile_firstName="ngModel"
                    [(ngModel)]="data.firstName"
                    required
@@ -42,7 +42,7 @@
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <label for="profile_lastName">Last Name:</label>
-            <input type="text" class="form-control" name="profile_lastName" id="profile_lastName"
+            <input type="text" class="form-control" name="profile_lastName" placeholder="Last name" id="profile_lastName"
                    #profile_lastName="ngModel"
                    [(ngModel)]="data.lastName"
                    required
@@ -54,11 +54,126 @@
             </small>
           </div>
         </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_contact">Contact:</label>
+            <input type="number" class="form-control" name="profile_contact" placeholder="Contact number(s)" id="profile_contact"
+                   #profile_contact="ngModel"
+                   [(ngModel)]="data.contact"
+                   required
+            >
+
+            <small *ngIf="profile_contact.invalid && (profile_contact.dirty || profile_contact.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_contact.errors?.required">Please provide your contact number.</span>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_email">Email:</label>
+            <input type="number" class="form-control" name="profile_email" placeholder="Email@" id="profile_email"
+                   #profile_email="ngModel"
+                   [(ngModel)]="data.email"
+                   required
+            >
+
+            <small *ngIf="profile_email.invalid && (profile_email.dirty || profile_email.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_email.errors?.required">Please provide yout email number.</span>
+            </small>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_storeName">Store Name:</label>
+            <input type="number" class="form-control" name="profile_storeName" placeholder="Store Name" id="profile_storeName"
+                   #profile_storeName="ngModel"
+                   [(ngModel)]="data.storeName"
+                   required
+            >
+
+            <small *ngIf="profile_storeName.invalid && (profile_storeName.dirty || profile_storeName.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_storeName.errors?.required">Please provide yout storeName number.</span>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_specialties">Dr Specialties:</label>
+            <input type="number" class="form-control" name="profile_specialties" placeholder="Dr Specialties" id="profile_specialties"
+                   #profile_specialties="ngModel"
+                   [(ngModel)]="data.specialties"
+                   required
+            >
+
+            <small *ngIf="profile_specialties.invalid && (profile_specialties.dirty || profile_specialties.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_specialties.errors?.required">Please provide yout specialties number.</span>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_experienceSinceYear">Dr Experience Since Year:</label>
+            <input type="number" class="form-control" name="profile_experienceSinceYear" placeholder="Dr Experience Since Year" id="profile_experienceSinceYear"
+                   #profile_experienceSinceYear="ngModel"
+                   [(ngModel)]="data.experienceSinceYear"
+                   required
+            >
+
+            <small *ngIf="profile_experienceSinceYear.invalid && (profile_experienceSinceYear.dirty || profile_experienceSinceYear.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_experienceSinceYear.errors?.required">Please provide yout experienceSinceYear number.</span>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_area">Area:</label>
+            <input type="text" class="form-control" name="profile_area" placeholder="Area" id="profile_area"
+                   #profile_area="ngModel"
+                   [(ngModel)]="data.area"
+                   required
+            >
+
+            <small *ngIf="profile_area.invalid && (profile_area.dirty || profile_area.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_area.errors?.required">Please provide your area.</span>
+            </small>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <label for="profile_address">Address:</label>
+            <input type="text" class="form-control" name="profile_address" placeholder="Address" id="profile_address"
+                   #profile_address="ngModel"
+                   [(ngModel)]="data.address"
+                   required
+            >
+
+            <small *ngIf="profile_address.invalid && (profile_address.dirty || profile_address.touched || profileForm.submitted)"
+                   class="form-text text-danger">
+              <span *ngIf="profile_address.errors?.required">Please provide address.</span>
+            </small>
+          </div>
+        </div>
       </div>
+      <div class="right-vertical-separator"></div>
 
       <!-- controls -->
       <div class="row">
         <div class="col-12">
+          <button class="btn btn-danger mr-1">
+            <!--<fa-icon [icon]="['fas', 'lock']"></fa-icon>-->
+            Reset
+          </button>
           <button type="submit" class="btn btn-success">
             <!--<fa-icon [icon]="['fas', 'lock']"></fa-icon>-->
             Update Profile
@@ -69,5 +184,51 @@
   </div>
 
   <!-- password section -->
-  <div class="col-4"></div>
+  <div class="col-12 col-sm-4">
+    <hr class="d-lg-none d-md-none d-sm-none d-xl-none">
+    <h4 class="mb-5">Change Password</h4>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="profile_password">Password:</label>
+          <input type="text" class="form-control" name="profile_password" placeholder="Password" id="profile_password"
+                 #profile_password="ngModel"
+                 [(ngModel)]="passwordObj.password"
+                 required
+          >
+
+          <small *ngIf="profile_password.invalid && (profile_password.dirty || profile_password.touched || profileForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="profile_password.errors?.required">Please provide password.</span>
+          </small>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="profile_retypePassword">Retype Password:</label>
+          <input type="text" class="form-control" name="profile_retypePassword" placeholder="Retype Password" id="profile_retypePassword"
+                 #profile_retypePassword="ngModel"
+                 [(ngModel)]="passwordObj.retypePassword"
+                 required
+          >
+
+          <small *ngIf="profile_retypePassword.invalid && (profile_retypePassword.dirty || profile_retypePassword.touched || profileForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="profile_retypePassword.errors?.required">Password not match.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <button class="btn btn-danger mr-1">
+          <!--<fa-icon [icon]="['fas', 'lock']"></fa-icon>-->
+          Reset
+        </button>
+        <button type="submit" class="btn btn-success">
+          <!--<fa-icon [icon]="['fas', 'lock']"></fa-icon>-->
+          Update Password
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,13 @@
+app-my-account{
+  .container{
+    margin: 0 auto;
+    max-width: 80%;
+  }
+
+  @media screen {
+    .d-xs-block{
+      display: block !important;
+    }
+  }
+}
+

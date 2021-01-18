@@ -68,6 +68,23 @@ body {
 .hp-sec{
   overflow: hidden;
 }
+.right-vertical-separator{
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  border: 1px solid #d3d3d3;
+  top: 0;
+  right: 0;
+}
+.left-vertical-separator{
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  border: 1px solid #d3d3d3;
+  top: 0;
+  left: 0;
+}
+
 .header-bar {
   background: rgba(31, 53, 91, 1);
   color: #fff;
