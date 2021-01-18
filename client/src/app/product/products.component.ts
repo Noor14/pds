@@ -32,6 +32,12 @@ export class ProductsComponent implements OnInit {
     { name: 'View / Edit', handler: this.editProduct.bind(this)},
     { name: 'Delete', handler: this.deleteProduct.bind(this)},
   ];
+  messages = {
+    emptyMessage: '', // dynamic based of the fetch error, or filter to none.
+    customNoRecords: 'No Products found in the system. please select "Add Product" to add one.',
+    customFilteredNoMatch: 'No Products match with entered value.',
+    customFetchError: 'Failed in fetching products.',
+  };
 
   config: ITableConfig = {
     // advanceSearchItem: {
@@ -70,14 +76,18 @@ export class ProductsComponent implements OnInit {
   }
 
   fetchProducts(): void {
-    console.log('fetchProducts:');
+    // console.log('fetchProducts:');
     this.productService.apiGetList({})
       .subscribe((res: { products: IProduct[], totalCount: number }) => {
         console.log('fetchProducts: success', res.products);
 
         this.rows = res.products;
+        // this.rows = [];
+
+        this.messages.emptyMessage = this.messages.customNoRecords;
       }, (reason: string) => {
         console.log('fetchProducts: error', reason);
+        this.messages.emptyMessage = this.messages.customFetchError;
       });
   }
 

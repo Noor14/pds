@@ -23,7 +23,7 @@ export class ResponseInterceptor implements HttpInterceptor {
 
   // intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<any> {
-    console.log('ResponseInterceptor:', req);
+    // console.log('ResponseInterceptor:', req);
 
     // const started = Date.now();
     // let result: string;
