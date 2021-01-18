@@ -56,7 +56,11 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('ngOnInit:');
-    this.data = this.config && this.config.product || this.defaultData;
+
+    // waiting for the assignment. i.e. for second event loop digest.
+    setTimeout(() => {
+      this.data = this.config && this.config.product || this.defaultData;
+    });
   }
 
   resetForm(): void {

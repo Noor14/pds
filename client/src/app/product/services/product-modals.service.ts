@@ -37,7 +37,7 @@ export class ProductModalsService {
   openEditProduct(product: IProduct): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
       mode: ECRUDModalModes.Edit,
-      product: null
+      product: product
     };
 
     return this.addUpdateSearchProduct(config);
