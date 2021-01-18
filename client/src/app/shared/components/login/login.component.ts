@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   data: ILoginPayload = {
     username: 'qaswa-admin',
-    password: '',
+    password: 'test',
   };
 
   constructor(
@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    // DEV  - auto click
+    // this.submitForm(this.loginForm);
   }
 
   submitForm(loginForm: any): void {

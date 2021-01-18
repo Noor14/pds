@@ -4,7 +4,7 @@
   <!-- profile section -->
   <div class="col-12 col-sm-6">
     <h4 class="mb-5">Profile Information</h4>
-    <form class="" name="profileForm" #profileForm="ngForm" (ngSubmit)="profileSubmitForm(profileForm)">
+    <form class="" name="form" #form="ngForm" (ngSubmit)="profileSubmitForm(form)">
       <div class="row">
         <div class="col-12 col-sm-6">
           <div class="form-group">
@@ -15,7 +15,7 @@
                    required
             >
 
-            <small *ngIf="profile_username.invalid && (profile_username.dirty || profile_username.touched || profileForm.submitted)"
+            <small *ngIf="profile_username.invalid && (profile_username.dirty || profile_username.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_username.errors?.required">Please provide username.</span>
             </small>
@@ -31,7 +31,7 @@
                    required
             >
 
-            <small *ngIf="profile_type.invalid && (profile_type.dirty || profile_type.touched || profileForm.submitted)"
+            <small *ngIf="profile_type.invalid && (profile_type.dirty || profile_type.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_type.errors?.required">Please provide type.</span>
             </small>
@@ -47,7 +47,7 @@
                    required
             >
 
-            <small *ngIf="profile_firstName.invalid && (profile_firstName.dirty || profile_firstName.touched || profileForm.submitted)"
+            <small *ngIf="profile_firstName.invalid && (profile_firstName.dirty || profile_firstName.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_firstName.errors?.required">Please provide first Name.</span>
             </small>
@@ -63,7 +63,7 @@
                    required
             >
 
-            <small *ngIf="profile_lastName.invalid && (profile_lastName.dirty || profile_lastName.touched || profileForm.submitted)"
+            <small *ngIf="profile_lastName.invalid && (profile_lastName.dirty || profile_lastName.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_lastName.errors?.required">Please provide last Name.</span>
             </small>
@@ -79,7 +79,7 @@
                    required
             >
 
-            <small *ngIf="profile_contact.invalid && (profile_contact.dirty || profile_contact.touched || profileForm.submitted)"
+            <small *ngIf="profile_contact.invalid && (profile_contact.dirty || profile_contact.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_contact.errors?.required">Please provide your contact number.</span>
             </small>
@@ -95,7 +95,7 @@
                    required
             >
 
-            <small *ngIf="profile_email.invalid && (profile_email.dirty || profile_email.touched || profileForm.submitted)"
+            <small *ngIf="profile_email.invalid && (profile_email.dirty || profile_email.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_email.errors?.required">Please provide yout email number.</span>
             </small>
@@ -110,7 +110,7 @@
                    required
             >
 
-            <small *ngIf="profile_storeName.invalid && (profile_storeName.dirty || profile_storeName.touched || profileForm.submitted)"
+            <small *ngIf="profile_storeName.invalid && (profile_storeName.dirty || profile_storeName.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_storeName.errors?.required">Please provide yout storeName number.</span>
             </small>
@@ -126,7 +126,7 @@
                    required
             >
 
-            <small *ngIf="profile_specialties.invalid && (profile_specialties.dirty || profile_specialties.touched || profileForm.submitted)"
+            <small *ngIf="profile_specialties.invalid && (profile_specialties.dirty || profile_specialties.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_specialties.errors?.required">Please provide yout specialties number.</span>
             </small>
@@ -142,7 +142,7 @@
                    required
             >
 
-            <small *ngIf="profile_experienceSinceYear.invalid && (profile_experienceSinceYear.dirty || profile_experienceSinceYear.touched || profileForm.submitted)"
+            <small *ngIf="profile_experienceSinceYear.invalid && (profile_experienceSinceYear.dirty || profile_experienceSinceYear.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_experienceSinceYear.errors?.required">Please provide yout experienceSinceYear number.</span>
             </small>
@@ -158,7 +158,7 @@
                    required
             >
 
-            <small *ngIf="profile_area.invalid && (profile_area.dirty || profile_area.touched || profileForm.submitted)"
+            <small *ngIf="profile_area.invalid && (profile_area.dirty || profile_area.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_area.errors?.required">Please provide your area.</span>
             </small>
@@ -173,7 +173,7 @@
                    required
             >
 
-            <small *ngIf="profile_address.invalid && (profile_address.dirty || profile_address.touched || profileForm.submitted)"
+            <small *ngIf="profile_address.invalid && (profile_address.dirty || profile_address.touched || form.submitted)"
                    class="form-text text-danger">
               <span *ngIf="profile_address.errors?.required">Please provide address.</span>
             </small>
@@ -212,7 +212,7 @@
                  required
           >
 
-          <small *ngIf="profile_password.invalid && (profile_password.dirty || profile_password.touched || profileForm.submitted)"
+          <small *ngIf="profile_password.invalid && (profile_password.dirty || profile_password.touched || form.submitted)"
                  class="form-text text-danger">
             <span *ngIf="profile_password.errors?.required">Please provide password.</span>
           </small>
@@ -227,7 +227,7 @@
                  required
           >
 
-          <small *ngIf="profile_retypePassword.invalid && (profile_retypePassword.dirty || profile_retypePassword.touched || profileForm.submitted)"
+          <small *ngIf="profile_retypePassword.invalid && (profile_retypePassword.dirty || profile_retypePassword.touched || form.submitted)"
                  class="form-text text-danger">
             <span *ngIf="profile_retypePassword.errors?.required">Password not match.</span>
           </small>

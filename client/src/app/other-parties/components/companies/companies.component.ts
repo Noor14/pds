@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { companiesMock } from './companies.mock';
 import { ICompany } from './companies.model';
+import { ITableConfig } from '@shared/components/table/table.model';
 
 @Component({
   selector: 'app-companies',
@@ -25,6 +26,16 @@ export class CompaniesComponent implements OnInit {
     { name: 'View / Edit', handler: this.editCompany.bind(this)},
     { name: 'Delete', handler: this.deleteCompany.bind(this)},
   ];
+  config: ITableConfig = {
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
+    addItem: {
+      buttonText: 'New Company',
+      handler: this.addCompany.bind(this),
+    }
+  };
 
   constructor() { }
 
@@ -32,6 +43,10 @@ export class CompaniesComponent implements OnInit {
 
     // TODO implement fetch companies api
     this.rows = companiesMock;
+  }
+
+  addCompany(): void {
+    console.log('addCompany:');
   }
 
   editCompany(company: any, companyIdx: number): void {

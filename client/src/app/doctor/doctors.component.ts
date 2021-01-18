@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ITableConfig } from '@shared/components/table/table.model';
 
 @Component({
   selector: 'app-doctors',
@@ -30,10 +31,24 @@ export class DoctorsComponent implements OnInit {
     { name: 'View / Edit', handler: this.editDoctor.bind(this)},
     { name: 'Delete', handler: this.deleteDoctor.bind(this)},
   ];
+  config: ITableConfig = {
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
+    addItem: {
+      buttonText: 'New Doctor',
+      handler: this.addDoctor.bind(this),
+    }
+  };
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addDoctor(): void {
+    console.log('addDoctor:');
   }
 
   editDoctor(order: any, orderId: number): void {

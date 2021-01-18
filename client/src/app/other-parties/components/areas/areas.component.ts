@@ -52,7 +52,7 @@ export class AreasComponent implements OnInit {
     // this.deleteArea({}, 0);
 
     // DEV - auto opener - addArea
-    this.addArea();
+    // this.addArea();
 
     // DEV - auto opener - alert
     // this.utilService.alert({

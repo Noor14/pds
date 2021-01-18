@@ -52,8 +52,8 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // load for testing
-    this.addOrder();
+    // DEV - auto opener - addOrder
+    // this.addOrder();
   }
 
   addOrder(): void {

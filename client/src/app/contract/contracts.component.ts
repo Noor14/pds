@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ITableConfig } from '@shared/components/table/table.model';
 
 @Component({
   selector: 'app-contract',
@@ -28,10 +29,24 @@ export class ContractsComponent implements OnInit {
     { name: 'View / Edit', handler: this.editContract.bind(this)},
     { name: 'Delete', handler: this.deleteContract.bind(this)},
   ];
+  config: ITableConfig = {
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
+    addItem: {
+      buttonText: 'New Contract',
+      handler: this.addContract.bind(this),
+    }
+  };
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addContract(): void {
+    console.log('addContract:');
   }
 
   editContract(contract: any, contractId: number): void {
