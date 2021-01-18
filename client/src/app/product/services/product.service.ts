@@ -85,8 +85,9 @@ export class ProductService {
         //   return data;
         // }),
 
-        map((data: IGetAllProductsSuccessData) => {
-          data.products = this.parseList(data.products);
+        // map((data: IGetAllProductsSuccessData) => {
+        map((data: any) => {
+          data.products = this.parseList(data.data.products);
           return data;
         })
       );

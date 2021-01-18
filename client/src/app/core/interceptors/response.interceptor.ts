@@ -6,8 +6,8 @@ import {
   HttpInterceptor, HttpResponse
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { filter, finalize, map, retry, tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { filter, finalize, map, retry, switchMap, tap } from 'rxjs/operators';
 
 import { UtilService } from '@shared/services/util.service';
 import { SharedModalsService } from '@shared/services/shared-modals.service';
@@ -62,18 +62,20 @@ export class ResponseInterceptor implements HttpInterceptor {
         // }),
 
         // check if its as successful response or a failure one.
-        map((res: any) => {
-          console.log('ResponseInterceptor: response:', res);
-
-          // case: error response. inform subscription by throwing an error.
-          // if (!res.body.success) {
-          if (res.body.success) {
-            return throwError(new Error(res.body.data));
-          }
-
-          // case: successful response. transform to omit extra information.
-          return res.body.data;
-        }),
+        // map((res: any) => {
+        //   console.log('ResponseInterceptor: response:', res);
+        //
+        //   // case: error response. inform subscription by throwing an error.
+        //   // if (res.body.success) {
+        //   if (!res.body.success) {
+        //     // return throwError(res.body.data);
+        //     return throwError(res.body.data);
+        //   }
+        //
+        //   // case: successful response. transform to omit extra information.
+        //   // return of(res.body.data);
+        //   return res.body.data;
+        // }),
       )
       // .pipe(
         // tap(
