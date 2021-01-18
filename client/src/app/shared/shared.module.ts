@@ -18,6 +18,7 @@ import { TableComponent } from './components/table/table.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { LoginComponent } from './components/login/login.component';
+import { AddUpdateSearchUserComponent } from './components/add-update-search-user/add-update-search-user.component';
 
 @NgModule({
   providers: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './components/login/login.component';
     TableComponent,
     AlertComponent,
     ConfirmComponent,
-    LoginComponent
+    LoginComponent,
+    AddUpdateSearchUserComponent
   ],
   imports: [
     CommonModule,
