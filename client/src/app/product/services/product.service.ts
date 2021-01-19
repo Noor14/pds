@@ -41,7 +41,7 @@ export class ProductService {
   apiUpdateOne(productRaw: IProductRaw): Observable<any> {
     // console.log('apiUpdateProduct:', productRaw);
 
-    return this.httpService.post(`${this.endpoint}/${productRaw.id}`, productRaw)
+    return this.httpService.put(`${this.endpoint}/${productRaw.id}`, productRaw)
       .pipe(
         map((data: IAddProductSuccessData) => {
           data.product = this.parseOne(data.product);

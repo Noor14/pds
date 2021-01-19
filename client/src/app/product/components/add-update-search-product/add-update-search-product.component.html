@@ -13,7 +13,7 @@
           <label for="product_name">Name:</label>
           <input type="text" class="form-control" name="product_name" id="product_name"
                  [(ngModel)]="data.name" #product_name="ngModel"
-                 maxlength="10" minlength="3" required>
+                 minlength="3" required>
           <div *ngIf="product_name.invalid  && (product_generic.dirty || product_generic.touched)"
                class="alert alert-danger">
             <div *ngIf="product_name.errors?.required">

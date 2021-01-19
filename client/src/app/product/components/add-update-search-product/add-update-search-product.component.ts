@@ -69,15 +69,41 @@ export class AddUpdateSearchProductComponent implements OnInit {
     console.log('resetForm:');
   }
 
-  submitForm(productData: IProductRaw) {
-    this.productService.apiAddOne(productData)
-      .subscribe((res: any) => {
-        console.log('submit form : success', res);
-      },
-        (res: any) => {
-        console.log('submit form : Failure', res);
-      });
+  submitForm(productData: IProductRaw): void {
+    switch (this.config?.mode) {
+      case ECRUDModalModes.Add:
+        this.addProduct(productData);
+        break;
+      case ECRUDModalModes.Edit:
+        this.updateProduct(productData);
+        break;
+    }
   }
+
+  addProduct(product: IProductRaw): void {
+    this.productService.apiAddOne(product)
+      .subscribe((res: any) => {
+          console.log('add product : success', res);
+          this.bsModalRef.hide();
+        },
+        (res: any) => {
+          console.log('add product : Failure', res);
+          this.bsModalRef.hide();
+        });
+  }
+
+  updateProduct(product: IProductRaw): void {
+    this.productService.apiUpdateOne(product)
+      .subscribe((res: any) => {
+          console.log('updated product : success', res);
+          this.bsModalRef.hide();
+        },
+        (res: any) => {
+          console.log('updated product : Failure', res);
+          this.bsModalRef.hide();
+        });
+  }
+
 
   closeModal() {
     // console.log('closeModal:');
