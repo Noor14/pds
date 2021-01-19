@@ -1,4 +1,6 @@
 import { IPersonRaw } from '@shared/models/general.model';
+import { ECRUDModalModes } from '@shared/models/modals.model';
+import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
 
 export interface ICompanyRaw {
   id: number;
@@ -21,5 +23,29 @@ export interface ICompanyRaw {
 
 // custom generated fields here.
 export interface ICompanyParsed extends ICompanyRaw {
+  company: null;
+  totalCount: 2000;
 
 }
+
+export interface IAddUpdateSearchCompanyConfig {
+  mode: ECRUDModalModes;
+  company: ICompanyParsed | null;
+}
+
+export interface IGetAllCompanySuccessData {
+  company: ICompanyRaw[];
+  totalCount: number;
+}
+
+export interface IAddUpdateSearchCompanyConfig {
+  mode: ECRUDModalModes;
+  company: ICompanyParsed | null;
+}
+
+export interface IGetAllCompanySuccessData {
+  company: ICompanyRaw[];
+  totalCount: number;
+}
+
+

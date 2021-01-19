@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { companiesMock } from './companies.mock';
 import { ICompanyParsed } from './companies.model';
 import { ITableConfig } from '@shared/components/table/table.model';
+import { CompanyService } from '@root/app/other-parties/services/company.service';
+import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
+import { UtilService } from '@shared/services/util.service';
 
 @Component({
   selector: 'app-companies',
@@ -37,7 +40,10 @@ export class CompaniesComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(
+    private companyService: CompanyService,
+    private utilService: UtilService
+  ) { }
 
   ngOnInit(): void {
 
@@ -46,15 +52,32 @@ export class CompaniesComponent implements OnInit {
   }
 
   addCompany(): void {
-    console.log('addCompany:');
   }
 
   editCompany(company: any, companyIdx: number): void {
     console.log('editCompany:', companyIdx, company);
+    this.companyService.openEditCompany(company)
+      .subscribe((res: any) => {
+        console.log('editCompany: success', res);
+      });
   }
 
-  deleteCompany(company: any, companyIdx: number): void {
-    console.log('deleteCompany:', companyIdx, company);
-  }
+  deleteCompany(company: any, companyIdx: number): void
+  {
+    console.log('deleteArea:', companyIdx, company);
 
+    const config: IConfirmConfig = {
+      message: 'Are you sure you want to delete this company from system ?',
+      approveButtonText: 'Delete',
+      declineButtonText: 'Decline',
+    };
+
+    this.utilService.confirm(config)
+      .subscribe((res: any) => {
+        console.log('confirm: approve', res);
+
+      }, (reason: string) => {
+        console.log('confirm: decline');
+      });
+  }
 }
