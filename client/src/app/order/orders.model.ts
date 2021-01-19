@@ -1,17 +1,31 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
+import { IProductRaw } from '@root/app/product/product.model';
+
 export { ECRUDModalModes };
 
 export interface IOrderRaw {
   id: number;
-  store: string;
-  name: string;
-  amount: number;
-  status: number;
-  date: string;
-  contact: number;
+  status: number; // 1, 2, 3
+  storeId: number; // against which the order is made.
+
+  productsSnapshot: IProductRaw[]; // at the time of order, snapshot/copies of products objects.
+
+  createdOn: string; // can be used as "Pending" state on, and by.
+  createdBy: number;
+  lastUpdatedOn: string;
+  lastUpdatedBy: number;
+
+  // status related info
+  approvedOn: string;
+  approvedBy: number;
+  inProgressOn: string;
+  inProgressBy: number;
+  completedOn: string;
+  completedBy: number;
 }
 
-export interface IOrder extends IOrderRaw {
+// custom generated fields here.
+export interface IOrderParsed extends IOrderRaw {
   companyName: string;
   discountPercent: number;
   [prop: string]: any;
@@ -19,6 +33,10 @@ export interface IOrder extends IOrderRaw {
 
 export interface IAddUpdateSearchOrderConfig {
   mode: ECRUDModalModes;
-  order: IOrder | null;
+  order: IOrderParsed | null;
 }
 
+export interface IGetAllOrdersSuccessData {
+  orders: IOrderRaw[],
+  totalCount: number,
+}

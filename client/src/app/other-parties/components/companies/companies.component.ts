@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { companiesMock } from './companies.mock';
-import { ICompany } from './companies.model';
+import { ICompanyParsed } from './companies.model';
 import { ITableConfig } from '@shared/components/table/table.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { ITableConfig } from '@shared/components/table/table.model';
 })
 export class CompaniesComponent implements OnInit {
 
-  rows: ICompany[] = [];
+  rows: ICompanyParsed[] = [];
   columns = [
     { name: 'Company ID', prop: 'id'},
     { name: 'Name', prop: 'name'},

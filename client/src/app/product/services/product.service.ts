@@ -10,7 +10,7 @@ import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
 
 import { productsSettings } from '../products.constant';
 import {
-  IProduct,
+  IProductParsed,
   IProductRaw,
   IGetAllProductsSuccessData, IAddProductSuccessData
 } from '../product.model';
@@ -92,12 +92,12 @@ export class ProductService {
       );
   }
 
-  parseList(productsRaw: IProductRaw[]): IProduct[] {
+  parseList(productsRaw: IProductRaw[]): IProductParsed[] {
     // console.log('parseList:', productsRaw);
     return productsRaw.map((productRaw: IProductRaw) => this.parseOne(productRaw));
   }
 
-  parseOne(productRaw: IProductRaw): IProduct {
+  parseOne(productRaw: IProductRaw): IProductParsed {
     // console.log('parseOne:', productRaw);
     const product = Object.assign({
       tp: 0,

@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProduct } from '../product.model';
+import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductParsed } from '../product.model';
 import { AddUpdateSearchProductComponent } from '../components/add-update-search-product/add-update-search-product.component';
 import { UtilService } from '@shared/services/util.service';
 
@@ -34,7 +34,7 @@ export class ProductModalsService {
     return this.addUpdateSearchProduct(config);
   }
 
-  openEditProduct(product: IProduct): EventEmitter<any> {
+  openEditProduct(product: IProductParsed): EventEmitter<any> {
     const config: IAddUpdateSearchProductConfig = {
       mode: ECRUDModalModes.Edit,
       product: product

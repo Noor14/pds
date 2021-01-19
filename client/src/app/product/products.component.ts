@@ -4,7 +4,7 @@ import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 import { ITableConfig } from '@shared/components/table/table.model';
 
 import { ProductService } from './services/product.service';
-import { IProduct, IGetAllProductsSuccessData } from './product.model';
+import { IProductParsed, IGetAllProductsSuccessData } from './product.model';
 import { ProductModalsService } from '@root/app/product/services/product-modals.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { ProductModalsService } from '@root/app/product/services/product-modals.
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  rows: IProduct[] = [];
+  rows: IProductParsed[] = [];
   columns = [
     // { name: 'Product ID', prop: 'id',},
     { name: 'Batch #', prop: 'batchNumber'},
@@ -78,7 +78,7 @@ export class ProductsComponent implements OnInit {
   fetchProducts(): void {
     // console.log('fetchProducts:');
     this.productService.apiGetList({})
-      .subscribe((res: { products: IProduct[], totalCount: number }) => {
+      .subscribe((res: { products: IProductParsed[], totalCount: number }) => {
         console.log('fetchProducts: success', res.products);
 
         this.rows = res.products;

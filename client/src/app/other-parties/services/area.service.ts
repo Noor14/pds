@@ -8,9 +8,9 @@ import { areasRawMock } from '../components/areas/areas.mock';
 import {
   ECRUDModalModes,
   IAddUpdateSearchAreaConfig,
-  IArea,
+  IAreaParsed,
   IAreaRaw,
-  IAreaResponseSuccess
+  IGetAllAreasSuccessData
 } from '../components/areas/areas.model';
 
 import { AddUpdateSearchAreaComponent } from '../components/add-update-search-area/add-update-search-area.component';
@@ -39,7 +39,7 @@ export class AreaService {
 
     return subscription
       .pipe(
-        map((res: IAreaResponseSuccess) => {
+        map((res: IGetAllAreasSuccessData) => {
           let areasRaw = res.data.areas;
 
           // for sample mock data. -  to see pagination in action.
@@ -55,9 +55,9 @@ export class AreaService {
       );
   }
 
-  parseAreas(areasRaw: IAreaRaw[]): IArea[] {
-    const areas: IArea[] = [];
-    let area: IArea;
+  parseAreas(areasRaw: IAreaRaw[]): IAreaParsed[] {
+    const areas: IAreaParsed[] = [];
+    let area: IAreaParsed;
     areasRaw.forEach((areaRaw: IAreaRaw) => {
       area = Object.assign({
         // foo: 0,
@@ -90,7 +90,7 @@ export class AreaService {
     return this.addUpdateSearchArea(config);
   }
 
-  openEditArea(area: IArea): EventEmitter<any> {
+  openEditArea(area: IAreaParsed): EventEmitter<any> {
     const config: IAddUpdateSearchAreaConfig = {
       mode: ECRUDModalModes.Edit,
       area: area

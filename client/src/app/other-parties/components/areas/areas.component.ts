@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 import { ITableConfig } from '@shared/components/table/table.model';
 
-import { IArea } from './areas.model';
+import { IAreaParsed } from './areas.model';
 import { AreaService } from '../../services/area.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AreaService } from '../../services/area.service';
   styleUrls: ['./areas.component.scss']
 })
 export class AreasComponent implements OnInit {
-  rows: IArea[] = [];
+  rows: IAreaParsed[] = [];
   columns = [
     { name: 'Area ID', prop: 'id',},
     { name: 'Name', prop: 'name'},
@@ -66,7 +66,7 @@ export class AreasComponent implements OnInit {
   fetchAreas(): void {
     console.log('fetchAreas:');
     this.areaService.apiFetchAreas()
-      .subscribe((res: { areas: IArea[], totalCount: number }) => {
+      .subscribe((res: { areas: IAreaParsed[], totalCount: number }) => {
         console.log('fetchAreas: success', res.areas);
 
         this.rows = res.areas;

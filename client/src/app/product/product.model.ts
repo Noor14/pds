@@ -16,7 +16,8 @@ export interface IProductRaw {
   // [prop: string] : any;
 }
 
-export interface IProduct extends IProductRaw {
+// custom generated fields here.
+export interface IProductParsed extends IProductRaw {
   tp: number; // for stores 15%
   discountPercent: number; // converted from net amount to % for distribution
   companyName: string;
@@ -25,7 +26,7 @@ export interface IProduct extends IProductRaw {
 
 export interface IAddUpdateSearchProductConfig {
   mode: ECRUDModalModes;
-  product: IProduct | null;
+  product: IProductParsed | null;
 }
 
 export interface IGetAllProductsSuccessData {

@@ -1,32 +1,33 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
+import { IUserCommonParsed, IUserCommonRaw } from '@shared/models/users.model';
+import { IPersonRaw } from '@shared/models/general.model';
+
 export { ECRUDModalModes };
 
-export interface IStoreRaw {
-  id: string;
-  name: string;
-  city: string;
-  memberSince: string;
-  generic: string;
-  contact: string;
-  totalOrder: number;
-  totalAmount: number;
+
+export interface IStoreRaw extends IUserCommonRaw {
+  storeInfo: {
+    name: string; // e.g. "Al-Madina Pharmacy"
+    persons: IPersonRaw[];
+
+    // dynamically calculated/evaluated from BE, not from DB.
+    totalSaleAmount: number,
+    totalOrders: number,
+  },
 }
 
-export interface IStore extends IStoreRaw {
-  companyName: string;
-  discountPercent: number;
-  [prop: string]: any;
+// custom generated fields here
+export interface IStoreParsed extends IUserCommonParsed, IStoreRaw {
+  customPersons: string; // name <br> phone, name <br> phone. we may add roles as well.
 }
 
 
 export interface IAddUpdateSearchStoreConfig {
   mode: ECRUDModalModes;
-  store: IStore | null;
+  store: IStoreParsed | null;
 }
 
-export interface IStoreResponseSuccess {
-  data: {
-    store: IStoreRaw[],
-    totalCount: number,
-  };
+export interface IGetAllStoresSuccessData {
+  store: IStoreRaw[],
+  totalCount: number,
 }

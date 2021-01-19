@@ -45,49 +45,6 @@ export interface ISystemUserParsed extends IUserCommonParsed, ISystemUserRaw {
   // other info like assignedTo, assignedBy, etc.
 }
 
-/* Doctor Model */
+// for store, see store.model.ts =====
 
-export interface IDoctorRaw extends ISystemUserParsed {
-  doctorInfo: {
-    certifications: number[], // [0, 14, 15] // for names check IDoctor
-    specialties: number[], // [0, 14, 25] // for names check IDoctor
-    experienceSince: string, // "2021-01-15T21:39:51.835Z"
-
-    // dynamically calculated/evaluated from BE, not from DB.
-    totalContracts: number,
-    totalSaleAmount: number,
-  },
-}
-
-// register custom added fields here
-export interface IDoctorParsed extends IUserCommonParsed, IDoctorRaw {
-  customCertificationsNames: string; // MBBS, FCPS, MCPS, BDS(Dentist), Other etc.
-  customSpecialtiesNames: string; // 'Gyno', 'General Physcian', 'diabetes'
-  customExperienceYears: string; // 10 years, calculate from doctorInfo.experienceSinceYear
-  customContacts: string; // join number1 <br> number2
-}
-
-
-/* Store Model */
-
-export interface IPersonRaw {
-  type: number; // sales person, Manager, Owner
-  firstName: string;
-  lastName: string;
-  phone: number;
-}
-
-export interface IStoreRaw extends IUserCommonRaw {
-  storeInfo: {
-    name: string; // e.g. "Al-Madina Pharmacy"
-    persons: IPersonRaw[];
-
-    // dynamically calculated/evaluated from BE, not from DB.
-    totalSaleAmount: number,
-  },
-}
-
-// register custom added fields here
-export interface IStoreParsed extends IUserCommonParsed, IStoreRaw {
-  customPersons: string; // name <br> phone, name <br> phone. we may add roles as well.
-}
+// for doctor, see doctor.model.ts ====

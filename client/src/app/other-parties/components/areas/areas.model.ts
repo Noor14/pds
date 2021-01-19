@@ -2,9 +2,16 @@ import { ECRUDModalModes } from '@shared/models/modals.model';
 export { ECRUDModalModes };
 
 export interface IAreaRaw {
-  id: string,
+  id: number,
   name: string,
-  cityId: string,
+  cityId: number, // 1001 for all for now. only 1 city.
+
+  createdOn: string;
+  createdBy: number;
+  lastUpdatedOn: string;
+  lastUpdatedBy: number;
+
+  // dynamically generated/calculated fields.
   totalStores: number,
   totalDoctors: number,
   totalContracts: number,
@@ -13,19 +20,18 @@ export interface IAreaRaw {
   totalSale: number,
 }
 
-export interface IArea extends IAreaRaw {
+// custom generated fields here.
+export interface IAreaParsed extends IAreaRaw {
 
 }
 
 export interface IAddUpdateSearchAreaConfig {
   mode: ECRUDModalModes;
-  area: IArea | null;
+  area: IAreaParsed | null;
 }
 
-export interface IAreaResponseSuccess {
-  data: {
-    areas: IAreaRaw[],
-    totalCount: number,
-  };
+export interface IGetAllAreasSuccessData {
+  areas: IAreaRaw[],
+  totalCount: number,
 }
 
