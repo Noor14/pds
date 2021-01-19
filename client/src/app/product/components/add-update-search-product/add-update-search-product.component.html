@@ -156,7 +156,9 @@
           <select class="custom-select" name="product_companyId" id="product_companyId"
                   [(ngModel)]="data.companyId" #product_companyId='ngModel' required>
             <option [value]="undefined">Select</option>
-            <option [value]="company.id" *ngFor="let company of companies;" [innerText]="company.name"></option>
+            <option [value]="company.id" *ngFor="let company of companies;"
+                    [attr.selected]="data.companyId == company.id ? true : null"
+                    [innerText]="company.name"></option>
           </select>
           <div *ngIf="product_companyId.invalid && (product_companyId.dirty || product_companyId.touched)"
                class="alert alert-danger">
