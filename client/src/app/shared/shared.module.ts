@@ -8,6 +8,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PaginationModule, PaginationConfig } from 'ngx-bootstrap/pagination';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -43,6 +44,7 @@ import { AddUpdateSearchUserComponent } from './components/add-update-search-use
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   exports: [
     /* components */
@@ -61,6 +63,7 @@ import { AddUpdateSearchUserComponent } from './components/add-update-search-use
     TooltipModule,
     ModalModule,
     PaginationModule,
+    AlertModule,
   ],
 })
 export class SharedModule {
