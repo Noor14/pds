@@ -19,7 +19,11 @@ export interface IStoreRaw extends IUserCommonRaw {
 // custom generated fields here
 export interface IStoreParsed extends IUserCommonParsed, IStoreRaw {
   customPersons: string; // name <br> phone, name <br> phone. we may add roles as well.
-  [prop: string]: any;
+
+  // copying from nested to root.
+  name: string;
+  totalSaleAmount: number,
+  totalOrders: number,
 }
 
 

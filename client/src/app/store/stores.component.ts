@@ -18,12 +18,13 @@ export class StoresComponent implements OnInit {
   rows: IStoreParsed[] = [];
   columns = [
     { name: 'Store ID', prop: 'id'},
-    { name: 'Store Name', prop: 'name'},
-    { name: 'Area / City', prop: 'city'},
-    { name: 'Member Since', prop: 'memberSince'},
-    { name: 'Contact', prop: 'contact'},
+    { name: 'Name', prop: 'name'},
+    { name: 'username', prop: 'username'},
+    { name: 'Area / City', prop: 'customAreaName'},
+    { name: 'Member Since', prop: 'createdOn'},
+    { name: 'Contact', prop: 'customPersons'},
     { name: 'Total Orders', prop: 'totalOrders'},
-    { name: 'Total Amount', prop: 'totalAmount'},
+    { name: 'Total Amount', prop: 'totalSaleAmount'},
   ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},
