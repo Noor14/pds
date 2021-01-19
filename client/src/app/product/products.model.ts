@@ -3,25 +3,24 @@ export { ECRUDModalModes };
 
 export interface IProductRaw {
   id: string;
+  companyId: number;
+
+  type: number;
   batchNumber: string;
   packInfo: string;
   name: string;
   generic: string;
-  type: number;
-  companyId: number;
 
   mrp: number; // for customers
   net: number; // for distributions
   boxQuantity: number;
-  // [prop: string] : any;
 }
 
 // custom generated fields here.
 export interface IProductParsed extends IProductRaw {
-  tp: number; // for stores 15%
-  discountPercent: number; // converted from net amount to % for distribution
-  companyName: string;
-  [prop: string]: any;
+  customTP: number; // for stores 15%
+  customDiscountPercent: number; // converted from net amount to % for distribution
+  customCompanyName: string;
 }
 
 export interface IAddUpdateSearchProductConfig {

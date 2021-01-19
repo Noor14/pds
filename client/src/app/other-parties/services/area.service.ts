@@ -31,26 +31,15 @@ export class AreaService {
 
     // use mock data for now
     const subscription = of({
-      data: {
-        areas: areasRawMock,
-        totalCount: 2000,
-      }
+      areas: areasRawMock,
+      totalCount: 2000,
     });
 
     return subscription
       .pipe(
-        map((res: IGetAllAreasSuccessData) => {
-          let areasRaw = res.data.areas;
-
-          // for sample mock data. -  to see pagination in action.
-          // for (let i = 0; i < 5; i++) {
-          //   areasRaw = areasRaw.concat(areasRaw);
-          // }
-
-          return {
-            areas: this.parseAreas(areasRaw),
-            totalCount: res.data.totalCount,
-          };
+        map((data: IGetAllAreasSuccessData) => {
+         data.areas = this.parseAreas(data.areas);
+         return data;
         })
       );
   }

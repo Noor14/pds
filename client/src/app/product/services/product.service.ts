@@ -100,16 +100,16 @@ export class ProductService {
   parseOne(productRaw: IProductRaw): IProductParsed {
     // console.log('parseOne:', productRaw);
     const product = Object.assign({
-      tp: 0,
-      discountPercent: 0,
-      companyName: '',
+      customTP: 0,
+      customDiscountPercent: 0,
+      customCompanyName: '',
     }, productRaw);
 
     // TODO implement to find company name using companyId from company list.
-    product.companyName = 'Abbott (Pvt) Ltd.';
+    product.customCompanyName = 'Abbott (Pvt) Ltd.';
 
-    product.tp = +(product.mrp - (product.mrp * productsSettings.tpPercent / 100)).toFixed(2);
-    product.discountPercent = +(product.net / (product.mrp - product.tp) * 100).toFixed(2);
+    product.customTP = +(product.mrp - (product.mrp * productsSettings.tpPercent / 100)).toFixed(2);
+    product.customDiscountPercent = +(product.net / (product.mrp - product.customTP) * 100).toFixed(2);
 
     return product;
   }

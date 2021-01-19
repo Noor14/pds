@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
 
-  <form name="productForm" #productForm="ngForm" (ngSubmit)="submitForm(productForm.value)" novalidate>
+  <form name="productForm" #productForm="ngForm" (ngSubmit)="submitForm(productForm)" novalidate>
     <div class="row">
       <div class="col-12 col-sm-4">
         <div class="form-group">
@@ -14,34 +14,30 @@
           <input type="text" class="form-control" name="product_name" id="product_name"
                  [(ngModel)]="data.name" #product_name="ngModel"
                  minlength="3" required>
-          <div *ngIf="product_name.invalid  && (product_generic.dirty || product_generic.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_name.errors?.required">
-              Name is required field.
-            </div>
-            <div *ngIf="product_name.errors?.minlength">
-              Name must be at least 3 characters long.
-            </div>
-          </div>
+
+          <small *ngIf="product_name.invalid && (product_name.dirty || product_name.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_name.errors?.required">Name is required.</span>
+            <span *ngIf="product_name.errors?.minlength">Name must be at least 3 characters long.</span>
+          </small>
 
         </div>
       </div>
 
       <div class="col-12 col-sm-4">
         <div class="form-group">
-          <label for="product_generic">Generic:</label>
+          <label for="product_generic">Generic / Formula:</label>
           <input type="text" class="form-control" name="product_generic" id="product_generic"
                  [(ngModel)]="data.generic" #product_generic='ngModel'
-                 maxlength="10" minlength="2" required>
-          <div *ngIf="product_generic.invalid && (product_generic.dirty || product_generic.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_generic.errors?.required">
-              Generic is required field.
-            </div>
-            <div *ngIf="product_generic.errors?.minlength">
-              Generic must be at least 2 characters long.
-            </div>
-          </div>
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="product_generic.invalid && (product_generic.dirty || product_generic.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_generic.errors?.required">Generic is required.</span>
+            <span *ngIf="product_generic.errors?.minlength">Generic must be at least 2 characters long.</span>
+            <span *ngIf="product_generic.errors?.maxLength">Generic must be maximum 15 characters long.</span>
+          </small>
+
         </div>
       </div>
 
@@ -53,12 +49,12 @@
             <option [value]="undefined">Select</option>
             <option [value]="typeId" *ngFor="let type of productTypes; let typeId = index;" [innerText]="type"></option>
           </select>
-          <div *ngIf="product_type.invalid && (product_type.dirty || product_type.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_type.errors?.required">
-              Product Type is required field.
-            </div>
-          </div>
+
+          <small *ngIf="product_generic.invalid && (product_generic.dirty || product_generic.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_generic.errors?.required">Product Type is required.</span>
+          </small>
+
         </div>
       </div>
 
@@ -67,16 +63,15 @@
           <label for="product_batchNumber">Batch #:</label>
           <input type="text" class="form-control" name="product_batchNumber" id="product_batchNumber"
                  [(ngModel)]="data.batchNumber" #product_batchNumber='ngModel'
-                 maxlength="10" minlength="2" required>
-          <div *ngIf="product_batchNumber.invalid && (product_batchNumber.dirty || product_batchNumber.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_batchNumber.errors?.required">
-              Batch # is required field.
-            </div>
-            <div *ngIf="product_batchNumber.errors?.minlength">
-              Batch # must be at least 2 characters long.
-            </div>
-          </div>
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="product_batchNumber.invalid && (product_batchNumber.dirty || product_batchNumber.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_batchNumber.errors?.required">Batch # is required.</span>
+            <span *ngIf="product_generic.errors?.minlength">Batch # must be at least 2 characters long.</span>
+            <span *ngIf="product_generic.errors?.maxlength">Batch # must be maximum 15 characters long.</span>
+          </small>
+
         </div>
       </div>
 
@@ -84,13 +79,16 @@
         <div class="form-group">
           <label for="product_packInfo">Pack :</label>
           <input type="text" class="form-control" name="product_packInfo" id="product_packInfo"
-                 [(ngModel)]="data.packInfo" #product_packInfo='ngModel' required>
-          <div *ngIf="product_packInfo.invalid && (product_packInfo.dirty || product_packInfo.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_packInfo.errors?.required">
-              Pack is required field.
-            </div>
-          </div>
+                 [(ngModel)]="data.packInfo" #product_packInfo='ngModel'
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="product_packInfo.invalid && (product_packInfo.dirty || product_packInfo.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_packInfo.errors?.required">Pack is required.</span>
+            <span *ngIf="product_generic.errors?.minlength">Pack must be at least 2 characters long.</span>
+            <span *ngIf="product_generic.errors?.maxlength">Pack must be maximum 15 characters long.</span>
+          </small>
+
         </div>
       </div>
 
@@ -99,12 +97,12 @@
           <label for="product_tp">Trade Price :</label>
           <input type="number" class="form-control" name="product_tp" id="product_tp"
                  [(ngModel)]="data.tp" #product_tp='ngModel' required>
-          <div *ngIf="product_tp.invalid && (product_tp.dirty || product_tp.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_tp.errors?.required">
-              Trade Price is required field.
-            </div>
-          </div>
+
+          <small *ngIf="product_tp.invalid && (product_tp.dirty || product_tp.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_tp.errors?.required">Trade Price is required.</span>
+          </small>
+
         </div>
       </div>
 
@@ -113,12 +111,12 @@
           <label for="product_mrp">M.R.P :</label>
           <input type="text" class="form-control" name="product_mrp" id="product_mrp"
                  [(ngModel)]="data.mrp" #product_mrp='ngModel' required>
-          <div *ngIf="product_mrp.invalid && (product_mrp.dirty || product_mrp.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_mrp.errors?.required">
-              MRP is required field.
-            </div>
-          </div>
+
+          <small *ngIf="product_mrp.invalid && (product_mrp.dirty || product_mrp.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_mrp.errors?.required">M.R.P is required.</span>
+          </small>
+
         </div>
       </div>
 
@@ -127,26 +125,26 @@
           <label for="product_net">Net Price :</label>
           <input type="text" class="form-control" name="product_net" id="product_net"
                  [(ngModel)]="data.net" #product_net='ngModel' required="">
-          <div *ngIf="product_net.invalid && (product_net.dirty || product_net.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_net.errors?.required">
-              Net Price is required field.
-            </div>
-          </div>
+
+          <small *ngIf="product_net.invalid && (product_net.dirty || product_net.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_net.errors?.required">Net Price is required.</span>
+          </small>
+
         </div>
       </div>
 
       <div class="col-12 col-sm-4">
         <div class="form-group">
-          <label for="product_boxQuantity">Quantity :</label>
+          <label for="product_boxQuantity">Box Quantity :</label>
           <input type="text" class="form-control" name="product_boxQuantity" id="product_boxQuantity"
                  [(ngModel)]="data.boxQuantity" #product_boxQuantity='ngModel' required>
-          <div *ngIf="product_boxQuantity.invalid && (product_boxQuantity.dirty || product_boxQuantity.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_boxQuantity.errors?.required">
-              Net Price is required field.
-            </div>
-          </div>
+
+          <small *ngIf="product_boxQuantity.invalid && (product_boxQuantity.dirty || product_boxQuantity.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_boxQuantity.errors?.required">Box Quantity is required.</span>
+          </small>
+
         </div>
       </div>
 
@@ -157,23 +155,38 @@
                   [(ngModel)]="data.companyId" #product_companyId='ngModel' required>
             <option [value]="undefined">Select</option>
             <option [value]="company.id" *ngFor="let company of companies;"
-                    [attr.selected]="data.companyId == company.id ? true : null"
                     [innerText]="company.name"></option>
           </select>
-          <div *ngIf="product_companyId.invalid && (product_companyId.dirty || product_companyId.touched)"
-               class="alert alert-danger">
-            <div *ngIf="product_companyId.errors?.required">
-              Company is required field.
-            </div>
-          </div>
+
+          <small *ngIf="product_companyId.invalid && (product_companyId.dirty || product_companyId.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="product_companyId.errors?.required">Company is required.</span>
+          </small>
+
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <alert *ngIf="formStatus.message"
+               [type]="formStatus.type === 'error' ? 'danger' : 'success'">
+          <span [innerHTML]="formStatus.message"></span>
+        </alert>
+      </div>
+    </div>
+
     <!-- controls -->
     <div class="row">
       <div class="col modal-controls">
-        <button type="button" class="btn btn-danger" (click)="productForm.reset()">Reset</button>
-        <button type="submit" class="btn btn-success" [disabled]="productForm.invalid">Submit</button>
+        <button type="button" class="btn btn-danger" [disabled]="formStatus.sending"
+                (click)="productForm.reset()">Reset</button>
+
+        <button type="submit" class="btn btn-success" [disabled]="formStatus.sending">
+          <fa-icon *ngIf="formStatus.sending"
+                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+          Submit
+        </button>
       </div>
     </div>
   </form>

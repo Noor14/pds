@@ -1,10 +1,12 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { productTypes } from '@shared/constants/types.constant';
+
 import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../products.model';
-import { companiesMock } from '../../../other-parties/components/companies/companies.mock';
+import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
 
 import { ProductService } from '../../services/product.service';
+import { productTypes } from '../../products.constant';
 
 
 @Component({
@@ -17,7 +19,6 @@ export class AddUpdateSearchProductComponent implements OnInit {
   public config: IAddUpdateSearchProductConfig | undefined;
 
   private titles = {
-
     [ECRUDModalModes.Add]: 'Add Product',
     [ECRUDModalModes.Edit]: 'Edit Product',
     [ECRUDModalModes.Search]: 'Search Product',
@@ -29,8 +30,24 @@ export class AddUpdateSearchProductComponent implements OnInit {
     return this.titles[mode];
   }
 
+  formStatus = {
+    sending: false,
+    type: '',
+    message: '',
+  };
+  responseMessages = {
+    success: {
+      add: 'Product has been added successfully.',
+      update: 'Product has been updated successfully.',
+    },
+    failure: {
+      add: 'Failed in adding product !',
+      update: 'Failed in updating product !',
+    },
+  };
+
   productTypes = productTypes;
-  companies = companiesMock;
+  companies = companiesMock; // TODO implement real companies list
 
   // data: IProductRaw = {;
   defaultData: any = {
@@ -69,13 +86,29 @@ export class AddUpdateSearchProductComponent implements OnInit {
     console.log('resetForm:');
   }
 
-  submitForm(productData: IProductRaw): void {
+  resetFormStatus(sending: boolean, type: string, message: string) {
+    console.log('resetFormStatus:');
+    this.formStatus.sending = sending;
+    this.formStatus.type = type;
+    this.formStatus.message = message;
+  }
+
+  submitForm(form: any): void {
+
+    // skip if fails validation
+    if (form.invalid) {
+      this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
+      return;
+    }
+
+    this.resetFormStatus(true, '', '');
+
     switch (this.config?.mode) {
       case ECRUDModalModes.Add:
-        this.addProduct(productData);
+        this.addProduct(this.data);
         break;
       case ECRUDModalModes.Edit:
-        this.updateProduct(productData);
+        this.updateProduct(this.data);
         break;
     }
   }
@@ -84,11 +117,13 @@ export class AddUpdateSearchProductComponent implements OnInit {
     this.productService.apiAddOne(product)
       .subscribe((res: any) => {
           console.log('add product : success', res);
-          this.bsModalRef.hide();
+
+          this.resetFormStatus(false, 'success', this.responseMessages.success.add);
+          this.closeModalAfterAWhile();
         },
-        (res: any) => {
-          console.log('add product : Failure', res);
-          this.bsModalRef.hide();
+        (reason: any) => {
+          console.log('add product : Failure', reason);
+          this.resetFormStatus(false, 'error', this.responseMessages.failure.add);
         });
   }
 
@@ -96,14 +131,18 @@ export class AddUpdateSearchProductComponent implements OnInit {
     this.productService.apiUpdateOne(product)
       .subscribe((res: any) => {
           console.log('updated product : success', res);
-          this.bsModalRef.hide();
+          this.resetFormStatus(false, 'success', this.responseMessages.success.update);
+          this.closeModalAfterAWhile();
         },
         (res: any) => {
           console.log('updated product : Failure', res);
-          this.bsModalRef.hide();
+          this.resetFormStatus(false, 'error', this.responseMessages.failure.update);
         });
   }
 
+  closeModalAfterAWhile() {
+    setTimeout(this.bsModalRef.hide, 3000);
+  }
 
   closeModal() {
     // console.log('closeModal:');
