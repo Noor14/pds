@@ -21,12 +21,12 @@ export class ProductsComponent implements OnInit {
     { name: 'Generic', prop: 'generic'},
     // { name: 'Type', prop: 'type',},
     { name: 'Pack', prop: 'packInfo'},
-    { name: 'T.P', prop: 'tp'},
+    { name: 'T.P', prop: 'customTP'},
     { name: 'M.R.P', prop: 'mrp'},
-    { name: 'Discount (%)', prop: 'discountPercent'},
+    { name: 'Discount (%)', prop: 'customDiscountPercent'},
     { name: 'Net', prop: 'net'},
     { name: 'Box Quantity', prop: 'boxQuantity'},
-    { name: 'Company', prop: 'companyName'},
+    { name: 'Company', prop: 'customCompanyName'},
     ];
   actions = [
     { name: 'View / Edit', handler: this.editProduct.bind(this)},

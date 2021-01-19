@@ -78,13 +78,6 @@ export class ProductService {
     // console.log('apiGetList:');
     return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
-
-        // Use Mock data until BE implements real data.
-        // map((data: IGetAllProductsSuccessData) => {
-        //   data.products = data.products.length ? data.products : productsRawMock;
-        //   return data;
-        // }),
-
         map((data: IGetAllProductsSuccessData) => {
           data.products = this.parseList(data.products);
           return data;
@@ -106,7 +99,7 @@ export class ProductService {
     }, productRaw);
 
     // TODO implement to find company name using companyId from company list.
-    product.customCompanyName = 'Abbott (Pvt) Ltd.';
+    product.customCompanyName = '';
 
     product.customTP = +(product.mrp - (product.mrp * productsSettings.tpPercent / 100)).toFixed(2);
     product.customDiscountPercent = +(product.net / (product.mrp - product.customTP) * 100).toFixed(2);
