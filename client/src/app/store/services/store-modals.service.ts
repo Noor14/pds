@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ECRUDModalModes, IAddUpdateSearchStoreConfig } from '../store.model';
+import { ECRUDModalModes, IAddUpdateSearchStoreConfig } from '../stores.model';
 import { AddUpdateSearchStoreComponent } from '../components/add-update-search-store/add-update-search-store.component';
 import { UtilService } from '@shared/services/util.service';
 

@@ -1,5 +1,5 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
-import { IProductRaw } from '@root/app/product/product.model';
+import { IProductRaw } from '@root/app/product/products.model';
 
 export { ECRUDModalModes };
 

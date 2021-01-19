@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { StoreService } from '../../services/store.service';
-import { ECRUDModalModes, IAddUpdateSearchStoreConfig } from '../../../store/store.model';
+import { ECRUDModalModes, IAddUpdateSearchStoreConfig } from '../../stores.model';
 
 @Component({
   selector: 'app-add-update-search-store',

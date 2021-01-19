@@ -1,3 +1,3 @@
-import { IProductRaw } from './product.model';
+import { IProductRaw } from './products.model';
 
 // export const productsRawMock: IProductRaw[] = [];

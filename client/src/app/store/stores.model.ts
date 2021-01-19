@@ -19,6 +19,7 @@ export interface IStoreRaw extends IUserCommonRaw {
 // custom generated fields here
 export interface IStoreParsed extends IUserCommonParsed, IStoreRaw {
   customPersons: string; // name <br> phone, name <br> phone. we may add roles as well.
+  [prop: string]: any;
 }
 
 
@@ -28,6 +29,10 @@ export interface IAddUpdateSearchStoreConfig {
 }
 
 export interface IGetAllStoresSuccessData {
-  store: IStoreRaw[],
+  stores: IStoreRaw[],
   totalCount: number,
+}
+
+export interface IAddStoreSuccessData {
+  store: IStoreRaw,
 }

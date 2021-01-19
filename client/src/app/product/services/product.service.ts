@@ -13,7 +13,7 @@ import {
   IProductParsed,
   IProductRaw,
   IGetAllProductsSuccessData, IAddProductSuccessData
-} from '../product.model';
+} from '../products.model';
 
 @Injectable({
   providedIn: 'root'

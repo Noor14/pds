@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { productTypes } from '@shared/constants/types.constant';
-import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../product.model';
+import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../products.model';
 import { companiesMock } from '../../../other-parties/components/companies/companies.mock';
 
 import { ProductService } from '../../services/product.service';

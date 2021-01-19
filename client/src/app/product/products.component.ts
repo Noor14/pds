@@ -4,7 +4,7 @@ import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 import { ITableConfig } from '@shared/components/table/table.model';
 
 import { ProductService } from './services/product.service';
-import { IProductParsed, IGetAllProductsSuccessData } from './product.model';
+import { IProductParsed, IGetAllProductsSuccessData } from './products.model';
 import { ProductModalsService } from '@root/app/product/services/product-modals.service';
 
 @Component({

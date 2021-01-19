@@ -9,7 +9,7 @@ export const companiesMock: ICompanyRaw[] = [
     totalOrders: 35,
     totalAmount: 240000,
     startedSince: '06/Nov/2020',
-    contact: 923002609123,
+    persons: [{type: 1, firstName: 'Muhammad', lastName: 'Ali', phone: [923002586497, 923452586450]}],
 
     createdOn: '2021-01-15T21:39:51.835Z',
     createdBy: 1001,
@@ -24,7 +24,7 @@ export const companiesMock: ICompanyRaw[] = [
     totalOrders: 60,
     totalAmount: 470000,
     startedSince: '05/Nov/2020',
-    contact: 923332604000,
+    persons: [{type: 1, firstName: 'Hareem', lastName: 'Fatima', phone: [923002586497, 923452586450]}],
 
     createdOn: '2021-01-15T21:39:51.835Z',
     createdBy: 1001,
@@ -39,7 +39,7 @@ export const companiesMock: ICompanyRaw[] = [
     totalOrders: 40,
     totalAmount: 150000,
     startedSince: '04/Nov/2020',
-    contact: 923442409980,
+    persons: [{type: 1, firstName: 'Aftab', lastName: 'Ahmed', phone: [923002586497, 923452586450]}],
 
     createdOn: '2021-01-15T21:39:51.835Z',
     createdBy: 1001,

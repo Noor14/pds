@@ -1,10 +1,11 @@
+import { IPersonRaw } from '@shared/models/general.model';
 
 export interface ICompanyRaw {
   id: number;
   name: string;
   type: number;
   startedSince: string;
-  contact: number; // optional
+  persons: IPersonRaw[];
 
   // dynamically generated / calculated fields.
   totalProducts: number;

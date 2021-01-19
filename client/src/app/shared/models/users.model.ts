@@ -45,6 +45,6 @@ export interface ISystemUserParsed extends IUserCommonParsed, ISystemUserRaw {
   // other info like assignedTo, assignedBy, etc.
 }
 
-// for store, see store.model.ts =====
+// for store, see stores.model.ts =====
 
 // for doctor, see doctor.model.ts ====

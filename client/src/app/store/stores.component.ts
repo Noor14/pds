@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { StoreService } from './services/store.service';
-import {IConfirmConfig} from '@shared/components/confirm/confirm.model';
-import {UtilService} from '@shared/services/util.service';
-import { StoreModalsService } from './services/store-modals.service';
+import { UtilService } from '@shared/services/util.service';
 import { ITableConfig } from '@shared/components/table/table.model';
+import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 
+import { StoreService } from './services/store.service';
+import { StoreModalsService } from './services/store-modals.service';
+import { IStoreParsed } from './stores.model';
 
 @Component({
   selector: 'app-stores',
@@ -14,14 +15,7 @@ import { ITableConfig } from '@shared/components/table/table.model';
 })
 export class StoresComponent implements OnInit {
 
-  rows = [
-    { id: '0000101', name: 'Bismillah Medical Store', city: 'Manjoshoori', memberSince: '06/Nov/2020', contact: '+923001234567', totalOrders: 35, totalAmount: 'Rs. 2,40,000'},
-    { id: '0000102', name: 'Ahmed Pharmacy', city: '40 Dip', memberSince: '05/Nov/2020', contact: '+92333199999', totalOrders: 12, totalAmount: 'Rs. 3,50,000'},
-    { id: '0000103', name: 'Yaqoob Medical', city: 'Balam Dip', memberSince: '04/Nov/2020', contact: '+92300177777', totalOrders: 200, totalAmount: 'Rs. 1,20,000'},
-    { id: '0000104', name: 'Pakistan Medical Store', city: 'Jal Magsi', memberSince: '06/Oct/2020', contact: '+923021234500', totalOrders: 100, totalAmount: 'Rs. 50,000'},
-    { id: '0000105', name: 'Rutba Medical Complex', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+923441239980', totalOrders: 40, totalAmount: 'Rs. 10,000'},
-    { id: '0000106', name: 'Boraak Pharmacy', city: 'Dera Murad Jamali', memberSince: '05/Oct/2020', contact: '+92344123998035', totalOrders: 300, totalAmount: 'Rs. 3,000'},
-  ];
+  rows: IStoreParsed[] = [];
   columns = [
     { name: 'Store ID', prop: 'id'},
     { name: 'Store Name', prop: 'name'},
@@ -54,6 +48,19 @@ export class StoresComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.fetchStores();
+  }
+
+  fetchStores(): void {
+    console.log('fetchStores:');
+    this.storeService.apiGetList({})
+      .subscribe((res: { stores: IStoreParsed[], totalCount: number }) => {
+        console.log('fetchStores: success', res.stores);
+
+        this.rows = res.stores;
+      }, (reason: string) => {
+        console.log('fetchStores: error');
+      });
   }
 
   addStore(): any {
