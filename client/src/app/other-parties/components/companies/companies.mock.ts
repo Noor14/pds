@@ -4,7 +4,7 @@ export const companiesMock: ICompanyRaw[] = [
   {
     id: 1001,
     name: 'Fischr Pharma Pvt. Ltd',
-    type: 3,
+    type: 1,
     totalProducts: 50,
     totalOrders: 35,
     totalAmount: 240000,
@@ -19,7 +19,7 @@ export const companiesMock: ICompanyRaw[] = [
   {
     id: 1002,
     name: 'Abbott Pharma Pvt. Ltd',
-    type: 1,
+    type: 0,
     totalProducts: 200,
     totalOrders: 60,
     totalAmount: 470000,
