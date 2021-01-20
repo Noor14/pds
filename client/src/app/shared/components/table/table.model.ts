@@ -5,6 +5,7 @@ export interface ITableButton {
 }
 
 export interface ITableConfig {
+  suppressSwitchColumnMode?: boolean;
   advanceSearchItem?: ITableButton;
   addItem?: ITableButton;
 }

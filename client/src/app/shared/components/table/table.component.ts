@@ -29,7 +29,6 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // @Input() columnMode = ColumnMode.flex;
   @Input() columnMode = ColumnMode.standard;
-  @Input() suppressSwitchColumnMode = false;
 
   // @ViewChild('table', { read: ElementRef, static: true }) table: ElementRef;
   // @ViewChild('table', { static: true }) tableRef: DatatableComponent;
@@ -52,7 +51,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     // auto adjust the column mode based of the screen.
     // i.e. flex for large devices, and standard for smaller ones, with scroll.
-    if (!this.suppressSwitchColumnMode) {
+    if (!this.config || !this.config.suppressSwitchColumnMode) {
       window.addEventListener('resize', this.onWindowResize);
       this.checkForSwitchColumnMode();
     }
