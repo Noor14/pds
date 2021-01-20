@@ -22,7 +22,7 @@ export interface IAreaRaw {
 
 // custom generated fields here.
 export interface IAreaParsed extends IAreaRaw {
-
+  customCityName: string;
 }
 
 export interface IAddUpdateSearchAreaConfig {
@@ -33,5 +33,9 @@ export interface IAddUpdateSearchAreaConfig {
 export interface IGetAllAreasSuccessData {
   areas: IAreaRaw[],
   totalCount: number,
+}
+
+export interface IAddUpdateAreaSuccessData {
+  area: IAreaRaw,
 }
 

@@ -4,87 +4,101 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { UtilService } from '@shared/services/util.service';
+import { HttpService } from '@shared/services/http.service';
+import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
+
 import { areasRawMock } from '../components/areas/areas.mock';
 import {
-  ECRUDModalModes,
-  IAddUpdateSearchAreaConfig,
+  IAddUpdateAreaSuccessData,
   IAreaParsed,
   IAreaRaw,
-  IGetAllAreasSuccessData
-} from '../components/areas/areas.model';
+  IGetAllAreasSuccessData,
 
-import { AddUpdateSearchAreaComponent } from '../components/add-update-search-area/add-update-search-area.component';
+} from '../components/areas/areas.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AreaService {
+  private endpoint = `areas`;
 
   constructor(
     private utilService: UtilService,
+    private httpService: HttpService,
   ) { }
 
-  apiFetchAreas(): Observable<any> {
+  apiAddOne(areaRaw: IAreaRaw): Observable<any> {
+    // console.log('apiAddOne:', areaRaw);
 
-    // TODO implement http service call here.
-    // const subscription = this.httpService.get();
-
-    // use mock data for now
-    const subscription = of({
-      areas: areasRawMock,
-      totalCount: 2000,
-    });
-
-    return subscription
+    return this.httpService.post(`${this.endpoint}`, areaRaw)
       .pipe(
-        map((data: IGetAllAreasSuccessData) => {
-         data.areas = this.parseAreas(data.areas);
-         return data;
+        map((data: IAddUpdateAreaSuccessData) => {
+          data.area = this.parseOne(data.area);
+          return data;
         })
       );
   }
 
-  parseAreas(areasRaw: IAreaRaw[]): IAreaParsed[] {
-    const areas: IAreaParsed[] = [];
-    let area: IAreaParsed;
-    areasRaw.forEach((areaRaw: IAreaRaw) => {
-      area = Object.assign({
-        // foo: 0,
-      }, areaRaw);
-      areas.push(area);
-    });
+  apiUpdateOne(areaRaw: IAreaRaw): Observable<any> {
+    // console.log('apiUpdateArea:', areaRaw);
 
-    return areas;
+    return this.httpService.put(`${this.endpoint}/${areaRaw.id}`, areaRaw)
+      .pipe(
+        map((data: IAddUpdateAreaSuccessData) => {
+          data.area = this.parseOne(data.area);
+          return data;
+        })
+      );
   }
 
-  private addUpdateSearchArea(config: IAddUpdateSearchAreaConfig): EventEmitter<any> {
-    return this.utilService.modal(AddUpdateSearchAreaComponent, config, { class: 'modal-sm' });
+  apiDeleteOne(areaRaw: IAreaRaw): Observable<any> {
+    // console.log('apiDeleteOne:', areaRaw);
+
+    return this.httpService.delete(`${this.endpoint}/${areaRaw.id}`)
+      .pipe(
+        map((data: any) => {
+          // data.area = this.parseOneArea(data.area);
+          return data;
+        })
+      );
   }
 
-  // openSearchArea(): EventEmitter<any> {
-  //   const config: IAddUpdateSearchAreaConfig = {
-  //     mode: ECRUDModalModes.Search,
-  //     area: null
-  //   };
-  //
-  //   return this.addUpdateSearchArea(config);
-  // }
+  apiGetOne(areaId: string): Observable<any> {
+    // console.log('apiGetOne:', areaId);
 
-  openAddArea(): EventEmitter<any> {
-    const config: IAddUpdateSearchAreaConfig = {
-      mode: ECRUDModalModes.Add,
-      area: null
-    };
-
-    return this.addUpdateSearchArea(config);
+    return this.httpService.delete(`${this.endpoint}/${areaId}`)
+      .pipe(
+        map((data: any) => {
+          data.area = this.parseOne(data.area);
+          return data;
+        })
+      );
   }
 
-  openEditArea(area: IAreaParsed): EventEmitter<any> {
-    const config: IAddUpdateSearchAreaConfig = {
-      mode: ECRUDModalModes.Edit,
-      area: area
-    };
+  apiGetList(params: IHttpMethodQueryParams): Observable<any> {
+    // console.log('apiGetList:');
+    return this.httpService.get(`${this.endpoint}`, params)
+      .pipe(
+        map((data: IGetAllAreasSuccessData) => {
+          data.areas = this.parseList(data.areas);
+          return data;
+        })
+      );
+  }
 
-    return this.addUpdateSearchArea(config);
+  parseList(areasRaw: IAreaRaw[]): IAreaParsed[] {
+    // console.log('parseList:', areasRaw);
+    return areasRaw.map((areaRaw: IAreaRaw) => this.parseOne(areaRaw));
+  }
+
+  parseOne(areaRaw: IAreaRaw): IAreaParsed {
+    // console.log('parseOne:', areaRaw);
+    const area = Object.assign({
+      customCityName: '',
+    }, areaRaw);
+
+    area.customCityName = '';
+
+    return area;
   }
 }
