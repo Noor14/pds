@@ -23,9 +23,10 @@
           <option [value]="defaultSelectedOption(data.type)" selected disabled>Select</option>
           <option [value]="type.value" *ngFor="let type of types;" [innerText]="type.name"></option>
         </select>
+
         <small *ngIf="users_type.invalid && (users_type.dirty || users_type.touched || userForm.submitted)"
                class="form-text text-danger">
-<!--          <span *ngIf="users_type.errors?.required">Type is required.</span>-->
+          <span *ngIf="users_type.errors?.required">Type is required.</span>
 <!--          <span *ngIf="users_type.errors?.minlength">Type must be at least 3 characters long.</span>-->
         </small>
       </div>
