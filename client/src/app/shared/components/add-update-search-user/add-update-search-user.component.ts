@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
+import {ECRUDModalModes} from "@shared/models/modals.model";
 
 @Component({
   selector: 'app-add-update-search-user',
@@ -15,10 +16,10 @@ export class AddUpdateSearchUserComponent implements OnInit {
     lastName: 'Qaswa',
     email: 'admin@qaswa.com',
     address: 'every where in every city',
-    area: 'Lahore',
+    area: 1,
     contact: '03010123456',
     storeName: 'Qaswa Medical Store',
-    specialties: 'Gynologist',
+    specialties: 1,
     experienceSinceYear: '1990',
   };
 
@@ -34,7 +35,7 @@ export class AddUpdateSearchUserComponent implements OnInit {
 
   specialties = [
     {
-      name: 'something',
+      name: 'Something',
       id: 1
     }
   ];
@@ -74,7 +75,30 @@ export class AddUpdateSearchUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitForm(form: any) {
-    console.log(form)
+  resetFormStatus(sending: boolean, type: string, message: string) {
+    console.log('resetFormStatus:');
+    this.formStatus.sending = sending;
+    this.formStatus.type = type;
+    this.formStatus.message = message;
+  }
+
+  submitForm(form: any): void {
+
+    // skip if fails validation
+    if (form.invalid) {
+      this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
+      return;
+    }
+
+    this.resetFormStatus(true, '', '');
+
+    // switch (this.config?.mode) {
+    //   case ECRUDModalModes.Add:
+    //     this.addProduct(this.data);
+    //     break;
+    //   case ECRUDModalModes.Edit:
+    //     this.updateProduct(this.data);
+    //     break;
+    // }
   }
 }

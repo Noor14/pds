@@ -20,6 +20,7 @@ export class MyAccountComponent implements OnInit {
     specialties: 'Gynologist',
     experienceSinceYear: '1990',
   };
+
    passwordObj = {
      password: '',
      retypePassword: ''
