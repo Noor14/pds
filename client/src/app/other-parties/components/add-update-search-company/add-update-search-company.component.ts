@@ -33,7 +33,7 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
   companies = companiesMock;
 
   formStatus = {
-    sending: false,
+    sending: true,
     type: '',
     message: '',
   };
@@ -43,7 +43,7 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
     name: '',
     type: undefined,
     startedSince: '',
-    persons: [{type: 0, firstName: '', lastName:'', phone:[]}]
+    persons: [{type: 0, firstName: '', lastName: '', phone: []}]
   };
 
   constructor(
@@ -53,7 +53,7 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  resetFormStatus(sending: boolean, type: string, message: string) {
+  resetFormStatus(sending: boolean, type: string, message: string): void {
     console.log('resetFormStatus:');
     this.formStatus.sending = sending;
     this.formStatus.type = type;
@@ -64,14 +64,16 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
     console.log('resetForm:');
   }
 
-  submitForm(form: any): void {
+  submitForm(form: any): any {
     console.log('submitForm:');
-
+    this.resetFormStatus(true, '', '');
     // skip if fails validation
     if (form.invalid) {
       this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
       return;
     }
+
+    // this.resetFormStatus(true, '', '');
 
   }
 

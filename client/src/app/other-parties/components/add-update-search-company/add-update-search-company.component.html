@@ -7,20 +7,20 @@
 <div class="modal-body">
   <form class="" name="companyForm" #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
     <div class="row">
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-sm-4">
         <div class="form-group">
           <label for="company_name">Company Name:</label>
           <input type="text" class="form-control" name="company_name" id="company_name"
-                 [(ngModel)]="data.name" #company_name='ngModel' required>
+                 [(ngModel)]="data.name" #company_name='ngModel' required minlength="3">
 
           <small *ngIf="company_name.invalid && (company_name.dirty || company_name.touched || companyForm.submitted)"
                  class="form-text text-danger">
-            <span *ngIf="company_name.errors?.required">Product Type is required.</span>
+            <span *ngIf="company_name.errors?.required">Company Name Type is required.</span>
+            <span *ngIf="company_name.errors?.minlength">Company Name must be at least 3 characters long.</span>
           </small>
-
         </div>
       </div>
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-sm-4">
         <div class="form-group">
           <label for="company_type">Company Type:</label>
           <select class="custom-select" name="company_type" id="company_type"
@@ -28,39 +28,52 @@
             <option [value]="undefined">Select</option>
             <option [value]="typeIdx" *ngFor="let type of companyTypes; let typeIdx = index;" [innerText]="type"></option>
           </select>
-          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+          <small *ngIf="company_type.invalid && (company_type.dirty || company_type.touched || companyForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="company_type.errors?.required">Company Type is required.</span>
+          </small>
         </div>
       </div>
-
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="company_person_firstName">First Name:</label>
+          <input type="text" class="form-control" name="company_person_firstName" #company_person_firstName='ngModel' id="company_person_firstName"
+                 [(ngModel)]="data.persons[0].firstName" required minlength="3">
+        </div>
+        <small *ngIf="company_person_firstName.invalid && (company_person_firstName.dirty || company_person_firstName.touched || companyForm.submitted)"
+               class="form-text text-danger">
+          <span *ngIf="company_person_firstName.errors?.required">First Name is required.</span>
+          <span *ngIf="company_person_firstName.errors?.minlength">First Name must be at least 3 characters long.</span>
+        </small>
+      </div>
       <div class="col-12">
         <h6>Contact:</h6>
       </div>
-
-      <div class="col-12 col-sm-3">
-        <div class="form-group">
-          <label for="company_person_firstName">First Name:</label>
-          <input type="text" class="form-control" name="company_person_firstName" id="company_person_firstName"
-                 [(ngModel)]="data.persons[0].firstName">
-          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
-        </div>
-      </div>
-      <div class="col-12 col-sm-3">
+      <div class="col-12 col-sm-4">
         <div class="form-group">
           <label for="company_person_lastName">Last Name:</label>
           <input type="text" class="form-control" name="company_person_lastName" id="company_person_lastName"
-                 [(ngModel)]="data.persons[0].lastName">
-          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+                 [(ngModel)]="data.persons[0].lastName" #company_person_lastName='ngModel' required minlength="3">
+          <small *ngIf="company_person_lastName.invalid && (company_person_lastName.dirty || company_person_lastName.touched || companyForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="company_person_lastName.errors?.required">Last Name is required.</span>
+            <span *ngIf="company_person_lastName.errors?.minlength">Last Name must be at least 3 characters long.</span>
+          </small>
         </div>
       </div>
-      <div class="col-12 col-sm-3">
+      <div class="col-12 col-sm-4">
         <div class="form-group">
           <label for="company_person_phone">Phone:</label>
           <input type="number" class="form-control" name="company_person_phone" id="company_person_phone"
-                 [(ngModel)]="data.persons[0].phone[0]">
-          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+                 [(ngModel)]="data.persons[0].phone[0]" #company_person_phone='ngModel' required minlength="7">
+          <small *ngIf="company_person_phone.invalid && (company_person_phone.dirty || company_person_phone.touched || companyForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="company_person_phone.errors?.required">Phone number is required.</span>
+            <span *ngIf="company_person_phone.errors?.minlength">Phone number must be at least 3 characters long.</span>
+          </small>
         </div>
       </div>
-      <div class="col-12 col-sm-3">
+      <div class="col-12 col-sm-4">
         <div class="form-group">
           <label for="company_person_type">Role:</label>
           <select class="custom-select" name="company_person_type" id="company_person_type"
@@ -68,7 +81,10 @@
             <option [value]="undefined">Select</option>
             <option [value]="typeIdx" *ngFor="let type of parsonTypes; let typeIdx = index;" [innerText]="type"></option>
           </select>
-          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+          <small *ngIf="company_person_type.invalid && (company_person_type.dirty || company_person_type.touched || companyForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="company_person_type.errors?.required">Role is required.</span>
+          </small>
         </div>
       </div>
     </div>
@@ -86,8 +102,15 @@
     <!-- controls -->
     <div class="row">
       <div class="col modal-controls">
-        <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger"
+                [disabled]="formStatus.sending"
+                (click)="companyForm.reset()">Reset</button>
+
+        <button type="submit" class="btn btn-success"
+                [disabled]="formStatus.sending">
+          <fa-icon *ngIf="formStatus.sending"
+                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+          Submit</button>
       </div>
     </div>
   </form>
