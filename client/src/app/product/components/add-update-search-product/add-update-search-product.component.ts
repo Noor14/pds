@@ -49,8 +49,7 @@ export class AddUpdateSearchProductComponent implements OnInit {
   productTypes = productTypes;
   companies = companiesMock; // TODO implement real companies list
 
-  // data: IProductRaw = {;
-  defaultData: any = {
+  data: any = {
     id: '',
     batchNumber: '',
     packInfo: '',
@@ -59,18 +58,16 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
     type: undefined,
     companyId: undefined,
-    tp: undefined,
     mrp: undefined,
     net: undefined,
     boxQuantity: undefined,
   };
-  data: any;
 
   constructor(
     public bsModalRef: BsModalRef,
     public productService: ProductService
   ) {
-    this.data = this.defaultData;
+
   }
 
   ngOnInit(): void {
@@ -78,7 +75,9 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
     // waiting for the assignment. i.e. for second event loop digest.
     setTimeout(() => {
-      this.data = this.config && this.config.product || this.defaultData;
+      if (this.config && this.config.product) {
+        this.data = this.config.product;
+      }
     });
   }
 
