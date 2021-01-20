@@ -29,8 +29,10 @@ export class AddUpdateSearchUserComponent implements OnInit {
 
   areas = [
     {
+      id: 1,
       name: 'Karachi'
     }, {
+      id:2,
       name: 'Lahore'
     }
   ];
