@@ -5,7 +5,7 @@
         <label for="users_username">Username:</label>
         <input type="text" class="form-control" name="users_username" id="users_username"
                [(ngModel)]="data.username" #users_username="ngModel"
-               maxlength="10" minlength="3" required>
+               maxlength="17" minlength="7" required>
         <div *ngIf="users_username.invalid  && (users_username.dirty || users_username.touched)"
              class="alert alert-danger">
           <div *ngIf="users_username.errors?.required">
