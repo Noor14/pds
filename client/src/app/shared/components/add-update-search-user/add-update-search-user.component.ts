@@ -76,7 +76,7 @@ export class AddUpdateSearchUserComponent implements OnInit {
   }
 
   checkEmptyOptionVal ( value: any ) {
-    return typeof value === 'string' && value.length <= 0 && '';
+    return (typeof value === 'string' && value.length <= 0 ? '' : value === null ? null : undefined);
   }
 
   resetFormStatus(sending: boolean, type: string, message: string) {
