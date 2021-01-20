@@ -7,12 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUpdateSearchUserComponent implements OnInit {
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
   data = {
     type: 1,
     username: 'qaswa_admin',
@@ -56,6 +50,28 @@ export class AddUpdateSearchUserComponent implements OnInit {
       name: 'Client'
     }
   ];
+
+  formStatus = {
+    sending: false,
+    type: '',
+    message: '',
+  };
+  responseMessages = {
+    success: {
+      add: 'Product has been added successfully.',
+      update: 'Product has been updated successfully.',
+    },
+    failure: {
+      add: 'Failed in adding product !',
+      update: 'Failed in updating product !',
+    },
+  };
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
 
   submitForm(form: any) {
     console.log(form)

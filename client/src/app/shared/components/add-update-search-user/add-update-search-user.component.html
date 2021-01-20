@@ -170,11 +170,28 @@
       </div>
     </div>
   </div>
+
+  <!-- response alert box -->
+  <div class="row">
+    <div class="col">
+      <alert *ngIf="formStatus.message"
+             [type]="formStatus.type === 'error' ? 'danger' : 'success'">
+        <span [innerHTML]="formStatus.message"></span>
+      </alert>
+    </div>
+  </div>
+
   <!-- controls -->
   <div class="row">
     <div class="col modal-controls">
-      <button type="button" class="btn btn-danger" (click)="userForm.reset()">Reset</button>
-      <button type="submit" class="btn btn-success" [disabled]="userForm.invalid">Submit</button>
+      <button type="button" class="btn btn-danger" [disabled]="formStatus.sending"
+              (click)="userForm.reset()">Reset</button>
+
+      <button type="submit" class="btn btn-success" [disabled]="formStatus.sending">
+        <fa-icon *ngIf="formStatus.sending"
+                 [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+        Submit
+      </button>
     </div>
   </div>
 </form>
