@@ -75,7 +75,7 @@ export class AddUpdateSearchUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkEmptyOptionVal ( value: any ) {
+  defaultSelectedOption ( value: any ) {
     return (typeof value === 'string' && value.length <= 0 ? '' : value === null ? null : undefined);
   }
 
