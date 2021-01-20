@@ -12,7 +12,7 @@ import { productsSettings } from '../products.constant';
 import {
   IProductParsed,
   IProductRaw,
-  IGetAllProductsSuccessData, IAddProductSuccessData
+  IGetAllProductsSuccessData, IAddUpdateProductSuccessData
 } from '../products.model';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class ProductService {
 
     return this.httpService.post(`${this.endpoint}`, productRaw)
       .pipe(
-        map((data: IAddProductSuccessData) => {
+        map((data: IAddUpdateProductSuccessData) => {
           data.product = this.parseOne(data.product);
           return data;
         })
@@ -43,7 +43,7 @@ export class ProductService {
 
     return this.httpService.put(`${this.endpoint}/${productRaw.id}`, productRaw)
       .pipe(
-        map((data: IAddProductSuccessData) => {
+        map((data: IAddUpdateProductSuccessData) => {
           data.product = this.parseOne(data.product);
           return data;
         })

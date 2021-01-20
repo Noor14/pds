@@ -1,3 +1,4 @@
+
 import { ECRUDModalModes } from '@shared/models/modals.model';
 export { ECRUDModalModes };
 
@@ -15,7 +16,6 @@ export interface IProductRaw {
   net: number; // for distributions
   boxQuantity: number;
 }
-
 // custom generated fields here.
 export interface IProductParsed extends IProductRaw {
   customTP: number; // for stores 15%
@@ -33,6 +33,6 @@ export interface IGetAllProductsSuccessData {
   totalCount: number,
 }
 
-export interface IAddProductSuccessData {
+export interface IAddUpdateProductSuccessData {
   product: IProductRaw,
 }
