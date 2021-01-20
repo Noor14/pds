@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { UtilService } from '@shared/services/util.service';
@@ -13,6 +13,7 @@ import {
   ICompanyParsed,
   ICompanyRaw
 } from '@root/app/other-parties/components/companies/companies.model';
+import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +76,11 @@ export class CompanyService {
 
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
-    return this.httpService.get(`${this.endpoint}`, params)
+    return of({
+      companies: companiesMock,
+      totalCount: 2000,
+    })
+    // return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
         map((data: IGetAllCompaniesSuccessData) => {
           data.companies = this.parseList(data.companies);
