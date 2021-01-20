@@ -5,47 +5,81 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="" name="areaForm" (ngSubmit)="submitForm()">
+  <form class="" name="companyForm" #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="area__name">Name:</label>
-          <input type="text" class="form-control" name="area__name" id="area__name"
-                 [(ngModel)]="data.name">
+          <label for="company_name">Company Name:</label>
+          <input type="text" class="form-control" name="company_name" id="company_name"
+                 [(ngModel)]="data.name" #company_name='ngModel' required>
+
+          <small *ngIf="company_name.invalid && (company_name.dirty || company_name.touched || companyForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="company_name.errors?.required">Product Type is required.</span>
+          </small>
+
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="company_type">Company Type:</label>
+          <select class="custom-select" name="company_type" id="company_type"
+                  [(ngModel)]="data.type" #company_type='ngModel' required>
+            <option [value]="undefined">Select</option>
+            <option [value]="typeIdx" *ngFor="let type of companyTypes; let typeIdx = index;" [innerText]="type"></option>
+          </select>
           <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
         </div>
       </div>
-      <div class="col-6">
+
+      <div class="col-12">
+        <h6>Contact:</h6>
+      </div>
+
+      <div class="col-12 col-sm-3">
         <div class="form-group">
-          <label for="area__name">Type:</label>
-          <input type="text" class="form-control" name="area__name" id="area__type"
-                 [(ngModel)]="data.type">
+          <label for="company_person_firstName">First Name:</label>
+          <input type="text" class="form-control" name="company_person_firstName" id="company_person_firstName"
+                 [(ngModel)]="data.persons[0].firstName">
           <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
-          <label for="area__name">Date:</label>
-          <input type="text" class="form-control" name="area__name" id="area__startedSince"
-                 [(ngModel)]="data.startedSince">
+          <label for="company_person_lastName">Last Name:</label>
+          <input type="text" class="form-control" name="company_person_lastName" id="company_person_lastName"
+                 [(ngModel)]="data.persons[0].lastName">
           <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
-          <label for="area__name">Person1:</label>
-          <input type="text" class="form-control" name="area__name" id="area__persion1"
-                 [(ngModel)]="data.person1">
+          <label for="company_person_phone">Phone:</label>
+          <input type="number" class="form-control" name="company_person_phone" id="company_person_phone"
+                 [(ngModel)]="data.persons[0].phone[0]">
           <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
-          <label for="area__name">Person2:</label>
-          <input type="text" class="form-control" name="area__name" id="area__persion2"
-                 [(ngModel)]="data.person2">
+          <label for="company_person_type">Role:</label>
+          <select class="custom-select" name="company_person_type" id="company_person_type"
+                  [(ngModel)]="data.persons[0].type" #company_person_type='ngModel' required>
+            <option [value]="undefined">Select</option>
+            <option [value]="typeIdx" *ngFor="let type of parsonTypes; let typeIdx = index;" [innerText]="type"></option>
+          </select>
           <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
         </div>
+      </div>
+    </div>
+
+    <!-- response alert box -->
+    <div class="row">
+      <div class="col">
+        <alert *ngIf="formStatus.message"
+               [type]="formStatus.type === 'error' ? 'danger' : 'success'">
+          <span [innerHTML]="formStatus.message"></span>
+        </alert>
       </div>
     </div>
 

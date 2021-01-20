@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
   columns = [
     // { name: 'Product ID', prop: 'id',},
     { name: 'Batch #', prop: 'batchNumber'},
-    { name: 'Name', prop: 'name'},
+    { name: 'Product Name', prop: 'name'},
     { name: 'Generic', prop: 'generic'},
     // { name: 'Type', prop: 'type',},
     { name: 'Pack', prop: 'packInfo'},
@@ -34,9 +34,9 @@ export class ProductsComponent implements OnInit {
   ];
   messages = {
     emptyMessage: '', // dynamic based of the fetch error, or filter to none.
-    customNoRecords: 'No Products found in the system. please select "Add Product" to add one.',
+    customNoRecords: 'No Products found in the system. please click "Add Product" to add one.',
     customFilteredNoMatch: 'No Products match with entered value.',
-    customFetchError: 'Failed in fetching products.',
+    customFetchError: 'Failed in fetching Products.',
   };
 
   config: ITableConfig = {

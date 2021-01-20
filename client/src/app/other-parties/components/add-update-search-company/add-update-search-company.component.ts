@@ -1,10 +1,12 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+
+import { BsModalRef } from 'ngx-bootstrap/modal';
+
 import { ECRUDModalModes } from '@shared/models/modals.model';
 import { IAddUpdateSearchCompanyConfig } from '@root/app/other-parties/components/companies/companies.model';
 import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
-import { companyTypes } from '@shared/constants/types.constant';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { IPersonRaw } from '@shared/models/general.model';
+import { companyTypes } from '@root/app/other-parties/components/companies/companies.constant';
+import { personTypes } from '@shared/constants/types.constant';
 
 @Component({
   selector: 'app-add-update-search-company',
@@ -26,15 +28,22 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
     return this.titles[mode];
   }
 
-  productTypes = companyTypes;
+  companyTypes = companyTypes;
+  parsonTypes = personTypes;
   companies = companiesMock;
+
+  formStatus = {
+    sending: false,
+    type: '',
+    message: '',
+  };
 
   data: any = {
     id: '',
     name: '',
-    type: '',
+    type: undefined,
     startedSince: '',
-    persons: ''
+    persons: [{type: 0, firstName: '', lastName:'', phone:[]}]
   };
 
   constructor(
@@ -43,12 +52,27 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  resetFormStatus(sending: boolean, type: string, message: string) {
+    console.log('resetFormStatus:');
+    this.formStatus.sending = sending;
+    this.formStatus.type = type;
+    this.formStatus.message = message;
+  }
+
   resetForm(): void {
     console.log('resetForm:');
   }
 
-  submitForm(): void {
+  submitForm(form: any): void {
     console.log('submitForm:');
+
+    // skip if fails validation
+    if (form.invalid) {
+      this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
+      return;
+    }
+
   }
 
   closeModal(): void {

@@ -1,74 +1,103 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { UtilService } from '@shared/services/util.service';
 import { HttpService } from '@shared/services/http.service';
-import { ECRUDModalModes, IGetAllCompanySuccessData } from '@root/app/other-parties/other-parties.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
+import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
+
 import {
-  IAddUpdateSearchCompanyConfig,
-  ICompanyParsed, ICompanyRaw
+  IAddCompanySuccessData,
+  IGetAllCompaniesSuccessData,
+  ICompanyParsed,
+  ICompanyRaw
 } from '@root/app/other-parties/components/companies/companies.model';
-import { AddUpdateSearchCompanyComponent } from '@root/app/other-parties/components/add-update-search-company/add-update-search-company.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
-  endpoint = 'companies';
+  private endpoint = `companies`;
+
   constructor(
     private utilService: UtilService,
     private httpService: HttpService,
   ) { }
 
-  apiFetchCompanies(): Observable<any> {
+  apiAddOne(companyRaw: ICompanyRaw): Observable<any> {
+    // console.log('apiAddOne:', companyRaw);
 
-    // TODO implement http service call here.
-    // const subscription = this.httpService.get();
-
-    // use mock data for now
-    const subscription = of({
-      data: {
-        company: companiesMock,
-        totalCount: 2000,
-      }
-    });
-
-    // return subscription
-    //   .pipe(
-    //     map((res: IGetAllCompanySuccessData) => {
-    //       let company = res.data.company;
-    //       return {
-    //         company: this.parseCompany(company),
-    //         totalCount: res.data.totalCount,
-    //       };
-    //     })
-    //   );
+    return this.httpService.post(`${this.endpoint}`, companyRaw)
+      .pipe(
+        map((data: IAddCompanySuccessData) => {
+          data.company = this.parseOne(data.company);
+          return data;
+        })
+      );
   }
 
-  parseCompany(companyRaw: ICompanyRaw[]): ICompanyParsed[] {
-    const companies: ICompanyParsed[] = [];
-    let company: ICompanyParsed;
-    companyRaw.forEach((data: ICompanyRaw) => {
-      company = Object.assign({
-        // foo: 0,
-      }, data);
-      companies.push(company);
-    });
+  apiUpdateOne(companyRaw: ICompanyRaw): Observable<any> {
+    // console.log('apiUpdateCompany:', companyRaw);
 
-    return companies;
+    return this.httpService.put(`${this.endpoint}/${companyRaw.id}`, companyRaw)
+      .pipe(
+        map((data: IAddCompanySuccessData) => {
+          data.company = this.parseOne(data.company);
+          return data;
+        })
+      );
   }
 
-  private addUpdateSearchCompany(config: IAddUpdateSearchCompanyConfig): EventEmitter<any> {
-    return this.utilService.modal(AddUpdateSearchCompanyComponent, config, { class: 'modal-lg' });
+  apiDeleteOne(companyRaw: ICompanyRaw): Observable<any> {
+    // console.log('apiDeleteOne:', companyRaw);
+
+    return this.httpService.delete(`${this.endpoint}/${companyRaw.id}`)
+      .pipe(
+        map((data: any) => {
+          // data.company = this.parseOneCompany(data.company);
+          return data;
+        })
+      );
   }
 
-  openEditCompany(companyData: ICompanyParsed): EventEmitter<any> {
-    const config: IAddUpdateSearchCompanyConfig = {
-      mode: ECRUDModalModes.Edit,
-      company: companyData
-    };
+  apiGetOne(companyId: string): Observable<any> {
+    // console.log('apiGetOne:', companyId);
 
-    return this.addUpdateSearchCompany(config);
+    return this.httpService.delete(`${this.endpoint}/${companyId}`)
+      .pipe(
+        map((data: any) => {
+          data.company = this.parseOne(data.company);
+          return data;
+        })
+      );
+  }
+
+  apiGetList(params: IHttpMethodQueryParams): Observable<any> {
+    // console.log('apiGetList:');
+    return this.httpService.get(`${this.endpoint}`, params)
+      .pipe(
+        map((data: IGetAllCompaniesSuccessData) => {
+          data.companies = this.parseList(data.companies);
+          return data;
+        })
+      );
+  }
+
+  parseList(companiesRaw: ICompanyRaw[]): ICompanyParsed[] {
+    // console.log('parseList:', companiesRaw);
+    return companiesRaw.map((companyRaw: ICompanyRaw) => this.parseOne(companyRaw));
+  }
+
+  parseOne(companyRaw: ICompanyRaw): ICompanyParsed {
+    // console.log('parseOne:', companyRaw);
+    const company = Object.assign({
+      customPersons: '',
+    }, companyRaw);
+
+    // TODO implement
+    company.customPersons = '';
+
+    return company;
   }
 }
