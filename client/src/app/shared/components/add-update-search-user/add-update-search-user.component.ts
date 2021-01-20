@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-add-update-search-user',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-update-search-user.component.scss']
 })
 export class AddUpdateSearchUserComponent implements OnInit {
+  public result = new EventEmitter();
 
   data = {
     type: 1,
