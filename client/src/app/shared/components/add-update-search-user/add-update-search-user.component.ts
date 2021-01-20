@@ -37,6 +37,13 @@ export class AddUpdateSearchUserComponent implements OnInit {
     }
   ];
 
+  specialties = [
+    {
+      name: 'something',
+      id: 1
+    }
+  ];
+
   types = [
     {
       value: 1,
