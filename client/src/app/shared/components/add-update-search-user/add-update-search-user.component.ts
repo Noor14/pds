@@ -60,12 +60,12 @@ export class AddUpdateSearchUserComponent implements OnInit {
   };
   responseMessages = {
     success: {
-      add: 'Product has been added successfully.',
-      update: 'Product has been updated successfully.',
+      add: 'User has been added successfully.',
+      update: 'User has been updated successfully.',
     },
     failure: {
-      add: 'Failed in adding product !',
-      update: 'Failed in updating product !',
+      add: 'Failed in adding user !',
+      update: 'Failed in updating user !',
     },
   };
 
