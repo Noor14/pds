@@ -19,7 +19,7 @@ export class AddUpdateSearchUserComponent implements OnInit {
     area: 1,
     contact: '03010123456',
     storeName: 'Qaswa Medical Store',
-    specialties: 1,
+    specialties: '',
     experienceSinceYear: '1990',
   };
 
@@ -73,6 +73,10 @@ export class AddUpdateSearchUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  checkEmptyOptionVal ( value: any ) {
+    return typeof value === 'string' && value.length <= 0 && '';
   }
 
   resetFormStatus(sending: boolean, type: string, message: string) {

@@ -20,7 +20,7 @@
         <label for="users_type">Type:</label>
         <select class="custom-select" name="users_type" id="users_type"
                 [(ngModel)]="data.type" #users_type='ngModel' required>
-          <option [value]="undefined" [disabled]="undefined">Select</option>
+          <option [value]="checkEmptyOptionVal(data.type)" selected disabled>Select</option>
           <option [value]="type.value" *ngFor="let type of types;" [innerText]="type.name"></option>
         </select>
         <small *ngIf="users_type.invalid && (users_type.dirty || users_type.touched || userForm.submitted)"
@@ -110,7 +110,7 @@
         <label for="users_area">Area:</label>
         <select class="custom-select" name="users_area" id="users_area"
                 [(ngModel)]="data.area" #users_area='ngModel' required>
-          <option [value]="undefined">Select</option>
+          <option [value]="checkEmptyOptionVal(data.area)" selected disabled>Select</option>
           <option [value]="area.id" *ngFor="let area of areas;" [innerText]="area.name"></option>
         </select>
 
@@ -142,7 +142,7 @@
         <label for="users_specialties">Specialties:</label>
         <select class="custom-select" name="users_specialties" id="users_specialties"
                 [(ngModel)]="data.specialties" #users_specialties='ngModel' required>
-          <option [value]="undefined">Select</option>
+          <option [value]="checkEmptyOptionVal(data.specialties)" selected disabled>Select</option>
           <option [value]="spec.id" *ngFor="let spec of specialties;"
                   [innerText]="spec.name"></option>
         </select>
