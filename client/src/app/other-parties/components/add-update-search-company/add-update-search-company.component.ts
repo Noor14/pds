@@ -33,7 +33,7 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
   companies = companiesMock;
 
   formStatus = {
-    sending: true,
+    sending: false,
     type: '',
     message: '',
   };
@@ -66,14 +66,13 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
 
   submitForm(form: any): any {
     console.log('submitForm:');
-    this.resetFormStatus(true, '', '');
     // skip if fails validation
     if (form.invalid) {
       this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
       return;
     }
 
-    // this.resetFormStatus(true, '', '');
+    this.resetFormStatus(true, '', '');
 
   }
 
