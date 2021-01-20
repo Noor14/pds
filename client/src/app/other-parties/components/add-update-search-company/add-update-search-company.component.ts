@@ -67,6 +67,12 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    setTimeout(() => {
+      if (this.config && this.config.company) {
+        this.data = this.config.company;
+      }
+    });
   }
 
   resetFormStatus(sending: boolean, type: string, message: string): void {

@@ -7,7 +7,7 @@
 <div class="modal-body">
   <form class="" name="companyForm" #companyForm="ngForm" (ngSubmit)="submitForm(companyForm)">
     <div class="row">
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-sm-6">
         <div class="form-group">
           <label for="company_name">Company Name:</label>
           <input type="text" class="form-control" name="company_name" id="company_name"
@@ -20,7 +20,7 @@
           </small>
         </div>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-sm-6">
         <div class="form-group">
           <label for="company_type">Company Type:</label>
           <select class="custom-select" name="company_type" id="company_type"
@@ -34,22 +34,22 @@
           </small>
         </div>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
           <label for="company_person_firstName">First Name:</label>
           <input type="text" class="form-control" name="company_person_firstName" #company_person_firstName='ngModel' id="company_person_firstName"
                  [(ngModel)]="data.persons[0].firstName" required minlength="3">
+          <small *ngIf="company_person_firstName.invalid && (company_person_firstName.dirty || company_person_firstName.touched || companyForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="company_person_firstName.errors?.required">First Name is required.</span>
+            <span *ngIf="company_person_firstName.errors?.minlength">First Name must be at least 3 characters long.</span>
+          </small>
         </div>
-        <small *ngIf="company_person_firstName.invalid && (company_person_firstName.dirty || company_person_firstName.touched || companyForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="company_person_firstName.errors?.required">First Name is required.</span>
-          <span *ngIf="company_person_firstName.errors?.minlength">First Name must be at least 3 characters long.</span>
-        </small>
       </div>
       <div class="col-12">
         <h6>Contact:</h6>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
           <label for="company_person_lastName">Last Name:</label>
           <input type="text" class="form-control" name="company_person_lastName" id="company_person_lastName"
@@ -61,7 +61,7 @@
           </small>
         </div>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
           <label for="company_person_phone">Phone:</label>
           <input type="number" class="form-control" name="company_person_phone" id="company_person_phone"
@@ -73,7 +73,7 @@
           </small>
         </div>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-sm-3">
         <div class="form-group">
           <label for="company_person_type">Role:</label>
           <select class="custom-select" name="company_person_type" id="company_person_type"

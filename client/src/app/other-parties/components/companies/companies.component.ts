@@ -6,6 +6,7 @@ import { CompanyService } from '@root/app/other-parties/services/company.service
 import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 import { UtilService } from '@shared/services/util.service';
 import { OtherPartiesModalsService } from '@root/app/other-parties/other-parties-modals.service';
+import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
 
 @Component({
   selector: 'app-companies',
