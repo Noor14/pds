@@ -41,3 +41,6 @@ export interface IGetAllOrdersSuccessData {
   orders: IOrderRaw[],
   totalCount: number,
 }
+export interface IAddUpdateOrderSuccessData {
+  order: IOrderRaw,
+}
