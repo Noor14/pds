@@ -14,6 +14,7 @@ import {
   ICompanyRaw
 } from '@root/app/companies/companies.model';
 import { companiesMock } from '@root/app/companies/companies.mock';
+import { companyTypes } from '@root/app/companies/companies.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -106,11 +107,12 @@ export class CompanyService {
   parseOne(companyRaw: ICompanyRaw): ICompanyParsed {
     // console.log('parseOne:', companyRaw);
     const company = Object.assign({
+      customType: '',
       customPersons: '',
     }, companyRaw);
 
-    // TODO implement
-    company.customPersons = '';
+    company.customType = companyTypes[company.type];
+    company.customPersons = company.persons[0].phone.join('<br>');
 
     return company;
   }

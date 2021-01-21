@@ -25,6 +25,7 @@ export interface ICompanyRaw {
 // custom generated fields here.
 export interface ICompanyParsed extends ICompanyRaw {
   customPersons: string;
+  customType: string;
 }
 
 export interface IAddUpdateSearchCompanyConfig {

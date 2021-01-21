@@ -18,12 +18,12 @@ export class CompaniesComponent implements OnInit {
   columns = [
     { name: 'Company ID', prop: 'id'},
     { name: 'Company Name', prop: 'name'},
-    { name: 'Type', prop: 'type'},
-    { name: 'Started Since', prop: 'startedSince'},
+    { name: 'Type', prop: 'customType'},
+    { name: 'Started Since', prop: 'createdOn'},
     { name: 'Total Products', prop: 'totalProducts'},
     { name: 'Total Orders', prop: 'totalOrders'},
     { name: 'Total Sale', prop: 'totalAmount'},
-    { name: 'Contact', prop: 'contact'},
+    { name: 'Contact', prop: 'customPersons'},
   ];
   actions = [
     { name: 'View / Edit', handler: this.editCompany.bind(this)},
