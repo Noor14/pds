@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
-import { ECRUDModalModes, IAddUpdateSearchAreaConfig } from '../areas/areas.model';
+import { ECRUDModalModes, IAddUpdateSearchAreaConfig } from '../../areas.model';
 
 @Component({
   selector: 'app-add-update-search-area',

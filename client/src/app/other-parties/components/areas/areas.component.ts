@@ -4,8 +4,8 @@ import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 import { ITableConfig } from '@shared/components/table/table.model';
 
 import { IAreaParsed } from './areas.model';
-import { AreaService } from '../../services/area.service';
-import { OtherPartiesModalsService } from '@root/app/other-parties/other-parties-modals.service';
+import { AreaService } from './services/area.service';
+import { AreaModalsService } from '@root/app/other-parties/components/areas/services/area-modals.service';
 
 @Component({
   selector: 'app-areas',
@@ -42,7 +42,7 @@ export class AreasComponent implements OnInit {
 
   constructor(
     private areaService: AreaService,
-    private otherPartiesModalsService: OtherPartiesModalsService,
+    private areaModalsService: AreaModalsService,
     private utilService: UtilService,
   ) { }
 
@@ -90,13 +90,13 @@ export class AreasComponent implements OnInit {
 
   addArea(): void {
     console.log('addArea:');
-    this.otherPartiesModalsService.openAddArea();
+    this.areaModalsService.openAddArea();
   }
 
   editArea(area: any, areaIdx: number): void {
     console.log('editArea:', areaIdx, area);
 
-    this.otherPartiesModalsService.openEditArea(area)
+    this.areaModalsService.openEditArea(area)
       .subscribe((res: any) => {
         console.log('editArea: success', res);
 
