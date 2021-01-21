@@ -5,6 +5,7 @@ import { ITableConfig } from '@shared/components/table/table.model';
 
 import { IAreaParsed } from './areas.model';
 import { AreaService } from '../../services/area.service';
+import { OtherPartiesModalsService } from '@root/app/other-parties/other-parties-modals.service';
 
 @Component({
   selector: 'app-areas',
@@ -41,6 +42,7 @@ export class AreasComponent implements OnInit {
 
   constructor(
     private areaService: AreaService,
+    private otherPartiesModalsService: OtherPartiesModalsService,
     private utilService: UtilService,
   ) { }
 
@@ -65,7 +67,7 @@ export class AreasComponent implements OnInit {
 
   fetchAreas(): void {
     console.log('fetchAreas:');
-    this.areaService.apiFetchAreas()
+    this.areaService.apiGetList({})
       .subscribe((res: { areas: IAreaParsed[], totalCount: number }) => {
         console.log('fetchAreas: success', res.areas);
 
@@ -88,13 +90,13 @@ export class AreasComponent implements OnInit {
 
   addArea(): void {
     console.log('addArea:');
-    this.areaService.openAddArea();
+    this.otherPartiesModalsService.openAddArea();
   }
 
   editArea(area: any, areaIdx: number): void {
     console.log('editArea:', areaIdx, area);
 
-    this.areaService.openEditArea(area)
+    this.otherPartiesModalsService.openEditArea(area)
       .subscribe((res: any) => {
         console.log('editArea: success', res);
 
