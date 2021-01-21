@@ -6,48 +6,194 @@
 </div>
 <div class="modal-body">
 
-  <form class="" name="productForm" (ngSubmit)="submitForm()">
+  <form class="" name="productForm" #productForm="ngForm" (ngSubmit)="submitForm()">
     <div class="row">
       <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="order_name">Store Name:</label>
-          <input type="text" class="form-control" name="order_name" id="order_name"
-                 [(ngModel)]="data.store">
+          <label for="order_storeName">Store Name:</label>
+          <select class="custom-select" name="order_storeName" id="order_storeName"
+                  [(ngModel)]="data.store" #order_storeName='ngModel' required>
+            <option [value]="defaultSelectedOption(data.store)" selected disabled>Select</option>
+            <option [value]="item && item.id" *ngFor="let item of stores;" [innerText]="item && item.name"></option>
+          </select>
+
+          <small *ngIf="order_storeName.invalid && (order_storeName.dirty || order_storeName.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="order_storeName.errors?.required">Store Name is required.</span>
+            <!--          <span *ngIf="order_storeName.errors?.minlength">Type must be at least 3 characters long.</span>-->
+          </small>
         </div>
       </div>
 
       <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="order_amount">Amount:</label>
-          <input type="text" class="form-control" name="order_amount" id="order_amount"
-                 [(ngModel)]="data.amount">
+          <label for="order_area">Area:</label>
+          <select class="custom-select" name="order_area" id="order_area"
+                  [(ngModel)]="data.area" #order_area='ngModel' required>
+            <option [value]="defaultSelectedOption(data.area)" selected disabled>Select</option>
+            <option [value]="item && item.id" *ngFor="let item of areas;" [innerText]="item && item.name"></option>
+          </select>
+
+          <small *ngIf="order_area.invalid && (order_area.dirty || order_area.touched || productForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="order_area.errors?.required">Area is required.</span>
+            <!--          <span *ngIf="order_area.errors?.minlength">Type must be at least 3 characters long.</span>-->
+          </small>
         </div>
       </div>
 
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="order_contact">contact:</label>
-          <input type="text" class="form-control" name="order_contact" id="order_contact"
-                 [(ngModel)]="data.contact">
-        </div>
-      </div>
+<!--      <hr>-->
 
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="order_status">Status:</label>
-          <input type="text" class="form-control" name="order_status" id="order_status"
-                 [(ngModel)]="data.status">
-        </div>
-      </div>
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_productName">Products:</label>-->
+<!--          <select class="custom-select" name="order_productName" id="order_productName"-->
+<!--                  [(ngModel)]="data.name" #order_productName='ngModel' required>-->
+<!--            <option [value]="defaultSelectedOption(data.name)" selected disabled>Select</option>-->
+<!--            <option [value]="item && item.id" *ngFor="let item of products;" [innerText]="item && item.name"></option>-->
+<!--          </select>-->
 
-    </div>
+<!--          <small *ngIf="order_productName.invalid && (order_productName.dirty || order_productName.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_productName.errors?.required">Products is required.</span>-->
+<!--            &lt;!&ndash;          <span *ngIf="order_productName.errors?.minlength">Type must be at least 3 characters long.</span>&ndash;&gt;-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
 
-    <!-- controls -->
-    <div class="row">
-      <div class="col modal-controls">
-        <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </div>
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_formula">Formula:</label>-->
+<!--          <select class="custom-select" name="order_formula" id="order_formula"-->
+<!--                  [(ngModel)]="data.formula" #order_formula='ngModel' required>-->
+<!--            <option [value]="defaultSelectedOption(data.formula)" selected disabled>Select</option>-->
+<!--            <option [value]="item && item.value" *ngFor="let item of formulas;" [innerText]="item && item.name"></option>-->
+<!--          </select>-->
+
+<!--          <small *ngIf="order_formula.invalid && (order_formula.dirty || order_formula.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_formula.errors?.required">Products is required.</span>-->
+<!--            &lt;!&ndash;          <span *ngIf="order_formula.errors?.minlength">Type must be at least 3 characters long.</span>&ndash;&gt;-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_grams">(mg/cc) Value:</label>-->
+<!--          <select class="custom-select" name="order_grams" id="order_grams"-->
+<!--                  [(ngModel)]="data.grams" #order_grams='ngModel' required>-->
+<!--            <option [value]="defaultSelectedOption(data.grams)" selected disabled>Select</option>-->
+<!--            <option [value]="item && item.value" *ngFor="let item of grams;" [innerText]="item && item.name"></option>-->
+<!--          </select>-->
+
+<!--          <small *ngIf="order_grams.invalid && (order_grams.dirty || order_grams.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_grams.errors?.required">Products is required.</span>-->
+<!--            &lt;!&ndash;          <span *ngIf="order_grams.errors?.minlength">Type must be at least 3 characters long.</span>&ndash;&gt;-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_company">Company:</label>-->
+<!--          <select class="custom-select" name="order_company" id="order_company"-->
+<!--                  [(ngModel)]="data.company" #order_company='ngModel' required>-->
+<!--            <option [value]="defaultSelectedOption(data.company)" selected disabled>Select</option>-->
+<!--            <option [value]="item && item.id" *ngFor="let item of companies;" [innerText]="item && item.name"></option>-->
+<!--          </select>-->
+
+<!--          <small *ngIf="order_company.invalid && (order_company.dirty || order_company.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_company.errors?.required">Products is required.</span>-->
+<!--            &lt;!&ndash;          <span *ngIf="order_company.errors?.minlength">Type must be at least 3 characters long.</span>&ndash;&gt;-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_quantity">Quantity:</label>-->
+<!--          <select class="custom-select" name="order_quantity" id="order_quantity"-->
+<!--                  [(ngModel)]="data.quantity" #order_quantity='ngModel' required>-->
+<!--            <option [value]="defaultSelectedOption(data.quantity)" selected disabled>Select</option>-->
+<!--            <option [value]="item && item.value" *ngFor="let item of quantities;" [innerText]="item && item.name"></option>-->
+<!--          </select>-->
+
+<!--          <small *ngIf="order_quantity.invalid && (order_quantity.dirty || order_quantity.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_quantity.errors?.required">Products is required.</span>-->
+<!--            &lt;!&ndash;          <span *ngIf="order_quantity.errors?.minlength">Type must be at least 3 characters long.</span>&ndash;&gt;-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_status">Status:</label>-->
+<!--          <select class="custom-select" name="order_status" id="order_status"-->
+<!--                  [(ngModel)]="data.status" #order_status='ngModel' required>-->
+<!--            <option [value]="defaultSelectedOption(data.status)" selected disabled>Select</option>-->
+<!--            <option [value]="item && item.value" *ngFor="let item of productStatuses;" [innerText]="item && item.name"></option>-->
+<!--          </select>-->
+
+<!--          <small *ngIf="order_status.invalid && (order_status.dirty || order_status.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_status.errors?.required">Products is required.</span>-->
+<!--            &lt;!&ndash;          <span *ngIf="order_status.errors?.minlength">Type must be at least 3 characters long.</span>&ndash;&gt;-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="order_contact">Contact:</label>-->
+<!--          <input type="number" class="form-control" name="order_contact" id="order_contact"-->
+<!--                 [(ngModel)]="data.contact" #order_contact="ngModel"-->
+<!--                 maxlength="13" minlength="11" required>-->
+
+<!--          <small *ngIf="order_contact.invalid && (order_contact.dirty || order_contact.touched || productForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="order_contact.errors?.required">Contact is required.</span>-->
+<!--            <span *ngIf="order_contact.errors?.minlength">Contact must be at least 11 characters long.</span>-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    &lt;!&ndash; response alert box &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--      <div class="col">-->
+<!--        <alert *ngIf="formStatus.message"-->
+<!--               [type]="formStatus.type === 'error' ? 'danger' : 'success'">-->
+<!--          <span [innerHTML]="formStatus.message"></span>-->
+<!--        </alert>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; controls &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--      <div class="col modal-controls">-->
+<!--        <button type="button" class="btn btn-danger mr-1" [disabled]="formStatus.sending"-->
+<!--                (click)="productForm.reset()">Reset</button>-->
+
+<!--        <button type="submit" class="btn btn-success" [disabled]="formStatus.sending">-->
+<!--          <fa-icon *ngIf="formStatus.sending"-->
+<!--                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>-->
+<!--          Submit-->
+<!--        </button>-->
+<!--      </div>-->
     </div>
   </form>
+
+<!--      <app-table-->
+<!--        [contextPrefix]="'add_order'"-->
+<!--        [config]="tableConfig"-->
+<!--        [rows]="rows"-->
+<!--        [columns]="columns"-->
+<!--        [actions]="actions"-->
+
+<!--      ></app-table>-->
 </div>
