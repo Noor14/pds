@@ -15,7 +15,6 @@ const router = express.Router();
 
 // attach vertical info to each request based of the request origin / site.
 router.use((req, res, next) => {
-	console.log('attach vertical: ', req.headers.origin);
 	// TODO implement dynamically from DB. when we scale to verticals/clients.
 	// ...
 
