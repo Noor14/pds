@@ -5,14 +5,16 @@ export { ECRUDModalModes };
 export interface IProductRaw {
   // comes in payload
   companyId: number; // "company.id"
-  type: number;
-  batchNumber: string; // optional
   packInfo: string;
   name: string;
   generic: string;
   mrp: number; // for customers
   net: number; // for distributions
   boxQuantity: number;
+
+  // optional
+  batchNumber?: string;
+  type?: string;
 
   // to be generated on server
   id: number;

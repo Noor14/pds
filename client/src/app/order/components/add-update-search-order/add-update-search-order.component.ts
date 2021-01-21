@@ -10,6 +10,7 @@ import { IChoices } from '@shared/models/general.model';
 import { companyTypes } from '@root/app/companies/companies.constant';
 import { personTypes } from '@shared/constants/types.constant';
 import { StoreService } from '@root/app/store/services/store.service';
+import { productsSettings } from '@root/app/product/products.constant';
 
 @Component({
   selector: 'app-add-update-search-order',
@@ -27,14 +28,20 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     [ECRUDModalModes.Search]: 'Search Order',
     [ECRUDModalModes.ReadOnly]: 'View Order',
   };
-
-  choices: IChoices = {
-    stores: [],
-  };
   rows = [];
   data: any = {
     storeId: undefined,
     productsSnapshot: this.rows,
+
+    // visible to admin only.
+    tpPercent: productsSettings.tpPercent,
+  };
+
+  choices: IChoices = {
+    stores: [],
+  };
+  autoComplete = {
+    text: ''
   };
 
   get modalTitle(): string {

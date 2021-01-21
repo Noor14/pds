@@ -7,20 +7,65 @@
 <div class="modal-body">
 
   <form class="" name="form" #form="ngForm" (ngSubmit)="submitForm(form)">
-    <div class="col-12 col-sm-4">
-      <div class="form-group">
-        <label for="order_storeId">Store:</label>
-        <select class="custom-select" name="order_storeId" id="order_storeId"
-                [(ngModel)]="data.storeId" #order_storeId='ngModel' required>
-          <option [value]="undefined">Select</option>
-          <option [value]="store.id" *ngFor="let store of choices.stores;"
-                  [innerText]="store.name"></option>
-        </select>
 
-        <small *ngIf="order_storeId.invalid && (order_storeId.dirty || order_storeId.touched || form.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="order_storeId.errors?.required">Store is required.</span>
-        </small>
+    <!-- TODO limit tis visibility to admins only -->
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="order_storeId">Store:</label>
+          <select class="custom-select" name="order_storeId" id="order_storeId"
+                  [(ngModel)]="data.storeId" #order_storeId='ngModel' required>
+            <option [value]="undefined">Select</option>
+            <option [value]="store.id" *ngFor="let store of choices.stores;"
+                    [innerText]="store.name"></option>
+          </select>
+
+          <small *ngIf="order_storeId.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="order_storeId.errors?.required">Store is required.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-2">
+        <div class="form-group">
+          <label for="order_tpPercent">TP %:</label>
+          <input type="number" class="form-control" name="order_tpPercent" id="order_tpPercent"
+                 [(ngModel)]="data.tpPercent" #order_tpPercent='ngModel' required>
+
+          <small *ngIf="order_tpPercent.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="order_tpPercent.errors?.required">Store is required.</span>
+          </small>
+        </div>
+      </div>
+
+      <hr class="col-12">
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="order_products_autocomplete">Products :</label>
+          <input type="text" class="form-control" name="order_products_autocomplete" id="order_products_autocomplete"
+                 [(ngModel)]="autoComplete.text" #order_products_autocomplete='ngModel' placeholder="Search here...">
+
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+
+      </div>
+
+    </div>
+
+    <!-- response alert box -->
+    <div class="row">
+      <div class="col">
+        <alert *ngIf="formStatus.message"
+               [type]="formStatus.type === 'error' ? 'danger' : 'success'">
+          <span [innerHTML]="formStatus.message"></span>
+        </alert>
       </div>
     </div>
 
@@ -38,15 +83,5 @@
       </div>
     </div>
   </form>
-
-  <!--<app-table-->
-  <!--  [contextPrefix]="'orders'"-->
-  <!--  [config]="config"-->
-  <!--  [rows]="rows"-->
-  <!--  [columns]="columns"-->
-  <!--  [actions]="actions"-->
-  <!--  [messages]="messages"-->
-
-  <!--&gt;</app-table>-->
 
 </div>

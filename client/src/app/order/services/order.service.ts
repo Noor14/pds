@@ -11,6 +11,9 @@ import {
   IGetAllOrdersSuccessData, IOrderParsed,
   IOrderRaw
 } from '@root/app/order/orders.model';
+import { statusTypes } from '@root/app/order/orders.constant';
+import { ordersRawMock } from '@root/app/order/orders.mock';
+import { productsSettings } from '@root/app/product/products.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +29,10 @@ export class OrderService {
 
   apiAddOne(orderRaw: IOrderRaw): Observable<any> {
     // console.log('apiAddOne:', orderRaw);
-
-    return this.httpService.post(`${this.endpoint}`, orderRaw)
+    return of({
+      order: orderRaw
+    })
+    // return this.httpService.post(`${this.endpoint}`, orderRaw)
       .pipe(
         map((data: IAddUpdateOrderSuccessData) => {
           data.order = this.parseOne(data.order);
@@ -38,8 +43,10 @@ export class OrderService {
 
   apiUpdateOne(orderRaw: IOrderRaw): Observable<any> {
     // console.log('apiUpdateOrder:', orderRaw);
-
-    return this.httpService.put(`${this.endpoint}/${orderRaw.id}`, orderRaw)
+    return of({
+      order: orderRaw
+    })
+    // return this.httpService.put(`${this.endpoint}/${orderRaw.id}`, orderRaw)
       .pipe(
         map((data: IAddUpdateOrderSuccessData) => {
           data.order = this.parseOne(data.order);
@@ -50,8 +57,10 @@ export class OrderService {
 
   apiDeleteOne(orderRaw: IOrderRaw): Observable<any> {
     // console.log('apiDeleteOne:', orderRaw);
-
-    return this.httpService.delete(`${this.endpoint}/${orderRaw.id}`)
+    return of({
+      order: orderRaw
+    })
+    // return this.httpService.delete(`${this.endpoint}/${orderRaw.id}`)
       .pipe(
         map((data: any) => {
           // data.order = this.parseOneOrder(data.order);
@@ -63,8 +72,7 @@ export class OrderService {
   apiGetOne(orderId: string): Observable<any> {
     // console.log('apiGetOne:', orderId);
     return of({
-      order: [],
-      totalCount: 2000,
+      order: ordersRawMock[0]
     })
     // return this.httpService.delete(`${this.endpoint}/${orderId}`)
       .pipe(
@@ -77,7 +85,11 @@ export class OrderService {
 
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
-    return this.httpService.get(`${this.endpoint}`, params)
+    return of({
+      orders: ordersRawMock,
+      totalCount: 2000,
+    })
+    // return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
         map((data: IGetAllOrdersSuccessData) => {
           data.orders = this.parseList(data.orders);
@@ -94,14 +106,23 @@ export class OrderService {
   parseOne(orderRaw: IOrderRaw): IOrderParsed {
     // console.log('parseOne:', orderRaw);
     const order = Object.assign({
-      customStoreName: '',
       customStatus: '',
+      customOrderAmount: 0,
+      customStoreName: '',
       customStoreContact: '',
     }, orderRaw);
 
+    order.customStatus = statusTypes[order.status];
+
+    order.customOrderAmount = !order.tpPercent ? 0 : order.productsSnapshot.reduce((result, product) => {
+
+      // generate TP price, against which the product was sold, in the order.
+      // use the record tpPercent field
+      return +(product.mrp - (product.mrp * (order.tpPercent || 0) / 100)).toFixed(2);
+    }, 0);
+
     // TODO implement these
     order.customStoreName = '';
-    order.customStatus = '';
     order.customStoreContact = '';
 
     return order;
