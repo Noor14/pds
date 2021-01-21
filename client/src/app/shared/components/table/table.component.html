@@ -20,7 +20,7 @@
                     [name]="contextPrefix + '__filterByColumn'"
                     [(ngModel)]="filterByObj.column">
               <option value="$">All Columns</option>
-              <option *ngFor='let col of columns'>{{col.name}}</option>
+              <option *ngFor='let col of columns' [value]="col.prop">{{col.name}}</option>
             </select>
           </div>
           <div class="col-12 col-sm-6">
@@ -28,6 +28,7 @@
                    name="-"
                    [id]="contextPrefix + '__filterByText'"
                    [name]="contextPrefix + '__filterByText'"
+                   (keyup)="onFilterChange()"
                    [(ngModel)]="filterByObj.text" placeholder="Search">
           </div>
 
@@ -55,7 +56,6 @@
   </div>
 
   <ngx-datatable
-    #mainTable
     class="material"
     [columnMode]="columnMode"
     [messages]="messages"
@@ -66,6 +66,7 @@
     rowHeight="auto"
     [headerHeight]="60"
     [footerHeight]="60"
+    #table
   >
 
     <!-- Action column -->
