@@ -27,9 +27,9 @@ export interface IOrderRaw {
 
 // custom generated fields here.
 export interface IOrderParsed extends IOrderRaw {
-  companyName: string;
-  discountPercent: number;
-  [prop: string]: any;
+  customStoreName: string;
+  customStatus: string;
+  customStoreContact: string;
 }
 
 export interface IAddUpdateSearchOrderConfig {
@@ -41,6 +41,7 @@ export interface IGetAllOrdersSuccessData {
   orders: IOrderRaw[],
   totalCount: number,
 }
+
 export interface IAddUpdateOrderSuccessData {
   order: IOrderRaw,
 }

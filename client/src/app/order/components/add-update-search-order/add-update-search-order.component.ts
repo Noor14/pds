@@ -1,8 +1,10 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 
-import { IOrderRaw, ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ITableConfig } from '@shared/components/table/table.model';
+import { IOrderRaw, ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
+import { OrderService } from '@root/app/order/services/order.service';
+import { UtilService } from '@shared/services/util.service';
 
 @Component({
   selector: 'app-add-update-search-order',
@@ -21,167 +23,128 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     [ECRUDModalModes.ReadOnly]: 'View Order',
   };
 
-  rows = [];
-
-  data = {
-    id: '',
-    store: '',
-    area: '',
-    status: '',
-    name: '',
-    formula: '',
-    grams: '',
-    contact: '',
-    company: '',
-    quantity: '',
-    // order: IOrderRaw[]
+  choices = {
+    stores: [],
   };
 
-  stores = [
-    {
-      id: 101,
-      name: 'Makki Medical Store'
-    }, {
-      id: 102,
-      name: 'Haala Medical Store'
-    }, {
-      id: 103,
-      name: 'Jhang Medical Store'
-    }
-  ];
+  rows = [];
 
-  areas = [
-    {
-      id: 401,
-      name: 'Some colony, Malir'
-    }, {
-      id: 402,
-      name: 'Haala road, near (some) bank'
-    }
-  ];
-
-  products = [
-    {
-      id: 1001,
-      name: 'Neorobon'
-    }, {
-      id: 1002,
-      name: 'Septran'
-    }
-  ];
-
-  productStatuses = [
-    {
-      value: 'urgent',
-      name: 'Urgent'
-    }, {
-      value: 'not_urgent',
-      name: 'Not Urgent'
-    }
-  ];
-
-  companies = [
-    {
-      id: 701,
-      name: 'Abbott'
-    }, {
-      id: 702,
-      name: 'Other'
-    }
-  ];
-
-  formulas = [
-    {
-      value: 'ds',
-      name: 'DS'
-    }, {
-      value: 'fort',
-      name: 'Fort'
-    }
-  ];
-
-  quantities = [
-    {
-      value: 12,
-      name: '12'
-    }, {
-      value: 24,
-      name: '24'
-    }
-  ];
-
-  grams = [
-    {
-      value: 10,
-      name: '10mg'
-    }, {
-      value: 50,
-      name: '50Mg'
-    }, {
-      value: 0.0005,
-      name: '5cc'
-    },  {
-      value: 0.1000,
-      name: '1000cc'
-    }
-  ];
+  data: any = {
+    storeId: undefined,
+    productsSnapshot: this.rows,
+  };
 
   get modalTitle(): string {
     const mode = this.config ? this.config.mode : ECRUDModalModes.Add;
-    console.log(this.config);
     return this.titles[mode];
   }
-  columns = [
-    { name: 'Order ID', prop: 'id'},
-    { name: 'Store', prop: 'orderByName'},
-    { name: 'Status', prop: 'status'},
-    { name: 'Amount', prop: 'oderAmount'},
-    { name: 'Ordered On', prop: 'orderedOn'},
-    { name: 'Store Contact', prop: 'orderByContact'},
-  ];
-  actions = [];
-
-  tableConfig: ITableConfig = {};
 
   formStatus = {
     sending: false,
     type: '',
     message: '',
   };
+
   responseMessages = {
     success: {
-      add: 'User has been added successfully.',
-      update: 'User has been updated successfully.',
+      add: 'Order has been created successfully.',
+      update: 'Order has been updated successfully.',
     },
     failure: {
-      add: 'Failed in adding user !',
-      update: 'Failed in updating user !',
+      add: 'Failed in creating new order !',
+      update: 'Failed in updating order !',
     },
   };
 
   constructor(
-    public bsModalRef: BsModalRef
+    public bsModalRef: BsModalRef,
+    public utilService: UtilService,
+    public orderService: OrderService,
   ) { }
+
+  ngOnInit(): void {
+    console.log('ngOnInit:');
+
+    // waiting for the assignment. i.e. for second event loop digest.
+    setTimeout(() => {
+      this.renderOrderToEdit();
+    });
+  }
+
+  renderOrderToEdit() {
+    if (this.config && this.config.order) {
+      this.data = this.utilService.deepCopyObject(this.config.order);
+    }
+  }
+
   resetForm(): void {
     console.log('resetForm:');
+    this.renderOrderToEdit();
+    this.resetFormStatus(false, '', '');
   }
 
-  submitForm(): any {
-    console.log('submitForm:', this.data);
-    this.bsModalRef.hide();
+  resetFormStatus(sending: boolean, type: string, message: string) {
+    console.log('resetFormStatus:');
+    this.formStatus.sending = sending;
+    this.formStatus.type = type;
+    this.formStatus.message = message;
   }
 
-  defaultSelectedOption ( value: any ) {
-    return (typeof value === 'string' && value.length <= 0 ? '' : value === null ? null : undefined);
+  submitForm(form: any): void {
+
+    // skip if fails validation
+    if (form.invalid) {
+      this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
+      return;
+    }
+
+    this.resetFormStatus(true, '', '');
+
+    switch (this.config?.mode) {
+      case ECRUDModalModes.Add:
+        this.addOrder(this.data);
+        break;
+      case ECRUDModalModes.Edit:
+        this.updateOrder(this.data);
+        break;
+    }
   }
 
-  closeModal(): any {
+  addOrder(order: IOrderRaw): void {
+    // this.orderService.apiAddOne(order)
+    //   .subscribe((res: any) => {
+    //       console.log('add order : success', res);
+    //
+    //       this.resetFormStatus(false, 'success', this.responseMessages.success.add);
+    //       this.closeModalAfterAWhile();
+    //     },
+    //     (reason: any) => {
+    //       console.log('add order : Failure', reason);
+    //       this.resetFormStatus(false, 'error', this.responseMessages.failure.add);
+    //     });
+  }
+
+  updateOrder(order: IOrderRaw): void {
+    // this.orderService.apiUpdateOne(order)
+    //   .subscribe((res: any) => {
+    //       console.log('updated order : success', res);
+    //       this.resetFormStatus(false, 'success', this.responseMessages.success.update);
+    //       this.closeModalAfterAWhile();
+    //     },
+    //     (res: any) => {
+    //       console.log('updated order : Failure', res);
+    //       this.resetFormStatus(false, 'error', this.responseMessages.failure.update);
+    //     });
+  }
+
+  closeModalAfterAWhile() {
+    setTimeout(this.bsModalRef.hide, 3000);
+  }
+
+  closeModal() {
     // console.log('closeModal:');
     this.result.error('Closed');
     this.bsModalRef.hide();
-  }
-  ngOnInit(): void {
-    // console.log(IOrderRaw[]);
   }
 
 }

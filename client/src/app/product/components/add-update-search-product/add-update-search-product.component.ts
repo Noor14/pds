@@ -90,6 +90,7 @@ export class AddUpdateSearchProductComponent implements OnInit {
   resetForm(): void {
     console.log('resetForm:');
     this.renderProductToEdit();
+    this.resetFormStatus(false, '', '');
   }
 
   resetFormStatus(sending: boolean, type: string, message: string) {

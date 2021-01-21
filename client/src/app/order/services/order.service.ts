@@ -1,18 +1,16 @@
 import { EventEmitter, Injectable } from '@angular/core';
+
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { UtilService } from '@shared/services/util.service';
-import { AddUpdateSearchOrderComponent } from '../components/add-update-search-order/add-update-search-order.component';
-import { ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../orders.model';
 import { HttpService } from '@shared/services/http.service';
+import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
 import {
   IAddUpdateOrderSuccessData,
   IGetAllOrdersSuccessData, IOrderParsed,
   IOrderRaw
 } from '@root/app/order/orders.model';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
-import { ICompanyRaw } from '@root/app/other-parties/components/companies/companies.model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,8 +62,11 @@ export class OrderService {
 
   apiGetOne(orderId: string): Observable<any> {
     // console.log('apiGetOne:', orderId);
-
-    return this.httpService.delete(`${this.endpoint}/${orderId}`)
+    return of({
+      order: [],
+      totalCount: 2000,
+    })
+    // return this.httpService.delete(`${this.endpoint}/${orderId}`)
       .pipe(
         map((data: any) => {
           data.order = this.parseOne(data.order);
@@ -93,12 +94,15 @@ export class OrderService {
   parseOne(orderRaw: IOrderRaw): IOrderParsed {
     // console.log('parseOne:', orderRaw);
     const order = Object.assign({
-      companyName: '',
-      discountPercent: 0,
+      customStoreName: '',
+      customStatus: '',
+      customStoreContact: '',
     }, orderRaw);
 
-    // order.customTP = +(order.mrp - (order.mrp * ordersSettings.tpPercent / 100)).toFixed(2);
-    // order.customDiscountPercent = +(order.net / (order.mrp - order.customTP) * 100).toFixed(2);
+    // TODO implement these
+    order.customStoreName = '';
+    order.customStatus = '';
+    order.customStoreContact = '';
 
     return order;
   }
