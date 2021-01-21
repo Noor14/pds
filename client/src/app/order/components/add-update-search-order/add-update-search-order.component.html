@@ -6,48 +6,47 @@
 </div>
 <div class="modal-body">
 
-  <form class="" name="productForm" (ngSubmit)="submitForm()">
-    <div class="row">
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="order_name">Store Name:</label>
-          <input type="text" class="form-control" name="order_name" id="order_name"
-                 [(ngModel)]="data.store">
-        </div>
-      </div>
+  <form class="" name="form" #form="ngForm" (ngSubmit)="submitForm(form)">
+    <div class="col-12 col-sm-4">
+      <div class="form-group">
+        <label for="order_storeId">Store:</label>
+        <select class="custom-select" name="order_storeId" id="order_storeId"
+                [(ngModel)]="data.storeId" #order_storeId='ngModel' required>
+          <option [value]="undefined">Select</option>
+          <option [value]="store.id" *ngFor="let store of choices.stores;"
+                  [innerText]="store.customName"></option>
+        </select>
 
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="order_amount">Amount:</label>
-          <input type="text" class="form-control" name="order_amount" id="order_amount"
-                 [(ngModel)]="data.amount">
-        </div>
+        <small *ngIf="order_storeId.invalid && (order_storeId.dirty || order_storeId.touched || form.submitted)"
+               class="form-text text-danger">
+          <span *ngIf="order_storeId.errors?.required">Store is required.</span>
+        </small>
       </div>
-
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="order_contact">contact:</label>
-          <input type="text" class="form-control" name="order_contact" id="order_contact"
-                 [(ngModel)]="data.contact">
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label for="order_status">Status:</label>
-          <input type="text" class="form-control" name="order_status" id="order_status"
-                 [(ngModel)]="data.status">
-        </div>
-      </div>
-
     </div>
 
     <!-- controls -->
     <div class="row">
       <div class="col modal-controls">
-        <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" [disabled]="formStatus.sending"
+                (click)="resetForm()">Reset</button>
+
+        <button type="submit" class="btn btn-success" [disabled]="formStatus.sending">
+          <fa-icon *ngIf="formStatus.sending"
+                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+          Submit
+        </button>
       </div>
     </div>
   </form>
+
+  <!--<app-table-->
+  <!--  [contextPrefix]="'orders'"-->
+  <!--  [config]="config"-->
+  <!--  [rows]="rows"-->
+  <!--  [columns]="columns"-->
+  <!--  [actions]="actions"-->
+  <!--  [messages]="messages"-->
+
+  <!--&gt;</app-table>-->
+
 </div>

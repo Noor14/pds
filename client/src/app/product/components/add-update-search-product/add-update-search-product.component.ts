@@ -7,6 +7,7 @@ import { companiesMock } from '@root/app/other-parties/components/companies/comp
 
 import { ProductService } from '../../services/product.service';
 import { productTypes } from '../../products.constant';
+import { UtilService } from '@shared/services/util.service';
 
 
 @Component({
@@ -65,6 +66,7 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
+    public utilService: UtilService,
     public productService: ProductService
   ) {
 
@@ -75,14 +77,20 @@ export class AddUpdateSearchProductComponent implements OnInit {
 
     // waiting for the assignment. i.e. for second event loop digest.
     setTimeout(() => {
-      if (this.config && this.config.product) {
-        this.data = this.config.product;
-      }
+      this.renderProductToEdit();
     });
+  }
+
+  renderProductToEdit() {
+    if (this.config && this.config.product) {
+      this.data = this.utilService.deepCopyObject(this.config.product);
+    }
   }
 
   resetForm(): void {
     console.log('resetForm:');
+    this.renderProductToEdit();
+    this.resetFormStatus(false, '', '');
   }
 
   resetFormStatus(sending: boolean, type: string, message: string) {

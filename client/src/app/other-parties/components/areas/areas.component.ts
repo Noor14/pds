@@ -5,6 +5,7 @@ import { ITableConfig } from '@shared/components/table/table.model';
 
 import { IAreaParsed } from './areas.model';
 import { AreaService } from '../../services/area.service';
+import { OtherPartiesModalsService } from '@root/app/other-parties/other-parties-modals.service';
 
 @Component({
   selector: 'app-areas',
@@ -23,30 +24,31 @@ export class AreasComponent implements OnInit {
     { name: 'Total Doctors', prop: 'totalDoctors'},
     { name: 'Total Contracts', prop: 'totalContracts'},
   ];
-  actions = [
-    { name: 'View / Edit', handler: this.editArea.bind(this)},
-    { name: 'Delete', handler: this.deleteArea.bind(this)},
-  ];
+  // actions = [
+  //   { name: 'View / Edit', handler: this.editArea.bind(this)},
+  //   { name: 'Delete', handler: this.deleteArea.bind(this)},
+  // ];
 
   config: ITableConfig = {
     // advanceSearchItem: {
     //   buttonText: 'Advance Search',
     //   handler: this.searchArea.bind(this),
     // },
-    addItem: {
-      buttonText: 'Add Area',
-      handler: this.addArea.bind(this),
-    }
+    // addItem: {
+    //   buttonText: 'Add Area',
+    //   handler: this.addArea.bind(this),
+    // }
   };
 
   constructor(
     private areaService: AreaService,
+    private otherPartiesModalsService: OtherPartiesModalsService,
     private utilService: UtilService,
   ) { }
 
   ngOnInit(): void {
 
-    this.fetchAreas();
+    // this.fetchAreas();
 
     // DEV - auto opener - deleteArea
     // this.deleteArea({}, 0);
@@ -65,7 +67,7 @@ export class AreasComponent implements OnInit {
 
   fetchAreas(): void {
     console.log('fetchAreas:');
-    this.areaService.apiFetchAreas()
+    this.areaService.apiGetList({})
       .subscribe((res: { areas: IAreaParsed[], totalCount: number }) => {
         console.log('fetchAreas: success', res.areas);
 
@@ -88,20 +90,24 @@ export class AreasComponent implements OnInit {
 
   addArea(): void {
     console.log('addArea:');
-    this.areaService.openAddArea();
+    this.otherPartiesModalsService.openAddArea();
+
+  // editArea(area: any, areaIdx: number): void {
+  //   console.log('editArea:', areaIdx, area);
+
   }
 
   editArea(area: any, areaIdx: number): void {
     console.log('editArea:', areaIdx, area);
 
-    this.areaService.openEditArea(area)
+    this.otherPartiesModalsService.openEditArea(area)
       .subscribe((res: any) => {
         console.log('editArea: success', res);
 
-        // here to refresh the table, or update the target area object and trigger table change.
-        //...
-      });
-  }
+  //       // here to refresh the table, or update the target area object and trigger table change.
+  //       //...
+  //     });
+  // }
 
   deleteArea(area: any, areaIdx: number): void {
     console.log('deleteArea:', areaIdx, area);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { UtilService } from '@shared/services/util.service';
@@ -14,6 +14,8 @@ import {
   IProductRaw,
   IGetAllProductsSuccessData, IAddUpdateProductSuccessData
 } from '../products.model';
+import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
+import { ICompanyRaw } from '@root/app/other-parties/components/companies/companies.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +78,10 @@ export class ProductService {
 
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
+    // return of({
+    //   products: [],
+    //   totalCount: 2000,
+    // })
     return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
         map((data: IGetAllProductsSuccessData) => {
@@ -99,7 +105,8 @@ export class ProductService {
     }, productRaw);
 
     // TODO implement to find company name using companyId from company list.
-    product.customCompanyName = '';
+    const affiliatedCompany = companiesMock.find((company: ICompanyRaw) => company.id === product.companyId);
+    product.customCompanyName = affiliatedCompany ? affiliatedCompany.name : '';
 
     product.customTP = +(product.mrp - (product.mrp * productsSettings.tpPercent / 100)).toFixed(2);
     product.customDiscountPercent = +(product.net / (product.mrp - product.customTP) * 100).toFixed(2);
