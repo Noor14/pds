@@ -3,18 +3,26 @@ import { ECRUDModalModes } from '@shared/models/modals.model';
 export { ECRUDModalModes };
 
 export interface IProductRaw {
-  id: string;
-  companyId: number;
-
+  // comes in payload
+  companyId: number; // "company.id"
   type: number;
-  batchNumber: string;
+  batchNumber: string; // optional
   packInfo: string;
   name: string;
   generic: string;
-
   mrp: number; // for customers
   net: number; // for distributions
   boxQuantity: number;
+
+  // to be generated on server
+  id: number;
+  createdOn: string; // (new Date()).toISOString(); // "2021-01-15T21:39:51.835Z"
+  createdBy: number; // id of user/admin
+  lastUpdatedOn: string;
+  lastUpdatedBy: number; // id of user/admin
+
+  // for GET only. dynamically calculated fields from BE.
+  // ...
 }
 // custom generated fields here.
 export interface IProductParsed extends IProductRaw {
