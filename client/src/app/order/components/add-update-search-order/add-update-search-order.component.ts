@@ -111,30 +111,30 @@ export class AddUpdateSearchOrderComponent implements OnInit {
   }
 
   addOrder(order: IOrderRaw): void {
-    // this.orderService.apiAddOne(order)
-    //   .subscribe((res: any) => {
-    //       console.log('add order : success', res);
-    //
-    //       this.resetFormStatus(false, 'success', this.responseMessages.success.add);
-    //       this.closeModalAfterAWhile();
-    //     },
-    //     (reason: any) => {
-    //       console.log('add order : Failure', reason);
-    //       this.resetFormStatus(false, 'error', this.responseMessages.failure.add);
-    //     });
+    this.orderService.apiAddOne(order)
+      .subscribe((res: any) => {
+          console.log('add order : success', res);
+
+          this.resetFormStatus(false, 'success', this.responseMessages.success.add);
+          this.closeModalAfterAWhile();
+        },
+        (reason: any) => {
+          console.log('add order : Failure', reason);
+          this.resetFormStatus(false, 'error', this.responseMessages.failure.add);
+        });
   }
 
   updateOrder(order: IOrderRaw): void {
-    // this.orderService.apiUpdateOne(order)
-    //   .subscribe((res: any) => {
-    //       console.log('updated order : success', res);
-    //       this.resetFormStatus(false, 'success', this.responseMessages.success.update);
-    //       this.closeModalAfterAWhile();
-    //     },
-    //     (res: any) => {
-    //       console.log('updated order : Failure', res);
-    //       this.resetFormStatus(false, 'error', this.responseMessages.failure.update);
-    //     });
+    this.orderService.apiUpdateOne(order)
+      .subscribe((res: any) => {
+          console.log('updated order : success', res);
+          this.resetFormStatus(false, 'success', this.responseMessages.success.update);
+          this.closeModalAfterAWhile();
+        },
+        (res: any) => {
+          console.log('updated order : Failure', res);
+          this.resetFormStatus(false, 'error', this.responseMessages.failure.update);
+        });
   }
 
   closeModalAfterAWhile() {
