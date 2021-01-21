@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CompaniesComponent } from './components/companies/companies.component';
+import { CompaniesComponent } from '../companies/companies.component';
 // import { WholesalersComponent } from './components/wholesalers/wholesalers.component';
 import { OtherPartiesComponent } from './other-parties.component';
-import { AreasComponent } from './components/areas/areas.component';
+import { AreasComponent } from '../areas/areas.component';
 
 const children: Routes = [
   { path: '', redirectTo: 'companies' },

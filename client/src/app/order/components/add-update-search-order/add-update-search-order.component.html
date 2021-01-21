@@ -14,7 +14,7 @@
                 [(ngModel)]="data.storeId" #order_storeId='ngModel' required>
           <option [value]="undefined">Select</option>
           <option [value]="store.id" *ngFor="let store of choices.stores;"
-                  [innerText]="store.customName"></option>
+                  [innerText]="store.name"></option>
         </select>
 
         <small *ngIf="order_storeId.invalid && (order_storeId.dirty || order_storeId.touched || form.submitted)"

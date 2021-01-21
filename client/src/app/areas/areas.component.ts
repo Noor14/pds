@@ -5,7 +5,7 @@ import { ITableConfig } from '@shared/components/table/table.model';
 
 import { IAreaParsed } from './areas.model';
 import { AreaService } from './services/area.service';
-import { AreaModalsService } from '@root/app/other-parties/components/areas/services/area-modals.service';
+import { AreaModalsService } from '@root/app/areas/services/area-modals.service';
 
 @Component({
   selector: 'app-areas',

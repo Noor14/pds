@@ -26,7 +26,7 @@
           <select class="custom-select" name="company_type" id="company_type"
                   [(ngModel)]="data.type" #company_type='ngModel' required>
             <option [value]="undefined">Select</option>
-            <option [value]="typeIdx" *ngFor="let type of companyTypes; let typeIdx = index;" [innerText]="type"></option>
+            <option [value]="typeIdx" *ngFor="let type of choices.companyTypes; let typeIdx = index;" [innerText]="type"></option>
           </select>
           <small *ngIf="company_type.invalid && (company_type.dirty || company_type.touched || companyForm.submitted)"
                  class="form-text text-danger">
@@ -80,7 +80,7 @@
           <select class="custom-select" name="company_person_type" id="company_person_type"
                   [(ngModel)]="data.persons[0].type" #company_person_type='ngModel' required>
             <option [value]="undefined">Select</option>
-            <option [value]="typeIdx" *ngFor="let type of parsonTypes; let typeIdx = index;" [innerText]="type"></option>
+            <option [value]="typeIdx" *ngFor="let type of choices.personTypes; let typeIdx = index;" [innerText]="type"></option>
           </select>
           <small *ngIf="company_person_type.invalid && (company_person_type.dirty || company_person_type.touched || companyForm.submitted)"
                  class="form-text text-danger">

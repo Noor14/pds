@@ -14,8 +14,8 @@ import {
   IProductRaw,
   IGetAllProductsSuccessData, IAddUpdateProductSuccessData
 } from '../products.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
-import { ICompanyRaw } from '@root/app/other-parties/components/companies/companies.model';
+import { companiesMock } from '@root/app/companies/companies.mock';
+import { ICompanyRaw } from '@root/app/companies/companies.model';
 
 @Injectable({
   providedIn: 'root'

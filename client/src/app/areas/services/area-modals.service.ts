@@ -5,8 +5,8 @@ import {
   ECRUDModalModes,
   IAddUpdateSearchAreaConfig,
   IAreaParsed
-} from '@root/app/other-parties/components/areas/areas.model';
-import { AddUpdateSearchAreaComponent } from '@root/app/other-parties/components/areas/components/add-update-search-area/add-update-search-area.component';
+} from '@root/app/areas/areas.model';
+import { AddUpdateSearchAreaComponent } from '@root/app/areas/components/add-update-search-area/add-update-search-area.component';
 
 @Injectable({
   providedIn: 'root'

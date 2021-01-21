@@ -5,6 +5,11 @@ import { ITableConfig } from '@shared/components/table/table.model';
 import { IOrderRaw, ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
 import { OrderService } from '@root/app/order/services/order.service';
 import { UtilService } from '@shared/services/util.service';
+import { IStoreParsed } from '@root/app/store/stores.model';
+import { IChoices } from '@shared/models/general.model';
+import { companyTypes } from '@root/app/companies/companies.constant';
+import { personTypes } from '@shared/constants/types.constant';
+import { StoreService } from '@root/app/store/services/store.service';
 
 @Component({
   selector: 'app-add-update-search-order',
@@ -23,12 +28,10 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     [ECRUDModalModes.ReadOnly]: 'View Order',
   };
 
-  choices = {
+  choices: IChoices = {
     stores: [],
   };
-
   rows = [];
-
   data: any = {
     storeId: undefined,
     productsSnapshot: this.rows,
@@ -44,7 +47,6 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     type: '',
     message: '',
   };
-
   responseMessages = {
     success: {
       add: 'Order has been created successfully.',
@@ -60,6 +62,7 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     public bsModalRef: BsModalRef,
     public utilService: UtilService,
     public orderService: OrderService,
+    public storeService: StoreService,
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +72,12 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     setTimeout(() => {
       this.renderOrderToEdit();
     });
+
+    // load stores for dropdown choices
+    this.storeService.apiGetList({})
+      .subscribe((res: { stores: IStoreParsed[], totalCount: number }) => {
+        this.choices.stores = res.stores;
+      });
   }
 
   renderOrderToEdit() {

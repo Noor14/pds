@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ICompanyParsed } from './companies.model';
 import { ITableConfig } from '@shared/components/table/table.model';
-import { CompanyService } from '@root/app/other-parties/services/company.service';
+import { CompanyService } from '@root/app/companies/services/company.service';
 import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 import { UtilService } from '@shared/services/util.service';
-import { OtherPartiesModalsService } from '@root/app/other-parties/other-parties-modals.service';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
+import { ICompanyParsed } from './companies.model';
+import { CompanyModalsService } from '@root/app/companies/services/company-modals.service';
 
 @Component({
   selector: 'app-companies',
@@ -50,7 +49,7 @@ export class CompaniesComponent implements OnInit {
 
   constructor(
     private companyService: CompanyService,
-    private otherPartiesModalsService: OtherPartiesModalsService,
+    private companyModalsService: CompanyModalsService,
     private utilService: UtilService
   ) { }
 
@@ -88,13 +87,13 @@ export class CompaniesComponent implements OnInit {
 
   addCompany(): void {
     console.log('addCompany:');
-    this.otherPartiesModalsService.openAddCompany();
+    this.companyModalsService.openAddCompany();
   }
 
   editCompany(company: any, companyIdx: number): void {
     console.log('editCompany:', companyIdx, company);
 
-    this.otherPartiesModalsService.openEditCompany(company)
+    this.companyModalsService.openEditCompany(company)
       .subscribe((res: any) => {
         console.log('editCompany: success', res);
       });

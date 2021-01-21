@@ -1,14 +1,15 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { UtilService } from '@shared/services/util.service';
-import { ECRUDModalModes, IAddUpdateSearchCompanyConfig, ICompanyParsed } from '@root/app/other-parties/components/companies/companies.model';
-import { AddUpdateSearchCompanyComponent } from '@root/app/other-parties/components/add-update-search-company/add-update-search-company.component';
-import { AddUpdateSearchAreaComponent } from '@root/app/other-parties/components/areas/components/add-update-search-area/add-update-search-area.component';
-import { IAddUpdateSearchAreaConfig, IAreaParsed } from '@root/app/other-parties/components/areas/areas.model';
+import {
+  ECRUDModalModes,
+  IAddUpdateSearchCompanyConfig, ICompanyParsed
+} from '@root/app/companies/companies.model';
+import { AddUpdateSearchCompanyComponent } from '@root/app/companies/components/add-update-search-company/add-update-search-company.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OtherPartiesModalsService {
+export class CompanyModalsService {
 
   constructor(
     private utilService: UtilService,

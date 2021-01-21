@@ -29,8 +29,10 @@ export class StoreService {
 
   apiAddOne(storeRaw: IStoreRaw): Observable<any> {
     // console.log('apiAddOne:', storeRaw);
-
-    return this.httpService.post(`${this.endpoint}`, storeRaw)
+    return of({
+      store: storeRaw
+    })
+    // return this.httpService.post(`${this.endpoint}`, storeRaw)
       .pipe(
         map((data: IAddStoreSuccessData) => {
           data.store = this.parseOne(data.store);
@@ -41,8 +43,10 @@ export class StoreService {
 
   apiUpdateOne(storeRaw: IStoreRaw): Observable<any> {
     // console.log('apiUpdateStore:', storeRaw);
-
-    return this.httpService.post(`${this.endpoint}/${storeRaw.id}`, storeRaw)
+    return of({
+      store: storeRaw
+    })
+    // return this.httpService.post(`${this.endpoint}/${storeRaw.id}`, storeRaw)
       .pipe(
         map((data: IAddStoreSuccessData) => {
           data.store = this.parseOne(data.store);
@@ -53,8 +57,10 @@ export class StoreService {
 
   apiDeleteOne(storeRaw: IStoreRaw): Observable<any> {
     // console.log('apiDeleteOne:', storeRaw);
-
-    return this.httpService.delete(`${this.endpoint}/${storeRaw.id}`)
+    return of({
+      store: storesRawMock[0]
+    })
+    // return this.httpService.delete(`${this.endpoint}/${storeRaw.id}`)
       .pipe(
         map((data: any) => {
           // data.store = this.parseOneStore(data.store);
@@ -65,8 +71,10 @@ export class StoreService {
 
   apiGetOne(storeId: string): Observable<any> {
     // console.log('apiGetOne:', storeId);
-
-    return this.httpService.delete(`${this.endpoint}/${storeId}`)
+    return of({
+      store: storesRawMock[0]
+    })
+    // return this.httpService.delete(`${this.endpoint}/${storeId}`)
       .pipe(
         map((data: any) => {
           data.store = this.parseOne(data.store);

@@ -4,14 +4,15 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ECRUDModalModes } from '@shared/models/modals.model';
 import {
-  IAddUpdateSearchCompanyConfig,
+  IAddUpdateSearchCompanyConfig, ICompanyParsed,
   ICompanyRaw
-} from '@root/app/other-parties/components/companies/companies.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
-import { companyTypes } from '@root/app/other-parties/components/companies/companies.constant';
+} from '@root/app/companies/companies.model';
+import { companiesMock } from '@root/app/companies/companies.mock';
+import { companyTypes } from '@root/app/companies/companies.constant';
 import { personTypes } from '@shared/constants/types.constant';
-import { CompanyService } from '@root/app/other-parties/services/company.service';
+import { CompanyService } from '@root/app/companies/services/company.service';
 import { UtilService } from '@shared/services/util.service';
+import { IChoices } from '@shared/models/general.model';
 
 @Component({
   selector: 'app-add-update-search-company',
@@ -33,9 +34,12 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
     return this.titles[mode];
   }
 
-  companyTypes = companyTypes;
-  parsonTypes = personTypes;
-  companies = companiesMock;
+  choices: IChoices = {
+    companyTypes: companyTypes,
+    personTypes: personTypes,
+
+    companies: [],
+  };
 
   formStatus = {
     sending: false,
@@ -72,9 +76,15 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
 
     setTimeout(() => {
       if (this.config && this.config.company) {
-        this.data = this.config.company;
+        this.data = this.utilService.deepCopyObject(this.config.company);
       }
     });
+
+    // load companies for dropdown choices
+    this.companyService.apiGetList({})
+      .subscribe((res: { companies: ICompanyParsed[] }) => {
+        this.choices.companies = res.companies;
+      });
   }
 
   renderProductToEdit() {

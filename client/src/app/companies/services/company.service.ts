@@ -12,8 +12,8 @@ import {
   IGetAllCompaniesSuccessData,
   ICompanyParsed,
   ICompanyRaw
-} from '@root/app/other-parties/components/companies/companies.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
+} from '@root/app/companies/companies.model';
+import { companiesMock } from '@root/app/companies/companies.mock';
 
 @Injectable({
   providedIn: 'root'
