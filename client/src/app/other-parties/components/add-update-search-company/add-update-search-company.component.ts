@@ -11,6 +11,7 @@ import { companiesMock } from '@root/app/other-parties/components/companies/comp
 import { companyTypes } from '@root/app/other-parties/components/companies/companies.constant';
 import { personTypes } from '@shared/constants/types.constant';
 import { CompanyService } from '@root/app/other-parties/services/company.service';
+import { UtilService } from '@shared/services/util.service';
 
 @Component({
   selector: 'app-add-update-search-company',
@@ -63,6 +64,7 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
+    public utilService: UtilService,
     public companyService: CompanyService
   ) { }
 
@@ -75,19 +77,30 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
     });
   }
 
+  renderProductToEdit() {
+    if (this.config && this.config.company) {
+      this.data = this.utilService.deepCopyObject(this.config.company);
+    }
+  }
+
+  resetForm(): void {
+    console.log('resetForm:');
+
+    this.renderProductToEdit();
+    this.resetFormStatus(false, '', '');
+  }
+
   resetFormStatus(sending: boolean, type: string, message: string): void {
     console.log('resetFormStatus:');
+
     this.formStatus.sending = sending;
     this.formStatus.type = type;
     this.formStatus.message = message;
   }
 
-  resetForm(): void {
-    console.log('resetForm:');
-  }
-
   submitForm(form: any): any {
     console.log('submitForm:');
+
     // skip if fails validation
     if (form.invalid) {
       this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
