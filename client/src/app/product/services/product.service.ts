@@ -67,7 +67,7 @@ export class ProductService {
   apiGetOne(productId: string): Observable<any> {
     // console.log('apiGetOne:', productId);
 
-    return this.httpService.delete(`${this.endpoint}/${productId}`)
+    return this.httpService.get(`${this.endpoint}/${productId}`)
       .pipe(
         map((data: any) => {
           data.product = this.parseOne(data.product);
