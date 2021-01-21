@@ -46,7 +46,7 @@ export class OtherPartiesModalsService {
   }
 
   private addUpdateSearchArea(config: IAddUpdateSearchAreaConfig): EventEmitter<any> {
-    return this.utilService.modal(AddUpdateSearchAreaComponent, config, { class: 'modal-lg' });
+    return this.utilService.modal(AddUpdateSearchAreaComponent, config, { class: 'modal-sm' });
   }
 
   // openSearchArea(): EventEmitter<any> {
