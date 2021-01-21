@@ -7,7 +7,7 @@
                [(ngModel)]="data.username" #users_username="ngModel"
                maxlength="17" minlength="7" required>
 
-        <small *ngIf="users_username.invalid && (users_username.dirty || users_username.touched || userForm.submitted)"
+        <small *ngIf="users_username.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_username.errors?.required">Username is required.</span>
           <span *ngIf="users_username.errors?.minlength">Username must be at least 7 characters long.</span>
@@ -24,7 +24,7 @@
           <option [value]="type.value" *ngFor="let type of types;" [innerText]="type.name"></option>
         </select>
 
-        <small *ngIf="users_type.invalid && (users_type.dirty || users_type.touched || userForm.submitted)"
+        <small *ngIf="users_type.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_type.errors?.required">Type is required.</span>
 <!--          <span *ngIf="users_type.errors?.minlength">Type must be at least 3 characters long.</span>-->
@@ -39,7 +39,7 @@
                [(ngModel)]="data.firstName" #users_firstName="ngModel"
                maxlength="10" minlength="4" required>
 
-        <small *ngIf="users_firstName.invalid && (users_firstName.dirty || users_firstName.touched || userForm.submitted)"
+        <small *ngIf="users_firstName.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_firstName.errors?.required">First Name is required.</span>
           <span *ngIf="users_firstName.errors?.minlength">First Name must be at least 4 characters long.</span>
@@ -54,7 +54,7 @@
                [(ngModel)]="data.lastName" #users_lastName="ngModel"
                maxlength="10" minlength="4" required>
 
-        <small *ngIf="users_lastName.invalid && (users_lastName.dirty || users_lastName.touched || userForm.submitted)"
+        <small *ngIf="users_lastName.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_lastName.errors?.required">Last Name is required.</span>
           <span *ngIf="users_lastName.errors?.minlength">Last Name must be at least 4 characters long.</span>
@@ -68,7 +68,7 @@
         <input type="email" class="form-control" name="users_email" id="users_email"
                [(ngModel)]="data.email" #users_email="ngModel" required>
 
-        <small *ngIf="users_email.invalid && (users_email.dirty || users_email.touched || userForm.submitted)"
+        <small *ngIf="users_email.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_email.errors?.required">Email is required.</span>
 <!--          <span *ngIf="users_email.errors?.minlength">Email must be at least 7 characters long.</span>-->
@@ -83,7 +83,7 @@
                [(ngModel)]="data.contact" #users_contact="ngModel"
                maxlength="13" minlength="11" required>
 
-        <small *ngIf="users_contact.invalid && (users_contact.dirty || users_contact.touched || userForm.submitted)"
+        <small *ngIf="users_contact.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_contact.errors?.required">Contact is required.</span>
           <span *ngIf="users_contact.errors?.minlength">Contact must be at least 11 characters long.</span>
@@ -98,7 +98,7 @@
                [(ngModel)]="data.address" #users_address="ngModel"
                maxlength="30" minlength="10" required>
 
-        <small *ngIf="users_address.invalid && (users_address.dirty || users_address.touched || userForm.submitted)"
+        <small *ngIf="users_address.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_address.errors?.required">Address is required.</span>
           <span *ngIf="users_address.errors?.minlength">Address must be at least 10 characters long.</span>
@@ -115,7 +115,7 @@
           <option [value]="area.id" *ngFor="let area of areas;" [innerText]="area.name"></option>
         </select>
 
-        <small *ngIf="users_area.invalid && (users_area.dirty || users_area.touched || userForm.submitted)"
+        <small *ngIf="users_area.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_area.errors?.required">Area is required.</span>
 <!--          <span *ngIf="users_area.errors?.minlength">Area must be at least 7 characters long.</span>-->
@@ -130,7 +130,7 @@
                [(ngModel)]="data.storeName" #users_storeName="ngModel"
                maxlength="30" minlength="7" required>
 
-        <small *ngIf="users_storeName.invalid && (users_storeName.dirty || users_storeName.touched || userForm.submitted)"
+        <small *ngIf="users_storeName.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_storeName.errors?.required">Store Name is required.</span>
           <span *ngIf="users_storeName.errors?.minlength">Store Name must be at least 10 characters long.</span>
@@ -148,7 +148,7 @@
                   [innerText]="spec.name"></option>
         </select>
 
-        <small *ngIf="users_specialties.invalid && (users_specialties.dirty || users_specialties.touched || userForm.submitted)"
+        <small *ngIf="users_specialties.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_specialties.errors?.required">Company is required.</span>
         </small>
@@ -163,7 +163,7 @@
                [(ngModel)]="data.experienceSinceYear" #users_experienceSinceYear="ngModel"
                maxlength="10" minlength="4" required>
 
-        <small *ngIf="users_experienceSinceYear.invalid && (users_experienceSinceYear.dirty || users_experienceSinceYear.touched || userForm.submitted)"
+        <small *ngIf="users_experienceSinceYear.invalid && (userForm.submitted)"
                class="form-text text-danger">
           <span *ngIf="users_experienceSinceYear.errors?.required">Experience is required.</span>
           <span *ngIf="users_experienceSinceYear.errors?.minlength">Experience must be at least 7 characters long.</span>

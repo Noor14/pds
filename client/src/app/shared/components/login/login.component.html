@@ -16,7 +16,7 @@
                  required
           >
 
-          <small *ngIf="login_username.invalid && (login_username.dirty || login_username.touched || loginForm.submitted)"
+          <small *ngIf="login_username.invalid && (loginForm.submitted)"
                  class="form-text text-danger">
             <span *ngIf="login_username.errors?.required">Please provide username.</span>
           </small>
@@ -31,7 +31,7 @@
                  required
           >
 
-          <small *ngIf="login_password.invalid && (login_password.dirty || login_password.touched || loginForm.submitted)"
+          <small *ngIf="login_password.invalid && (loginForm.submitted)"
                  class="form-text text-danger">
             <span *ngIf="login_password.errors?.required">Please provide password.</span>
           </small>
