@@ -4,12 +4,13 @@ import { IProductRaw } from '@root/app/product/products.model';
 export { ECRUDModalModes };
 
 export interface IOrderRaw {
-  id: number;
-  status: number; // 1, 2, 3
+  // comes in payload
   storeId: number; // against which the order is made.
-
   productsSnapshot: IProductRaw[]; // at the time of order, snapshot/copies of products objects.
 
+  // to be generated on server
+  id: number;
+  status: number; // 1, 2, 3
   createdOn: string; // can be used as "Pending" state on, and by.
   createdBy: number;
   lastUpdatedOn: string;

@@ -77,7 +77,11 @@ export class AreaService {
 
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
-    return this.httpService.get(`${this.endpoint}`, params)
+    return of({
+      areas: areasRawMock,
+      totalCount: 2000,
+    })
+    // return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
         map((data: IGetAllAreasSuccessData) => {
           data.areas = this.parseList(data.areas);

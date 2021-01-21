@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { UtilService } from '@shared/services/util.service';
@@ -78,6 +78,10 @@ export class ProductService {
 
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
+    // return of({
+    //   products: [],
+    //   totalCount: 2000,
+    // })
     return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
         map((data: IGetAllProductsSuccessData) => {
