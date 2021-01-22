@@ -8,27 +8,13 @@
 
 // third-party dependencies
 const express = require('express');
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
 const morganLogger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
-const environment = require('./environments/environment');
 
-  // app modules
+// app modules
 const appRoutes = require('./app.routes.js');
-const uri = `${environment.database.baseURI}/${environment.database.name}?retryWrites=true&w=majority`;
-
-mongoose.connect(uri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useCreateIndex: true,
-	useFindAndModify: false
-  })
-mongoose.connection.on('error', function(err) {
-	console.error('MongoDB connection error: ' + err);
-	process.exit(-1);
-});
+const { mongooseConnectService } = require('./src/shared/services/mongooseConnect');
 
 /* locals */
 const config = {
@@ -45,9 +31,11 @@ const config = {
 	],
 };
 
-
 /* initialization */
 const app = express();
+
+// initialize DB connection to mongodb Atlas, via mongoose.
+mongooseConnectService.initialize();
 
 /* middlewares */
 // app.use(morganLogger('combined'));
@@ -76,7 +64,7 @@ app.use(express.static(path.join(__dirname, config.SERVE_DIR)))
 
 // app APIs routes
 app.get('/', (req, res) => {
-	// TODO - server shouldn't respond on root route. for security.
+	// TODO - for PROD, server shouldn't respond on root route. for security.
 	res.send('Server is running.');
 });
 
