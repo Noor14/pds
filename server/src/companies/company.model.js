@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Schema = mongoose.Schema;
 const autoIncrement = require('mongoose-auto-increment');
-const { connectDB } = require('../shared/services/mongodbConnect');
 
 const companiesSchema = new Schema({
     id: {
@@ -33,20 +32,21 @@ const companiesSchema = new Schema({
         required: true, 
         default: Date.now
     }, 
-    createdBy: Number, // id of user/admin
     lastUpdatedOn: {
         type: Date, 
         required: true, 
         default: Date.now 
     },
+    createdBy: Number, // id of user/admin
     lastUpdatedBy: Number, // id of user/admin
 
 });
-module.exports = mongoose.model('companies', companiesSchema);
+
 autoIncrement.initialize(mongoose.connection);
 companiesSchema.plugin(autoIncrement.plugin, {
-    model: 'companies',
-    field: 'id',
-    startAt: 100,
-    incrementBy: 1
-});
+        model: 'companies',
+        field: 'id',
+        startAt: 100,
+        incrementBy: 1
+    });
+module.exports = mongoose.model('companies', companiesSchema);

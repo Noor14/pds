@@ -8,13 +8,27 @@
 
 // third-party dependencies
 const express = require('express');
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var morganLogger = require('morgan');
 var bodyParser = require('body-parser');
 var path = require('path');
+const environment = require('./environments/environment');
 
-// app modules
+  // app modules
 const appRoutes = require('./app.routes.js');
-const mongodbConnect = require('./src/shared/services/mongodbConnect');
+const uri = `${environment.database.baseURI}/${environment.database.name}?retryWrites=true&w=majority`;
+
+mongoose.connect(uri, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useCreateIndex: true,
+	useFindAndModify: false
+  })
+mongoose.connection.on('error', function(err) {
+	console.error('MongoDB connection error: ' + err);
+	process.exit(-1);
+});
 
 /* locals */
 const config = {
