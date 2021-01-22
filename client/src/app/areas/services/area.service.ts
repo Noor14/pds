@@ -7,14 +7,14 @@ import { UtilService } from '@shared/services/util.service';
 import { HttpService } from '@shared/services/http.service';
 import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
 
-import { areasRawMock } from '../components/areas/areas.mock';
+import { areasRawMock } from '../areas.mock';
 import {
   IAddUpdateAreaSuccessData,
   IAreaParsed,
   IAreaRaw,
   IGetAllAreasSuccessData,
 
-} from '../components/areas/areas.model';
+} from '../areas.model';
 
 @Injectable({
   providedIn: 'root'

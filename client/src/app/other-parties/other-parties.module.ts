@@ -5,12 +5,12 @@ import { SharedModule } from '@shared/shared.module';
 import { OtherPartiesRoutingModule } from './other-parties-routing.module';
 
 import { OtherPartiesComponent } from './other-parties.component';
-import { CompaniesComponent } from './components/companies/companies.component';
-import { WholesalersComponent } from './components/wholesalers/wholesalers.component';
-import { AddUpdateSearchCompanyComponent } from './components/add-update-search-company/add-update-search-company.component';
-import { AddUpdateSearchWholesalerComponent } from './components/add-update-search-wholesaler/add-update-search-wholesaler.component';
-import { AreasComponent } from './components/areas/areas.component';
-import { AddUpdateSearchAreaComponent } from './components/add-update-search-area/add-update-search-area.component';
+import { CompaniesComponent } from '../companies/companies.component';
+import { WholesalersComponent } from '../wholesalers/wholesalers.component';
+import { AddUpdateSearchCompanyComponent } from '../companies/components/add-update-search-company/add-update-search-company.component';
+import { AddUpdateSearchWholesalerComponent } from '../wholesalers/components/add-update-search-wholesaler/add-update-search-wholesaler.component';
+import { AreasComponent } from '../areas/areas.component';
+import { AddUpdateSearchAreaComponent } from '../areas/components/add-update-search-area/add-update-search-area.component';
 
 
 @NgModule({

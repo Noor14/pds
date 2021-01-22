@@ -15,8 +15,8 @@ import { ProductModalsService } from '@root/app/product/services/product-modals.
 export class ProductsComponent implements OnInit {
   rows: IProductParsed[] = [];
   columns = [
-    // { name: 'Product ID', prop: 'id',},
-    { name: 'Batch #', prop: 'batchNumber'},
+    { name: 'Product ID', prop: 'id',},
+    // { name: 'Batch #', prop: 'batchNumber'},
     { name: 'Product Name', prop: 'name'},
     { name: 'Generic', prop: 'generic'},
     // { name: 'Type', prop: 'type',},

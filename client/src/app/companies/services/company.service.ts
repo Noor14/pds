@@ -12,8 +12,9 @@ import {
   IGetAllCompaniesSuccessData,
   ICompanyParsed,
   ICompanyRaw
-} from '@root/app/other-parties/components/companies/companies.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
+} from '@root/app/companies/companies.model';
+import { companiesMock } from '@root/app/companies/companies.mock';
+import { companyTypes } from '@root/app/companies/companies.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,10 @@ export class CompanyService {
 
   apiAddOne(companyRaw: ICompanyRaw): Observable<any> {
     // console.log('apiAddOne:', companyRaw);
-
-    return this.httpService.post(`${this.endpoint}`, companyRaw)
+    return of({
+      company: companyRaw
+    })
+    // return this.httpService.post(`${this.endpoint}`, companyRaw)
       .pipe(
         map((data: IAddCompanySuccessData) => {
           data.company = this.parseOne(data.company);
@@ -40,8 +43,10 @@ export class CompanyService {
 
   apiUpdateOne(companyRaw: ICompanyRaw): Observable<any> {
     // console.log('apiUpdateCompany:', companyRaw);
-
-    return this.httpService.put(`${this.endpoint}/${companyRaw.id}`, companyRaw)
+    return of({
+      company: companyRaw
+    })
+    // return this.httpService.put(`${this.endpoint}/${companyRaw.id}`, companyRaw)
       .pipe(
         map((data: IAddCompanySuccessData) => {
           data.company = this.parseOne(data.company);
@@ -52,11 +57,13 @@ export class CompanyService {
 
   apiDeleteOne(companyRaw: ICompanyRaw): Observable<any> {
     // console.log('apiDeleteOne:', companyRaw);
-
-    return this.httpService.delete(`${this.endpoint}/${companyRaw.id}`)
+    return of({
+      company: companyRaw,
+    })
+    // return this.httpService.delete(`${this.endpoint}/${companyRaw.id}`)
       .pipe(
         map((data: any) => {
-          // data.company = this.parseOneCompany(data.company);
+          data.company = this.parseOne(data.company);
           return data;
         })
       );
@@ -64,8 +71,11 @@ export class CompanyService {
 
   apiGetOne(companyId: string): Observable<any> {
     // console.log('apiGetOne:', companyId);
-
-    return this.httpService.delete(`${this.endpoint}/${companyId}`)
+    return of({
+      company: companiesMock[0],
+      totalCount: 2000,
+    })
+    // return this.httpService.get(`${this.endpoint}/${companyId}`)
       .pipe(
         map((data: any) => {
           data.company = this.parseOne(data.company);
@@ -97,11 +107,12 @@ export class CompanyService {
   parseOne(companyRaw: ICompanyRaw): ICompanyParsed {
     // console.log('parseOne:', companyRaw);
     const company = Object.assign({
+      customType: '',
       customPersons: '',
     }, companyRaw);
 
-    // TODO implement
-    company.customPersons = '';
+    company.customType = companyTypes[company.type];
+    company.customPersons = company.persons[0].phone.join('<br>');
 
     return company;
   }

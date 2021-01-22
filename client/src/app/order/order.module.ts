@@ -9,6 +9,11 @@ import { OrdersComponent } from './orders.component';
 
 
 @NgModule({
+
+  // TODO remove when table modal issue gets fixed.
+  // entryComponents: [
+  //   AddUpdateSearchOrderComponent,
+  // ],
   declarations: [
     OrdersComponent,
     AddUpdateSearchOrderComponent
@@ -18,6 +23,6 @@ import { OrdersComponent } from './orders.component';
     SharedModule,
 
     OrderRoutingModule,
-  ]
+  ],
 })
 export class OrderModule { }

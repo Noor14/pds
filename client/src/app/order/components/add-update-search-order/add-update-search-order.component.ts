@@ -1,10 +1,17 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
+
 import { ITableConfig } from '@shared/components/table/table.model';
-import { IOrderRaw, ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
 import { OrderService } from '@root/app/order/services/order.service';
 import { UtilService } from '@shared/services/util.service';
+import { IStoreParsed } from '@root/app/store/stores.model';
+import { IChoices } from '@shared/models/general.model';
+import { StoreService } from '@root/app/store/services/store.service';
+import { productsSettings } from '@root/app/product/products.constant';
+import { IProductParsed } from '@root/app/product/products.model';
+
+import { IOrderRaw, ECRUDModalModes, IAddUpdateSearchOrderConfig } from '../../orders.model';
 
 @Component({
   selector: 'app-add-update-search-order',
@@ -23,15 +30,46 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     [ECRUDModalModes.ReadOnly]: 'View Order',
   };
 
-  choices = {
-    stores: [],
+  rows: IProductParsed[] = [];
+  columns = [
+    { name: 'Product ID', prop: 'id',},
+    // { name: 'Batch #', prop: 'batchNumber'},
+    { name: 'Product Name', prop: 'name'},
+    { name: 'Generic', prop: 'generic'},
+    // { name: 'Type', prop: 'type',},
+    { name: 'Pack', prop: 'packInfo'},
+    { name: 'M.R.P', prop: 'mrp'},
+    { name: 'Company', prop: 'customCompanyName'},
+  ];
+  actions = [];
+  messages = {
+    emptyMessage: 'No products selected yet. Please use product search box to search for products.',
   };
-
-  rows = [];
+  tableConfig: ITableConfig = {
+    // advanceSearchItem: {
+    //   buttonText: 'Advance Search',
+    //   handler: this.searchProduct.bind(this),
+    // },
+    // addItem: {
+    //   buttonText: 'Add Product',
+    //   handler: this.addProduct.bind(this),
+    // }
+  };
 
   data: any = {
     storeId: undefined,
     productsSnapshot: this.rows,
+
+    // visible to admin only.
+    tpPercent: productsSettings.tpPercent,
+  };
+
+  choices: IChoices = {
+    stores: [],
+  };
+  autoComplete = {
+    text: '',
+    tableEnabled: false,
   };
 
   get modalTitle(): string {
@@ -44,7 +82,6 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     type: '',
     message: '',
   };
-
   responseMessages = {
     success: {
       add: 'Order has been created successfully.',
@@ -60,6 +97,7 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     public bsModalRef: BsModalRef,
     public utilService: UtilService,
     public orderService: OrderService,
+    public storeService: StoreService,
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +107,17 @@ export class AddUpdateSearchOrderComponent implements OnInit {
     setTimeout(() => {
       this.renderOrderToEdit();
     });
+
+    // TODO remove when table modal issue gets fixed.
+    setTimeout(() => {
+      this.autoComplete.tableEnabled = true;
+    }, 1000);
+
+    // load stores for dropdown choices
+    this.storeService.apiGetList({})
+      .subscribe((res: { stores: IStoreParsed[], totalCount: number }) => {
+        this.choices.stores = res.stores;
+      });
   }
 
   renderOrderToEdit() {

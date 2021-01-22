@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ECRUDModalModes, IAddUpdateSearchProductConfig, IProductRaw } from '../../products.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
+import { companiesMock } from '@root/app/companies/companies.mock';
 
 import { ProductService } from '../../services/product.service';
 import { productTypes } from '../../products.constant';

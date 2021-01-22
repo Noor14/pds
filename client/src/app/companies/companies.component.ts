@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ICompanyParsed } from './companies.model';
 import { ITableConfig } from '@shared/components/table/table.model';
-import { CompanyService } from '@root/app/other-parties/services/company.service';
+import { CompanyService } from '@root/app/companies/services/company.service';
 import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 import { UtilService } from '@shared/services/util.service';
-import { OtherPartiesModalsService } from '@root/app/other-parties/other-parties-modals.service';
+import { ICompanyParsed } from './companies.model';
+import { CompanyModalsService } from '@root/app/companies/services/company-modals.service';
 
 @Component({
   selector: 'app-companies',
@@ -18,12 +18,12 @@ export class CompaniesComponent implements OnInit {
   columns = [
     { name: 'Company ID', prop: 'id'},
     { name: 'Company Name', prop: 'name'},
-    { name: 'Type', prop: 'type'},
-    { name: 'Started Since', prop: 'startedSince'},
+    { name: 'Type', prop: 'customType'},
+    { name: 'Started Since', prop: 'createdOn'},
     { name: 'Total Products', prop: 'totalProducts'},
     { name: 'Total Orders', prop: 'totalOrders'},
     { name: 'Total Sale', prop: 'totalAmount'},
-    { name: 'Contact', prop: 'contact'},
+    { name: 'Contact', prop: 'customPersons'},
   ];
   actions = [
     { name: 'View / Edit', handler: this.editCompany.bind(this)},
@@ -49,7 +49,7 @@ export class CompaniesComponent implements OnInit {
 
   constructor(
     private companyService: CompanyService,
-    private otherPartiesModalsService: OtherPartiesModalsService,
+    private companyModalsService: CompanyModalsService,
     private utilService: UtilService
   ) { }
 
@@ -87,13 +87,13 @@ export class CompaniesComponent implements OnInit {
 
   addCompany(): void {
     console.log('addCompany:');
-    this.otherPartiesModalsService.openAddCompany();
+    this.companyModalsService.openAddCompany();
   }
 
   editCompany(company: any, companyIdx: number): void {
     console.log('editCompany:', companyIdx, company);
 
-    this.otherPartiesModalsService.openEditCompany(company)
+    this.companyModalsService.openEditCompany(company)
       .subscribe((res: any) => {
         console.log('editCompany: success', res);
       });

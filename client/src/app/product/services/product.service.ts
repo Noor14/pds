@@ -14,8 +14,8 @@ import {
   IProductRaw,
   IGetAllProductsSuccessData, IAddUpdateProductSuccessData
 } from '../products.model';
-import { companiesMock } from '@root/app/other-parties/components/companies/companies.mock';
-import { ICompanyRaw } from '@root/app/other-parties/components/companies/companies.model';
+import { companiesMock } from '@root/app/companies/companies.mock';
+import { ICompanyRaw } from '@root/app/companies/companies.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +67,7 @@ export class ProductService {
   apiGetOne(productId: string): Observable<any> {
     // console.log('apiGetOne:', productId);
 
-    return this.httpService.delete(`${this.endpoint}/${productId}`)
+    return this.httpService.get(`${this.endpoint}/${productId}`)
       .pipe(
         map((data: any) => {
           data.product = this.parseOne(data.product);

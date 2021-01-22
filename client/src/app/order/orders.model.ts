@@ -8,6 +8,8 @@ export interface IOrderRaw {
   storeId: number; // against which the order is made.
   productsSnapshot: IProductRaw[]; // at the time of order, snapshot/copies of products objects.
 
+  tpPercent?: number; // only admin can send, otherwise server generates it as default from vertical settings, e.g. 15
+
   // to be generated on server
   id: number;
   status: number; // 1, 2, 3

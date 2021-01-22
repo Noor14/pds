@@ -5,6 +5,8 @@ import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
 import { UtilService } from '@shared/services/util.service';
 import { OrderModalService } from '@root/app/order/services/order-modal.service';
 import { ITableConfig } from '@shared/components/table/table.model';
+import { IOrderParsed } from '@root/app/order/orders.model';
+import { ICompanyParsed } from '@root/app/companies/companies.model';
 
 @Component({
   selector: 'app-orders',
@@ -12,21 +14,14 @@ import { ITableConfig } from '@shared/components/table/table.model';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-  rows = [
-    { id: '0000101', status: 'Pending', orderByName: 'Bismillah Medical Store', orderedOn: '04:30PM 01/Feb/2021', oderAmount: 'Rs. 40,235', orderByContact: '+923001234567'},
-    { id: '0000102', status: 'In Progress', orderByName: 'Ahmed Pharmacy', orderedOn: '03:30PM 01/Feb/2021', oderAmount: 'Rs. 10,800', orderByContact: '+92333199999'},
-    { id: '0000103', status: 'In Progress', orderByName: 'Rutba Medical Complex', orderedOn: '02:00PM 01/Feb/2021', oderAmount: 'Rs. 1,42,000', orderByContact: '+923021234500'},
-    { id: '0000104', status: 'Processed', orderByName: 'Boraak Pharmacy', orderedOn: '01:30PM 01/Feb/2021', oderAmount: 'Rs. 2,00,000', orderByContact: '+92300177777'},
-    { id: '0000105', status: 'Pending', orderByName: 'Yaqoob Medical', orderedOn: '01:00PM 01/Feb/2021', oderAmount: 'Rs. 3,20,000', orderByContact: '+923001234567'},
-    { id: '0000106', status: 'Processed', orderByName: 'Pakistan Medical', orderedOn: '11:00AM 01/Feb/2021', oderAmount: 'Rs. 15,000', orderByContact: '+92344123998035'},
-  ];
+  rows: IOrderParsed[] = [];
   columns = [
     { name: 'Order ID', prop: 'id'},
-    { name: 'Store', prop: 'orderByName'},
-    { name: 'Status', prop: 'status'},
-    { name: 'Amount', prop: 'oderAmount'},
-    { name: 'Ordered On', prop: 'orderedOn'},
-    { name: 'Store Contact', prop: 'orderByContact'},
+    { name: 'Store Name', prop: 'customStoreName'},
+    { name: 'Status', prop: 'customStatus'},
+    { name: 'Amount', prop: 'customOrderAmount'},
+    { name: 'Ordered On', prop: 'createdOn'},
+    { name: 'Store Contact', prop: 'customStoreContact'},
   ];
   actions = [
     { name: 'View / Edit', handler: this.editOrder.bind(this)},
@@ -43,6 +38,12 @@ export class OrdersComponent implements OnInit {
       handler: this.addOrder.bind(this),
     }
   };
+  messages = {
+    emptyMessage: '', // dynamic based of the fetch error, or filter to none.
+    customNoRecords: 'No Orders found in the system. please click "New Order" to add one.',
+    customFilteredNoMatch: 'No Orders match with entered value.',
+    customFetchError: 'Failed in fetching Orders.',
+  };
 
   constructor(
     private orderService: OrderService,
@@ -52,8 +53,26 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.fetchOrders();
+
     // DEV - auto opener - addOrder
     // this.addOrder();
+  }
+
+  fetchOrders(): void {
+    // console.log('fetchOrders:');
+    this.orderService.apiGetList({})
+      .subscribe((res: { orders: IOrderParsed[], totalCount: number }) => {
+        console.log('fetchOrders: success', res.orders);
+
+        this.rows = res.orders;
+        // this.rows = [];
+
+        this.messages.emptyMessage = this.messages.customNoRecords;
+      }, (reason: string) => {
+        console.log('fetchOrders: error', reason);
+        this.messages.emptyMessage = this.messages.customFetchError;
+      });
   }
 
   addOrder(): void {
