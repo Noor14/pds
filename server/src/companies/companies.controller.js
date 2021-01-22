@@ -5,6 +5,7 @@
 // app modules
 const respond = require('../shared/services/respond');
 const { databaseService } = require('../shared/services/database');
+const { companiesService } = require('./companies.service');
 const company = require('./company.model');
 
 // local
@@ -41,6 +42,9 @@ async function addOne(req, res) {
 			return;
 		}
 
+		// fill in eval / aggregate based fields.
+		newCompany = companiesService.fillInAdditionalFieldsForCompany(newCompany);
+
 		respond.withSuccess(res, {
 			company: newCompany
 		});
@@ -54,13 +58,18 @@ async function updateOne(req, res) {
 	// add and protect common fields
 	databaseService.apiFillInFieldsForUpdate(req, item);
 
-	company.findOneAndUpdate({ id: { $eq: req.params.id } }, item, { new:  true }, (error, updatedCompany) => {
+	company.findOneAndUpdate({ id: { $eq: item.id } }, item, { new:  true }, (error, updatedCompany) => {
 
 		// case: DB error
 		if (error) {
 			respond.withFailure(res, `${controllerConfig.entityNameSingle} could not be updated.`, error);
 			return;
 		}
+
+		// TODO - review if we should inject in server generated fields ?
+
+		// fill in eval / aggregate based fields.
+		updatedCompany = companiesService.fillInAdditionalFieldsForCompany(updatedCompany);
 
 		respond.withSuccess(res, {
 			company: updatedCompany
@@ -77,6 +86,10 @@ async function deleteOne(req, res) {
 			respond.withFailure(res, `${controllerConfig.entityNameSingle} could not be deleted.`, error);
 		}
 
+		// fill in eval / aggregate based fields.
+		// no need here.
+		// company = companiesService.fillInAdditionalFieldsForCompany(company);
+
 		respond.withSuccess(res, {
 			company: company
 		});
@@ -91,6 +104,9 @@ async function getOne(req, res) {
 		if (error) {
 			respond.withFailure(res, `${controllerConfig.entityNameSingle} could not be retrieved.`, error);
 		}
+
+		// fill in eval / aggregate based fields.
+		company = companiesService.fillInAdditionalFieldsForCompany(company);
 
 		respond.withSuccess(res, {
 			company: company
@@ -107,6 +123,9 @@ async function getList(req, res) {
 			respond.withFailure(res, `${controllerConfig.entityNameMany} could not be retrieved.`, error);
 			return;
 		}
+
+		// fill in eval / aggregate based fields.
+		companies = companies.map(companiesService.fillInAdditionalFieldsForCompany);
 
 		respond.withSuccess(res, {
 			companies: companies

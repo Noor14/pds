@@ -11,7 +11,7 @@ const controller = require('./companies.controller');
 const router = express.Router();
 
 router.post('/', controller.addOne);
-router.put('/:id', controller.updateOne);
+router.put('/', controller.updateOne);
 router.delete('/:id', controller.deleteOne);
 router.get('/:id', controller.getOne);
 router.get('/', controller.getList);
