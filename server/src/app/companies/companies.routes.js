@@ -2,10 +2,10 @@
 'use strict';
 
 // deps
-const express = require('express');
+import express from 'express';
 
 // app modules
-const controller = require('./companies.controller');
+import * as controller from './companies.controller.js';
 
 // initialization
 const router = express.Router();
@@ -16,5 +16,5 @@ router.delete('/:id', controller.deleteOne);
 router.get('/:id', controller.getOne);
 router.get('/', controller.getList);
 
-exports.default = router;
-
+/* exports */
+export default router;

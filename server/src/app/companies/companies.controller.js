@@ -3,10 +3,10 @@
 // deps
 
 // app modules
-const respond = require('../shared/services/respond');
-const { databaseService } = require('../shared/services/database');
-const { companiesService } = require('./companies.service');
-const company = require('./company.model');
+import respond from '../shared/services/respond.js';
+import databaseService from '../shared/services/database.js';
+import companiesService from './companies.service.js';
+import Company from './company.model.js';
 
 // local
 const controllerConfig = {
@@ -15,7 +15,7 @@ const controllerConfig = {
 };
 
 /* exports */
-module.exports = {
+export {
 	addOne,
 	updateOne,
 	deleteOne,
@@ -28,12 +28,12 @@ module.exports = {
 
 // creates a new item
 async function addOne(req, res) {
-	const item = req.body;
+	const companyData = req.body;
 
 	// add and protect common fields
-	databaseService.apiFillInFieldsForCreate(req, item);
+	databaseService.apiFillInFieldsForCreate(req, companyData);
 
-	const data = new company(req.body);
+	const data = new Company(companyData);
 	data.save((error, newCompany) => {
 
 		// case: DB error
@@ -53,12 +53,12 @@ async function addOne(req, res) {
 
 // updates the existing item
 async function updateOne(req, res) {
-	const item = req.body;
+	const companyData = req.body;
 
 	// add and protect common fields
-	databaseService.apiFillInFieldsForUpdate(req, item);
+	databaseService.apiFillInFieldsForUpdate(req, companyData);
 
-	company.findOneAndUpdate({ id: { $eq: item.id } }, item, { new:  true }, (error, updatedCompany) => {
+	Company.findOneAndUpdate({ id: { $eq: companyData.id } }, companyData, { new:  true }, (error, updatedCompany) => {
 
 		// case: DB error
 		if (error) {
@@ -79,7 +79,7 @@ async function updateOne(req, res) {
 
 // deletes target item by id
 async function deleteOne(req, res) {
-	company.findOneAndDelete({ id: { $eq: req.params.id } }, (error, company) => {
+	Company.findOneAndDelete({ id: { $eq: req.params.id } }, (error, company) => {
 
 		// case: DB error
 		if (error) {
@@ -98,7 +98,7 @@ async function deleteOne(req, res) {
 
 // gets target item by id
 async function getOne(req, res) {
-	company.findOne({ id: { $eq: req.params.id } }, (error, company) => {
+	Company.findOne({ id: { $eq: req.params.id } }, (error, company) => {
 
 		// case: DB error
 		if (error) {
@@ -116,7 +116,7 @@ async function getOne(req, res) {
 
 // gets all items
 async function getList(req, res) {
-	company.find({}, (error, companies) => {
+	Company.find({}, (error, companies) => {
 
 		// case: DB error
 		if (error) {

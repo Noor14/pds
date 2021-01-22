@@ -1,4 +1,4 @@
-const vertical = {
+export default {
 	verticalName: 'demo',
 	verticalOrigins: [
 
@@ -12,5 +12,3 @@ const vertical = {
 
 	}
 };
-
-module.exports = vertical;

@@ -1,8 +1,11 @@
 
 // app modules
+import development from './environment.dev.js';
+import production from './environment.prod.js';
+
 const environments = {
-	development: require('./environment.dev'),
-	production: require('./environment.prod'),
+	development,
+	production,
 }
 
 // locals
@@ -13,5 +16,4 @@ const settings = {
 const currentEnv = process.env.NODE_ENV || settings.defaultEnv;
 const env = environments[currentEnv];
 
-/* exports */
-module.exports = env;
+export default env;

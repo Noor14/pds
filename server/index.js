@@ -7,14 +7,14 @@
 // node core modules dependencies
 
 // third-party dependencies
-const express = require('express');
-const morganLogger = require('morgan');
-const bodyParser = require('body-parser');
-const path = require('path');
+import express from 'express';
+import morganLogger from 'morgan';
+import bodyParser from 'body-parser';
+import path from 'path';
 
 // app modules
-const appRoutes = require('./app.routes.js');
-const { mongooseConnectService } = require('./src/app/shared/services/mongooseConnect');
+import appRoutes from './app.routes.js';
+import mongooseConnectService from './src/app/shared/services/mongooseConnect.js';
 
 /* locals */
 const config = {
@@ -38,8 +38,8 @@ const app = express();
 mongooseConnectService.initialize();
 
 /* middlewares */
-// app.use(morganLogger('combined'));
-app.use(morganLogger('tiny'));
+// app.use(morganLogger('combined', {}));
+app.use(morganLogger('tiny', {}));
 
 app.use(bodyParser.urlencoded({ extended: false })) // // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
@@ -60,7 +60,7 @@ app.use(function(req, res, next) {
 
 // serve FE app files
 // TODO implement path module to use "go up" for "../client"
-app.use(express.static(path.join(__dirname, config.SERVE_DIR)))
+app.use(express.static(path.join(path.resolve(), config.SERVE_DIR)))
 
 // app APIs routes
 app.get('/', (req, res) => {
@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
 	res.send('Server is running.');
 });
 
-app.use('/api', appRoutes.default);
+app.use('/api', appRoutes);
 // appRoutes.default(app);
 
 // 404 routes responder

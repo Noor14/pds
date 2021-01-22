@@ -16,5 +16,6 @@ class CompaniesService {
 	}
 }
 
+/* exports */
 const companiesService = new CompaniesService();
-module.exports = { companiesService };
+export default companiesService;

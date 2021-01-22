@@ -1,10 +1,10 @@
 
 // deps
-const mongoose = require('mongoose');
-const autoIncrement = require('mongoose-auto-increment');
+import mongoose from 'mongoose';
+import autoIncrement from 'mongoose-auto-increment';
 
 // locals
-const { serverSettings } = require('../../../config/serverSettings');
+import serverSettings from '../../../config/serverSettings.js';
 
 class DatabaseService {
 	createRestrictedFields = [
@@ -66,6 +66,8 @@ class DatabaseService {
 		// console.log('schemaSetupCommonFields:', schemaModel);
 
 		return Object.assign(schemaModel,{
+
+			// this one is not "_id". this "id" is being managed by mongoose-auto-increment module.
 			id: {
 				type: Number,
 				unique: true,
@@ -82,6 +84,8 @@ class DatabaseService {
 			lastUpdatedBy: Number, // id of user/admin
 			lastUpdatedOn: {
 				type: Date,
+				required: false,
+				default: null,
 			},
 
 			// any other common fields to be added here below.
@@ -103,4 +107,4 @@ class DatabaseService {
 }
 
 const databaseService = new DatabaseService();
-module.exports = { databaseService };
+export default databaseService;

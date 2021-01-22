@@ -1,16 +1,18 @@
 'use strict';
 
 // deps
-const { databaseService } = require('../shared/services/database');
+import mongoose from 'mongoose';
+import bluebird from 'bluebird';
+mongoose.Promise = bluebird; // TODO review what is this for ?
 
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird'); // TODO review what is this for ?
+// app modules
+import databaseService from '../shared/services/database.js';
 
 // locals
 const Schema = mongoose.Schema;
 
 const schemaConfig = {
-	collectionName: 'companies'
+	collectionName: `companies`
 };
 
 let schemaModel = {
@@ -46,4 +48,4 @@ databaseService.initializeAutoIncrement();
 
 databaseService.schemaApplyAutoIncrement(companiesSchema, schemaConfig.collectionName);
 
-module.exports = mongoose.model(schemaConfig.collectionName, companiesSchema);
+export default mongoose.model(schemaConfig.collectionName, companiesSchema);

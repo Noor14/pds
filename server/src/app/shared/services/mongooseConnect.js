@@ -1,11 +1,12 @@
 'use strict';
 
 // deps
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+import mongoose from 'mongoose';
+import bluebird from 'bluebird';
+mongoose.Promise = bluebird;
 
 // app modules
-const environment = require('../../../environments/environment');
+import environment from '../../../environments/environment.js';
 
 // locals
 class MongooseConnectService {
@@ -55,6 +56,5 @@ class MongooseConnectService {
 	}
 }
 
-// exports
 const mongooseConnectService = new MongooseConnectService();
-module.exports = { mongooseConnectService };
+export default mongooseConnectService;

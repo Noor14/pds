@@ -1,11 +1,10 @@
-const envCommon = require('./environment.common');
+
+import envCommon from './environment.common.js';
 
 // app modules
-const env = {...envCommon,
+export default {
+	...envCommon,
+
 	production: false,
 
 };
-
-
-/* exports */
-module.exports = env;

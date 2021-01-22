@@ -5,10 +5,10 @@
 'use strict';
 
 // deps
-const express = require('express');
+import express from 'express';
 
 // app modules
-const demoVertical = require('./src/verticals/demo');
+import demoVertical from './src/verticals/demo.js';
 
 // initialization
 const router = express.Router();
@@ -45,16 +45,14 @@ router.use((req, res, next) => {
 	next();
 });
 
-// all APIs routes here
-router.use('/companies', require('./src/app/companies/companies.routes').default);
-router.use('/products', require('./src/app/products/products.routes').default);
-// app.use('/areas', require('./../routes/areas.routes').default);
-// app.use('/stores', require('./../routes/stores.routes').default);
-// app.use('/orders', require('./../routes/orders.routes').default);
-// app.use('/doctors', require('./../routes/doctors.routes').default);
-// app.use('/contracts', require('./../routes/contracts.routes').default);
+/* routes files */
+import companiesRouter from './src/app/companies/companies.routes.js';
+// import productsRouter from './src/app/products/products.routes.js';
+// import areasRouter from './src/app/areas/areas.routes.js';
 
-/* exports */
-exports.default = router;
+// all APIs routes mounting here
+router.use('/companies', companiesRouter);
+// router.use('/products', productsRouter);
+// router.use('/areas', productsRouter);
 
-/* function declarations */
+export default router;
