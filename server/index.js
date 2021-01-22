@@ -14,7 +14,7 @@ const path = require('path');
 
 // app modules
 const appRoutes = require('./app.routes.js');
-const { mongooseConnectService } = require('./src/shared/services/mongooseConnect');
+const { mongooseConnectService } = require('./src/app/shared/services/mongooseConnect');
 
 /* locals */
 const config = {

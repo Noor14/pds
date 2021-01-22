@@ -8,7 +8,7 @@
 const express = require('express');
 
 // app modules
-const demoVertical = require('./verticals/demo');
+const demoVertical = require('./src/verticals/demo');
 
 // initialization
 const router = express.Router();
@@ -46,8 +46,8 @@ router.use((req, res, next) => {
 });
 
 // all APIs routes here
-router.use('/companies', require('./src/companies/companies.routes').default);
-router.use('/products', require('./src/products/products.routes').default);
+router.use('/companies', require('./src/app/companies/companies.routes').default);
+router.use('/products', require('./src/app/products/products.routes').default);
 // app.use('/areas', require('./../routes/areas.routes').default);
 // app.use('/stores', require('./../routes/stores.routes').default);
 // app.use('/orders', require('./../routes/orders.routes').default);
