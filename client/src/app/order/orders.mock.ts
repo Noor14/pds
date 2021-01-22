@@ -2,6 +2,7 @@ import { IOrderRaw } from '@root/app/order/orders.model';
 
 export const ordersRawMock: IOrderRaw[] = [
   {
+    tpPercent: 15,
     storeId: 1001,
     productsSnapshot: [{
       'id': 1003,
@@ -48,6 +49,7 @@ export const ordersRawMock: IOrderRaw[] = [
     completedBy: 0,
   },
   {
+    tpPercent: 16,
     storeId: 1003,
     productsSnapshot: [{
       'id': 1112,
@@ -108,6 +110,7 @@ export const ordersRawMock: IOrderRaw[] = [
     completedBy: 0,
   },
   {
+    tpPercent: 17,
     storeId: 1001,
     productsSnapshot: [{
       'id': 1097,
@@ -154,6 +157,7 @@ export const ordersRawMock: IOrderRaw[] = [
     completedBy: 0,
   },
   {
+    tpPercent: 12,
     storeId: 1004,
     productsSnapshot: [{
       'id': 1025,

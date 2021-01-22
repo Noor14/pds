@@ -23,8 +23,10 @@ interface IAction {
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
+  // @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent
   // @ViewChild(DatatableComponent) table: DatatableComponent;
   // @ViewChild('table', { read: ElementRef, static: true }) table: ElementRef;
+  // @ViewChild('table', { static: true }) tableRef: DatatableComponent;
   // @ViewChild('table', { static: true }) tableRef: DatatableComponent;
 
   @Input() contextPrefix: string = 'table'; // to be used for form fields name prefixes.
@@ -37,7 +39,8 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
     emptyMessage: 'No records found.',
   };
 
-  @Input() scrollbarH = true;
+  // @Input() scrollbarH = true;
+  @Input() scrollbarH = false;
   @Input() scrollbarV = false; // gives error for rowHeight Auto
 
   // @Input() columnMode = ColumnMode.flex;
