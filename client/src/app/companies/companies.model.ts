@@ -3,11 +3,13 @@ import { ECRUDModalModes } from '@shared/models/modals.model';
 
 export { ECRUDModalModes }
 
-export interface ICompanyRaw {
-  // comes in payload
+export interface ICompanyPayload {
   name: string;
   type: number;
   persons: IPersonRaw[];
+}
+
+export interface ICompanyRaw extends ICompanyPayload {
 
   // to be generated on server
   id: number;

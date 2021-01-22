@@ -4,7 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ECRUDModalModes } from '@shared/models/modals.model';
 import {
-  IAddUpdateSearchCompanyConfig, ICompanyParsed,
+  IAddUpdateSearchCompanyConfig, ICompanyPayload, ICompanyParsed,
   ICompanyRaw
 } from '@root/app/companies/companies.model';
 import { companiesMock } from '@root/app/companies/companies.mock';
@@ -47,11 +47,10 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
     message: '',
   };
 
-  data: any = {
-    id: '',
+  get companyId() : number { return this.config && this.config.company && this.config.company.id || 0 };
+  data: ICompanyPayload = {
     name: '',
-    type: undefined,
-    startedSince: '',
+    type: 0,
     persons: [{type: 0, firstName: '', lastName: '', phone: []}]
   };
 
@@ -121,21 +120,21 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
 
     switch (this.config?.mode) {
       case ECRUDModalModes.Add:
-        this.addCompany(this.data);
+        this.addCompany();
         break;
       case ECRUDModalModes.Edit:
-        this.updateCompany(this.data);
+        this.updateCompany();
         break;
     }
   }
 
-  addCompany(company: ICompanyRaw) {
-    this.companyService.apiAddOne(company)
-      .subscribe((res: any) => {
+  addCompany() {
+    this.companyService.apiAddOne(this.data)
+      .subscribe((res: { company: ICompanyParsed }) => {
           console.log('add company : success', res);
 
           this.resetFormStatus(false, 'success', this.responseMessages.success.add);
-          this.closeModalAfterAWhile();
+          this.closeModalAfterAWhile(res.company);
         },
         (reason: any) => {
           console.log('add company : Failure', reason);
@@ -144,12 +143,12 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
 
   }
 
-  updateCompany(company: ICompanyRaw) {
-    this.companyService.apiUpdateOne(company)
-      .subscribe((res: any) => {
+  updateCompany() {
+    this.companyService.apiUpdateOne(this.companyId, this.data)
+      .subscribe((res: { company: ICompanyParsed }) => {
           console.log('updated company : success', res);
           this.resetFormStatus(false, 'success', this.responseMessages.success.update);
-          this.closeModalAfterAWhile();
+          this.closeModalAfterAWhile(res.company);
         },
         (res: any) => {
           console.log('updated company : Failure', res);
@@ -157,7 +156,8 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
         });
   }
 
-  closeModalAfterAWhile() {
+  closeModalAfterAWhile(company: ICompanyParsed) {
+    this.result.emit(company)
     setTimeout(this.bsModalRef.hide, 3000);
   }
 

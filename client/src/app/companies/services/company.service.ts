@@ -11,7 +11,7 @@ import {
   IAddCompanySuccessData,
   IGetAllCompaniesSuccessData,
   ICompanyParsed,
-  ICompanyRaw
+  ICompanyRaw, ICompanyPayload
 } from '@root/app/companies/companies.model';
 import { companiesMock } from '@root/app/companies/companies.mock';
 import { companyTypes } from '@root/app/companies/companies.constant';
@@ -27,12 +27,12 @@ export class CompanyService {
     private httpService: HttpService,
   ) { }
 
-  apiAddOne(companyRaw: ICompanyRaw): Observable<any> {
+  apiAddOne(companyRaw: ICompanyPayload): Observable<any> {
     // console.log('apiAddOne:', companyRaw);
-    return of({
-      company: companyRaw
-    })
-    // return this.httpService.post(`${this.endpoint}`, companyRaw)
+    // return of({
+    //   company: companyRaw
+    // })
+    return this.httpService.post(`${this.endpoint}`, companyRaw)
       .pipe(
         map((data: IAddCompanySuccessData) => {
           data.company = this.parseOne(data.company);
@@ -41,12 +41,13 @@ export class CompanyService {
       );
   }
 
-  apiUpdateOne(companyRaw: ICompanyRaw): Observable<any> {
+  apiUpdateOne(companyId: number, companyRaw: ICompanyPayload): Observable<any> {
     // console.log('apiUpdateCompany:', companyRaw);
-    return of({
-      company: companyRaw
-    })
-    // return this.httpService.put(`${this.endpoint}/${companyRaw.id}`, companyRaw)
+    // return of({
+    //   company: companyRaw
+    // })
+    const payload = { id: companyId, ...companyRaw };
+    return this.httpService.put(`${this.endpoint}/${companyId}`, payload)
       .pipe(
         map((data: IAddCompanySuccessData) => {
           data.company = this.parseOne(data.company);
@@ -55,12 +56,12 @@ export class CompanyService {
       );
   }
 
-  apiDeleteOne(companyRaw: ICompanyRaw): Observable<any> {
+  apiDeleteOne(companyId: number): Observable<any> {
     // console.log('apiDeleteOne:', companyRaw);
-    return of({
-      company: companyRaw,
-    })
-    // return this.httpService.delete(`${this.endpoint}/${companyRaw.id}`)
+    // return of({
+    //   company: {},
+    // })
+    return this.httpService.delete(`${this.endpoint}/${companyId}`)
       .pipe(
         map((data: any) => {
           data.company = this.parseOne(data.company);
@@ -69,13 +70,13 @@ export class CompanyService {
       );
   }
 
-  apiGetOne(companyId: string): Observable<any> {
+  apiGetOne(companyId: number): Observable<any> {
     // console.log('apiGetOne:', companyId);
-    return of({
-      company: companiesMock[0],
-      totalCount: 2000,
-    })
-    // return this.httpService.get(`${this.endpoint}/${companyId}`)
+    // return of({
+    //   company: companiesMock[0],
+    //   totalCount: 2000,
+    // })
+    return this.httpService.get(`${this.endpoint}/${companyId}`)
       .pipe(
         map((data: any) => {
           data.company = this.parseOne(data.company);
@@ -86,11 +87,11 @@ export class CompanyService {
 
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
-    return of({
-      companies: companiesMock,
-      totalCount: 2000,
-    })
-    // return this.httpService.get(`${this.endpoint}`, params)
+    // return of({
+    //   companies: companiesMock,
+    //   totalCount: 2000,
+    // })
+    return this.httpService.get(`${this.endpoint}`, params)
       .pipe(
         map((data: IGetAllCompaniesSuccessData) => {
           data.companies = this.parseList(data.companies);

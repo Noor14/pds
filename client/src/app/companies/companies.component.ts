@@ -31,7 +31,7 @@ export class CompaniesComponent implements OnInit {
   ];
   messages = {
     emptyMessage: '', // dynamic based of the fetch error, or filter to none.
-    customNoRecords: 'No Companies found in the system. please click "New Company" to add one.',
+    customNoRecords: 'No Companies found in the system. Please click "New Company" to add one.',
     customFilteredNoMatch: 'No Companies match with entered value.',
     customFetchError: 'Failed in fetching Companies.',
   };
@@ -87,7 +87,13 @@ export class CompaniesComponent implements OnInit {
 
   addCompany(): void {
     console.log('addCompany:');
-    this.companyModalsService.openAddCompany();
+    this.companyModalsService.openAddCompany()
+      .subscribe((res: any) => {
+        console.log('editCompany: success', res);
+
+        // refresh table to load latest records.
+        this.fetchCompanies();
+      });
   }
 
   editCompany(company: any, companyIdx: number): void {
@@ -96,11 +102,13 @@ export class CompaniesComponent implements OnInit {
     this.companyModalsService.openEditCompany(company)
       .subscribe((res: any) => {
         console.log('editCompany: success', res);
+
+        // refresh table to load latest records.
+        this.fetchCompanies();
       });
   }
 
-  deleteCompany(company: any, companyIdx: number): void
-  {
+  deleteCompany(company: any, companyIdx: number): void {
     console.log('deleteCompany:', companyIdx, company);
 
     const config: IConfirmConfig = {
@@ -111,10 +119,35 @@ export class CompaniesComponent implements OnInit {
 
     this.utilService.confirm(config)
       .subscribe((res: any) => {
-        console.log('confirm: approve', res);
+        console.log('confirm: prompt: approve', res);
+
+        this.companyService.apiDeleteOne(company.id)
+          .subscribe((res: any) => {
+            console.log('deleteCompany: success', res);
+
+            this.utilService.alert({
+              isError: false,
+              headingText: 'Done !',
+              message: 'Company has been removed successfully.',
+              approveButtonText: 'OK'
+            });
+
+            // refresh table to load latest records.
+            this.fetchCompanies();
+
+          }, (reason: string) => {
+            console.log('deleteCompany: failed', res);
+
+            this.utilService.alert({
+              isError: true,
+              headingText: '',
+              message: 'Company could not be deleted.',
+              approveButtonText: 'OK'
+            });
+          });
 
       }, (reason: string) => {
-        console.log('confirm: decline');
+        console.log('confirm: prompt: decline');
       });
   }
 }

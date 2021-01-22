@@ -34,7 +34,7 @@ export class ProductsComponent implements OnInit {
   ];
   messages = {
     emptyMessage: '', // dynamic based of the fetch error, or filter to none.
-    customNoRecords: 'No Products found in the system. please click "Add Product" to add one.',
+    customNoRecords: 'No Products found in the system. Please click "Add Product" to add one.',
     customFilteredNoMatch: 'No Products match with entered value.',
     customFetchError: 'Failed in fetching Products.',
   };
