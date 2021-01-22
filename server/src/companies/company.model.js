@@ -46,7 +46,7 @@ autoIncrement.initialize(mongoose.connection);
 companiesSchema.plugin(autoIncrement.plugin, {
         model: 'companies',
         field: 'id',
-        startAt: 100,
+        startAt: 101,
         incrementBy: 1
     });
 module.exports = mongoose.model('companies', companiesSchema);
