@@ -22,7 +22,6 @@ async function create(req, res) {
 		const data = new company(req.body)
 		data.save((error, response)=>{
 			  if(error){
-				  console.log(error)
 				respond.withFailure(res, 'record not inserted', 'fail');
 			  }else{
 				respond.withSuccess(res, {
