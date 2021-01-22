@@ -10,9 +10,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-var morganLogger = require('morgan');
-var bodyParser = require('body-parser');
-var path = require('path');
+const morganLogger = require('morgan');
+const bodyParser = require('body-parser');
+const path = require('path');
 const environment = require('./environments/environment');
 
   // app modules
