@@ -54,7 +54,7 @@ async function updateOne(req, res) {
 	// add and protect common fields
 	databaseService.apiFillInFieldsForUpdate(req, item);
 
-	data.findOneAndUpdate({ id: { $eq: req.params.id } }, item, { new:  true }, (error, updatedCompany) => {
+	company.findOneAndUpdate({ id: { $eq: req.params.id } }, item, { new:  true }, (error, updatedCompany) => {
 
 		// case: DB error
 		if (error) {
