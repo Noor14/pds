@@ -7,6 +7,24 @@ const autoIncrement = require('mongoose-auto-increment');
 const { serverSettings } = require('../../../config/serverSettings');
 
 class DatabaseService {
+	createRestrictedFields = [
+		'id',
+
+		// already to be overwritten.
+		// 'createdBy',
+		// 'lastUpdatedOn',
+		// 'lastUpdatedBy',
+		// 'lastUpdatedOn',
+	];
+	updateRestrictedFields = [
+		'id',
+		'createdBy',
+		'createdOn',
+
+		// already to be overwritten.
+		// 'lastUpdatedBy',
+		// 'lastUpdatedOn',
+	];
 
 	constructor(props) {
 
@@ -17,12 +35,30 @@ class DatabaseService {
 		autoIncrement.initialize(mongoose.connection);
 	}
 
-	apiFillFieldsForInsert(req) {
-		console.log('apiFillFieldsForInsert:');
+	apiFillInFieldsForCreate(req, model) {
+		console.log('apiFillInFieldsForCreate:', model);
+
+		// protect from writing these.
+		this.createRestrictedFields.forEach(fieldName => {
+			if (model[fieldName]) delete model[fieldName];
+		});
+
+		model.createdBy = req.user.id;
+		model.createdOn = Date.now();
+		model.lastUpdatedBy = null;
+		model.lastUpdatedOn = null;
 	}
 
-	apiFillFieldsForUpdate(req) {
-		console.log('apiFillFieldsForUpdate:');
+	apiFillInFieldsForUpdate(req, model) {
+		console.log('apiFillInFieldsForUpdate:', model);
+
+		// protect from updating / modifying these.
+		this.updateRestrictedFields.forEach(fieldName => {
+			if (model[fieldName]) delete model[fieldName];
+		});
+
+		model.lastUpdatedBy = req.user.id;
+		model.lastUpdatedOn = Date.now();
 	}
 
 	// sets up common fields for almost every entity to be created in app. consistency in all collections.
@@ -32,14 +68,15 @@ class DatabaseService {
 		return Object.assign(schemaModel,{
 			id: {
 				type: Number,
-				unique: true
+				unique: true,
+				required: false,
 			},
 
 			createdBy: Number, // id of user/admin
 			createdOn: {
 				type: Date,
 				required: true,
-				default: Date.now
+				default: Date.now,
 			},
 
 			lastUpdatedBy: Number, // id of user/admin

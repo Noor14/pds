@@ -10,11 +10,11 @@ const controller = require('./companies.controller');
 // initialization
 const router = express.Router();
 
-router.get('/', controller.getAll);
-router.get('/:id?', controller.getOne);
-router.post('/', controller.create);
-// router.put('/', controller.update);
-// router.delete('/:id?', controller.delete);
+router.post('/', controller.addOne);
+router.put('/:id', controller.updateOne);
+router.delete('/:id', controller.deleteOne);
+router.get('/:id', controller.getOne);
+router.get('/', controller.getList);
 
 exports.default = router;
 

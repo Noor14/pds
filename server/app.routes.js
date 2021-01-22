@@ -18,8 +18,29 @@ router.use((req, res, next) => {
 	// TODO implement dynamically from DB. when we scale to verticals/clients.
 	// ...
 
+	// TODO implement middleware to inject in the vertical/client being used.
 	// for now use "demo" vertical as default.
 	req.vertical = demoVertical;
+
+	// TODO implement middleware to inject in the logged-in user.
+	// for now add "sampleAdmin" user as default.
+	req.user = {
+		type: 202,
+		id: 1001,
+		username: 'contactqaswads@gmail.com',
+		firstName: 'Qaswa',
+		lastName: 'Admin',
+		contacts: [923002609916, 923330400808],
+		areaId: 1001,
+		address: 'H 200, Street 9, Test Town, Lahore.',
+
+		lastLogin: '2021-01-15T21:39:51.835Z',
+
+		"createdOn": "2021-01-15T21:39:51.835Z",
+		"createdBy": 1002,
+		"lastUpdatedOn": "",
+		"lastUpdatedBy": 0
+	};
 
 	next();
 });
