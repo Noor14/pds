@@ -34,8 +34,6 @@ const companiesSchema = new Schema({
     }, 
     lastUpdatedOn: {
         type: Date, 
-        required: true, 
-        default: Date.now 
     },
     createdBy: Number, // id of user/admin
     lastUpdatedBy: Number, // id of user/admin
@@ -46,7 +44,7 @@ autoIncrement.initialize(mongoose.connection);
 companiesSchema.plugin(autoIncrement.plugin, {
         model: 'companies',
         field: 'id',
-        startAt: 101,
+        startAt: 1001,
         incrementBy: 1
     });
 module.exports = mongoose.model('companies', companiesSchema);
