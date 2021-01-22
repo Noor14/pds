@@ -17,7 +17,7 @@ const companiesSchema = new Schema({
         trim: true
     },
     type: {
-        type: String, 
+        type: Number, 
         required: true, 
         trim: true
     },
