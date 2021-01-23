@@ -2,6 +2,7 @@
 // used for stores etc.
 import { IStoreParsed } from '@root/app/store/stores.model';
 import { ICompanyParsed } from '@root/app/companies/companies.model';
+import { IAreaParsed } from '@root/app/areas/areas.model';
 
 export interface IPersonRaw {
   type: number; // sales person, Manager, Owner
@@ -13,6 +14,7 @@ export interface IPersonRaw {
 export interface IChoices {
   stores?: IStoreParsed[],
   companies?: ICompanyParsed[],
+  areas?: IAreaParsed[],
 
   companyTypes?: string[],
   productTypes?: string[],

@@ -5,25 +5,61 @@
   </button>
 </div>
 <div class="modal-body">
-  <form class="" name="areaForm" (ngSubmit)="submitForm()">
+  <form class="" name="areaForm" #areaForm="ngForm" (ngSubmit)="submitForm(areaForm)">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-sm-6">
         <div class="form-group">
-          <label for="area__name">Area Name:</label>
-          <input type="text" class="form-control" name="area__name" id="area__name"
-                 [(ngModel)]="data.name">
-          <!--<small class="form-text text-muted">some validation text here perhaps.</small>-->
+          <label for="area_name">Area Name:</label>
+          <input type="text" class="form-control" name="area_name" id="area_name"
+                 [(ngModel)]="data.name" #area_name='ngModel' required minlength="3">
+
+          <small *ngIf="area_name.invalid && (areaForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="area_name.errors?.required">Area Name Type is required.</span>
+            <span *ngIf="area_name.errors?.minlength">Area Name must be at least 3 characters long.</span>
+          </small>
         </div>
       </div>
+<!--      <div class="col-12 col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--          <label for="area_id">Area:</label>-->
+<!--          <select class="custom-select" name="area_id" id="area_id"-->
+<!--                  [(ngModel)]="data.id" #area_id='ngModel' required>-->
+<!--            <option [value]="undefined">Select</option>-->
+<!--            <option [value]="type.name" *ngFor="let type of choices.areas; let typeIdx = index;" [innerText]="type"></option>-->
+<!--          </select>-->
+<!--          <small *ngIf="area_id.invalid && (areaForm.submitted)"-->
+<!--                 class="form-text text-danger">-->
+<!--            <span *ngIf="area_id.errors?.required">Area City is required.</span>-->
+<!--          </small>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
 
+    <!-- response alert box -->
+    <div class="row">
+      <div class="col">
+        <alert *ngIf="formStatus.message"
+               [type]="formStatus.type === 'error' ? 'danger' : 'success'">
+          <span [innerHTML]="formStatus.message"></span>
+        </alert>
+      </div>
+    </div>
 
     <!-- controls -->
     <div class="row">
       <div class="col modal-controls">
-        <button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger"
+                [disabled]="formStatus.sending"
+                (click)="resetForm()">Reset</button>
+
+        <button type="submit" class="btn btn-success"
+                [disabled]="formStatus.sending">
+          <fa-icon *ngIf="formStatus.sending"
+                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+          Submit</button>
       </div>
     </div>
   </form>
 </div>
+

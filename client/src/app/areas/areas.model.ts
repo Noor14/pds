@@ -20,6 +20,10 @@ export interface IAreaRaw {
   totalSale: number,
 }
 
+export interface IAreaPayload {
+  name: string;
+}
+
 // custom generated fields here.
 export interface IAreaParsed extends IAreaRaw {
   customCityName: string;

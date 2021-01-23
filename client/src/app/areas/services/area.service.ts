@@ -10,7 +10,7 @@ import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
 import { areasRawMock } from '../areas.mock';
 import {
   IAddUpdateAreaSuccessData,
-  IAreaParsed,
+  IAreaParsed, IAreaPayload,
   IAreaRaw,
   IGetAllAreasSuccessData,
 
@@ -27,7 +27,7 @@ export class AreaService {
     private httpService: HttpService,
   ) { }
 
-  apiAddOne(areaRaw: IAreaRaw): Observable<any> {
+  apiAddOne(areaRaw: IAreaPayload): Observable<any> {
     // console.log('apiAddOne:', areaRaw);
 
     return this.httpService.post(`${this.endpoint}`, areaRaw)
@@ -39,10 +39,10 @@ export class AreaService {
       );
   }
 
-  apiUpdateOne(areaRaw: IAreaRaw): Observable<any> {
+  apiUpdateOne(areaId: number, areaRaw: IAreaPayload): Observable<any> {
     // console.log('apiUpdateArea:', areaRaw);
 
-    return this.httpService.put(`${this.endpoint}/${areaRaw.id}`, areaRaw)
+    return this.httpService.put(`${this.endpoint}/${areaId}`, areaRaw)
       .pipe(
         map((data: IAddUpdateAreaSuccessData) => {
           data.area = this.parseOne(data.area);
@@ -51,10 +51,10 @@ export class AreaService {
       );
   }
 
-  apiDeleteOne(areaRaw: IAreaRaw): Observable<any> {
+  apiDeleteOne(areaId: number): Observable<any> {
     // console.log('apiDeleteOne:', areaRaw);
 
-    return this.httpService.delete(`${this.endpoint}/${areaRaw.id}`)
+    return this.httpService.delete(`${this.endpoint}/${areaId}`)
       .pipe(
         map((data: any) => {
           // data.area = this.parseOneArea(data.area);

@@ -157,7 +157,7 @@ export class AddUpdateSearchCompanyComponent implements OnInit {
   }
 
   closeModalAfterAWhile(company: ICompanyParsed) {
-    this.result.emit(company)
+    this.result.emit(company);
     setTimeout(this.bsModalRef.hide, 3000);
   }
 
