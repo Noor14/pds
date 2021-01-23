@@ -29,6 +29,13 @@ export class AreasComponent implements OnInit {
     { name: 'Delete', handler: this.deleteArea.bind(this)},
   ];
 
+  messages = {
+    emptyMessage: '', // dynamic based of the fetch error, or filter to none.
+    customNoRecords: 'No Areas found in the system. Please click "Add Area" to add one.',
+    customFilteredNoMatch: 'No Areas match with entered value.',
+    customFetchError: 'Failed in fetching Areas.',
+  };
+
   config: ITableConfig = {
     // advanceSearchItem: {
     //   buttonText: 'Advance Search',
@@ -72,8 +79,10 @@ export class AreasComponent implements OnInit {
         console.log('fetchAreas: success', res.areas);
 
         this.rows = res.areas;
+        this.messages.emptyMessage = this.messages.customNoRecords;
       }, (reason: string) => {
         console.log('fetchAreas: error');
+        this.messages.emptyMessage = this.messages.customFetchError;
       });
   }
 
@@ -116,10 +125,35 @@ export class AreasComponent implements OnInit {
 
     this.utilService.confirm(config)
       .subscribe((res: any) => {
-        console.log('confirm: approve', res);
+        console.log('confirm: prompt: approve', res);
+
+        this.areaService.apiDeleteOne(area.id)
+          .subscribe((res: any) => {
+            console.log('deleteArea: success', res);
+
+            this.utilService.alert({
+              isError: false,
+              headingText: 'Done !',
+              message: 'Area has been removed successfully.',
+              approveButtonText: 'OK'
+            });
+
+            // refresh table to load latest records.
+            this.fetchAreas();
+
+          }, (reason: string) => {
+            console.log('deleteArea: failed', res);
+
+            this.utilService.alert({
+              isError: true,
+              headingText: '',
+              message: 'Area could not be deleted.',
+              approveButtonText: 'OK'
+            });
+          });
 
       }, (reason: string) => {
-        console.log('confirm: decline');
+        console.log('confirm: prompt: decline');
       });
   }
 }
