@@ -10,7 +10,7 @@ import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
 import {
   IAddStoreSuccessData,
   IGetAllStoresSuccessData,
-  IStoreParsed,
+  IStoreParsed, IStorePayload,
   IStoreRaw
 } from '../stores.model';
 import { storesRawMock } from '@root/app/store/stores.mock';
@@ -27,12 +27,12 @@ export class StoreService {
   ) {
   }
 
-  apiAddOne(storeRaw: IStoreRaw): Observable<any> {
+  apiAddOne(storeRaw: IStorePayload): Observable<any> {
     // console.log('apiAddOne:', storeRaw);
-    return of({
-      store: storeRaw
-    })
-    // return this.httpService.post(`${this.endpoint}`, storeRaw)
+    // return of({
+    //   store: storeRaw
+    // })
+    return this.httpService.post(`${this.endpoint}`, storeRaw)
       .pipe(
         map((data: IAddStoreSuccessData) => {
           data.store = this.parseOne(data.store);
@@ -41,12 +41,12 @@ export class StoreService {
       );
   }
 
-  apiUpdateOne(storeRaw: IStoreRaw): Observable<any> {
+  apiUpdateOne(storeId: number, storeRaw: IStorePayload): Observable<any> {
     // console.log('apiUpdateStore:', storeRaw);
-    return of({
-      store: storeRaw
-    })
-    // return this.httpService.post(`${this.endpoint}/${storeRaw.id}`, storeRaw)
+    // return of({
+    //   store: storeRaw
+    // })
+    return this.httpService.post(`${this.endpoint}/${storeId}`, storeRaw)
       .pipe(
         map((data: IAddStoreSuccessData) => {
           data.store = this.parseOne(data.store);

@@ -2,7 +2,7 @@ import { IAreaRaw } from './areas.model';
 
 export const areasRawMock: IAreaRaw[] = [
   {
-    id: 1002,
+    id: 1001,
     cityId: 1001, // for scaling in future.
     name: 'Manjoshoori',
     totalStores: 40,

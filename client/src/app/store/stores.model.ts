@@ -4,6 +4,12 @@ import { IPersonRaw } from '@shared/models/general.model';
 
 export { ECRUDModalModes };
 
+export interface IStorePayload {
+  name: string;
+  // persons: IPersonRaw[];
+  areaId: number;
+  address: string
+}
 
 export interface IStoreRaw extends IUserCommonRaw {
   storeInfo: {

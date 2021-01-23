@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ECRUDModalModes, IAddUpdateSearchStoreConfig } from '../stores.model';
+import { ECRUDModalModes, IAddUpdateSearchStoreConfig, IStoreParsed } from '../stores.model';
 import { AddUpdateSearchStoreComponent } from '../components/add-update-search-store/add-update-search-store.component';
 import { UtilService } from '@shared/services/util.service';
 
@@ -36,10 +36,10 @@ export class StoreModalsService {
     return this.addUpdateSearchStore(config);
   }
 
-  openEditStore(): EventEmitter<any> {
+  openEditStore(store: IStoreParsed): EventEmitter<any> {
     const config: IAddUpdateSearchStoreConfig = {
       mode: ECRUDModalModes.Edit,
-      store: null
+      store: store
     };
 
     return this.addUpdateSearchStore(config);

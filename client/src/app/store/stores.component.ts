@@ -27,8 +27,8 @@ export class StoresComponent implements OnInit {
     { name: 'Total Amount', prop: 'totalSaleAmount'},
   ];
   actions = [
-    { name: 'View / Edit', handler: this.editProduct.bind(this)},
-    { name: 'Delete', handler: this.deleteProduct.bind(this)},
+    { name: 'View / Edit', handler: this.editStore.bind(this)},
+    { name: 'Delete', handler: this.deleteStore.bind(this)},
   ];
 
   config: ITableConfig = {
@@ -40,6 +40,13 @@ export class StoresComponent implements OnInit {
       buttonText: 'Add Store',
       handler: this.addStore.bind(this),
     }
+  };
+
+  messages = {
+    emptyMessage: '', // dynamic based of the fetch error, or filter to none.
+    customNoRecords: 'No Companies found in the system. Please click "New Company" to add one.',
+    customFilteredNoMatch: 'No Companies match with entered value.',
+    customFetchError: 'Failed in fetching Companies.',
   };
 
   constructor(
@@ -59,23 +66,38 @@ export class StoresComponent implements OnInit {
         console.log('fetchStores: success', res.stores);
 
         this.rows = res.stores;
+        this.messages.emptyMessage = this.messages.customNoRecords;
       }, (reason: string) => {
         console.log('fetchStores: error');
+        this.messages.emptyMessage = this.messages.customFetchError;
       });
   }
 
-  addStore(): any {
+  addStore(): void {
     console.log('addStore:');
-    this.storeModalsService.openAddStore();
+    this.storeModalsService.openAddStore()
+      .subscribe((res: any) => {
+        console.log('editStore: success', res);
+
+        // refresh table to load latest records.
+        this.fetchStores();
+      });
   }
 
-  editProduct(product: any, productIdx: number): void {
-    console.log('editProduct:', product, productIdx);
-    this.storeModalsService.openEditStore();
+  editStore(store: any, storeIdx: number): void {
+    console.log('editStore:', storeIdx, store);
+
+    this.storeModalsService.openEditStore(store)
+      .subscribe((res: any) => {
+        console.log('editStore: success', res);
+
+        // refresh table to load latest records.
+        this.fetchStores();
+      });
   }
 
-  deleteProduct(product: any, productIdx: number): void {
-    console.log('deleteProduct:', product, productIdx);
+  deleteStore(store: any, storeIdx: number): void {
+    console.log('deleteStore:', storeIdx, store);
 
     const config: IConfirmConfig = {
       message: 'Are you sure you want to delete this store from system ?',
@@ -85,10 +107,35 @@ export class StoresComponent implements OnInit {
 
     this.utilService.confirm(config)
       .subscribe((res: any) => {
-        console.log('confirm: approve', res);
+        console.log('confirm: prompt: approve', res);
+
+        this.storeService.apiDeleteOne(store.id)
+          .subscribe((res: any) => {
+            console.log('deleteStore: success', res);
+
+            this.utilService.alert({
+              isError: false,
+              headingText: 'Done !',
+              message: 'Store has been removed successfully.',
+              approveButtonText: 'OK'
+            });
+
+            // refresh table to load latest records.
+            this.fetchStores();
+
+          }, (reason: string) => {
+            console.log('deleteStore: failed', res);
+
+            this.utilService.alert({
+              isError: true,
+              headingText: '',
+              message: 'Store could not be deleted.',
+              approveButtonText: 'OK'
+            });
+          });
 
       }, (reason: string) => {
-        console.log('confirm: decline');
+        console.log('confirm: prompt: decline');
       });
   }
 }
