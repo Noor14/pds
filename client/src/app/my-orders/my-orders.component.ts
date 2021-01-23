@@ -61,7 +61,7 @@ export class MyOrdersComponent implements OnInit {
 
   editOrder(order: any, orderId: number): void {
     console.log('editOrder:', orderId, order);
-    this.orderModalService.openEditOrder();
+    // this.orderModalService.openEditOrder();
   }
 
   deleteOrder(order: any, orderId: number): void {
