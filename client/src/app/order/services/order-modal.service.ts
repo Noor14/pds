@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { ECRUDModalModes, IAddUpdateSearchOrderConfig } from '@root/app/order/orders.model';
+import { ECRUDModalModes, IAddUpdateSearchOrderConfig, IOrderParsed } from '@root/app/order/orders.model';
 import { AddUpdateSearchOrderComponent } from '@root/app/order/components/add-update-search-order/add-update-search-order.component';
 import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 
@@ -26,10 +26,10 @@ export class OrderModalService {
   }
 
 
-  openEditOrder(): EventEmitter<any>{
+  openEditOrder(order: IOrderParsed): EventEmitter<any>{
     const config: IAddUpdateSearchOrderConfig = {
       mode: ECRUDModalModes.Edit,
-      order: null
+      order: order
     };
 
     return this.addUpdateSearchOrder(config);

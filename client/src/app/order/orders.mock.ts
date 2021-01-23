@@ -203,4 +203,4 @@ export const ordersRawMock: IOrderRaw[] = [
     completedOn: '',
     completedBy: 0,
   },
-]
+];

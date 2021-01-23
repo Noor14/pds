@@ -6,7 +6,6 @@ import { UtilService } from '@shared/services/util.service';
 import { OrderModalService } from '@root/app/order/services/order-modal.service';
 import { ITableConfig } from '@shared/components/table/table.model';
 import { IOrderParsed } from '@root/app/order/orders.model';
-import { ICompanyParsed } from '@root/app/companies/companies.model';
 
 @Component({
   selector: 'app-orders',
@@ -77,16 +76,29 @@ export class OrdersComponent implements OnInit {
 
   addOrder(): void {
     console.log('addOrder:');
-    this.orderModalService.openAddOrder();
+    this.orderModalService.openAddOrder()
+      .subscribe((res: any) => {
+        console.log('editOrder: success', res);
+
+        // refresh table to load latest records.
+        this.fetchOrders();
+      });
   }
 
-  editOrder(order: any, orderId: number): void {
-    console.log('editOrder:', orderId, order);
-    this.orderModalService.openEditOrder();
+  editOrder(order: any): void {
+    console.log('editOrder:', order);
+
+    this.orderModalService.openEditOrder(order)
+      .subscribe((res: any) => {
+        console.log('editOrder: success', res);
+
+        // refresh table to load latest records.
+        this.fetchOrders();
+      });
   }
 
-  deleteOrder(order: any, orderId: number): void {
-    console.log('deleteOrder:', orderId, order);
+  deleteOrder(order: any): void {
+    console.log('deleteOrder:', order);
 
     const config: IConfirmConfig = {
       message: 'Are you sure you want to delete this order from system ?',
@@ -96,11 +108,35 @@ export class OrdersComponent implements OnInit {
 
     this.utilService.confirm(config)
       .subscribe((res: any) => {
-        console.log('confirm: approve', res);
+        console.log('confirm: prompt: approve', res);
+
+        this.orderService.apiDeleteOne(order.id)
+          .subscribe((res: any) => {
+            console.log('deleteOrder: success', res);
+
+            this.utilService.alert({
+              isError: false,
+              headingText: 'Done !',
+              message: 'Order has been removed successfully.',
+              approveButtonText: 'OK'
+            });
+
+            // refresh table to load latest records.
+            this.fetchOrders();
+
+          }, (reason: string) => {
+            console.log('deleteOrder: failed', res);
+
+            this.utilService.alert({
+              isError: true,
+              headingText: '',
+              message: 'Order could not be deleted.',
+              approveButtonText: 'OK'
+            });
+          });
 
       }, (reason: string) => {
-        console.log('confirm: decline');
+        console.log('confirm: prompt: decline');
       });
   }
-
 }
