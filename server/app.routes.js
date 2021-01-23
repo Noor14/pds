@@ -48,11 +48,11 @@ router.use((req, res, next) => {
 /* routes files */
 import companiesRouter from './src/app/companies/companies.routes.js';
 // import productsRouter from './src/app/products/products.routes.js';
-// import areasRouter from './src/app/areas/areas.routes.js';
+import areasRouter from './src/app/areas/areas.routes.js';
 
 // all APIs routes mounting here
 router.use('/companies', companiesRouter);
 // router.use('/products', productsRouter);
-// router.use('/areas', productsRouter);
+router.use('/areas', areasRouter);
 
 export default router;

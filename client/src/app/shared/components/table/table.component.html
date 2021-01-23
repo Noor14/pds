@@ -111,6 +111,7 @@
     <!-- rest of the columns -->
     <ngx-datatable-column
       [name]="col.name"
+      [prop]="col.prop"
       [resizeable]="false"
       [flexGrow]="isLargeScreenScreenView ? 1 : 0"
       *ngFor="let col of columns; let colIdx = index"
