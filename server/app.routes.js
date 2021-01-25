@@ -57,4 +57,5 @@ router.use('/companies', authenticateToken, companiesRouter);
 router.use('/products', authenticateToken, productsRouter);
 router.use('/areas', authenticateToken, areasRouter);
 router.post('/login', controller.UserLogin);
+router.delete('/logout', authenticateToken, controller.UserLogout);
 export default router;
