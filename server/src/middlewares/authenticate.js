@@ -11,7 +11,6 @@ export function authenticateToken(req, res, next){
       const token = reqHeader && reqHeader.split(' ').pop();
       jwt.verify(token, process.env.SECRET_TOKEN, (err, user)=>{
         if(err) return res.sendStatus(401);
-        req.user = user;
         next();
     })
   }else{
