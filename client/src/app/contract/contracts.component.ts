@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ITableConfig } from '@shared/components/table/table.model';
+import { IConfirmConfig } from '@shared/components/confirm/confirm.model';
+import { ContractModalsService } from '@root/app/contract/services/contract-modals.service';
+import { UtilService } from '@shared/services/util.service';
+import { ContractService } from '@root/app/contract/services/contract.service';
 
 @Component({
   selector: 'app-contract',
@@ -40,21 +44,69 @@ export class ContractsComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(
+    private contractService: ContractService,
+    private contractModalsService: ContractModalsService,
+    private utilService: UtilService) { }
 
   ngOnInit(): void {
   }
 
   addContract(): void {
     console.log('addContract:');
+    this.contractModalsService.openAddContract()
+      .subscribe((res: any) => {
+        console.log('editContract: success', res);
+      });
   }
 
-  editContract(contract: any, contractId: number): void {
-    console.log('editContract:', contractId, contract);
+  editContract(contract: any, contractIdx: number): void {
+    console.log('editContract:', contractIdx, contract);
+
+    this.contractModalsService.openEditContract(contract)
+      .subscribe((res: any) => {
+        console.log('editContract: success', res);
+      });
   }
 
-  deleteContract(contract: any, productIdx: number): void {
-    console.log('deleteContract:', productIdx, contract);
+  deleteContract(contract: any, contractIdx: number): void {
+    console.log('deleteContract:', contractIdx, contract);
+
+    const config: IConfirmConfig = {
+      message: 'Are you sure you want to delete this contract from system ?',
+      approveButtonText: 'Delete',
+      declineButtonText: 'Decline',
+    };
+
+    this.utilService.confirm(config)
+      .subscribe((res: any) => {
+        console.log('confirm: prompt: approve', res);
+
+        this.contractService.apiDeleteOne(contract.id)
+          .subscribe((res: any) => {
+            console.log('deleteContract: success', res);
+
+            this.utilService.alert({
+              isError: false,
+              headingText: 'Done !',
+              message: 'Contract has been removed successfully.',
+              approveButtonText: 'OK'
+            });
+
+          }, (reason: string) => {
+            console.log('deleteContract: failed', res);
+
+            this.utilService.alert({
+              isError: true,
+              headingText: '',
+              message: 'Contract could not be deleted.',
+              approveButtonText: 'OK'
+            });
+          });
+
+      }, (reason: string) => {
+        console.log('confirm: prompt: decline');
+      });
   }
 
 }

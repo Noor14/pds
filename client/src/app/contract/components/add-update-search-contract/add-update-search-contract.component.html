@@ -1,1 +1,110 @@
-<p>add-update-search-contract works!</p>
+<div class="modal-header">
+  <h4 class="modal-title pull-left" [innerText]="modalTitle"></h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form name="form" #form="ngForm" (ngSubmit)="submitForm(form)" novalidate>
+    <div class="row">
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="contract_name">Name:</label>
+          <input type="text" class="form-control" name="contract_name" id="contract_name"
+                 [(ngModel)]="data.contractByName" #contract_name="ngModel"
+                 minlength="3" required>
+
+          <small *ngIf="contract_name.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="contract_name.errors?.required">Name is required.</span>
+            <span *ngIf="contract_name.errors?.minlength">Name must be at least 3 characters long.</span>
+          </small>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="contract_amount">Amount:</label>
+          <input type="text" class="form-control" name="contract_amount" id="contract_amount"
+                 [(ngModel)]="data.totalAmount" #contract_amount='ngModel'
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="contract_amount.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="contract_amount.errors?.required">total Amount is required.</span>
+            <span *ngIf="contract_amount.errors?.maxLength">total Amount must be maximum 15 characters long.</span>
+          </small>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="contract_contact">Contact :</label>
+          <input type="text" class="form-control" name="contract_contact" id="contract_contact"
+                 [(ngModel)]="data.contractByContact" #contract_contact='ngModel'
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="contract_contact.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="contract_contact.errors?.required">Contact is required.</span>
+            <span *ngIf="contract_contact.errors?.minlength">Contact must be at least 2 characters long.</span>
+            <span *ngIf="contract_contact.errors?.maxlength">Contact must be maximum 15 characters long.</span>
+          </small>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="contract_startDate">Start Date :</label>
+          <input type="text" class="form-control" name="contract_startDate" id="contract_startDate"
+                 [(ngModel)]="data.startDate" #contract_startDate='ngModel'
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="contract_startDate.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="contract_startDate.errors?.required">Start Date is required.</span>
+            <span *ngIf="contract_startDate.errors?.minlength"> Start Date must be at least 2 characters long.</span>
+            <span *ngIf="contract_startDate.errors?.maxlength">Start Date must be maximum 15 characters long.</span>
+          </small>
+
+        </div>
+      </div>
+
+
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="contract_endDate">End Date:</label>
+          <input type="text" class="form-control" name="contract_endDate" id="contract_endDate"
+                 [(ngModel)]="data.endDate" #contract_endDate='ngModel'
+                 maxlength="15" minlength="2" required>
+
+          <small *ngIf="contract_endDate.invalid && (form.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="contract_endDate.errors?.required">End Date is required.</span>
+            <span *ngIf="contract_endDate.errors?.minlength">End Date must be at least 2 characters long.</span>
+            <span *ngIf="contract_endDate.errors?.maxlength">End Date must be maximum 15 characters long.</span>
+          </small>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- controls -->
+    <div class="row">
+      <div class="col modal-controls">
+        <button type="button" class="btn btn-danger" [disabled]="formStatus.sending"
+                (click)="resetForm()">Reset</button>
+
+        <button type="submit" class="btn btn-success" [disabled]="formStatus.sending">
+          <fa-icon *ngIf="formStatus.sending"
+                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
