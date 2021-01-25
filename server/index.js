@@ -5,7 +5,6 @@
 'use strict';
 
 // node core modules dependencies
-
 // third-party dependencies
 import express from 'express';
 import morganLogger from 'morgan';

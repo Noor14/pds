@@ -9,6 +9,7 @@ import express from 'express';
 
 // app modules
 import demoVertical from './src/verticals/demo.js';
+import jwt  from 'jsonwebtoken';
 
 // initialization
 const router = express.Router();
@@ -49,10 +50,11 @@ router.use((req, res, next) => {
 import companiesRouter from './src/app/companies/companies.routes.js';
 import productsRouter from './src/app/products/products.routes.js';
 import areasRouter from './src/app/areas/areas.routes.js';
-
+import * as controller from './src/app/user/user.controller.js';
+import {authenticateToken} from './src/middlewares/authenticate.js'
 // all APIs routes mounting here
-router.use('/companies', companiesRouter);
-router.use('/products', productsRouter);
-router.use('/areas', areasRouter);
-
+router.use('/companies', authenticateToken, companiesRouter);
+router.use('/products', authenticateToken, productsRouter);
+router.use('/areas', authenticateToken, areasRouter);
+router.post('/login', controller.UserLogin);
 export default router;
