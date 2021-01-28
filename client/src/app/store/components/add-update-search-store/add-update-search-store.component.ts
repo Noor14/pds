@@ -30,8 +30,11 @@ export class AddUpdateSearchStoreComponent implements OnInit {
     [ECRUDModalModes.ReadOnly]: 'View Store',
   };
 
+  storeMode: ECRUDModalModes = ECRUDModalModes.Add;
+
   get modalTitle(): string {
     const mode = this.config ? this.config.mode : ECRUDModalModes.Add;
+    this.storeMode = mode;
     return this.titles[mode];
   }
 

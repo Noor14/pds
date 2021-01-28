@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ECRUDModalModes} from "@shared/models/modals.model";
 
 @Component({
   selector: 'app-my-account',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountComponent implements OnInit {
 
+  modes = ECRUDModalModes;
   data = {
-    type: 1,
+    type: 101,
     username: 'qaswa_admin',
     firstName: 'Admin',
     lastName: 'Qaswa',
