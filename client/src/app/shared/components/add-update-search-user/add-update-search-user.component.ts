@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import {ECRUDModalModes} from "@shared/models/modals.model";
 
 @Component({
@@ -7,7 +7,20 @@ import {ECRUDModalModes} from "@shared/models/modals.model";
   styleUrls: ['./add-update-search-user.component.scss']
 })
 export class AddUpdateSearchUserComponent implements OnInit {
+  @Input() user: any = {};
+  @Input() isEdit: boolean = false;
   public result = new EventEmitter();
+
+  methods = {
+    onSubmit: () => {},
+    onReset: () => {}
+  };
+
+  modes = {
+    isUser: false,
+    isStore: false,
+    isDoctor: false,
+  }
 
   data = {
     type: 1,
@@ -16,23 +29,34 @@ export class AddUpdateSearchUserComponent implements OnInit {
     lastName: 'Qaswa',
     email: 'admin@qaswa.com',
     address: 'every where in every city',
-    area: 1,
+    areaId: 1001,
     contact: '03010123456',
-    storeName: 'Qaswa Medical Store',
-    specialties: '',
-    experienceSinceYear: '1990',
+    storeInfo: {
+      name: 'Qaswa Medical Store',
+    },
+    doctorInfo: {
+      specialties: '',
+      experienceSince: '1990',
+      certifications: ''
+    }
   };
 
   areas = [
     {
-      id: 1,
+      id: 1001,
       name: 'Karachi'
     }, {
-      id:2,
+      id: 1002,
       name: 'Lahore'
     }
   ];
 
+  certifications = [
+    {
+      name: 'Something',
+      id: 4001
+    }
+  ];
   specialties = [
     {
       name: 'Something',
@@ -73,6 +97,7 @@ export class AddUpdateSearchUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.user);
   }
 
   defaultSelectedOption ( value: any ) {

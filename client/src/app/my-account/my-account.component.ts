@@ -14,11 +14,16 @@ export class MyAccountComponent implements OnInit {
     lastName: 'Qaswa',
     email: 'admin@qaswa.com',
     address: 'every where in every city',
-    area: 'Lahore',
+    areaId: 1002,
     contact: '03010123456',
-    storeName: 'Qaswa Medical Store',
-    specialties: 'Gynologist',
-    experienceSinceYear: '1990',
+    storeInfo: {
+      name: 'Qaswa Medical Store',
+    },
+    doctorInfo: {
+      specialties: 'Gynologist',
+      experienceSinceYear: '1990',
+      certifications: ''
+    }
   };
 
    passwordObj = {

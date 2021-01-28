@@ -1,173 +1,198 @@
 <form name="userForm" #userForm="ngForm" (ngSubmit)="submitForm(userForm)" novalidate>
-  <div class="row">
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_username">Username:</label>
-        <input type="text" class="form-control" name="users_username" id="users_username"
-               [(ngModel)]="data.username" #users_username="ngModel"
-               maxlength="17" minlength="7" required>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_username">Username:</label>
+          <input type="text" class="form-control" name="users_username" id="users_username"
+                 [(ngModel)]="data.username" #users_username="ngModel"
+                 maxlength="17" minlength="7" required>
 
-        <small *ngIf="users_username.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_username.errors?.required">Username is required.</span>
-          <span *ngIf="users_username.errors?.minlength">Username must be at least 7 characters long.</span>
-        </small>
+          <small *ngIf="users_username.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_username.errors?.required">Username is required.</span>
+            <span *ngIf="users_username.errors?.minlength">Username must be at least 7 characters long.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_type">Type:</label>
+          <select class="custom-select" name="users_type" id="users_type"
+                  [(ngModel)]="data.type" #users_type='ngModel' required>
+            <option [value]="undefined || null" selected disabled>Select</option>
+            <option [value]="type.value" *ngFor="let type of types;" [innerText]="type.name"></option>
+          </select>
+
+          <small *ngIf="users_type.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_type.errors?.required">Type is required.</span>
+            <!--          <span *ngIf="users_type.errors?.minlength">Type must be at least 3 characters long.</span>-->
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_firstName">First name:</label>
+          <input type="text" class="form-control" name="users_firstName" id="users_firstName"
+                 [(ngModel)]="data.firstName" #users_firstName="ngModel"
+                 maxlength="10" minlength="4" required>
+
+          <small *ngIf="users_firstName.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_firstName.errors?.required">First Name is required.</span>
+            <span *ngIf="users_firstName.errors?.minlength">First Name must be at least 4 characters long.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_lastName">Last name:</label>
+          <input type="text" class="form-control" name="users_lastName" id="users_lastName"
+                 [(ngModel)]="data.lastName" #users_lastName="ngModel"
+                 maxlength="10" minlength="4" required>
+
+          <small *ngIf="users_lastName.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_lastName.errors?.required">Last Name is required.</span>
+            <span *ngIf="users_lastName.errors?.minlength">Last Name must be at least 4 characters long.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_email">Email:</label>
+          <input type="email" class="form-control" name="users_email" id="users_email"
+                 [(ngModel)]="data.email" #users_email="ngModel" required>
+
+          <small *ngIf="users_email.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_email.errors?.required">Email is required.</span>
+            <!--          <span *ngIf="users_email.errors?.minlength">Email must be at least 7 characters long.</span>-->
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_contact">Contact(s):</label>
+          <input type="number" class="form-control" name="users_contact" id="users_contact"
+                 [(ngModel)]="data.contact" #users_contact="ngModel"
+                 maxlength="13" minlength="11" required>
+
+          <small *ngIf="users_contact.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_contact.errors?.required">Contact is required.</span>
+            <span *ngIf="users_contact.errors?.minlength">Contact must be at least 11 characters long.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12">
+        <div class="form-group">
+          <label for="users_address">Address:</label>
+          <input type="text" class="form-control" name="users_address" id="users_address"
+                 [(ngModel)]="data.address" #users_address="ngModel"
+                 maxlength="30" minlength="10" required>
+
+          <small *ngIf="users_address.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_address.errors?.required">Address is required.</span>
+            <span *ngIf="users_address.errors?.minlength">Address must be at least 10 characters long.</span>
+          </small>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_area">Area:</label>
+          <select class="custom-select" name="users_area" id="users_area"
+                  [(ngModel)]="data.areaId" #users_area='ngModel' required>
+            <option [value]="undefined || null" selected disabled>Select</option>
+            <option [value]="area.id" *ngFor="let area of areas;" [innerText]="area.name"></option>
+          </select>
+
+          <small *ngIf="users_area.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_area.errors?.required">Area is required.</span>
+            <!--          <span *ngIf="users_area.errors?.minlength">Area must be at least 7 characters long.</span>-->
+          </small>
+        </div>
       </div>
     </div>
 
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_type">Type:</label>
-        <select class="custom-select" name="users_type" id="users_type"
-                [(ngModel)]="data.type" #users_type='ngModel' required>
-          <option [value]="defaultSelectedOption(data.type)" selected disabled>Select</option>
-          <option [value]="type.value" *ngFor="let type of types;" [innerText]="type.name"></option>
-        </select>
+     <div class="row" *ngIf="modes.isStore">
+       <div class="col-12 col-sm-6">
+         <div class="form-group">
+           <label for="users_storeName">Store Name:</label>
+           <input type="text" class="form-control" name="users_storeName" id="users_storeName"
+                  [(ngModel)]="data.storeInfo.name" #users_storeName="ngModel"
+                  maxlength="30" minlength="7" required>
 
-        <small *ngIf="users_type.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_type.errors?.required">Type is required.</span>
-<!--          <span *ngIf="users_type.errors?.minlength">Type must be at least 3 characters long.</span>-->
-        </small>
+           <small *ngIf="users_storeName.invalid && (userForm.submitted)"
+                  class="form-text text-danger">
+             <span *ngIf="users_storeName.errors?.required">Store Name is required.</span>
+             <span *ngIf="users_storeName.errors?.minlength">Store Name must be at least 10 characters long.</span>
+           </small>
+         </div>
+       </div>
+
+     </div>
+
+    <div class="row" *ngIf="modes.isDoctor">
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_certifications">Certifications:</label>
+          <select class="custom-select" name="users_certifications" id="users_certifications"
+                  [(ngModel)]="data.doctorInfo.certifications" #users_certifications='ngModel' required>
+            <option [value]="undefined || null" selected disabled>Select</option>
+            <option [value]="spec.id" *ngFor="let spec of certifications;"
+                    [innerText]="spec.name"></option>
+          </select>
+
+          <small *ngIf="users_certifications.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_certifications.errors?.required">Certifications is required.</span>
+          </small>
+
+        </div>
       </div>
-    </div>
 
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_firstName">First name:</label>
-        <input type="text" class="form-control" name="users_firstName" id="users_firstName"
-               [(ngModel)]="data.firstName" #users_firstName="ngModel"
-               maxlength="10" minlength="4" required>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_specialties">Specialties:</label>
+          <select class="custom-select" name="users_specialties" id="users_specialties"
+                  [(ngModel)]="data.doctorInfo.specialties" #users_specialties='ngModel' required>
+            <option [value]="undefined || null" selected disabled>Select</option>
+            <option [value]="spec.id" *ngFor="let spec of specialties;"
+                    [innerText]="spec.name"></option>
+          </select>
 
-        <small *ngIf="users_firstName.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_firstName.errors?.required">First Name is required.</span>
-          <span *ngIf="users_firstName.errors?.minlength">First Name must be at least 4 characters long.</span>
-        </small>
+          <small *ngIf="users_specialties.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_specialties.errors?.required">Specialties is required.</span>
+          </small>
+
+        </div>
       </div>
-    </div>
 
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_lastName">Last name:</label>
-        <input type="text" class="form-control" name="users_lastName" id="users_lastName"
-               [(ngModel)]="data.lastName" #users_lastName="ngModel"
-               maxlength="10" minlength="4" required>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="users_experienceSince">Experience Since Year:</label>
+          <input type="text" class="form-control" name="users_experienceSince" id="users_experienceSince"
+                 [(ngModel)]="data.doctorInfo.experienceSince" #users_experienceSince="ngModel"
+                 maxlength="10" minlength="4" required>
 
-        <small *ngIf="users_lastName.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_lastName.errors?.required">Last Name is required.</span>
-          <span *ngIf="users_lastName.errors?.minlength">Last Name must be at least 4 characters long.</span>
-        </small>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_email">Email:</label>
-        <input type="email" class="form-control" name="users_email" id="users_email"
-               [(ngModel)]="data.email" #users_email="ngModel" required>
-
-        <small *ngIf="users_email.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_email.errors?.required">Email is required.</span>
-<!--          <span *ngIf="users_email.errors?.minlength">Email must be at least 7 characters long.</span>-->
-        </small>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_contact">Contact:</label>
-        <input type="number" class="form-control" name="users_contact" id="users_contact"
-               [(ngModel)]="data.contact" #users_contact="ngModel"
-               maxlength="13" minlength="11" required>
-
-        <small *ngIf="users_contact.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_contact.errors?.required">Contact is required.</span>
-          <span *ngIf="users_contact.errors?.minlength">Contact must be at least 11 characters long.</span>
-        </small>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-12">
-      <div class="form-group">
-        <label for="users_address">Address:</label>
-        <input type="text" class="form-control" name="users_address" id="users_address"
-               [(ngModel)]="data.address" #users_address="ngModel"
-               maxlength="30" minlength="10" required>
-
-        <small *ngIf="users_address.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_address.errors?.required">Address is required.</span>
-          <span *ngIf="users_address.errors?.minlength">Address must be at least 10 characters long.</span>
-        </small>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_area">Area:</label>
-        <select class="custom-select" name="users_area" id="users_area"
-                [(ngModel)]="data.area" #users_area='ngModel' required>
-          <option [value]="defaultSelectedOption(data.area)" selected disabled>Select</option>
-          <option [value]="area.id" *ngFor="let area of areas;" [innerText]="area.name"></option>
-        </select>
-
-        <small *ngIf="users_area.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_area.errors?.required">Area is required.</span>
-<!--          <span *ngIf="users_area.errors?.minlength">Area must be at least 7 characters long.</span>-->
-        </small>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_storeName">Store Name:</label>
-        <input type="text" class="form-control" name="users_storeName" id="users_storeName"
-               [(ngModel)]="data.storeName" #users_storeName="ngModel"
-               maxlength="30" minlength="7" required>
-
-        <small *ngIf="users_storeName.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_storeName.errors?.required">Store Name is required.</span>
-          <span *ngIf="users_storeName.errors?.minlength">Store Name must be at least 10 characters long.</span>
-        </small>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_specialties">Specialties:</label>
-        <select class="custom-select" name="users_specialties" id="users_specialties"
-                [(ngModel)]="data.specialties" #users_specialties='ngModel' required>
-          <option [value]="defaultSelectedOption(data.specialties)" selected disabled>Select</option>
-          <option [value]="spec.id" *ngFor="let spec of specialties;"
-                  [innerText]="spec.name"></option>
-        </select>
-
-        <small *ngIf="users_specialties.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_specialties.errors?.required">Company is required.</span>
-        </small>
-
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-        <label for="users_experienceSinceYear">Experience Since Year:</label>
-        <input type="text" class="form-control" name="users_experienceSinceYear" id="users_experienceSinceYear"
-               [(ngModel)]="data.experienceSinceYear" #users_experienceSinceYear="ngModel"
-               maxlength="10" minlength="4" required>
-
-        <small *ngIf="users_experienceSinceYear.invalid && (userForm.submitted)"
-               class="form-text text-danger">
-          <span *ngIf="users_experienceSinceYear.errors?.required">Experience is required.</span>
-          <span *ngIf="users_experienceSinceYear.errors?.minlength">Experience must be at least 7 characters long.</span>
-        </small>
+          <small *ngIf="users_experienceSince.invalid && (userForm.submitted)"
+                 class="form-text text-danger">
+            <span *ngIf="users_experienceSince.errors?.required">Experience is required.</span>
+            <span *ngIf="users_experienceSince.errors?.minlength">Experience must be at least 7 characters long.</span>
+          </small>
+        </div>
       </div>
     </div>
   </div>
