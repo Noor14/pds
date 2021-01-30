@@ -22,12 +22,12 @@ let schemaModel = {
 		trim: true
 	},
 	username: {
-		type: string,
+		type: String,
 		required: true,
 		trim: true
 	},
 	area: {
-		type: string,
+		type: String,
 		required: true,
 		trim: true
 	},
