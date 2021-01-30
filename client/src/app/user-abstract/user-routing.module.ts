@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserComponent } from './user.component';
+import { UserAbstractComponent } from './user-abstract.component';
 
-// import { UserHeaderComponent } from 'components/user-header/user-header.component';
-// import { UserFooterComponent } from 'components/user-footer/user-footer.component';
+// import { UserHeaderComponent } from 'components/user-abstract-header/user-abstract-header.component';
+// import { UserFooterComponent } from 'components/user-abstract-footer/user-abstract-footer.component';
 
 const children: Routes = [
   // { path: '', redirectTo: 'dashboard' }, // auto takes to dashboard pages
@@ -26,7 +26,7 @@ const routes: Routes = [
   // { path: '', component: UserHeaderComponent, outlet: 'header' },
   // { path: '', component: UserFooterComponent, outlet: 'footer' },
 
-  { path: '', component: UserComponent, children: children }
+  { path: '', component: UserAbstractComponent, children: children }
 ];
 
 @NgModule({

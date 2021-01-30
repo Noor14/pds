@@ -31,7 +31,7 @@ async function addOne(req, res) {
 	const data = new User(userData);
 	data.save((error, newUser) => {
 		if (error) {
-			respond.withFailure(res, 'user could not be created.', error);
+			respond.withFailure(res, 'user-abstract could not be created.', error);
 			return;
 		}
 		respond.withSuccess(res, {
@@ -48,7 +48,7 @@ async function updateOne(req, res) {
 
 	User.findOneAndUpdate({ id: { $eq: userData.id } }, userData, { new:  true }, (error, updatedUser) => {
 		if (error) {
-			respond.withFailure(res, 'user could not be updated.', error);
+			respond.withFailure(res, 'user-abstract could not be updated.', error);
 			return;
 		}
 		respond.withSuccess(res, {
@@ -61,7 +61,7 @@ async function updateOne(req, res) {
 async function deleteOne(req, res) {
 	User.findOneAndDelete({ id: { $eq: req.params.id } }, (error, user) => {
 		if (error) {
-			respond.withFailure(res, 'user could not be deleted.', error);
+			respond.withFailure(res, 'user-abstract could not be deleted.', error);
 		}
 		respond.withSuccess(res, {user});
 	});
@@ -71,11 +71,11 @@ async function deleteOne(req, res) {
 async function getOne(req, res) {
 	User.findOne({ id: { $eq: req.params.id } }, (error, user) => {
 		if (error) {
-			respond.withFailure(res, 'user could not be retrieved.', error);
+			respond.withFailure(res, 'user-abstract could not be retrieved.', error);
 			return
 		}
 		else if(!user){
-			respond.withFailure(res, 'user could not be retrieved.', 'Fail');
+			respond.withFailure(res, 'user-abstract could not be retrieved.', 'Fail');
 			return;
 		}
 		respond.withSuccess(res, {user});
@@ -122,7 +122,7 @@ async function UserLogout(req, res){
 	const data = new userBlackList({token});
 	data.save((error, newToken) => {
 		if (error) {
-			respond.withFailure(res, 'user could not be logout.', error);
+			respond.withFailure(res, 'user-abstract could not be logout.', error);
 			return;
 		}
 		respond.withSuccess(res, {

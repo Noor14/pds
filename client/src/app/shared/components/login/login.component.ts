@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
     // proceed as success
     window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
-    this.router.navigate(['/user']);
+    this.router.navigate(['/user-abstract']);
   }
 
   closeModal() {

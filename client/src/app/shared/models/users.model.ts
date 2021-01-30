@@ -13,7 +13,7 @@ export interface IUserCommonRaw {
   areaId: number; // to be transform to Area/City Name
   address: string; // complete simple 1 address string..
 
-  /* user model extension ==== */
+  /* user-abstract model extension ==== */
   // OR
   /* store model extension ==== */
   // OR
