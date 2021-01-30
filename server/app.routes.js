@@ -53,8 +53,9 @@ import areasRouter from './src/app/areas/areas.routes.js';
 import contractsRouter from './src/app/contracts/contracts.routes.js';
 import ordersRouter from './src/app/orders/orders.routes.js';
 import storesRouter from './src/app/stores/stores.routes.js';
-import * as controller from './src/app/user/user.controller.js';
-import {authenticateToken} from './src/middlewares/authenticate.js'
+import userRouter from './src/app/users/user.routes.js';
+import * as controller from './src/app/users/user.controller.js';
+import {authenticateToken} from './src/middlewares/authenticate.js';
 
 // all APIs routes mounting here
 router.use('/companies', authenticateToken, companiesRouter);
@@ -63,6 +64,7 @@ router.use('/areas', authenticateToken, areasRouter);
 router.use('/contracts', authenticateToken, contractsRouter);
 router.use('/orders', authenticateToken, ordersRouter);
 router.use('/stores', authenticateToken, storesRouter);
+router.use('/users', userRouter);
 
 router.post('/login', controller.UserLogin);
 router.delete('/logout', authenticateToken, controller.UserLogout);
