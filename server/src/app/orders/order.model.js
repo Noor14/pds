@@ -21,16 +21,22 @@ let schemaModel = {
 		required: true,
 		trim: true
 	},
-	type: {
+	status: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	contact: {
 		type: Number,
 		required: true,
 		trim: true
 	},
-	persons: {
-		type: Array,
+	amount: {
+		type: Number,
 		required: true,
-		default: [] // TODO add schema restriction for person model. check general.model.ts file of FE. for IPersonRaw
-	},
+		trim: true
+	}
+
 
 	// rest of fields to be added by databaseService.js.
 	// e.g. id, createdOn, createdBy, lastUpdatedOn, lastUpdatedBy, etc.
