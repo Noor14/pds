@@ -53,8 +53,8 @@ import areasRouter from './src/app/areas/areas.routes.js';
 import contractsRouter from './src/app/contracts/contracts.routes.js';
 import ordersRouter from './src/app/orders/orders.routes.js';
 import storesRouter from './src/app/stores/stores.routes.js';
-import userRouter from './src/app/users/user.routes.js';
-import * as controller from './src/app/users/user.controller.js';
+import userRouter from './src/app/users/users.routes.js';
+import * as controller from './src/app/users/users.controller.js';
 import {authenticateToken} from './src/middlewares/authenticate.js';
 
 // all APIs routes mounting here

@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import jwt from "jsonwebtoken";
-import userBlackList from './userBlackList.model.js';
+import userBlackList from './usersBlackList.model.js';
 import User from './user.model.js';
 import databaseService from '../shared/services/database.js';
 import respond from '../shared/services/respond.js';

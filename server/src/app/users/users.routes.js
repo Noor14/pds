@@ -5,7 +5,7 @@
 import express from 'express';
 
 // app modules
-import * as controller from './user.controller.js';
+import * as controller from './users.controller.js';
 import {authenticateToken} from '../../middlewares/authenticate.js';
 
 // initialization
