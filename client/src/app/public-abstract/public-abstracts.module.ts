@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import { PublicRoutingModule } from './public-routing.module';
+import { PublicAbstractRoutingModule } from './public-abstract-routing.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { PublicComponent } from './public.component';
@@ -28,8 +28,8 @@ import { PartnersComponent } from './components/partners/partners.component';
     CommonModule,
     SharedModule,
     CarouselModule,
-    PublicRoutingModule,
+    PublicAbstractRoutingModule,
   ],
   exports: [],
 })
-export class PublicModule { }
+export class PublicAbstractsModule { }

@@ -7,8 +7,8 @@ import { PartnersComponent } from './components/partners/partners.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 
-// import { PublicHeaderComponent } from 'components/public-header/public-header.component';
-// import { PublicFooterComponent } from 'components/public-footer/public-footer.component';
+// import { PublicHeaderComponent } from 'components/public-abstract-header/public-abstract-header.component';
+// import { PublicFooterComponent } from 'components/public-abstract-footer/public-abstract-footer.component';
 
 const children: Routes = [
   { path: '', component: LandingPageComponent, },
@@ -28,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PublicRoutingModule { }
+export class PublicAbstractRoutingModule { }
