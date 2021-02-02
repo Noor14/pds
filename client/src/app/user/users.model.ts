@@ -4,9 +4,9 @@ import { IPersonRaw } from '@shared/models/general.model';
 
 export { ECRUDModalModes };
 
-export interface IUserRaw {
-  firstname: string;
-  lastname: string;
+export interface IUserPayload {
+  firstName: string;
+  lastName: string;
   username: string;
   email: string;
   password: string;
@@ -17,10 +17,23 @@ export interface IUserRaw {
   contact: string;
 }
 
+export interface IUserRaw extends IUserCommonRaw {
+  userInfo: {
+    name: string; // e.g. "Al-Madina Pharmacy"
+    persons: IPersonRaw[];
+  },
+}
+
 // custom generated fields here
 export interface IUserParsed extends IUserCommonParsed, IUserRaw {
-  username: string;
+  customPersons: string; // name <br> phone, name <br> phone. we may add roles as well.
+
+  // copying from nested to root.
+  customFullName: string;
+  customeType: string,
+  customUserRole: string,
 }
+
 
 export interface IAddUpdateSearchUserConfig {
   mode: ECRUDModalModes;

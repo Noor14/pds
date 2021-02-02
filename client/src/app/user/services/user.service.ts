@@ -5,7 +5,6 @@ import {
   IAddUserSuccessData,
   IGetAllUsersSuccessData,
   IUserParsed,
-  IUserPayload,
   IUserRaw
 } from '@root/app/user/users.model';
 import { Observable, of } from 'rxjs';
@@ -26,7 +25,7 @@ export class UserService {
   ) {
   }
 
-  apiAddOne(userRaw: IUserPayload): Observable<any> {
+  apiAddOne(userRaw: IUserRaw): Observable<any> {
     // console.log('apiAddOne:', userRaw);
     // return of({
     //   user: userRaw
@@ -40,7 +39,7 @@ export class UserService {
       );
   }
 
-  apiUpdateOne(userId: number, userRaw: IUserPayload): Observable<any> {
+  apiUpdateOne(userId: number, userRaw: IUserRaw): Observable<any> {
     // console.log('apiUpdateUser:', userRaw);
     // return of({
     //   user: userRaw
@@ -114,8 +113,6 @@ export class UserService {
     }, userRaw);
 
     user.name = user.userInfo.name;
-    user.totalSaleAmount = user.userInfo.totalSaleAmount;
-    user.totalOrders = user.userInfo.totalOrders;
 
     user.customAreaName = ''; // TODO implement area name
     user.customPersons = user.userInfo.persons[0].phone.join('<br>');
