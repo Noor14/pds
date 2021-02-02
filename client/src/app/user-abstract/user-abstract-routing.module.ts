@@ -20,6 +20,7 @@ const children: Routes = [
   { path: 'my-contracts', loadChildren: () => import('../my-contracts/my-contracts.module').then(m => m.MyContractsModule) },
   { path: 'my-orders', loadChildren: () => import('../my-orders/my-orders.module').then(m => m.MyOrdersModule) },
   { path: 'my-account', loadChildren: () => import('../my-account/my-account.module').then(m => m.MyAccountModule) },
+  { path: 'users', loadChildren: () => import('../user/user-routing.module').then(m => m.UserRoutingModule) },
 ];
 
 const routes: Routes = [
