@@ -5,6 +5,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ILoginModalConfig, ILoginPayload } from '@shared/components/login/login.model';
 import { Router } from '@angular/router';
 import { Form } from '@angular/forms';
+import { AuthService } from '@shared/services/auth.service';
+import { any } from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ import { Form } from '@angular/forms';
 export class LoginComponent implements OnInit {
   public result = new EventEmitter();
   public config: ILoginModalConfig | undefined;
-
+  loading = false;
+  submitted = false;
   data: ILoginPayload = {
     username: 'qaswa-admin',
     password: 'test',
@@ -23,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private router: Router,
+    private auth: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -41,9 +45,19 @@ export class LoginComponent implements OnInit {
     }
 
     // TODO implement auth.apiDirectLogin()
-    this.result.emit('success');
-    this.bsModalRef.hide();
 
+    this.auth.apiDirectLogin(loginForm.value)
+      .subscribe((res: any) => {
+        console.log('login: success', res);
+
+          this.result.emit('success');
+          this.bsModalRef.hide();
+      },
+        (error: any) => {
+          console.log('login: error', error);
+
+          // refresh table to load latest records.
+        });
     // proceed as success
     window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
     this.router.navigate(['/user']);

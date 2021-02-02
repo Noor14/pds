@@ -112,7 +112,6 @@ export class UserService {
       customPersons: '',
     }, userRaw);
 
-    user.name = user.userInfo.name;
 
     user.customAreaName = ''; // TODO implement area name
     user.customPersons = user.userInfo.persons[0].phone.join('<br>');

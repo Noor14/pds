@@ -5,8 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 
 import { UsersComponent } from './users.component';
-import { AddUpdateSearchUserComponent } from './components/add-update-search-user/add-update-search-user.component';
-
+import { AddUpdateSearchUserComponent } from '@shared/components/add-update-search-user/add-update-search-user.component.ts'
 
 @NgModule({
   declarations: [
