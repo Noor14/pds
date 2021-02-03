@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserAbstractComponent } from './user-abstract.component';
 
-// import { UserHeaderComponent } from 'components/user-abstract-header/user-abstract-header.component';
-// import { UserFooterComponent } from 'components/user-abstract-footer/user-abstract-footer.component';
+// import { UserHeaderComponent } from 'components/team-abstract-header/team-abstract-header.component';
+// import { UserFooterComponent } from 'components/team-abstract-footer/team-abstract-footer.component';
 
 const children: Routes = [
   // { path: '', redirectTo: 'dashboard' }, // auto takes to dashboard pages
@@ -20,7 +20,7 @@ const children: Routes = [
   { path: 'my-contracts', loadChildren: () => import('../my-contracts/my-contracts.module').then(m => m.MyContractsModule) },
   { path: 'my-orders', loadChildren: () => import('../my-orders/my-orders.module').then(m => m.MyOrdersModule) },
   { path: 'my-account', loadChildren: () => import('../my-account/my-account.module').then(m => m.MyAccountModule) },
-  { path: 'team', loadChildren: () => import('../user/user-routing.module').then(m => m.UserRoutingModule) },
+  { path: 'team', loadChildren: () => import('@root/app/team/team-routing.module').then(m => m.TeamRoutingModule) },
 ];
 
 const routes: Routes = [

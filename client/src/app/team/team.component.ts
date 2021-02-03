@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ITeamUserParsed } from '@root/app/user/users.model';
+import { ITeamUserParsed } from './/team.model';
 import { ITableConfig } from '@shared/components/table/table.model';
-import { UserService } from '@root/app/user/services/user.service';
-// import { UserModalsService } from '@root/app/user/services/user-modals.service';
+import { TeamService } from './/services/team.service';
+// import { UserModalsService } from '@root/app/team/services/team-modals.service';
 import { IConfirmConfig, UtilService } from '@shared/services/util.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-team',
+  templateUrl: './team.component.html',
+  styleUrls: ['./team.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class TeamComponent implements OnInit {
   rows: ITeamUserParsed[] = [];
   columns = [
     { name: 'User ID', prop: 'id'},
@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
   };
 
   constructor(
-    private userService: UserService,
+    private userService: TeamService,
     // private userModalsService: UserModalsService,
     private utilService: UtilService
   ) { }
@@ -86,7 +86,7 @@ export class UsersComponent implements OnInit {
     console.log('editUser:', userIdx, user);
 
 /*
-    this.userModalsService.openEditUser(user)
+    this.userModalsService.openEditUser(team)
       .subscribe((res: any) => {
         console.log('editUser: success', res);
 
@@ -100,7 +100,7 @@ export class UsersComponent implements OnInit {
     console.log('deleteUser:', userIdx, user);
 
    /* const config: IConfirmConfig = {
-      message: 'Are you sure you want to delete this user from system ?',
+      message: 'Are you sure you want to delete this team from system ?',
       approveButtonText: 'Delete',
       declineButtonText: 'Decline',
     };
@@ -109,7 +109,7 @@ export class UsersComponent implements OnInit {
       .subscribe((res: any) => {
         console.log('confirm: prompt: approve', res);
 
-        this.userService.apiDeleteOne(user.id)
+        this.userService.apiDeleteOne(team.id)
           .subscribe((res: any) => {
             console.log('deleteUser: success', res);
 

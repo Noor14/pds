@@ -12,13 +12,13 @@ import {
   IGetAllUsersSuccessData,
   ITeamUserParsed, ITeamUserPayload,
   ITeamUserRaw
-} from '@root/app/user/users.model';
-import { usersRawMock } from '@root/app/user/users.mock';
+} from '@root/app/team/team.model';
+import { teamUsersRawMock } from '@root/app/team/team.mock';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class TeamService {
 
   private endpoint = `users`;
 
@@ -31,7 +31,7 @@ export class UserService {
   apiAddOne(userRaw: ITeamUserPayload): Observable<any> {
     // console.log('apiAddOne:', userRaw);
     // return of({
-    //   user: userRaw
+    //   team: userRaw
     // })
     return this.httpService.post(`${this.endpoint}`, userRaw)
       .pipe(
@@ -45,7 +45,7 @@ export class UserService {
   apiUpdateOne(userId: number, userRaw: ITeamUserPayload): Observable<any> {
     // console.log('apiUpdateUser:', userRaw);
     // return of({
-    //   user: userRaw
+    //   team: userRaw
     // })
     return this.httpService.post(`${this.endpoint}/${userId}`, userRaw)
       .pipe(
@@ -59,12 +59,12 @@ export class UserService {
   apiDeleteOne(userId: number): Observable<any> {
     // console.log('apiDeleteOne:', userRaw);
     return of({
-      user: usersRawMock[0]
+      user: teamUsersRawMock[0]
     })
       // return this.httpService.delete(`${this.endpoint}/${userRaw.id}`)
       .pipe(
         map((data: any) => {
-          // data.user = this.parseOneUser(data.user);
+          // data.team = this.parseOneUser(data.team);
           return data;
         })
       );
@@ -73,7 +73,7 @@ export class UserService {
   apiGetOne(userId: number): Observable<any> {
     // console.log('apiGetOne:', userId);
     return of({
-      user: usersRawMock[0]
+      user: teamUsersRawMock[0]
     })
       // return this.httpService.delete(`${this.endpoint}/${userId}`)
       .pipe(
@@ -87,8 +87,8 @@ export class UserService {
   apiGetList(params: IHttpMethodQueryParams): Observable<any> {
     // console.log('apiGetList:');
     return of({
-      users: usersRawMock,
-      totalCount: usersRawMock.length,
+      users: teamUsersRawMock,
+      totalCount: teamUsersRawMock.length,
     })
       // return this.httpService.get(`${this.endpoint}`, params)
       .pipe(

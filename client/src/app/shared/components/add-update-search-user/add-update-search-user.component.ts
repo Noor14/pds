@@ -92,8 +92,8 @@ export class AddUpdateSearchUserComponent implements OnInit {
       update: 'User has been updated successfully.',
     },
     failure: {
-      add: 'Failed in adding user !',
-      update: 'Failed in updating user !',
+      add: 'Failed in adding team !',
+      update: 'Failed in updating team !',
     },
   };
 

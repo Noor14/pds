@@ -1,6 +1,6 @@
-import { ITeamUserRaw } from '@root/app/user/users.model';
+import { ITeamUserRaw } from './/team.model';
 
-export const usersRawMock: ITeamUserRaw[] = [
+export const teamUsersRawMock: ITeamUserRaw[] = [
   {
     id: 1002,
     type: 1, // sales rep

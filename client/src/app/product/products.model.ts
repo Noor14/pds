@@ -19,9 +19,9 @@ export interface IProductRaw {
   // to be generated on server
   id: number;
   createdOn: string; // (new Date()).toISOString(); // "2021-01-15T21:39:51.835Z"
-  createdBy: number; // id of user/admin
+  createdBy: number; // id of team/admin
   lastUpdatedOn: string;
-  lastUpdatedBy: number; // id of user/admin
+  lastUpdatedBy: number; // id of team/admin
 
   // for GET only. dynamically calculated fields from BE.
   // ...

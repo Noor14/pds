@@ -17,7 +17,7 @@ export interface IUserCommonRaw extends IUserCommonPayload {
   id: number;
   status: number; // 0 pending, 1 activated, 2 disabled.
 
-  /* system-user model extension ==== */
+  /* system-team model extension ==== */
   // OR
   /* store model extension ==== */
   // OR
@@ -40,7 +40,7 @@ export interface IUserCommonParsed {
 
 /* for abstraction-only.. to extend to real entity model. -- starts */
 
-// for team-user, see team.model.ts ====
+// for team-team, see team.model.ts ====
 
 // for store, see store.model.ts =====
 
