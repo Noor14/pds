@@ -49,6 +49,7 @@ import { AddUpdateSearchUserComponent } from './components/add-update-search-use
   exports: [
     /* components */
     TableComponent,
+    AddUpdateSearchUserComponent,
 
     AlertComponent,
     ConfirmComponent,
@@ -64,7 +65,6 @@ import { AddUpdateSearchUserComponent } from './components/add-update-search-use
     ModalModule,
     PaginationModule,
     AlertModule,
-    AddUpdateSearchUserComponent,
   ],
 })
 export class SharedModule {
