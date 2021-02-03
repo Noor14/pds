@@ -17,7 +17,7 @@ export class AuthService {
     private httpService: HttpService,
   ) { }
 
-  apiDirectLogin(loginData: ILoginPayload): Observable<any> {
+  apiDirectLogin(loginData:any): Observable<any> {
     console.log('apiAddOne:', loginData);
 
     return of({
