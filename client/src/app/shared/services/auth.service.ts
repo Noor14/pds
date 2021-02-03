@@ -31,15 +31,15 @@ export class AuthService {
       status: true,
     })
 
-    this.httpService.get(`${this.endpoint}`, loginData)
+   // return this.httpService.post(`${this.endpoint}`, loginData)
       .pipe(
         map((data: any) => {
             console.log('login Success', data);
-            return data
+            return data;
           },
           (error: any) => {
             console.log('login error', error)
-            return error
+            return error;
           }
         )
       );

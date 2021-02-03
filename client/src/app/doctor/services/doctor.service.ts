@@ -105,21 +105,26 @@ export class DoctorService {
   parseOne(doctorRaw: IDoctorRaw): IDoctorParsed {
     // console.log('parseOne:', doctorRaw);
     const doctor = Object.assign({
-      name: '',
-      totalSaleAmount: 0,
-      totalOrders: 0,
-
+      customType: '',
       customAreaName: '',
-      customPersons: '',
+      customStatus: '',
+
+      name: doctorRaw.doctorInfo.name,
+      experienceSince: doctorRaw.doctorInfo.experienceSince,
+      totalSaleAmount: doctorRaw.doctorInfo.totalSaleAmount,
+      totalContracts: doctorRaw.doctorInfo.totalContracts,
+
+      customContacts: '',
+
+      customCertificationsNames: '',
+      customSpecialtiesNames: '',
+      customExperienceYears: '',
     }, doctorRaw);
 
-    // doctor.name = doctor.doctorInfo.name;
-    // doctor.totalSaleAmount = doctor.doctorInfo.totalSaleAmount;
-    // doctor.totalOrders = doctor.doctorInfo.totalOrders;
-    //
-    // doctor.customAreaName = ''; // TODO implement area name
-    // doctor.customPersons = doctor.doctorInfo.persons[0].phone.join('<br>');
+    // TODO implement custom fields
+    doctor.customAreaName = '';
+    doctor.customContacts = doctor.contacts.join('<br>');
 
-    // return doctor;
+    return doctor;
   }
 }

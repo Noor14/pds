@@ -106,19 +106,19 @@ export class StoreService {
   parseOne(storeRaw: IStoreRaw): IStoreParsed {
     // console.log('parseOne:', storeRaw);
     const store = Object.assign({
-      name: '',
-      totalSaleAmount: 0,
-      totalOrders: 0,
-
+      customType: '',
       customAreaName: '',
+      customStatus: '',
+
+      name: storeRaw.storeInfo.name,
+      totalSaleAmount: storeRaw.storeInfo.totalSaleAmount,
+      totalOrders: storeRaw.storeInfo.totalOrders,
+
       customPersons: '',
     }, storeRaw);
 
-    store.name = store.storeInfo.name;
-    store.totalSaleAmount = store.storeInfo.totalSaleAmount;
-    store.totalOrders = store.storeInfo.totalOrders;
-
-    store.customAreaName = ''; // TODO implement area name
+    // TODO implement custom fields
+    store.customAreaName = '';
     store.customPersons = store.storeInfo.persons[0].phone.join('<br>');
 
     return store;

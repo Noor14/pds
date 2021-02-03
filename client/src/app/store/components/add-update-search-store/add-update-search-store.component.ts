@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+
 import { StoreService } from '../../services/store.service';
 import {
   ECRUDModalModes,
@@ -10,7 +11,6 @@ import {
 } from '../../stores.model';
 import { UtilService } from '@shared/services/util.service';
 import { IChoices, IPersonRaw } from '@shared/models/general.model';
-import { ICompanyParsed } from '@root/app/companies/companies.model';
 import { IAreaParsed } from '@root/app/areas/areas.model';
 import { AreaService } from '@root/app/areas/services/area.service';
 
@@ -45,10 +45,15 @@ export class AddUpdateSearchStoreComponent implements OnInit {
   };
 
   data: IStorePayload = {
-    // persons: [{type: 0, firstName: '', lastName: '', phone: []}], // name <br> phone, name <br> phone. we may add roles as well.
-    name: '',
+    type: 101, // for stores.
+    username: '',
     areaId: 0,
-    address: ''
+    address: '',
+
+    storeInfo: {
+      name: '',
+      persons: [{type: 0, firstName: '', lastName: '', phone: []}],
+    },
   };
 
   choices: IChoices = {

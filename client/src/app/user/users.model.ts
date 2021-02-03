@@ -1,50 +1,38 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
-import { IUserCommonParsed, IUserCommonRaw } from '@shared/models/users.model';
-import { IPersonRaw } from '@shared/models/general.model';
+import { IUserCommonParsed, IUserCommonPayload, IUserCommonRaw } from '@shared/models/users.model';
 
 export { ECRUDModalModes };
 
-export interface IUserPayload {
+
+export interface ITeamUserPayload extends IUserCommonPayload {
   firstName: string;
   lastName: string;
-  username: string;
-  email: string;
   password: string;
-  address: string;
-  city: string;
-  status: string
-  role: string;
-  contact: string;
+
+  contacts: number[] // [123456789, 123456789]
 }
 
-export interface IUserRaw extends IUserCommonRaw {
-  userInfo: {
-    name: string; // e.g. "Al-Madina Pharmacy"
-    persons: IPersonRaw[];
-  },
+export interface ITeamUserRaw extends ITeamUserPayload, IUserCommonRaw {
+
 }
 
-// custom generated fields here
-export interface IUserParsed extends IUserCommonParsed, IUserRaw {
-  customPersons: string; // name <br> phone, name <br> phone. we may add roles as well.
-
-  // copying from nested to root.
+export interface ITeamUserParsed extends ITeamUserRaw, IUserCommonParsed {
   customFullName: string;
-  customeType: string,
-  customUserRole: string,
+  customContacts: string;
+  // other info like assignedTo, assignedBy, etc.
 }
 
 
-export interface IAddUpdateSearchUserConfig {
+export interface IAddUpdateSearchTeamUserConfig {
   mode: ECRUDModalModes;
-  user: IUserParsed | null;
+  user: ITeamUserParsed | null;
 }
 
 export interface IGetAllUsersSuccessData {
-  users: IUserRaw[],
+  users: ITeamUserRaw[],
   totalCount: number,
 }
 
 export interface IAddUserSuccessData {
-  user: IUserRaw,
+  user: ITeamUserRaw,
 }

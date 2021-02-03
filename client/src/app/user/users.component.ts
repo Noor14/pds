@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserParsed } from '@root/app/user/users.model';
+import { ITeamUserParsed } from '@root/app/user/users.model';
 import { ITableConfig } from '@shared/components/table/table.model';
 import { UserService } from '@root/app/user/services/user.service';
 // import { UserModalsService } from '@root/app/user/services/user-modals.service';
@@ -11,17 +11,15 @@ import { IConfirmConfig, UtilService } from '@shared/services/util.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  rows: IUserParsed[] = [];
+  rows: ITeamUserParsed[] = [];
   columns = [
     { name: 'User ID', prop: 'id'},
     { name: 'Name', prop: 'name'},
     { name: 'username', prop: 'username'},
-    { name: 'email', prop: 'email'},
-    { name: 'password', prop: 'password'},
     { name: 'Area / City', prop: 'customAreaName'},
-    { name: 'status', prop: 'status'},
+    { name: 'status', prop: 'customStatus'},
     { name: 'Member Since', prop: 'createdOn'},
-    { name: 'Contact', prop: 'Contact'}
+    { name: 'Contact', prop: 'customContacts'}
   ];
   actions = [
     { name: 'View / Edit', handler: this.editUser.bind(this)},
@@ -59,7 +57,7 @@ export class UsersComponent implements OnInit {
   fetchUsers(): void {
     console.log('fetchUsers:');
     this.userService.apiGetList({})
-      .subscribe((res: { users: IUserParsed[], totalCount: number }) => {
+      .subscribe((res: { users: ITeamUserParsed[], totalCount: number }) => {
         console.log('fetchUsers: success', res.users);
 
         this.rows = res.users;

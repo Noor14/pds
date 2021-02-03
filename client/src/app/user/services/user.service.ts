@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
+
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { UtilService } from '@shared/services/util.service';
 import { HttpService } from '@shared/services/http.service';
+import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
+
 import {
   IAddUserSuccessData,
   IGetAllUsersSuccessData,
-  IUserParsed,
-  IUserRaw
+  ITeamUserParsed, ITeamUserPayload,
+  ITeamUserRaw
 } from '@root/app/user/users.model';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { usersRawMock } from '@root/app/user/users.mock';
-import { IHttpMethodQueryParams } from '@shared/services/http.service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +28,7 @@ export class UserService {
   ) {
   }
 
-  apiAddOne(userRaw: IUserRaw): Observable<any> {
+  apiAddOne(userRaw: ITeamUserPayload): Observable<any> {
     // console.log('apiAddOne:', userRaw);
     // return of({
     //   user: userRaw
@@ -39,7 +42,7 @@ export class UserService {
       );
   }
 
-  apiUpdateOne(userId: number, userRaw: IUserRaw): Observable<any> {
+  apiUpdateOne(userId: number, userRaw: ITeamUserPayload): Observable<any> {
     // console.log('apiUpdateUser:', userRaw);
     // return of({
     //   user: userRaw
@@ -53,7 +56,7 @@ export class UserService {
       );
   }
 
-  apiDeleteOne(userRaw: IUserRaw): Observable<any> {
+  apiDeleteOne(userId: number): Observable<any> {
     // console.log('apiDeleteOne:', userRaw);
     return of({
       user: usersRawMock[0]
@@ -67,7 +70,7 @@ export class UserService {
       );
   }
 
-  apiGetOne(userId: string): Observable<any> {
+  apiGetOne(userId: number): Observable<any> {
     // console.log('apiGetOne:', userId);
     return of({
       user: usersRawMock[0]
@@ -96,25 +99,25 @@ export class UserService {
       );
   }
 
-  parseList(usersRaw: IUserRaw[]): IUserParsed[] {
+  parseList(usersRaw: ITeamUserRaw[]): ITeamUserParsed[] {
     // console.log('parseList:', usersRaw);
-    return usersRaw.map((userRaw: IUserRaw) => this.parseOne(userRaw));
+    return usersRaw.map((userRaw: ITeamUserRaw) => this.parseOne(userRaw));
   }
 
-  parseOne(userRaw: IUserRaw): IUserParsed {
+  parseOne(userRaw: ITeamUserRaw): ITeamUserParsed {
     // console.log('parseOne:', userRaw);
     const user = Object.assign({
-      name: '',
-      totalSaleAmount: 0,
-      totalOrders: 0,
-
+      customType: '',
       customAreaName: '',
-      customPersons: '',
+      customStatus: '',
+
+      customFullName: '',
+      customContacts: '',
     }, userRaw);
 
 
-    user.customAreaName = ''; // TODO implement area name
-    user.customPersons = user.userInfo.persons[0].phone.join('<br>');
+    // TODO implement custom fields.
+    user.customAreaName = '';
 
     return user;
   }

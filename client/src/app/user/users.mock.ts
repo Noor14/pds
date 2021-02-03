@@ -1,38 +1,43 @@
-import { IUserRaw } from '@root/app/user/users.model';
+import { ITeamUserRaw } from '@root/app/user/users.model';
 
-export const usersRawMock: IUserRaw[] = [
+export const usersRawMock: ITeamUserRaw[] = [
   {
-    firstName: 'arif', // for users
-    lastName: 'shabbir', // for users
-    email: 'arif@cloudways',
+    id: 1002,
+    type: 1, // sales rep
+    status: 1, // active
+    areaId: 1001,
+
+    firstName: 'Arif', // for users
+    lastName: 'Shabbir', // for users
+    username: 'arif@cloudways.com',
     password: 'test',
-    address: 'H 123, Block C, Test Town, Bin Qasim',
-    city: "Karachi",
-    status: 'active', //active, deactivate, pending
-    role: 'admin',//admin, user, super-admin
-    contact: '3216549874',
+    address: 'H 123, Streat 2, Test Town, Karachi.',
+    contacts: [923330400808],
 
     createdOn: '2021-01-15T21:39:51.835Z',
     createdBy: 1001,
     lastUpdatedOn: '2021-01-15T21:39:51.835Z',
     lastUpdatedBy: 1001,
+
     lastLoginOn: '2021-01-15T21:39:51.835Z',
-  },
-  {
-    firstName: 'arif', // for users
-    lastName: 'shabbir', // for users
-    email: 'arif@cloudways',
+  }, {
+    id: 1002,
+    type: 10, // admin
+    status: 1, // active
+    areaId: 1002,
+
+    firstName: 'Shahzad', // for users
+    lastName: 'Nawaz', // for users
+    username: 'shahzadcs@hotmail.co.uk',
     password: 'test',
     address: 'H 123, Block C, Test Town, Bin Qasim',
-    city: "Karachi",
-    status: 'active', //active, deactivate, pending
-    role: 'admin',//admin, user, super-admin
-    contact: '3216549874',
+    contacts: [923002609916],
 
     createdOn: '2021-01-15T21:39:51.835Z',
     createdBy: 1001,
     lastUpdatedOn: '2021-01-15T21:39:51.835Z',
     lastUpdatedBy: 1001,
+
     lastLoginOn: '2021-01-15T21:39:51.835Z',
   }
 ];

@@ -4,8 +4,10 @@ export const storesRawMock: IStoreRaw[] = [
   {
     id: 1001,
     type: 101, // for stores
-    username: 'bismillahms@gmail.com',  // can be a number as string or email
+    status: 1, // active
     areaId: 1001,
+
+    username: 'bismillahms@gmail.com',  // can be a number as string or email
     address: 'H 123, Block C, Test Town, Bin Qasim',
 
     createdOn: '2021-01-15T21:39:51.835Z',
@@ -25,8 +27,10 @@ export const storesRawMock: IStoreRaw[] = [
   {
     id: 1002,
     type: 101, // for stores
-    username: 'rutba@pharmacy.com',  // can be a number as string or email
+    status: 1, // active
     areaId: 1001,
+
+    username: 'rutba@pharmacy.com',  // can be a number as string or email
     address: 'H 50 Street 1, Market 40 Dip',
 
     createdOn: '2021-01-15T21:39:51.835Z',
@@ -46,8 +50,10 @@ export const storesRawMock: IStoreRaw[] = [
   {
     id: 1003,
     type: 101, // for stores
-    username: '923001234567', // can be a number as string or email
+    status: 1, // active
     areaId: 1001,
+
+    username: '923001234567', // can be a number as string or email
     address: 'H 200, Street 2, Bazar Manjushoori',
 
     createdOn: '2021-01-15T21:39:51.835Z',
