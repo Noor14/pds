@@ -13,12 +13,17 @@
           <input type="text" class="form-control" name="login_username" id="login_username"
                  #login_username="ngModel"
                  [(ngModel)]="data.username"
+                 (focus)="onChangeCredentials()"
+                 minlength="3"
+                 maxlength="100"
                  required
           >
 
           <small *ngIf="login_username.invalid && (loginForm.submitted)"
                  class="form-text text-danger">
-            <span *ngIf="login_username.errors?.required">Please provide username.</span>
+            <span *ngIf="login_username.errors?.required">Username is a required field.</span>
+            <span *ngIf="login_username.errors?.minlength">Username too short.</span>
+            <span *ngIf="login_username.errors?.maxlength">Username is too long.</span>
           </small>
         </div>
       </div>
@@ -28,14 +33,29 @@
           <input type="text" class="form-control" name="login_password" id="login_password"
                  #login_password="ngModel"
                  [(ngModel)]="data.password"
+                 (focus)="onChangeCredentials()"
+                 minlength="8"
+                 maxlength="100"
                  required
           >
 
           <small *ngIf="login_password.invalid && (loginForm.submitted)"
                  class="form-text text-danger">
-            <span *ngIf="login_password.errors?.required">Please provide password.</span>
+            <span *ngIf="login_password.errors?.required">Password is required field.</span>
+            <span *ngIf="login_password.errors?.minlength">Password too short.</span>
+            <span *ngIf="login_password.errors?.maxlength">Password is too long.</span>
           </small>
         </div>
+      </div>
+    </div>
+
+    <!-- response alert box -->
+    <div class="row">
+      <div class="col">
+        <alert *ngIf="formStatus.message"
+               [type]="formStatus.type === 'error' ? 'danger' : 'success'">
+          <span [innerHTML]="formStatus.message"></span>
+        </alert>
       </div>
     </div>
 
@@ -44,7 +64,10 @@
     <div class="row">
       <div class="col-12">
         <button type="submit" class="btn btn-success btn-block">
-          <fa-icon [icon]="['fas', 'lock']"></fa-icon>
+          <fa-icon *ngIf="!formStatus.sending"
+                   [icon]="['fas', 'lock']"></fa-icon>
+          <fa-icon *ngIf="formStatus.sending"
+                   [icon]="['fas', 'circle-notch']" [spin]="true"></fa-icon>
           Login
         </button>
       </div>

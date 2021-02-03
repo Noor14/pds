@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PublicComponent } from './public.component';
+import { PublicAbstractComponent } from './public-abstract.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
   // { path: '', component: PublicHeaderComponent, outlet: 'header' },
   // { path: '', component: PublicFooterComponent, outlet: 'footer' },
 
-  { path: '', component: PublicComponent, children: children }
+  { path: '', component: PublicAbstractComponent, children: children }
 ];
 
 @NgModule({

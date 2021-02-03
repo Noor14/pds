@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpService } from '@shared/services/http.service';
 import { IUserCommonRaw } from '@shared/models/users.model';
+import { ILoginPayload } from '@shared/components/login/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
     private httpService: HttpService,
   ) { }
 
-  apiDirectLogin(loginData: any): Observable<any> {
+  apiDirectLogin(loginData: ILoginPayload): Observable<any> {
     console.log('apiAddOne:', loginData);
 
     return of({

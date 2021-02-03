@@ -16,8 +16,12 @@ import { any } from 'codelyzer/util/function';
 export class LoginComponent implements OnInit {
   public result = new EventEmitter();
   public config: ILoginModalConfig | undefined;
-  loading = false;
-  submitted = false;
+  formStatus = {
+    sending: false,
+    type: '',
+    message: '',
+  };
+
   data: ILoginPayload = {
     username: 'qaswa-admin',
     password: 'test',
@@ -35,12 +39,23 @@ export class LoginComponent implements OnInit {
     // this.submitForm(this.loginForm);
   }
 
+  onChangeCredentials() {
+    this.resetFormStatus(false, '', '');
+  }
+
+  resetFormStatus(sending: boolean, type: string, message: string) {
+    this.formStatus.sending = sending;
+    this.formStatus.type = type;
+    this.formStatus.message = message;
+  }
+
   submitForm(loginForm: any): void {
     console.log('submitForm:');
 
     // halt if farm data values are not valid.
     if (loginForm.invalid) {
       console.log('submitForm: form validation failing.');
+      this.resetFormStatus(false, 'error', 'Please correct red marked fields values first.');
       return;
     }
 
