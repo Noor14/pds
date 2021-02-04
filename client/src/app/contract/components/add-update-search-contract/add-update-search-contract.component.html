@@ -10,15 +10,16 @@
     <div class="row">
       <div class="col-12 col-sm-4">
         <div class="form-group">
-          <label for="contract_name">Name:</label>
-          <input type="text" class="form-control" name="contract_name" id="contract_name"
-                 [(ngModel)]="data.contractByName" #contract_name="ngModel"
-                 minlength="3" required>
+          <label for="contract_name">Doctor:</label>
+          <select class="custom-select" name="contract_name" id="contract_name"
+                  [(ngModel)]="data.id" #contract_name='ngModel' required>
+            <option [value]="undefined">Select</option>
+            <option [value]="doctor.id" *ngFor="let doctor of doctors; let typeId = index;" [innerText]="doctor.name"></option>
+          </select>
 
           <small *ngIf="contract_name.invalid && (form.submitted)"
                  class="form-text text-danger">
-            <span *ngIf="contract_name.errors?.required">Name is required.</span>
-            <span *ngIf="contract_name.errors?.minlength">Name must be at least 3 characters long.</span>
+            <span *ngIf="contract_name.errors?.required">Contract name is a required.</span>
           </small>
 
         </div>
@@ -35,23 +36,6 @@
                  class="form-text text-danger">
             <span *ngIf="contract_amount.errors?.required">total Amount is required.</span>
             <span *ngIf="contract_amount.errors?.maxLength">total Amount must be maximum 15 characters long.</span>
-          </small>
-
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-4">
-        <div class="form-group">
-          <label for="contract_contact">Contact :</label>
-          <input type="text" class="form-control" name="contract_contact" id="contract_contact"
-                 [(ngModel)]="data.contractByContact" #contract_contact='ngModel'
-                 maxlength="15" minlength="2" required>
-
-          <small *ngIf="contract_contact.invalid && (form.submitted)"
-                 class="form-text text-danger">
-            <span *ngIf="contract_contact.errors?.required">Contact is required.</span>
-            <span *ngIf="contract_contact.errors?.minlength">Contact must be at least 2 characters long.</span>
-            <span *ngIf="contract_contact.errors?.maxlength">Contact must be maximum 15 characters long.</span>
           </small>
 
         </div>

@@ -16,31 +16,31 @@ const schemaConfig = {
 };
 
 let schemaModel = {
-	name: {
-		type: String,
+	doctorId: {
+		type: Number,
 		required: true,
-		trim: true
 	},
 	status: {
 		type: Number,
-		required: true,
-		trim: true
+		required: true
 	},
 	amount: {
 		type: Number,
 		required: true,
 		trim: true,
 	},
-	duration: {
+	commission: {
 		type: Number,
 		required: true,
-		trim: true,
 	},
-	contact: {
-		type: Number,
-		required: true,
-		trim: true,
+	startDate: {
+		type: Date,
+		required: true
 	},
+	endDate: {
+		type: Date,
+		required: true
+	}
 
 	// rest of fields to be added by databaseService.js.
 	// e.g. id, createdOn, createdBy, lastUpdatedOn, lastUpdatedBy, etc.
