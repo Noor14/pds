@@ -73,7 +73,11 @@ export class LoginComponent implements OnInit {
 
           // refresh table to load latest records.
         });
+
     // proceed as success
+    this.result.emit('success');
+    this.bsModalRef.hide();
+
     window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
     this.router.navigate(['/app']);
   }
