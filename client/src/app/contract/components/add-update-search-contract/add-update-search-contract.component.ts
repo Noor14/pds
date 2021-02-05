@@ -3,7 +3,7 @@ import { ECRUDModalModes, IAddUpdateSearchContractConfig, IContractRaw } from '@
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { UtilService } from '@shared/services/util.service';
 import { ContractService } from '@root/app/contract/services/contract.service';
-import { contractList } from '@root/app/contract/contracts.constant';
+// import { contractList } from '@root/app/contract/contracts.constant';
 
 @Component({
   selector: 'app-add-update-search-contract',
@@ -33,7 +33,9 @@ export class AddUpdateSearchContractComponent implements OnInit {
     message: '',
   };
 
-  doctors = contractList;
+  doctors = [
+    {id: 10001, name: ''}
+  ];
   responseMessages = {
     success: {
       add: 'Contract has been added successfully.',
