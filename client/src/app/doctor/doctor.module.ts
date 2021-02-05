@@ -6,6 +6,7 @@ import { DoctorRoutingModule } from './doctor-routing.module';
 
 import { DoctorsComponent } from './doctors.component';
 import { AddUpdateSearchDoctorComponent } from './components/add-update-search-doctor/add-update-search-doctor.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AddUpdateSearchDoctorComponent } from './components/add-update-search-d
     SharedModule,
 
     DoctorRoutingModule,
+    BsDatepickerModule.forRoot()
   ]
 })
 export class DoctorModule { }

@@ -1,3 +1,6 @@
+ import { ECRUDModalModes } from '@shared/models/modals.model';
+export { ECRUDModalModes };
+
 import { IUserCommonParsed, IUserCommonPayload, IUserCommonRaw } from '@shared/models/users.model';
 
 export interface IDoctorInfoPayload {
@@ -38,4 +41,9 @@ export interface IDoctorParsed extends IDoctorRaw, IUserCommonParsed {
   customCertificationsNames: string; // MBBS, FCPS, MCPS, BDS(Dentist), Other etc.
   customSpecialtiesNames: string; // 'Gyno', 'General Physcian', 'diabetes'
   customExperienceYears: string; // 10 years, calculate from doctorInfo.experienceSinceYear
+}
+
+export interface IAddUpdateSearchDoctorConfig {
+  mode: ECRUDModalModes;
+  doctor: IDoctorParsed | null;
 }
