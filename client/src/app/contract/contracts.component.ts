@@ -13,9 +13,9 @@ import { ContractService } from '@root/app/contract/services/contract.service';
 export class ContractsComponent implements OnInit {
   rows = [
     { id: '0000101', status: 'Completed', contractByName: 'Dr. Yameen', startDate: '01/Feb/2021', endDate: '01/Apr/2021', duration: 2, totalAmount: 'Rs. 40,235', contractByContact: '+923001234567'},
-    { id: '0000102', status: 'In Progress', contractByName: 'Dr. Abu Bakar', startDate: '01/Feb/2021', endDate: '01/Apr/2021', duration: 2, totalAmount: 'Rs. 10,800', contractByContact: '+92333199999'},
+    { id: '0000102', status: 'In Progress', contractByName: 'Dr. Abu Bakar', startDate: '04/Feb/2021', endDate: '08/Apr/2021', duration: 2, totalAmount: 'Rs. 10,800', contractByContact: '+92333199999'},
     { id: '0000103', status: 'In Progress', contractByName: 'Dr. Yousuf', startDate: '01/Feb/2021', endDate: '01/Apr/2021', duration: 2, totalAmount: 'Rs. 1,42,000', contractByContact: '+923021234500'},
-    { id: '0000104', status: 'Completed', contractByName: 'Dr. Rutba', startDate: '01/Feb/2021', endDate: '01/Apr/2021', duration: 2, totalAmount: 'Rs. 2,00,000', contractByContact: '+92300177777'},
+    { id: '0000104', status: 'Completed', contractByName: 'Dr. Rutba', startDate: '06/Feb/2021', endDate: '11/Apr/2021', duration: 2, totalAmount: 'Rs. 2,00,000', contractByContact: '+92300177777'},
     { id: '0000105', status: 'Completed', contractByName: 'Dr. Ali Imtiaz', startDate: '01/Feb/2021', endDate: '01/Apr/2021', duration: 2, totalAmount: 'Rs. 3,20,000', contractByContact: '+923001234567'},
     { id: '0000106', status: 'In Progress', contractByName: 'Dr. Momina Sundas', startDate: '01/Feb/2021', endDate: '01/Apr/2021', duration: 2, totalAmount: 'Rs. 15,000', contractByContact: '+92344123998035'},
   ];

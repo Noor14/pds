@@ -6,6 +6,8 @@ import { ContractRoutingModule } from './contract-routing.module';
 
 import { ContractsComponent } from './contracts.component';
 import { AddUpdateSearchContractComponent } from './components/add-update-search-contract/add-update-search-contract.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { AddUpdateSearchContractComponent } from './components/add-update-search
     CommonModule,
     SharedModule,
 
-    ContractRoutingModule
+    ContractRoutingModule,
+    BsDatepickerModule.forRoot()
   ]
 })
 export class ContractModule { }

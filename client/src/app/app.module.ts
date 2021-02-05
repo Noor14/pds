@@ -11,6 +11,7 @@ import { CoreModule } from '@root/app/core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AppComponent } from './app.component';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
 
     AppRoutingModule,
     CoreModule,

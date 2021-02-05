@@ -46,7 +46,7 @@
           <label for="contract_startDate">Start Date :</label>
           <input type="text" class="form-control" name="contract_startDate" id="contract_startDate"
                  [(ngModel)]="data.startDate" #contract_startDate='ngModel'
-                 maxlength="15" minlength="2" required>
+                 maxlength="15" minlength="2" bsDatepicker required>
 
           <small *ngIf="contract_startDate.invalid && (form.submitted)"
                  class="form-text text-danger">
@@ -64,7 +64,7 @@
           <label for="contract_endDate">End Date:</label>
           <input type="text" class="form-control" name="contract_endDate" id="contract_endDate"
                  [(ngModel)]="data.endDate" #contract_endDate='ngModel'
-                 maxlength="15" minlength="2" required>
+                 maxlength="15" minlength="2" bsDatepicker required>
 
           <small *ngIf="contract_endDate.invalid && (form.submitted)"
                  class="form-text text-danger">
