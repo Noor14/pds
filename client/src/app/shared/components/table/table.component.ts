@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { ITableConfig } from '@shared/components/table/table.model';
+import { CurrencyPipe } from '@angular/common';
 
 interface IAction {
   name: string;
@@ -33,6 +34,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   @Input() config: ITableConfig | undefined = undefined;
 
   @Input() rows: any[] = [];
+  @Input() currencyFilterProp?: any[] = [];
   @Input() columns: any[] = [];
   @Input() actions: IAction[] = [];
   @Input() messages: { [prop: string]: string } = {
@@ -63,12 +65,24 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit, OnChang
   ) { }
 
   ngOnInit(): void {
+    if (this.currencyFilterProp && this.currencyFilterProp.length > 0) {
+      this.currencyFilterProp.forEach((property) => {
+        if (!property) return;
+        this.rows.forEach((row) => {
+          row[property] = this.formatCurrency(row[property]);
+        });
+      })
+    }
   }
 
   ngOnChanges() {
     // console.log('ngOnChanges:');
     // this.rowsBackup = this.rows;
     this.rowsBackup = [...this.rows];
+  }
+
+  formatCurrency(price: number | string) {
+    return price == 0 ? 'Rs 0.00' : new CurrencyPipe('en-US').transform(price, 'Rs ', 'code');
   }
 
   onFilterChange() {
