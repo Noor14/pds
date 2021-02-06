@@ -42,7 +42,7 @@ export class AuthService {
             return data;
           },
           (error: any) => {
-            console.log('login error', error)
+            console.log('login error', error);
             return error;
           }
         )

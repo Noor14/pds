@@ -65,8 +65,12 @@ export class LoginComponent implements OnInit {
       .subscribe((res: any) => {
         console.log('login: success', res);
 
-          this.result.emit('success');
-          this.bsModalRef.hide();
+        if (res && res.accessToken) {
+          window.localStorage.token = res.accessToken;
+        }
+
+        this.result.emit('success');
+        this.bsModalRef.hide();
       },
         (error: any) => {
           console.log('login: error', error);

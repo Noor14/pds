@@ -15,12 +15,19 @@ export class RequestInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    let headers;
     // console.log('RequestInterceptor: intercept', request);
-    const userToken = null;
+    const userToken = window.localStorage.token || undefined;
+
+    const isLogin = request.url.indexOf('login');
+    const isLogout = request.url.indexOf('logout');
+
+    if (isLogin && userToken) headers = request.headers.set('Authorization', `Bearer ${userToken}`);
+    if (isLogout && userToken) window.localStorage.token = null;
+
     const modifiedRequest = request.clone({
-      // responseType: 'json',
       withCredentials: true,
-      // headers: request.headers.set('Authorization', `Bearer ${userToken}`) || HttpHeaders,
+      headers
     });
 
     return next.handle(modifiedRequest);
