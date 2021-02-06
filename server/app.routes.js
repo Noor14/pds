@@ -55,7 +55,7 @@ import ordersRouter from './src/app/orders/orders.routes.js';
 import storesRouter from './src/app/stores/stores.routes.js';
 import userRouter from './src/app/users/users.routes.js';
 import * as controller from './src/app/users/users.controller.js';
-import {authenticateToken} from './src/middlewares/authenticate.js';
+import { authenticateToken } from './src/middlewares/authenticate.js';
 
 // all APIs routes mounting here
 router.use('/companies', authenticateToken, companiesRouter);
@@ -67,5 +67,6 @@ router.use('/stores', authenticateToken, storesRouter);
 router.use('/users', userRouter);
 
 router.post('/login', controller.UserLogin);
-router.delete('/logout', authenticateToken, controller.UserLogout);
+// router.delete('/logout', authenticateToken, controller.UserLogout);
+router.delete('/logout', controller.UserLogout);
 export default router;
