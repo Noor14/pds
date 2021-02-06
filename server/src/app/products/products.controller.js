@@ -27,6 +27,11 @@ export {
 /* function declarations */
 
 // creates a new item
+async function addMultiple(req, res) {
+
+}
+
+// creates a new item
 async function addOne(req, res) {
 	const productData = req.body;
 

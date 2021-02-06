@@ -2,7 +2,7 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
 export { ECRUDModalModes };
 
-export interface IProductRaw {
+export interface IProductPayload {
   // comes in payload
   companyId: number; // "company.id"
   packInfo: string;
@@ -15,6 +15,9 @@ export interface IProductRaw {
   // optional
   batchNumber?: string;
   type?: string;
+}
+
+export interface IProductRaw extends IProductPayload {
 
   // to be generated on server
   id: number;
@@ -26,6 +29,7 @@ export interface IProductRaw {
   // for GET only. dynamically calculated fields from BE.
   // ...
 }
+
 // custom generated fields here.
 export interface IProductParsed extends IProductRaw {
   customTP: number; // for stores 15%

@@ -16,21 +16,11 @@ const schemaConfig = {
 };
 
 let schemaModel = {
-	name: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	type: {
+	companyId: {
 		type: Number,
 		required: true,
-		trim: true
 	},
-	persons: {
-		type: Array,
-		required: true,
-		default: [] // TODO add schema restriction for person model. check general.model.ts file of FE. for IPersonRaw
-	},
+
 
 	// rest of fields to be added by databaseService.js.
 	// e.g. id, createdOn, createdBy, lastUpdatedOn, lastUpdatedBy, etc.
