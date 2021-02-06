@@ -73,7 +73,7 @@ app.use('/api', appRoutes);
 // 404 routes responder
 app.use((req, res) => {
 	console.log('404 init.');
-	res.status(404).sendFile(__dirname + '/src/shared/views/404.html');
+	res.status(404).sendFile(path.resolve() + '/server/src/app/shared/views/404.html');
 });
 
 // initialize server
