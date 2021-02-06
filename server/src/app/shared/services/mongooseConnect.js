@@ -51,7 +51,13 @@ class MongooseConnectService {
 
 		return {
 			verticalDBName,
-			uri: `${environment.database.baseURI}/${verticalDBName}?retryWrites=true&w=majority`,
+
+			// for nodejs driver 3.6 latest
+			// uri: `${environment.database.baseURI}/${verticalDBName}?retryWrites=true&w=majority`,
+
+			// TODO review, why latest 3.6 stopped working for Shahzad's ubuntu
+			// for nodejs driver 2.2 or later.
+			uri: `${environment.database.baseURI}/${verticalDBName}?ssl=true&replicaSet=atlas-wu0oaq-shard-0&authSource=admin&retryWrites=true&w=majority`,
 		};
 	}
 }

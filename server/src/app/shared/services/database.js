@@ -95,7 +95,7 @@ class DatabaseService {
 
 	// sets up auto increment against given collection new inserts.
 	schemaApplyAutoIncrement(schema, collectionName) {
-		console.log('schemaAddIncrement:', collectionName);
+		// console.log('schemaAddIncrement:', collectionName);
 
 		schema.plugin(autoIncrement.plugin, {
 			model: collectionName,
