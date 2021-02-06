@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
+  HttpHeaders,
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
@@ -15,11 +16,11 @@ export class RequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // console.log('RequestInterceptor: intercept', request);
-    const userToken = 'secure-user-token';
+    const userToken = null;
     const modifiedRequest = request.clone({
       // responseType: 'json',
       withCredentials: true,
-      headers: request.headers.set('Authorization', `Bearer ${userToken}`),
+      // headers: request.headers.set('Authorization', `Bearer ${userToken}`) || HttpHeaders,
     });
 
     return next.handle(modifiedRequest);
