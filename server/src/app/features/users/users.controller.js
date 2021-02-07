@@ -1,17 +1,20 @@
 'use strict';
 
 // deps
+import dotenv from 'dotenv';
+dotenv.config();
+import jwt from 'jsonwebtoken';
 
 // app modules
-import respond from '../shared/services/respond.js';
-import databaseService from '../shared/services/database.js';
-import productsService from './products.service.js';
-import Product from './product.model.js';
+import UserBlackList from './usersBlackList.model.js';
+import User from './user.model.js';
+import databaseService from '../../shared/services/database.js';
+import respond from '../../shared/services/respond.js';
 
 // local
 const controllerConfig = {
-	entityNameSingle: `Product`,
-	entityNameMany: `Products`,
+	entityNameSingle: `User`,
+	entityNameMany: `Users`,
 };
 
 /* exports */
@@ -20,26 +23,21 @@ export {
 	updateOne,
 	deleteOne,
 	getOne,
-	getList
+	getList,
 };
 
 
 /* function declarations */
 
 // creates a new item
-async function addMultiple(req, res) {
-
-}
-
-// creates a new item
 async function addOne(req, res) {
-	const productData = req.body;
+	const userData = req.body;
 
 	// add and protect common fields
-	databaseService.apiFillInFieldsForCreate(req, productData);
+	databaseService.apiFillInFieldsForCreate(req, userData);
 
-	const data = new Product(productData);
-	data.save((error, newProduct) => {
+	const data = new User(userData);
+	data.save((error, newUser) => {
 
 		// case: DB error
 		if (error) {
@@ -47,23 +45,20 @@ async function addOne(req, res) {
 			return;
 		}
 
-		// fill in eval / aggregate based fields.
-		newProduct = productsService.fillInAdditionalFieldsForProduct(newProduct);
-
 		respond.withSuccess(res, {
-			product: newProduct
+			user: newUser
 		});
 	})
 }
 
 // updates the existing item
 async function updateOne(req, res) {
-	const productData = req.body;
+	const userData = req.body;
 
 	// add and protect common fields
-	databaseService.apiFillInFieldsForUpdate(req, productData);
+	databaseService.apiFillInFieldsForUpdate(req, userData);
 
-	Product.findOneAndUpdate({ id: { $eq: productData.id } }, productData, { new:  true }, (error, updatedProduct) => {
+	User.findOneAndUpdate({ id: { $eq: userData.id } }, userData, {new: true}, (error, updatedUser) => {
 
 		// case: DB error
 		if (error) {
@@ -72,25 +67,20 @@ async function updateOne(req, res) {
 		}
 
 		// case: no item found in DB.
-		if (!updatedProduct) {
+		if (!updatedUser) {
 			respond.withFailure(res, `No ${controllerConfig.entityNameSingle} found with given criteria to update.`, null);
 			return;
 		}
 
-		// TODO - review if we should inject in server generated fields ?
-
-		// fill in eval / aggregate based fields.
-		updatedProduct = productsService.fillInAdditionalFieldsForProduct(updatedProduct);
-
 		respond.withSuccess(res, {
-			product: updatedProduct
+			user: updatedUser
 		});
 	})
 }
 
 // deletes target item by id
 async function deleteOne(req, res) {
-	Product.findOneAndDelete({ id: { $eq: req.params.id } }, (error, product) => {
+	User.findOneAndDelete( { id: { $eq: req.params.id } }, (error, user) => {
 
 		// case: DB error
 		if (error) {
@@ -98,24 +88,20 @@ async function deleteOne(req, res) {
 		}
 
 		// case: no item found in DB.
-		if (!product) {
+		if (!user) {
 			respond.withFailure(res, `No ${controllerConfig.entityNameSingle} found with given criteria to delete.`, null);
 			return;
 		}
 
-		// fill in eval / aggregate based fields.
-		// no need here.
-		// product = productsService.fillInAdditionalFieldsForProduct(product);
-
 		respond.withSuccess(res, {
-			product: product
+			user: user
 		});
 	});
 }
 
 // gets target item by id
 async function getOne(req, res) {
-	Product.findOne({ id: { $eq: req.params.id } }, (error, product) => {
+	User.findOne({ id: { $eq: req.params.id } }, (error, user) => {
 
 		// case: DB error
 		if (error) {
@@ -123,23 +109,20 @@ async function getOne(req, res) {
 		}
 
 		// case: no item found in DB.
-		if (!product) {
+		if (!user) {
 			respond.withFailure(res, `No ${controllerConfig.entityNameSingle} found with given criteria.`, null);
 			return;
 		}
 
-		// fill in eval / aggregate based fields.
-		product = productsService.fillInAdditionalFieldsForProduct(product);
-
 		respond.withSuccess(res, {
-			product: product
+			user: user
 		});
 	});
 }
 
 // gets all items
 async function getList(req, res) {
-	Product.find({}, (error, products) => {
+	User.find({}, (error, users) => {
 
 		// case: DB error
 		if (error) {
@@ -147,12 +130,9 @@ async function getList(req, res) {
 			return;
 		}
 
-		// fill in eval / aggregate based fields.
-		products = products.map(productsService.fillInAdditionalFieldsForProduct);
-
 		// Note: when no records found, it should still be success response.
 		respond.withSuccess(res, {
-			products: products
+			users: users
 		});
 	})
 }

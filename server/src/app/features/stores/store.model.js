@@ -6,7 +6,7 @@ import bluebird from 'bluebird';
 mongoose.Promise = bluebird; // TODO review what is this for ?
 
 // app modules
-import databaseService from '../shared/services/database.js';
+import databaseService from '../../shared/services/database.js';
 
 // locals
 const Schema = mongoose.Schema;

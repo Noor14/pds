@@ -3,15 +3,15 @@
 // deps
 
 // app modules
-import respond from '../shared/services/respond.js';
-import databaseService from '../shared/services/database.js';
-import ordersService from './orders.service.js';
-import Order from './order.model.js';
+import respond from '../../shared/services/respond.js';
+import databaseService from '../../shared/services/database.js';
+import contractsService from './contracts.service.js';
+import Contract from './contract.model.js';
 
 // local
 const controllerConfig = {
-	entityNameSingle: `Order`,
-	entityNameMany: `Orders`,
+	entityNameSingle: `Contract`,
+	entityNameMany: `Contracts`,
 };
 
 /* exports */
@@ -28,13 +28,13 @@ export {
 
 // creates a new item
 async function addOne(req, res) {
-	const orderData = req.body;
+	const contractData = req.body;
 
 	// add and protect common fields
-	databaseService.apiFillInFieldsForCreate(req, orderData);
+	databaseService.apiFillInFieldsForCreate(req, contractData);
 
-	const data = new Order(orderData);
-	data.save((error, newOrder) => {
+	const data = new Contract(contractData);
+	data.save((error, newContract) => {
 
 		// case: DB error
 		if (error) {
@@ -43,22 +43,22 @@ async function addOne(req, res) {
 		}
 
 		// fill in eval / aggregate based fields.
-		newOrder = ordersService.fillInAdditionalFieldsForOrder(newOrder);
+		newContract = contractsService.fillInAdditionalFieldsForContract(newContract);
 
 		respond.withSuccess(res, {
-			order: newOrder
+			contract: newContract
 		});
 	})
 }
 
 // updates the existing item
 async function updateOne(req, res) {
-	const orderData = req.body;
+	const contractData = req.body;
 
 	// add and protect common fields
-	databaseService.apiFillInFieldsForUpdate(req, orderData);
+	databaseService.apiFillInFieldsForUpdate(req, contractData);
 
-	Order.findOneAndUpdate({ id: { $eq: orderData.id } }, orderData, { new:  true }, (error, updatedOrder) => {
+	Contract.findOneAndUpdate({ id: { $eq: contractData.id } }, contractData, { new:  true }, (error, updatedContract) => {
 
 		// case: DB error
 		if (error) {
@@ -69,17 +69,17 @@ async function updateOne(req, res) {
 		// TODO - review if we should inject in server generated fields ?
 
 		// fill in eval / aggregate based fields.
-		updatedOrder = ordersService.fillInAdditionalFieldsForOrder(updatedOrder);
+		updatedContract = contractsService.fillInAdditionalFieldsForContract(updatedContract);
 
 		respond.withSuccess(res, {
-			order: updatedOrder
+			contract: updatedContract
 		});
 	})
 }
 
 // deletes target item by id
 async function deleteOne(req, res) {
-	Order.findOneAndDelete({ id: { $eq: req.params.id } }, (error, order) => {
+	Contract.findOneAndDelete({ id: { $eq: req.params.id } }, (error, contract) => {
 
 		// case: DB error
 		if (error) {
@@ -88,17 +88,17 @@ async function deleteOne(req, res) {
 
 		// fill in eval / aggregate based fields.
 		// no need here.
-		// order = ordersService.fillInAdditionalFieldsForOrder(order);
+		// contract = contractsService.fillInAdditionalFieldsForContract(contract);
 
 		respond.withSuccess(res, {
-			order: order
+			contract: contract
 		});
 	});
 }
 
 // gets target item by id
 async function getOne(req, res) {
-	Order.findOne({ id: { $eq: req.params.id } }, (error, order) => {
+	Contract.findOne({ id: { $eq: req.params.id } }, (error, contract) => {
 
 		// case: DB error
 		if (error) {
@@ -106,17 +106,17 @@ async function getOne(req, res) {
 		}
 
 		// fill in eval / aggregate based fields.
-		order = ordersService.fillInAdditionalFieldsForOrder(order);
+		contract = contractsService.fillInAdditionalFieldsForContract(contract);
 
 		respond.withSuccess(res, {
-			order: order
+			contract: contract
 		});
 	});
 }
 
 // gets all items
 async function getList(req, res) {
-	Order.find({}, (error, orders) => {
+	Contract.find({}, (error, contracts) => {
 
 		// case: DB error
 		if (error) {
@@ -125,10 +125,10 @@ async function getList(req, res) {
 		}
 
 		// fill in eval / aggregate based fields.
-		orders = orders.map(ordersService.fillInAdditionalFieldsForOrder);
+		contracts = contracts.map(contractsService.fillInAdditionalFieldsForContract);
 
 		respond.withSuccess(res, {
-			orders: orders
+			contracts: contracts
 		});
 	})
 }

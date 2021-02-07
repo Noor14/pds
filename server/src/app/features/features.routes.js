@@ -8,7 +8,7 @@
 import express from 'express';
 
 // app modules
-import demoVertical from './src/verticals/demo.js';
+import demoVertical from '../../verticals/demo.js';
 
 // initialization
 const router = express.Router();
@@ -46,13 +46,13 @@ router.use((req, res, next) => {
 });
 
 /* routes files */
-import companiesRouter from './src/app/companies/companies.routes.js';
-import productsRouter from './src/app/products/products.routes.js';
-import areasRouter from './src/app/areas/areas.routes.js';
-import contractsRouter from './src/app/contracts/contracts.routes.js';
-import ordersRouter from './src/app/orders/orders.routes.js';
-import storesRouter from './src/app/stores/stores.routes.js';
-import userRouter from './src/app/users/users.routes.js';
+import companiesRouter from './companies/companies.routes.js';
+import productsRouter from './products/products.routes.js';
+import areasRouter from './areas/areas.routes.js';
+import contractsRouter from './contracts/contracts.routes.js';
+import ordersRouter from './orders/orders.routes.js';
+import storesRouter from './stores/stores.routes.js';
+import userRouter from './users/users.routes.js';
 
 // all APIs routes mounting here
 router.use('/companies', companiesRouter);

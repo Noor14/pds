@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import jwt from "jsonwebtoken";
-import userBlackList from '../app/users/usersBlackList.model.js';
+import userBlackList from '../features/users/usersBlackList.model.js';
 
 export function authenticateToken(req, res, next){
   const reqHeader =  req.headers['Authorization'];

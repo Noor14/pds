@@ -3,8 +3,8 @@
 // deps
 
 // app modules
-import respond from '../shared/services/respond.js';
-import databaseService from '../shared/services/database.js';
+import respond from '../../shared/services/respond.js';
+import databaseService from '../../shared/services/database.js';
 import companiesService from './companies.service.js';
 import Company from './company.model.js';
 

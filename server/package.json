@@ -2,10 +2,10 @@
   "name": "pharma-distribution-system",
   "version": "0.1.0",
   "description": "A pharmaceutical distribution management system",
-  "main": "index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --experimental-modules index.js",
+    "start": "nodemon --experimental-modules src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

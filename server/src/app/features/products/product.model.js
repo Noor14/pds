@@ -6,41 +6,21 @@ import bluebird from 'bluebird';
 mongoose.Promise = bluebird; // TODO review what is this for ?
 
 // app modules
-import databaseService from '../shared/services/database.js';
+import databaseService from '../../shared/services/database.js';
 
 // locals
 const Schema = mongoose.Schema;
 
 const schemaConfig = {
-	collectionName: `contracts`
+	collectionName: `products`
 };
 
 let schemaModel = {
-	doctorId: {
+	companyId: {
 		type: Number,
 		required: true,
 	},
-	status: {
-		type: Number,
-		required: true
-	},
-	amount: {
-		type: Number,
-		required: true,
-		trim: true,
-	},
-	commission: {
-		type: Number,
-		required: true,
-	},
-	startDate: {
-		type: Date,
-		required: true
-	},
-	endDate: {
-		type: Date,
-		required: true
-	}
+
 
 	// rest of fields to be added by databaseService.js.
 	// e.g. id, createdOn, createdBy, lastUpdatedOn, lastUpdatedBy, etc.
@@ -50,12 +30,12 @@ let schemaModel = {
 databaseService.schemaSetupCommonFields(schemaModel);
 // console.log('schema: complete:', schemaConfig.collectionName, ':', schemaModel);
 
-const contractsSchema = new Schema(schemaModel);
+const productsSchema = new Schema(schemaModel);
 
 // TODO review this - should we initialize it on every schema ?
 // initialize autoIncrement module.
 databaseService.initializeAutoIncrement();
 
-databaseService.schemaApplyAutoIncrement(contractsSchema, schemaConfig.collectionName);
+databaseService.schemaApplyAutoIncrement(productsSchema, schemaConfig.collectionName);
 
-export default mongoose.model(schemaConfig.collectionName, contractsSchema);
+export default mongoose.model(schemaConfig.collectionName, productsSchema);

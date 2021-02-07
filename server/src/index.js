@@ -15,11 +15,11 @@ import path from 'path';
 import cors from 'cors';
 
 // app modules
-import appRoutes from './app.routes.js';
-import authRouter from './src/app/auth/auth.routes.js';
-import mongooseConnectService from './src/app/shared/services/mongooseConnect.js';
-import corsOptionsDelegate from './src/middlewares/cors.js';
-import { authenticateToken } from './src/middlewares/authenticate.js';
+import appRoutes from './app/features/features.routes.js';
+import authRouter from './app/auth/auth.routes.js';
+import mongooseConnectService from './app/shared/services/mongooseConnect.js';
+import corsOptionsDelegate from './app/middlewares/cors.js';
+import { authenticateToken } from './app/middlewares/authenticate.js';
 
 /* locals */
 const config = {

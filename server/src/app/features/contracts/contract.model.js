@@ -6,31 +6,41 @@ import bluebird from 'bluebird';
 mongoose.Promise = bluebird; // TODO review what is this for ?
 
 // app modules
-import databaseService from '../shared/services/database.js';
+import databaseService from '../../shared/services/database.js';
 
 // locals
 const Schema = mongoose.Schema;
 
 const schemaConfig = {
-	collectionName: `companies`
+	collectionName: `contracts`
 };
 
 let schemaModel = {
-	name: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	type: {
+	doctorId: {
 		type: Number,
 		required: true,
-		trim: true
 	},
-	persons: {
-		type: Array,
+	status: {
+		type: Number,
+		required: true
+	},
+	amount: {
+		type: Number,
 		required: true,
-		default: [] // TODO add schema restriction for person model. check general.model.ts file of FE. for IPersonRaw
+		trim: true,
 	},
+	commission: {
+		type: Number,
+		required: true,
+	},
+	startDate: {
+		type: Date,
+		required: true
+	},
+	endDate: {
+		type: Date,
+		required: true
+	}
 
 	// rest of fields to be added by databaseService.js.
 	// e.g. id, createdOn, createdBy, lastUpdatedOn, lastUpdatedBy, etc.
@@ -40,12 +50,12 @@ let schemaModel = {
 databaseService.schemaSetupCommonFields(schemaModel);
 // console.log('schema: complete:', schemaConfig.collectionName, ':', schemaModel);
 
-const companiesSchema = new Schema(schemaModel);
+const contractsSchema = new Schema(schemaModel);
 
 // TODO review this - should we initialize it on every schema ?
 // initialize autoIncrement module.
 databaseService.initializeAutoIncrement();
 
-databaseService.schemaApplyAutoIncrement(companiesSchema, schemaConfig.collectionName);
+databaseService.schemaApplyAutoIncrement(contractsSchema, schemaConfig.collectionName);
 
-export default mongoose.model(schemaConfig.collectionName, companiesSchema);
+export default mongoose.model(schemaConfig.collectionName, contractsSchema);
