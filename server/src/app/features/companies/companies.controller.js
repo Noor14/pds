@@ -116,7 +116,37 @@ async function getOne(req, res) {
 
 // gets all items
 async function getList(req, res) {
-	Company.find({}, (error, companies) => {
+	Company.aggregate([
+		{ 
+			$lookup: {
+				from: "products",
+				localField: "id",
+				foreignField: "companyId",
+				as: "productCount"
+			}
+		},
+		{
+			$lookup:{
+				from: "orders", 
+				localField: "id", 
+				foreignField: "companyId",
+				as: "orderCount"
+			}
+		},
+		{ 
+		 $project: {
+				_id: 1,
+				persons:1,
+				name: 1,
+				type: 1,
+				createdBy: 1,
+				createdOn: 1,
+				id: 1,
+				totalProducts: { $size: "$productCount" },
+				totalOrders: { $size: "$orderCount" },
+			}
+		}
+	  ], (error, companies) => {
 
 		// case: DB error
 		if (error) {
@@ -125,7 +155,7 @@ async function getList(req, res) {
 		}
 
 		// fill in eval / aggregate based fields.
-		companies = companies.map(companiesService.fillInAdditionalFieldsForCompany);
+		// companies = companies.map(companiesService.fillInAdditionalFieldsForCompany);
 
 		respond.withSuccess(res, {
 			companies: companies
