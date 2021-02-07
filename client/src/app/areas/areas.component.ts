@@ -99,7 +99,13 @@ export class AreasComponent implements OnInit {
 
   addArea(): void {
     console.log('addArea:');
-    this.areaModalsService.openAddArea();
+    this.areaModalsService.openAddArea()
+      .subscribe((res: any)=> {
+        console.log('res', res);
+        this.ngOnInit();
+      },(error: any)=> {
+        console.log('error', error);
+      });
   }
 
   editArea(area: any, areaIdx: number): void {
