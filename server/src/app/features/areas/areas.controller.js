@@ -58,7 +58,7 @@ async function updateOne(req, res) {
 	// add and protect common fields
 	databaseService.apiFillInFieldsForUpdate(req, areaData);
 
-	Area.findOneAndUpdate({ id: { $eq: areaData.id } }, areaData, { new:  true }, (error, updatedArea) => {
+	Area.findOneAndUpdate({ id: { $eq: req.params.id } }, areaData, { new:  true }, (error, updatedArea) => {
 
 		// case: DB error
 		if (error) {
