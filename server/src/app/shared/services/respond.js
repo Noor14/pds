@@ -6,6 +6,8 @@ class ResponseService {
 	withSuccess(res, data) {
 		// console.log('respond: withSuccess', data);
 
+		// res.status(200); // is this needed ?
+
 		res.send({
 			success: true,
 			data: data

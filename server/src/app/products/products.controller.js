@@ -71,6 +71,12 @@ async function updateOne(req, res) {
 			return;
 		}
 
+		// case: no item found in DB.
+		if (!updatedProduct) {
+			respond.withFailure(res, `No ${controllerConfig.entityNameSingle} found with given criteria to update.`, null);
+			return;
+		}
+
 		// TODO - review if we should inject in server generated fields ?
 
 		// fill in eval / aggregate based fields.
@@ -91,6 +97,12 @@ async function deleteOne(req, res) {
 			respond.withFailure(res, `${controllerConfig.entityNameSingle} could not be deleted.`, error);
 		}
 
+		// case: no item found in DB.
+		if (!product) {
+			respond.withFailure(res, `No ${controllerConfig.entityNameSingle} found with given criteria to delete.`, null);
+			return;
+		}
+
 		// fill in eval / aggregate based fields.
 		// no need here.
 		// product = productsService.fillInAdditionalFieldsForProduct(product);
@@ -108,6 +120,12 @@ async function getOne(req, res) {
 		// case: DB error
 		if (error) {
 			respond.withFailure(res, `${controllerConfig.entityNameSingle} could not be retrieved.`, error);
+		}
+
+		// case: no item found in DB.
+		if (!product) {
+			respond.withFailure(res, `No ${controllerConfig.entityNameSingle} found with given criteria.`, null);
+			return;
 		}
 
 		// fill in eval / aggregate based fields.
@@ -132,6 +150,7 @@ async function getList(req, res) {
 		// fill in eval / aggregate based fields.
 		products = products.map(productsService.fillInAdditionalFieldsForProduct);
 
+		// Note: when no records found, it should still be success response.
 		respond.withSuccess(res, {
 			products: products
 		});
