@@ -49,6 +49,7 @@ export class AddUpdateSearchAreaComponent implements OnInit {
 
   // data: IAreaRaw = {;
   data: IAreaPayload = {
+    cityId: 1001, // for now hardcoded
     name: ''
   };
 

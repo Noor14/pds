@@ -16,7 +16,7 @@ const schemaConfig = {
 };
 
 let schemaModel = {
-	areaId: {
+	cityId: {
 		type: Number,
 		required: true
 	},

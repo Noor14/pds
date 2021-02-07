@@ -1,6 +1,11 @@
 import { ECRUDModalModes } from '@shared/models/modals.model';
 export { ECRUDModalModes };
 
+export interface IAreaPayload {
+  cityId: number;
+  name: string;
+}
+
 export interface IAreaRaw {
   id: number,
   name: string,
@@ -18,10 +23,6 @@ export interface IAreaRaw {
   totalActiveContracts: number,
   totalOrders: number,
   totalSale: number,
-}
-
-export interface IAreaPayload {
-  name: string;
 }
 
 // custom generated fields here.
