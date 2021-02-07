@@ -16,6 +16,11 @@ const schemaConfig = {
 };
 
 let schemaModel = {
+	storeId: {
+		type: String,
+		required: true,
+		trim: true
+	},
 	name: {
 		type: String,
 		required: true,
@@ -34,7 +39,10 @@ let schemaModel = {
 	contact: {
 		type: Number,
 		required: true,
-		trim: true
+	},
+	memberSince: {
+		type: Date,
+		required: true,
 	},
 
 	// rest of fields to be added by databaseService.js.

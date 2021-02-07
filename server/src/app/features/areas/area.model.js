@@ -16,6 +16,10 @@ const schemaConfig = {
 };
 
 let schemaModel = {
+	areaId: {
+		type: Number,
+		required: true
+	},
 	name: {
 		type: String,
 		required: true,
