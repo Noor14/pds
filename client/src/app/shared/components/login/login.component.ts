@@ -14,8 +14,10 @@ import { any } from 'codelyzer/util/function';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   public result = new EventEmitter();
   public config: ILoginModalConfig | undefined;
+
   formStatus = {
     sending: false,
     type: '',
@@ -23,8 +25,10 @@ export class LoginComponent implements OnInit {
   };
 
   data: ILoginPayload = {
-    username: 'qaswa-admin',
-    password: 'test',
+    // username: '',
+    // password: '',
+    username: 'contactqaswads@gmail.com',
+    password: 'qaswa',
   };
 
   constructor(
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(loginForm: any): void {
-    console.log('submitForm:');
+    console.log('LoginComponent: submitForm:');
 
     // halt if farm data values are not valid.
     if (loginForm.invalid) {
@@ -61,29 +65,21 @@ export class LoginComponent implements OnInit {
 
     // TODO implement auth.apiDirectLogin()
 
-    this.auth.apiDirectLogin(loginForm.value)
+    this.auth.apiDirectLogin(this.data)
       .subscribe((res: any) => {
-        console.log('login: success', res);
+        console.log('LoginComponent: submitForm: success', res);
 
-        if (res && res.accessToken) {
-          window.localStorage.token = res.accessToken;
-        }
-
+        // proceed as success
         this.result.emit('success');
         this.bsModalRef.hide();
+
+        this.router.navigate(['/app']);
       },
         (error: any) => {
-          console.log('login: error', error);
+          console.log('LoginComponent: submitForm: error', error);
 
-          // refresh table to load latest records.
+          this.resetFormStatus(false, 'error', error);
         });
-
-    // proceed as success
-    this.result.emit('success');
-    this.bsModalRef.hide();
-
-    window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
-    this.router.navigate(['/app']);
   }
 
   closeModal() {

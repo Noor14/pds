@@ -10,19 +10,14 @@ import { ILoginPayload } from '@shared/components/login/login.model';
 })
 export class AuthService {
 
-  private endpoint = `login`;
-
+  private endpoint = `auth`;
 
   constructor(
     private httpService: HttpService,
   ) { }
 
-  /**
-   * Login
-   * @param loginData
-   */
   apiDirectLogin(loginData:any): Observable<any> {
-    console.log('apiAddOne:', loginData);
+    console.log('apiDirectLogin:', loginData);
 
     // return of({
     //   user: {
@@ -35,36 +30,39 @@ export class AuthService {
     //   status: true,
     // })
 
-   return this.httpService.post('login', loginData)
+   return this.httpService.post(`${this.endpoint}/login`, loginData)
       .pipe(
         map((data: any) => {
-            console.log('login Success', data);
-            return data;
+          console.log('apiDirectLogin: success', data);
+
+          window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
+          window.localStorage.token = data.accessToken;
+
+          return data;
           },
           (error: any) => {
-            console.log('login error', error);
+            console.log('apiDirectLogin: error', error);
             return error;
           }
         )
       );
   }
 
-  /**
-   * Logout
-   */
   apiDirectLogout(): Observable<any> {
+    console.log('apiDirectLogout:');
+
     // return of({
     //   status: true,
     // })
 
-   return this.httpService.post('logout', null)
+   return this.httpService.post(`${this.endpoint}/logout`, null)
       .pipe(
         map((data: any) => {
-            console.log('logut Success service', data);
+            console.log('apiDirectLogout: success', data);
             return data;
           },
           (error: any) => {
-            console.log('logut error service', error)
+            console.log('apiDirectLogout: error', error)
             return error;
           }
         )

@@ -14,15 +14,13 @@
                  #login_username="ngModel"
                  [(ngModel)]="data.username"
                  (focus)="onChangeCredentials()"
-                 minlength="3"
                  maxlength="100"
                  required
           >
 
           <small *ngIf="login_username.invalid && (loginForm.submitted)"
                  class="form-text text-danger">
-            <span *ngIf="login_username.errors?.required">Username is a required field.</span>
-            <span *ngIf="login_username.errors?.minlength">Username too short.</span>
+            <span *ngIf="login_username.errors?.required">Username is required.</span>
             <span *ngIf="login_username.errors?.maxlength">Username is too long.</span>
           </small>
         </div>
@@ -34,15 +32,13 @@
                  #login_password="ngModel"
                  [(ngModel)]="data.password"
                  (focus)="onChangeCredentials()"
-                 minlength="4"
                  maxlength="100"
                  required
           >
 
           <small *ngIf="login_password.invalid && (loginForm.submitted)"
                  class="form-text text-danger">
-            <span *ngIf="login_password.errors?.required">Password is required field.</span>
-            <span *ngIf="login_password.errors?.minlength">Password too short.</span>
+            <span *ngIf="login_password.errors?.required">Password is required.</span>
             <span *ngIf="login_password.errors?.maxlength">Password is too long.</span>
           </small>
         </div>
