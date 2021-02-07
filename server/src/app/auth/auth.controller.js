@@ -6,7 +6,7 @@ dotenv.config();
 import jwt from 'jsonwebtoken';
 
 // app modules
-import UserBlackList from '../features/users/usersBlackList.model.js';
+import ActiveSession from './active-session.model.js';
 import User from '../features/users/user.model.js';
 import databaseService from '../shared/services/database.js';
 import respond from '../shared/services/respond.js';
@@ -47,36 +47,62 @@ async function login(req, res) {
 			return;
 		}
 
-		// proceed to handle success.
-		const accessToken = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, { expiresIn: '2d' });
+		/* proceed to handle success. */
 
-		// remove sensitive data from user model.
-		user.password = null;
+		// TODO enhance - implement support to extending token's life per every next interaction.
+		// generate token to be valid for max 8 hrs.
+		const accessToken = jwt.sign(user.toJSON(), process.env.SECRET_TOKEN, { expiresIn: '8h' });
 
-		respond.withSuccess(res, {
-			user: user,
-			accessToken: accessToken,
+		// check if this token was not discarded via logout.
+		// store the active session to later authenticate if it was not discarded via logout by then.
+		const session = new ActiveSession({ token: accessToken });
+		session.save((error, newToken) => {
+
+			// case: DB error
+			if (error) {
+				respond.withFailure(res, `Something went wrong, Please try again.`, error); // TODO improve the message.
+			}
+
+			// hurray ! proceed to the login session.
+
+			// remove sensitive data from user model.
+			user.password = null;
+
+			respond.withSuccess(res, {
+				user: user,
+				accessToken: accessToken,
+			});
 		});
+
+		/* background tasks starts here. e.g. noting active session, sms/email notification, etc. */
+		// ...
+
 	});
 }
 
+// destroys user's current active session, completely.
 async function logout(req, res) {
-	let token = req.headers['authorization'];
-	if (token && token.startsWith('Bearer')) {
-		token = token.split(' ').pop();
+	let accessToken = req.headers['authorization'];
+	if (accessToken && accessToken.startsWith('Bearer')) {
+		accessToken = accessToken.split(' ').pop();
 	}
 
-	const data = new UserBlackList({token});
-	data.save((error, newToken) => {
+	ActiveSession.findOneAndDelete({ token: { $eq: accessToken } }, (error, destroyedSession) => {
 
 		// case: DB error
 		if (error) {
-			respond.withFailure(res, `${controllerConfig.entityNameSingle} logout failed.`, error); // TODO improve the message.
+			respond.withFailure(res, `${controllerConfig.entityNameSingle} logout failed.`, error);
 		}
 
-		// proceed to handle success.
+		// TODO Review - should we expose this info ? probably not !
+		// case: no item found in DB.
+		// if (!destroyedSession) {
+		// 	respond.withFailure(res, `No ${controllerConfig.entityNameSingle}'s active session found to logout.`, null);
+		// 	return;
+		// }
+
 		respond.withSuccess(res, {
 			message: `${controllerConfig.entityNameSingle} Logged out successfully.`
 		});
-	})
+	});
 }

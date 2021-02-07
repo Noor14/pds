@@ -21,7 +21,7 @@ import { ICompanyRaw } from '@root/app/companies/companies.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private endpoint = `products`;
+  private endpoint = `app/products`;
 
   constructor(
     private utilService: UtilService,

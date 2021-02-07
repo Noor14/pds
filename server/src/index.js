@@ -19,7 +19,7 @@ import appRoutes from './app/features/features.routes.js';
 import authRouter from './app/auth/auth.routes.js';
 import mongooseConnectService from './app/shared/services/mongooseConnect.js';
 import corsOptionsDelegate from './app/middlewares/cors.js';
-import { authenticateToken } from './app/middlewares/authenticate.js';
+import { authActiveSession } from './app/middlewares/authenticate.js';
 
 /* locals */
 const config = {
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
 /* core app routes */
 const apiRouter = express.Router();
 apiRouter.use('/auth', authRouter);
-apiRouter.use('/app', authenticateToken, appRoutes);
+apiRouter.use('/app', authActiveSession, appRoutes);
 
 app.use('/api', cors(corsOptionsDelegate), apiRouter);
 

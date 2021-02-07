@@ -35,8 +35,9 @@ export class AuthService {
         map((data: any) => {
           console.log('apiDirectLogin: success', data);
 
-          window.localStorage.setItem('user', '{ firstName: "Dr. Abu Bakar"}');
-          window.localStorage.token = data.accessToken;
+          // store stuff to local storage for later use of request interceptor/
+          window.localStorage.setItem('user', JSON.stringify(data.user));
+          window.localStorage.setItem('accessToken', data.accessToken);
 
           return data;
           },
@@ -59,6 +60,11 @@ export class AuthService {
       .pipe(
         map((data: any) => {
             console.log('apiDirectLogout: success', data);
+
+            // destroy access token from app
+            window.localStorage.removeItem('user');
+            window.localStorage.removeItem('accessToken');
+
             return data;
           },
           (error: any) => {

@@ -16,18 +16,21 @@ export class RequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let headers;
+
     // console.log('RequestInterceptor: intercept', request);
-    const userToken = window.localStorage.token || undefined;
 
-    const isLogin = request.url.indexOf('login');
-    const isLogout = request.url.indexOf('logout');
+    // TODO - create localStorage service, and make flag name dynamic feeding from one place. e.g. settings
+    const accessToken = window.localStorage.getItem('accessToken') || undefined;
 
-    if (isLogin && userToken) headers = request.headers.set('Authorization', `Bearer ${userToken}`);
-    if (isLogout && userToken) window.localStorage.token = null;
+    const isLogin = request.url.indexOf('login') >= 0;
+    // const isLogout = request.url.indexOf('logout') >= 0;
+
+    if (accessToken && !isLogin) headers = request.headers.set('Authorization', `Bearer ${accessToken}`);
+    // if (isLogout && accessToken) window.localStorage.token = null;
 
     const modifiedRequest = request.clone({
       withCredentials: true,
-      headers
+      headers,
     });
 
     return next.handle(modifiedRequest);

@@ -6,7 +6,7 @@ dotenv.config();
 import jwt from 'jsonwebtoken';
 
 // app modules
-import UserBlackList from './usersBlackList.model.js';
+import UserBlackList from '../../auth/active-session.model.js';
 import User from './user.model.js';
 import databaseService from '../../shared/services/database.js';
 import respond from '../../shared/services/respond.js';

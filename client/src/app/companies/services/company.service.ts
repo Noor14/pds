@@ -20,7 +20,7 @@ import { companyTypes } from '@root/app/companies/companies.constant';
   providedIn: 'root'
 })
 export class CompanyService {
-  private endpoint = `companies`;
+  private endpoint = `app/companies`;
 
   constructor(
     private utilService: UtilService,
