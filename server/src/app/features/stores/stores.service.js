@@ -8,7 +8,6 @@ class StoresService {
 		console.log('fillInAdditionalFieldsForStore:', store);
 		const modifiedStore = store.toObject();
 
-		modifiedStore.totalProducts = 0;
 		modifiedStore.totalOrders = 0;
 		modifiedStore.totalAmount = 0;
 

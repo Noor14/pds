@@ -12,25 +12,33 @@ import databaseService from '../../shared/services/database.js';
 const Schema = mongoose.Schema;
 
 const schemaConfig = {
-	collectionName: `companies`
+	collectionName: `doctors`
 };
 
 let schemaModel = {
-	companyId: {
+	doctorId: {
 		type: Number,
-		required: true,
+		required: true
 	},
 	name: {
 		type: String,
 		required: true,
 		trim: true
 	},
-	type: {
-		type: Number,
+	specialties: {
+		type: String,
 		required: true,
 		trim: true
 	},
-	startedSince: {
+	totalDoctors: {
+		type: Number,
+		required: true,
+	},
+	experienceSince: { // date like year e.g 2002, 2015
+		type: Number,
+		required: true,
+	},
+	memberSince: { // complete date e.g 12/01/2019
 		type: Date,
 		required: true,
 	},
@@ -48,12 +56,12 @@ let schemaModel = {
 databaseService.schemaSetupCommonFields(schemaModel);
 // console.log('schema: complete:', schemaConfig.collectionName, ':', schemaModel);
 
-const companiesSchema = new Schema(schemaModel);
+const doctorsSchema = new Schema(schemaModel);
 
 // TODO review this - should we initialize it on every schema ?
 // initialize autoIncrement module.
 databaseService.initializeAutoIncrement();
 
-databaseService.schemaApplyAutoIncrement(companiesSchema, schemaConfig.collectionName);
+databaseService.schemaApplyAutoIncrement(doctorsSchema, schemaConfig.collectionName);
 
-export default mongoose.model(schemaConfig.collectionName, companiesSchema);
+export default mongoose.model(schemaConfig.collectionName, doctorsSchema);
